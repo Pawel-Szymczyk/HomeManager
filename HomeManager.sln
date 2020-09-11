@@ -3,7 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30011.22
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HomeManager", "HomeManager\HomeManager.csproj", "{EFDA71F4-1043-4E41-BD25-8F8E02A4CC8A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HomeManager", "HomeManager\HomeManager.csproj", "{EFDA71F4-1043-4E41-BD25-8F8E02A4CC8A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserService", "UserService\UserService.csproj", "{AAE43608-8CC6-497D-BA9C-9AB59ACFFB95}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApiGateway", "ApiGateway\ApiGateway.csproj", "{C7B4FACC-40E8-444A-B33F-E52B33E79387}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +19,14 @@ Global
 		{EFDA71F4-1043-4E41-BD25-8F8E02A4CC8A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EFDA71F4-1043-4E41-BD25-8F8E02A4CC8A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EFDA71F4-1043-4E41-BD25-8F8E02A4CC8A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AAE43608-8CC6-497D-BA9C-9AB59ACFFB95}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AAE43608-8CC6-497D-BA9C-9AB59ACFFB95}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AAE43608-8CC6-497D-BA9C-9AB59ACFFB95}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AAE43608-8CC6-497D-BA9C-9AB59ACFFB95}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C7B4FACC-40E8-444A-B33F-E52B33E79387}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C7B4FACC-40E8-444A-B33F-E52B33E79387}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C7B4FACC-40E8-444A-B33F-E52B33E79387}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C7B4FACC-40E8-444A-B33F-E52B33E79387}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
