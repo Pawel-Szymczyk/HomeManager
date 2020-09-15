@@ -2,7 +2,7 @@
   "Routes": [
     {
       "DownstreamPathTemplate": "/api/user",
-      "DownstreamScheme": "http",
+      "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
           "Host": "localhost",
@@ -14,7 +14,7 @@
     },
     {
       "DownstreamPathTemplate": "/api/user/{id}",
-      "DownstreamScheme": "http",
+      "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
           "Host": "localhost",
