@@ -9,6 +9,7 @@ using Wishlist.Service.API.Database.Entities;
 
 namespace Wishlist.Service.API.Controllers
 {
+    [Produces("application/json")]
     [Route("api/v1/[controller]")]
     [ApiController]
     public class WishlistController : ControllerBase
@@ -21,6 +22,15 @@ namespace Wishlist.Service.API.Controllers
         }
 
         // GET: api/Wishlist
+        /// <summary>
+        /// Get list of wish entities.
+        /// </summary>
+        /// <remarks>
+        /// Sample request:
+        /// 
+        ///     GET /api/v1/Wishlist
+        /// </remarks>
+        /// <returns>List of WishlistEntities</returns>
         [HttpGet]
         public IEnumerable<WishlistEntity> Get()
         {
@@ -35,12 +45,37 @@ namespace Wishlist.Service.API.Controllers
         }
 
         // POST: api/Wishlist
+        /// <summary>
+        /// Creates a Wishlist entity.
+        /// </summary>
+        /// <remarks>
+        /// Sample request:
+        ///
+        ///     POST api/v1/Wishlist
+        ///     {
+        ///         "name": "pc",
+        ///         "description": "black case",
+        ///         "websiteUrl": "https://www.google.com",
+        ///         "price": 1500.50,
+        ///         "occasion": 1,
+        ///         "state": 1,
+        ///         "category": 1
+        ///     }
+        ///
+        /// </remarks>
+        /// <param name="model">Entity model (object).</param>
+        /// <response code="201">Returns the newly created entity.</response>
+        /// <response code="500">If there was any problem with creating entity.</response>   
         [HttpPost]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public IActionResult Post([FromBody] WishlistEntity model)
         {
             try
             {
                 model.Id = new Guid();
+                model.CreateDate = DateTime.UtcNow;
+                model.ModifyDate = DateTime.UtcNow;
 
                 db.WishlistEntities.Add(model);
                 db.SaveChanges();
