@@ -13,6 +13,9 @@ using Microsoft.Extensions.Logging;
 using System.Reflection;
 using System.IO;
 using Microsoft.OpenApi.Models;
+using Wishlist.Service.API.DBContext;
+using Microsoft.EntityFrameworkCore;
+using Wishlist.Service.API.Repository;
 
 namespace Wishlist.Service.API
 {
@@ -29,6 +32,10 @@ namespace Wishlist.Service.API
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+
+            services.AddDbContext<WishlistContext>(options => options.UseSqlServer(Configuration.GetConnectionString("EntityDB")));
+
+            services.AddTransient<IEntityRepository, EntityRepository>();
 
             // Register the Swagger generator, defining 1 or more Swagger documents
             services.AddSwaggerGen(config => 

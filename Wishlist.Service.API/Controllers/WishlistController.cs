@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Transactions;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Wishlist.Service.API.Database;
-using Wishlist.Service.API.Database.Entities;
+using Wishlist.Service.API.Models;
+using Wishlist.Service.API.Repository;
 
 namespace Wishlist.Service.API.Controllers
 {
@@ -14,11 +15,11 @@ namespace Wishlist.Service.API.Controllers
     [ApiController]
     public class WishlistController : ControllerBase
     {
-        DatabaseContext db;
+        private readonly IEntityRepository _entityRepository;
 
-        public WishlistController()
+        public WishlistController(IEntityRepository entityRepository)
         {
-            db = new DatabaseContext();
+            _entityRepository = entityRepository;
         }
 
         // GET: api/Wishlist
@@ -32,16 +33,16 @@ namespace Wishlist.Service.API.Controllers
         /// </remarks>
         /// <returns>List of WishlistEntities</returns>
         [HttpGet]
-        public IEnumerable<WishlistEntity> Get()
+        public IEnumerable<Entity> Get()
         {
-            return db.WishlistEntities.ToList();
+            return _entityRepository.GetEntities();
         }
 
         // GET: api/Wishlist/5
         [HttpGet("{id}", Name = "Get")]
-        public WishlistEntity Get(int id)
+        public Entity Get(Guid id)
         {
-            return this.db.WishlistEntities.Find(id);
+            return _entityRepository.GetEntityById(id);
         }
 
         // POST: api/Wishlist
@@ -69,18 +70,25 @@ namespace Wishlist.Service.API.Controllers
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public IActionResult Post([FromBody] WishlistEntity model)
+        public IActionResult Post([FromBody] Entity model)
         {
             try
             {
-                model.Id = new Guid();
-                model.CreateDate = DateTime.UtcNow;
-                model.ModifyDate = DateTime.UtcNow;
+                //model.Id = new Guid();
+                //model.CreateDate = DateTime.UtcNow;
+                //model.ModifyDate = DateTime.UtcNow;
 
-                db.WishlistEntities.Add(model);
-                db.SaveChanges();
+                //db.WishlistEntities.Add(model);
+                //db.SaveChanges();
 
-                return StatusCode(StatusCodes.Status201Created, model);
+                using (var scope = new TransactionScope())
+                {
+                    _entityRepository.InsertEntity(model);
+                    scope.Complete();
+                    return StatusCode(StatusCodes.Status201Created, model);
+                }
+
+                
             }
             catch (Exception ex)
             {
