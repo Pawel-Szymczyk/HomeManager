@@ -29,7 +29,7 @@ namespace Wishlist.Service.API.Migrations
                     Description = table.Column<string>(nullable: true),
                     WebsiteUrl = table.Column<string>(nullable: true),
                     Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    OccasionId = table.Column<Guid>(nullable: false),
+                    OccasionId = table.Column<Guid>(nullable: true),
                     State = table.Column<int>(nullable: false),
                     Category = table.Column<int>(nullable: false),
                     CreateDate = table.Column<DateTime>(nullable: false),
@@ -43,7 +43,7 @@ namespace Wishlist.Service.API.Migrations
                         column: x => x.OccasionId,
                         principalTable: "Occasions",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.InsertData(
@@ -51,18 +51,19 @@ namespace Wishlist.Service.API.Migrations
                 columns: new[] { "Id", "Description", "Name" },
                 values: new object[,]
                 {
-                    { new Guid("44cf9b67-23a0-48ec-b4e3-3bbe0adca579"), "There is no occasion, but don't forget about yourself.", "NoOccasion" },
-                    { new Guid("7291e7e0-f39e-4b21-89f5-a0c7d3de7a23"), "Someone celebrates birthday, don't forget about a nice present.", "BirthdayPresent" },
-                    { new Guid("971f4e2e-29e8-44ab-bd0d-35a74c0fdcbc"), "Christmas time, there is no better time for presents.", "ChristmasPresent" },
-                    { new Guid("7cae9d95-a59f-4af3-b3fb-ce505becf610"), "Need more stuf, movement is great opportunity to rid of old things.", "Movement" },
-                    { new Guid("00475bd8-13bd-4c2f-9a2e-5def18537e3a"), "Any other situation you didn't think of.", "Others" }
+                    { new Guid("88dfb763-1e5f-43fb-b8bb-7abc20eba4b0"), "There is no occasion, but don't forget about yourself.", "NoOccasion" },
+                    { new Guid("dd86dc9b-5cd2-4548-83bb-4cd233dc6f26"), "Someone celebrates birthday, don't forget about a nice present.", "BirthdayPresent" },
+                    { new Guid("2b9fb10a-a0c2-4e62-957b-3262a2428c5d"), "Christmas time, there is no better time for presents.", "ChristmasPresent" },
+                    { new Guid("947c82e9-e6a0-478d-98b0-ca05609f4c8e"), "Need more stuf, movement is great opportunity to rid of old things.", "Movement" },
+                    { new Guid("bea093d4-7deb-4766-bcb7-00cf48f468ad"), "Any other situation you didn't think of.", "Others" }
                 });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Entities_OccasionId",
                 table: "Entities",
                 column: "OccasionId",
-                unique: true);
+                unique: true,
+                filter: "[OccasionId] IS NOT NULL");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

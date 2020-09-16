@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -19,7 +20,7 @@ namespace Wishlist.Service.API.Repository
         
         public IEnumerable<Entity> GetEntities()
         {
-            return _dbContext.Entities.ToList();
+            return _dbContext.Entities.Include(e => e.Occasion).ToList(); ;
         }
 
         public Entity GetEntityById(Guid id)

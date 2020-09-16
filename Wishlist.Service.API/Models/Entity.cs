@@ -19,8 +19,10 @@ namespace Wishlist.Service.API.Models
         public decimal Price { get; set; }
 
 
-        public Guid OccasionId { get; set; }
-        //public virtual Occasion Occasion { get; set; }
+        [ForeignKey("Occasion")]
+        public Guid? OccasionId { get; set; }
+        public virtual Occasion Occasion { get; set; }
+
         public State State { get; set; }
         public Category Category { get; set; }
         public DateTime CreateDate { get; set; }

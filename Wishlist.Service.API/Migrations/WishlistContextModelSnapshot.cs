@@ -41,7 +41,7 @@ namespace Wishlist.Service.API.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid>("OccasionId")
+                    b.Property<Guid?>("OccasionId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<decimal>("Price")
@@ -56,7 +56,8 @@ namespace Wishlist.Service.API.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("OccasionId")
-                        .IsUnique();
+                        .IsUnique()
+                        .HasFilter("[OccasionId] IS NOT NULL");
 
                     b.ToTable("Entities");
                 });
@@ -82,31 +83,31 @@ namespace Wishlist.Service.API.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("44cf9b67-23a0-48ec-b4e3-3bbe0adca579"),
+                            Id = new Guid("88dfb763-1e5f-43fb-b8bb-7abc20eba4b0"),
                             Description = "There is no occasion, but don't forget about yourself.",
                             Name = "NoOccasion"
                         },
                         new
                         {
-                            Id = new Guid("7291e7e0-f39e-4b21-89f5-a0c7d3de7a23"),
+                            Id = new Guid("dd86dc9b-5cd2-4548-83bb-4cd233dc6f26"),
                             Description = "Someone celebrates birthday, don't forget about a nice present.",
                             Name = "BirthdayPresent"
                         },
                         new
                         {
-                            Id = new Guid("971f4e2e-29e8-44ab-bd0d-35a74c0fdcbc"),
+                            Id = new Guid("2b9fb10a-a0c2-4e62-957b-3262a2428c5d"),
                             Description = "Christmas time, there is no better time for presents.",
                             Name = "ChristmasPresent"
                         },
                         new
                         {
-                            Id = new Guid("7cae9d95-a59f-4af3-b3fb-ce505becf610"),
+                            Id = new Guid("947c82e9-e6a0-478d-98b0-ca05609f4c8e"),
                             Description = "Need more stuf, movement is great opportunity to rid of old things.",
                             Name = "Movement"
                         },
                         new
                         {
-                            Id = new Guid("00475bd8-13bd-4c2f-9a2e-5def18537e3a"),
+                            Id = new Guid("bea093d4-7deb-4766-bcb7-00cf48f468ad"),
                             Description = "Any other situation you didn't think of.",
                             Name = "Others"
                         });
@@ -114,11 +115,9 @@ namespace Wishlist.Service.API.Migrations
 
             modelBuilder.Entity("Wishlist.Service.API.Models.Entity", b =>
                 {
-                    b.HasOne("Wishlist.Service.API.Models.Occasion", null)
-                        .WithOne("Entity")
-                        .HasForeignKey("Wishlist.Service.API.Models.Entity", "OccasionId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.HasOne("Wishlist.Service.API.Models.Occasion", "Occasion")
+                        .WithOne("Entities")
+                        .HasForeignKey("Wishlist.Service.API.Models.Entity", "OccasionId");
                 });
 #pragma warning restore 612, 618
         }

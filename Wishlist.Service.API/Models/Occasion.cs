@@ -28,6 +28,7 @@ namespace Wishlist.Service.API.Models
         [StringLength(100)]
         public string Description { get; set; }
 
-        public virtual Entity Entity { get; set; }
+        //public virtual Entity Entities { get; set; }
+        //public virtual ICollection<Entity> Entities { get; set; }
     }
 }
