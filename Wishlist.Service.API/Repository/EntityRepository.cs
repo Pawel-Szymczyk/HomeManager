@@ -20,7 +20,13 @@ namespace Wishlist.Service.API.Repository
         
         public IEnumerable<Entity> GetEntities()
         {
-            return _dbContext.Entities.Include(e => e.Occasion).ToList(); ;
+            var entities = _dbContext.Entities
+                .Include(e => e.Occasion)
+                .Include(e => e.Category)
+                .Include(e => e.State)
+                .ToList();
+
+            return entities;
         }
 
         public Entity GetEntityById(Guid id)
@@ -30,7 +36,6 @@ namespace Wishlist.Service.API.Repository
 
         public void InsertEntity(Entity model)
         {
-            //model.Id = new Guid();
             model.CreateDate = DateTime.UtcNow;
             model.ModifyDate = DateTime.UtcNow;
 
@@ -40,7 +45,9 @@ namespace Wishlist.Service.API.Repository
 
         public void UpdateEntity(Entity model)
         {
-            _dbContext.Entry(model).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+            model.ModifyDate = DateTime.UtcNow;
+
+            _dbContext.Entry(model).State = EntityState.Modified;
             Save();
         }
 

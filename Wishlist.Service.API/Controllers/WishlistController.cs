@@ -63,9 +63,9 @@ namespace Wishlist.Service.API.Controllers
         ///         "description": "black case",
         ///         "websiteUrl": "https://www.google.com",
         ///         "price": 1500.50,
-        ///         "occasion": 1,
-        ///         "state": 1,
-        ///         "category": 1
+        ///         "occasionId": 00000000-0000-0000-0000-000000000000,
+        ///         "stateId": 00000000-0000-0000-0000-000000000000,
+        ///         "categoryId": 00000000-0000-0000-0000-000000000000
         ///     }
         ///
         /// </remarks>
@@ -106,9 +106,9 @@ namespace Wishlist.Service.API.Controllers
         ///         "description": "black case",
         ///         "websiteUrl": "https://www.google.com",
         ///         "price": 1500.50,
-        ///         "occasion": 1,
-        ///         "state": 1,
-        ///         "category": 1
+        ///         "occasionId": 00000000-0000-0000-0000-000000000000,
+        ///         "stateId": 00000000-0000-0000-0000-000000000000,
+        ///         "categoryId": 00000000-0000-0000-0000-000000000000
         ///     }
         ///
         /// </remarks>
