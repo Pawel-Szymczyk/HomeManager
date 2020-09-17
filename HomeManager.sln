@@ -13,6 +13,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Wishlist.Service.API", "Wis
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Microservices", "Microservices", "{6F73313C-1E7E-4DDB-8F19-552B0C0DFE68}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PCBuilder.Service.API", "PCBuilder.Service.API\PCBuilder.Service.API.csproj", "{C7617E9C-F7FD-49D0-B1BC-D5322FE200D3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,6 +37,10 @@ Global
 		{D154DCBE-00E5-4050-AC80-4A528A4837AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D154DCBE-00E5-4050-AC80-4A528A4837AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D154DCBE-00E5-4050-AC80-4A528A4837AD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C7617E9C-F7FD-49D0-B1BC-D5322FE200D3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C7617E9C-F7FD-49D0-B1BC-D5322FE200D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C7617E9C-F7FD-49D0-B1BC-D5322FE200D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C7617E9C-F7FD-49D0-B1BC-D5322FE200D3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -42,6 +48,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{48D88BB5-4236-4F49-8CE2-87251979F9D3} = {6F73313C-1E7E-4DDB-8F19-552B0C0DFE68}
 		{D154DCBE-00E5-4050-AC80-4A528A4837AD} = {6F73313C-1E7E-4DDB-8F19-552B0C0DFE68}
+		{C7617E9C-F7FD-49D0-B1BC-D5322FE200D3} = {6F73313C-1E7E-4DDB-8F19-552B0C0DFE68}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E927ABDE-8CBC-4C4E-BD58-853955D90119}
