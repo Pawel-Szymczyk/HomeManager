@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Transactions;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Collections.Generic;
+using System.Transactions;
 using Wishlist.Service.API.Models;
 using Wishlist.Service.API.Repository;
 
@@ -19,10 +17,9 @@ namespace Wishlist.Service.API.Controllers
 
         public WishlistController(IEntityRepository entityRepository)
         {
-            _entityRepository = entityRepository;
+            this._entityRepository = entityRepository;
         }
 
-        // GET: api/Wishlist
         /// <summary>
         /// Get list of wish entities.
         /// </summary>
@@ -35,17 +32,25 @@ namespace Wishlist.Service.API.Controllers
         [HttpGet]
         public IEnumerable<Entity> Get()
         {
-            return _entityRepository.GetEntities();
+            return this._entityRepository.GetEntities();
         }
 
-        // GET: api/Wishlist/5
+        /// <summary>
+        /// Get single entity.
+        /// </summary>
+        /// <remarks>
+        /// Sample request:
+        /// 
+        ///     GET /api/v1/Wishlist/00000000-0000-0000-0000-000000000000
+        /// </remarks>
+        /// <param name="id">(Guid) Entity identificator.</param>
+        /// <returns>Return enity object.</returns>
         [HttpGet("{id}", Name = "Get")]
         public Entity Get(Guid id)
         {
-            return _entityRepository.GetEntityById(id);
+            return this._entityRepository.GetEntityById(id);
         }
 
-        // POST: api/Wishlist
         /// <summary>
         /// Creates a Wishlist entity.
         /// </summary>
@@ -74,38 +79,95 @@ namespace Wishlist.Service.API.Controllers
         {
             try
             {
-                //model.Id = new Guid();
-                //model.CreateDate = DateTime.UtcNow;
-                //model.ModifyDate = DateTime.UtcNow;
-
-                //db.WishlistEntities.Add(model);
-                //db.SaveChanges();
-
                 using (var scope = new TransactionScope())
                 {
-                    _entityRepository.InsertEntity(model);
+                    this._entityRepository.InsertEntity(model);
                     scope.Complete();
-                    return StatusCode(StatusCodes.Status201Created, model);
+                    return this.StatusCode(StatusCodes.Status201Created, model);
                 }
-
-                
             }
             catch (Exception ex)
             {
-                return StatusCode(StatusCodes.Status500InternalServerError, ex);
+                return this.StatusCode(StatusCodes.Status500InternalServerError, ex);
             }
         }
 
-        //// PUT: api/Wishlist/5
-        //[HttpPut("{id}")]
-        //public void Put(int id, [FromBody] string value)
-        //{
-        //}
 
-        //// DELETE: api/ApiWithActions/5
-        //[HttpDelete("{id}")]
-        //public void Delete(int id)
-        //{
-        //}
+        /// <summary>
+        /// Updates a Wishlist entity.
+        /// </summary>
+        /// <remarks>
+        /// Sample request:
+        ///
+        ///     PUT api/v1/Wishlist
+        ///     {
+        ///         "id": "c21f6369-554c-42d3-7ad1-08d85b2f6c0f",
+        ///         "name": "pc",
+        ///         "description": "black case",
+        ///         "websiteUrl": "https://www.google.com",
+        ///         "price": 1500.50,
+        ///         "occasion": 1,
+        ///         "state": 1,
+        ///         "category": 1
+        ///     }
+        ///
+        /// </remarks>
+        /// <param name="model">Entity model (object).</param>
+        /// <response code="201">Returns the newly created entity.</response>
+        /// <response code="204">Returns no content message.</response>
+        /// <response code="500">If there was any problem with creating entity.</response>   
+        [HttpPut]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public IActionResult Put([FromBody] Entity model)
+        {
+            try
+            {
+                if (model != null)
+                {
+                    using (var scope = new TransactionScope())
+                    {
+                        this._entityRepository.UpdateEntity(model);
+                        scope.Complete();
+                        return this.StatusCode(StatusCodes.Status201Created, model);
+                    }
+                }
+
+                return this.StatusCode(StatusCodes.Status204NoContent);
+            }
+            catch (Exception ex)
+            {
+                return this.StatusCode(StatusCodes.Status500InternalServerError, ex);
+            }
+        }
+
+        /// <summary>
+        /// Delete single entity.
+        /// </summary>
+        /// <remarks>
+        /// Sample request:
+        /// 
+        ///     DELETE /api/v1/Wishlist/00000000-0000-0000-0000-000000000000
+        /// </remarks>
+        /// <param name="id">(Guid) Entity identificator.</param>
+        /// <returns>Return successful message.</returns>
+        /// <response code="200">Returns successful message.</response>
+        /// <response code="500">If there was any problem with creating entity.</response>   
+        [HttpDelete("{id}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public IActionResult Delete(Guid id)
+        {
+            try
+            {
+                this._entityRepository.DeleteEntity(id);
+                return this.StatusCode(StatusCodes.Status200OK);
+            }
+            catch (Exception ex)
+            {
+                return this.StatusCode(StatusCodes.Status500InternalServerError, ex);
+            }
+        }
     }
 }

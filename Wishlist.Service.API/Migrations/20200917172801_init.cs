@@ -51,19 +51,17 @@ namespace Wishlist.Service.API.Migrations
                 columns: new[] { "Id", "Description", "Name" },
                 values: new object[,]
                 {
-                    { new Guid("88dfb763-1e5f-43fb-b8bb-7abc20eba4b0"), "There is no occasion, but don't forget about yourself.", "NoOccasion" },
-                    { new Guid("dd86dc9b-5cd2-4548-83bb-4cd233dc6f26"), "Someone celebrates birthday, don't forget about a nice present.", "BirthdayPresent" },
-                    { new Guid("2b9fb10a-a0c2-4e62-957b-3262a2428c5d"), "Christmas time, there is no better time for presents.", "ChristmasPresent" },
-                    { new Guid("947c82e9-e6a0-478d-98b0-ca05609f4c8e"), "Need more stuf, movement is great opportunity to rid of old things.", "Movement" },
-                    { new Guid("bea093d4-7deb-4766-bcb7-00cf48f468ad"), "Any other situation you didn't think of.", "Others" }
+                    { new Guid("db6f100a-e46c-4dad-81a0-340765cc65e3"), "There is no occasion, but don't forget about yourself.", "NoOccasion" },
+                    { new Guid("e3ab66ee-6c04-471d-a0db-6e0c9917d3ef"), "Someone celebrates birthday, don't forget about a nice present.", "BirthdayPresent" },
+                    { new Guid("ef1f9b84-7e2a-4f16-be3e-62601a7f539f"), "Christmas time, there is no better time for presents.", "ChristmasPresent" },
+                    { new Guid("974247f9-d42a-4bb8-8602-3af75572eb83"), "Need more stuf, movement is great opportunity to rid of old things.", "Movement" },
+                    { new Guid("4e9b1fe5-627a-4a9f-bf2c-830cd074381d"), "Any other situation you didn't think of.", "Others" }
                 });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Entities_OccasionId",
                 table: "Entities",
-                column: "OccasionId",
-                unique: true,
-                filter: "[OccasionId] IS NOT NULL");
+                column: "OccasionId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

@@ -23,8 +23,15 @@ namespace Wishlist.Service.API.Models
         public Guid? OccasionId { get; set; }
         public virtual Occasion Occasion { get; set; }
 
-        public State State { get; set; }
-        public Category Category { get; set; }
+        [ForeignKey("State")]
+        public Guid? StateId { get; set; }
+        public virtual State State { get; set; }
+
+        [ForeignKey("Category")]
+        public Guid? CategoryId { get; set; }
+        public virtual Category Category { get; set; }
+
+
         public DateTime CreateDate { get; set; }
         public DateTime ModifyDate { get; set; }
 

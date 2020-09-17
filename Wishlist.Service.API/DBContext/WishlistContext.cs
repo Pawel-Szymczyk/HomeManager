@@ -18,6 +18,9 @@ namespace Wishlist.Service.API.DBContext
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            // Ensure that specified occasionId in entity class is not unique!
+            modelBuilder.Entity<Entity>().HasIndex(x => x.OccasionId).IsUnique(false);
+
             modelBuilder.Entity<Occasion>().HasData(
                 new Occasion
                 {
