@@ -9,7 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApiGateway", "ApiGateway\Ap
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "User.Service.API", "User.Service.API\User.Service.API.csproj", "{48D88BB5-4236-4F49-8CE2-87251979F9D3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wishlist.Service.API", "Wishlist.Service.API\Wishlist.Service.API.csproj", "{D154DCBE-00E5-4050-AC80-4A528A4837AD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Wishlist.Service.API", "Wishlist.Service.API\Wishlist.Service.API.csproj", "{D154DCBE-00E5-4050-AC80-4A528A4837AD}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Microservices", "Microservices", "{6F73313C-1E7E-4DDB-8F19-552B0C0DFE68}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -36,6 +38,10 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{48D88BB5-4236-4F49-8CE2-87251979F9D3} = {6F73313C-1E7E-4DDB-8F19-552B0C0DFE68}
+		{D154DCBE-00E5-4050-AC80-4A528A4837AD} = {6F73313C-1E7E-4DDB-8F19-552B0C0DFE68}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E927ABDE-8CBC-4C4E-BD58-853955D90119}
