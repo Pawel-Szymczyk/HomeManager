@@ -3,7 +3,6 @@ using PCBuilder.Service.API.DBContext;
 using PCBuilder.Service.API.Models;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace PCBuilder.Service.API.Repository
@@ -14,51 +13,47 @@ namespace PCBuilder.Service.API.Repository
 
         public PCBuildRepository(PCBuilderContext dbContext)
         {
-            _dbContext = dbContext;
+            this._dbContext = dbContext;
         }
 
 
-        public IEnumerable<PCBuild> GetPCBuilds()
+        public async Task<IEnumerable<PCBuild>> GetPCBuilds()
         {
-            var builds = _dbContext.PCBuilds
-                .Include(e => e.Processor)
-                .ToList();
-
-            return builds;
+            return await this._dbContext.PCBuilds.Include(e => e.Processor).ToListAsync(); ;
         }
 
-        public PCBuild GetPCBuildsById(Guid id)
+        public async Task<PCBuild> GetPCBuildsById(Guid id)
         {
-            return _dbContext.PCBuilds.Find(id);
+            return await this._dbContext.PCBuilds.FindAsync(id);
         }
 
-        public void InsertPCBuild(PCBuild model)
+        public async Task InsertPCBuild(PCBuild model)
         {
             model.CreateDate = DateTime.UtcNow;
             model.ModifyDate = DateTime.UtcNow;
 
-            _dbContext.Add(model);
-            Save();
+            await this._dbContext.AddAsync(model);
+            await this.SaveAsync();
         }
 
-        public void UpdatePCBuild(PCBuild model)
+        public async Task UpdatePCBuild(PCBuild model)
         {
             model.ModifyDate = DateTime.UtcNow;
 
-            _dbContext.Entry(model).State = EntityState.Modified;
-            Save();
+            this._dbContext.Entry(model).State = EntityState.Modified;
+            await this.SaveAsync();
         }
 
-        public void DeletePCBuild(Guid id)
+        public async Task DeletePCBuild(Guid id)
         {
-            var build = _dbContext.PCBuilds.Find(id);
-            _dbContext.PCBuilds.Remove(build);
-            Save();
+            PCBuild build = this._dbContext.PCBuilds.Find(id);
+            this._dbContext.PCBuilds.Remove(build);
+            await this.SaveAsync();
         }
 
-        public void Save()
+        public async Task SaveAsync()
         {
-            _dbContext.SaveChanges();
+            await this._dbContext.SaveChangesAsync();
         }
     }
 }

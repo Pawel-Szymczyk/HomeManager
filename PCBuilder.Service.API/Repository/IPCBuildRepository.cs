@@ -8,11 +8,11 @@ namespace PCBuilder.Service.API.Repository
 {
     public interface IPCBuildRepository
     {
-        IEnumerable<PCBuild> GetPCBuilds();
-        PCBuild GetPCBuildsById(Guid id);
-        void InsertPCBuild(PCBuild model);
-        void DeletePCBuild(Guid id);
-        void UpdatePCBuild(PCBuild model);
-        void Save();
+        Task<IEnumerable<PCBuild>> GetPCBuilds();
+        Task<PCBuild> GetPCBuildsById(Guid id);
+        Task InsertPCBuild(PCBuild model);
+        Task DeletePCBuild(Guid id);
+        Task UpdatePCBuild(PCBuild model);
+        Task SaveAsync();
     }
 }
