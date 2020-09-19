@@ -1,21 +1,15 @@
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Reflection;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using PCBuilder.Service.API.DBContext;
 using PCBuilder.Service.API.Repository;
+using System;
+using System.IO;
+using System.Reflection;
 
 namespace PCBuilder.Service.API
 {
@@ -23,7 +17,7 @@ namespace PCBuilder.Service.API
     {
         public Startup(IConfiguration configuration)
         {
-            Configuration = configuration;
+            this.Configuration = configuration;
         }
 
         public IConfiguration Configuration { get; }
@@ -33,13 +27,14 @@ namespace PCBuilder.Service.API
         {
             services.AddControllers();
 
-            services.AddDbContext<PCBuilderContext>(options => options.UseSqlServer(Configuration.GetConnectionString("PCBuildDB")));
+            services.AddDbContext<PCBuilderContext>(options => options.UseSqlServer(this.Configuration.GetConnectionString("PCBuildDB")));
 
             services.AddScoped<PCBuildRepository>();
             services.AddScoped<ProcessorRepository>();
             services.AddScoped<MotherboardRepository>();
             services.AddScoped<RAMRepository>();
             services.AddScoped<GraphicsCardRepository>();
+            services.AddScoped<HardDriveRepository>();
 
             // Register the Swagger generator, defining 1 or more Swagger documents
             services.AddSwaggerGen(config =>
@@ -52,8 +47,8 @@ namespace PCBuilder.Service.API
                 });
 
                 // Set the comments path for the Swagger JSON and UI.
-                var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
-                var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+                string xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                string xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
                 config.IncludeXmlComments(xmlPath);
             });
         }

@@ -18,13 +18,14 @@ namespace PCBuilder.Service.API.DBContext
         public DbSet<Motherboard> Motherboards { get; set; }
         public DbSet<RAM> RAMs { get; set; }
         public DbSet<GraphicsCard> GraphicsCards { get; set; }
+        public DbSet<HardDrive> HardDrives { get; set; }
 
 
         public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
         {
-            var entries = ChangeTracker.Entries().Where(e => e.Entity is BaseEntity && (e.State == EntityState.Added || e.State == EntityState.Modified));
+            System.Collections.Generic.IEnumerable<Microsoft.EntityFrameworkCore.ChangeTracking.EntityEntry> entries = this.ChangeTracker.Entries().Where(e => e.Entity is BaseEntity && (e.State == EntityState.Added || e.State == EntityState.Modified));
 
-            foreach (var entityEntry in entries)
+            foreach (Microsoft.EntityFrameworkCore.ChangeTracking.EntityEntry entityEntry in entries)
             {
                 ((BaseEntity)entityEntry.Entity).ModifiedDate = DateTime.Now;
 
@@ -44,6 +45,7 @@ namespace PCBuilder.Service.API.DBContext
             modelBuilder.Entity<PCBuild>().HasIndex(x => x.MotherboardId).IsUnique(false);
             modelBuilder.Entity<PCBuild>().HasIndex(x => x.RAMId).IsUnique(false);
             modelBuilder.Entity<PCBuild>().HasIndex(x => x.GraphicsCardId).IsUnique(false);
+            modelBuilder.Entity<PCBuild>().HasIndex(x => x.HardDrivedId).IsUnique(false);
 
             modelBuilder.Entity<Processor>().HasData(
                new Processor
