@@ -5,7 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace PCBuilder.Service.API.Repository
+namespace PCBuilder.Service.API.Repositories
 {
     public class PCBuildRepository : Repository<PCBuild, PCBuilderContext>
     {

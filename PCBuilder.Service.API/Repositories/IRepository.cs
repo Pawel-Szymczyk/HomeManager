@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace PCBuilder.Service.API.Repository
+namespace PCBuilder.Service.API.Repositories
 {
     internal interface IRepository<T> where T : class
     {

@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace PCBuilder.Service.API.Repositories
 {
-    public class ProcessorRepository : Repository<Processor, PCBuilderContext>
+    public class CPUWatercoolerRepository : Repository<CPUWatercooler, PCBuilderContext>
     {
-        public ProcessorRepository(PCBuilderContext context) : base(context)
+        public CPUWatercoolerRepository(PCBuilderContext context) : base(context)
         {
         }
     }

@@ -6,7 +6,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using PCBuilder.Service.API.DBContext;
-using PCBuilder.Service.API.Repository;
+using PCBuilder.Service.API.Repositories;
 using System;
 using System.IO;
 using System.Reflection;
@@ -35,6 +35,7 @@ namespace PCBuilder.Service.API
             services.AddScoped<RAMRepository>();
             services.AddScoped<GraphicsCardRepository>();
             services.AddScoped<HardDriveRepository>();
+            services.AddScoped<CPUWatercoolerRepository>();
 
             // Register the Swagger generator, defining 1 or more Swagger documents
             services.AddSwaggerGen(config =>

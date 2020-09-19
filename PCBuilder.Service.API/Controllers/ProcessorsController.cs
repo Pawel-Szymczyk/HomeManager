@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using PCBuilder.Service.API.DBContext;
 using PCBuilder.Service.API.Models;
-using PCBuilder.Service.API.Repository;
+using PCBuilder.Service.API.Repositories;
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace PCBuilder.Service.API.Controllers
 {
@@ -20,10 +17,10 @@ namespace PCBuilder.Service.API.Controllers
 
         public ProcessorsController(ProcessorRepository repository)
         {
-            _repository = repository;
+            this._repository = repository;
         }
 
-        
+
         /// <summary>
         /// Get list of all available processors.
         /// </summary>

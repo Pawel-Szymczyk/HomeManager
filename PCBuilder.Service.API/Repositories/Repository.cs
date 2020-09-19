@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace PCBuilder.Service.API.Repository
+namespace PCBuilder.Service.API.Repositories
 {
     public abstract class Repository<TEntity, TContext> : IRepository<TEntity>
         where TEntity : class

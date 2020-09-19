@@ -11,82 +11,77 @@ namespace PCBuilder.Service.API.Controllers
     [Produces("application/json")]
     [Route("api/v1/[controller]")]
     [ApiController]
-    public class GraphicsCardsController : ControllerBase
+    public class CPUWatercoolersController : ControllerBase
     {
-        private readonly GraphicsCardRepository _repository;
+        private readonly CPUWatercoolerRepository _repository;
 
-        public GraphicsCardsController(GraphicsCardRepository repository)
+        public CPUWatercoolersController(CPUWatercoolerRepository repository)
         {
             this._repository = repository;
         }
 
 
         /// <summary>
-        /// Get list of all available graphics cards.
+        /// Get list of all available cpu watercoolers.
         /// </summary>
         /// <remarks>
         /// Sample request:
         /// 
-        ///     GET /api/v1/GraphicsCards
+        ///     GET /api/v1/CPUWatercoolers
         /// </remarks>
-        /// <returns>IEnumerable List of graphics gards.</returns>
+        /// <returns>IEnumerable List of cpu watercoolers.</returns>
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<GraphicsCard>>> Get()
+        public async Task<ActionResult<IEnumerable<CPUWatercooler>>> Get()
         {
             return await this._repository.GetAll();
         }
 
         /// <summary>
-        /// Get single graphics card entity.
+        /// Get single cpu watercooler entity.
         /// </summary>
         /// <remarks>
         /// Sample request:
         /// 
-        ///     GET /api/v1/GraphicsCards/00000000-0000-0000-0000-000000000000
+        ///     GET /api/v1/CPUWatercoolers/00000000-0000-0000-0000-000000000000
         /// </remarks>
-        /// <param name="Id">(Guid) Graphics card identificator.</param>
-        /// <returns>Return graphics card object.</returns>
+        /// <param name="Id">(Guid) CPU watercooler identificator.</param>
+        /// <returns>Return CPU watercooler object.</returns>
         [HttpGet("{id}")]
-        public async Task<ActionResult<GraphicsCard>> Get(Guid Id)
+        public async Task<ActionResult<CPUWatercooler>> Get(Guid Id)
         {
-            GraphicsCard graphicsCard = await this._repository.Get(Id);
+            CPUWatercooler cpuWatercooler = await this._repository.Get(Id);
 
-            if (graphicsCard == null)
+            if (cpuWatercooler == null)
             {
                 return this.NotFound();
             }
 
-            return graphicsCard;
+            return cpuWatercooler;
         }
 
         /// <summary>
-        /// Creates a graphics card entity.
+        /// Creates a cpu watercooler entity.
         /// </summary>
         /// <remarks>
         /// Sample request:
         ///
-        ///     POST api/v1/GraphicsCards
+        ///     POST api/v1/CPUWatercoolers
         ///     {
-        ///         "dimensions": "327 x 55.6 x 140 mm (W x H x D)",
-        ///         "gpu": "GeForce RTX 2080 Ti",
-        ///         "gpuFrequency": "1350 MHz",
-        ///         "boostClock": "1755 MHz",
-        ///         "memoryType": "GDDR6",
-        ///         "cuda": 4452,
-        ///         "psu": "650 Watt",
-        ///         "name": "MSI GEFORCE RTX 2080 TI GAMING X TRIO",
+        ///         "capacity": "1TB",
+        ///         "type": "SSD ",
+        ///         "name": "WD Blue PC SSD",
         ///         "link": "no url",
-        ///         "price": 128.99,
+        ///         "price": 99.99
         ///     }
         ///
         /// </remarks>
-        /// <param name="model">graphics card model (object).</param>
+        /// <param name="model">CPU watercooler model (object).</param>
         /// <response code="201">Returns the newly created entity.</response>
         /// <response code="500">If there was any problem with creating entity.</response>   
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<ActionResult<GraphicsCard>> Post([FromBody] GraphicsCard model)
+        public async Task<ActionResult<CPUWatercooler>> Post([FromBody] CPUWatercooler model)
         {
             try
             {
@@ -103,30 +98,25 @@ namespace PCBuilder.Service.API.Controllers
         }
 
         /// <summary>
-        /// Updates a graphics card entity.
+        /// Updates a cpu watercooler entity.
         /// </summary>
         /// <remarks>
         /// Sample request:
         ///
-        ///     PUT api/v1/GraphicsCards
+        ///     PUT api/v1/CPUWatercoolers
         ///     {
         ///         "id": "00000000-0000-0000-0000-000000000000",
-        ///         "dimensions": "327 x 55.6 x 140 mm (W x H x D)",
-        ///         "gpu": "GeForce RTX 2080 Ti",
-        ///         "gpuFrequency": "1350 MHz",
-        ///         "boostClock": "1755 MHz",
-        ///         "memoryType": "GDDR6",
-        ///         "cuda": 4452,
-        ///         "psu": "650 Watt",
-        ///         "name": "MSI GEFORCE RTX 2080 TI GAMING X TRIO",
+        ///         "capacity": "1TB",
+        ///         "type": "SSD ",
+        ///         "name": "WD Blue PC SSD",
         ///         "link": "no url",
-        ///         "price": 128.99,
+        ///         "price": 99.99
         ///         "createdDate": "0001-01-01T00:00:00",
         ///         "modifiedDate": "0001-01-01T00:00:00"
         ///     }
         ///
         /// </remarks>
-        /// <param name="model">Graphics card model (object).</param>
+        /// <param name="model">CPU watercooler model (object).</param>
         /// <response code="201">Returns the newly created entity.</response>
         /// <response code="204">Returns no content message.</response>
         /// <response code="500">If there was any problem with creating entity.</response>   
@@ -134,7 +124,7 @@ namespace PCBuilder.Service.API.Controllers
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> Put([FromBody] GraphicsCard model)
+        public async Task<IActionResult> Put([FromBody] CPUWatercooler model)
         {
             try
             {
@@ -155,14 +145,14 @@ namespace PCBuilder.Service.API.Controllers
         }
 
         /// <summary>
-        /// Delete single graphics card entity.
+        /// Delete a single cpu watercooler entity.
         /// </summary>
         /// <remarks>
         /// Sample request:
         /// 
-        ///     DELETE /api/v1/GraphicsCards/00000000-0000-0000-0000-000000000000
+        ///     DELETE /api/v1/CPUWatercoolers/00000000-0000-0000-0000-000000000000
         /// </remarks>
-        /// <param name="Id">(Guid) Graphics card identificator.</param>
+        /// <param name="Id">(Guid) CPU watercooler identificator.</param>
         /// <returns>Return successful message.</returns>
         /// <response code="404">Returns no found message.</response>
         /// <response code="200">Returns successful message.</response>
@@ -171,13 +161,13 @@ namespace PCBuilder.Service.API.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<ActionResult<GraphicsCard>> Delete(Guid Id)
+        public async Task<ActionResult<CPUWatercooler>> Delete(Guid Id)
         {
 
             try
             {
-                GraphicsCard graphicsCard = await this._repository.Delete(Id);
-                if (graphicsCard == null)
+                CPUWatercooler cpuWatercooler = await this._repository.Delete(Id);
+                if (cpuWatercooler == null)
                 {
                     return this.StatusCode(StatusCodes.Status404NotFound);
                 }

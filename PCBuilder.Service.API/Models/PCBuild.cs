@@ -35,5 +35,9 @@ namespace PCBuilder.Service.API.Models
         [ForeignKey("HardDrive")]
         public Guid? HardDrivedId { get; set; }
         public virtual HardDrive HardDrive { get; set; }
+
+        [ForeignKey("CPUWatercooler")]
+        public Guid? CPUWatercoolerId { get; set; }
+        public virtual CPUWatercooler CPUWatercooler { get; set; }
     }
 }
