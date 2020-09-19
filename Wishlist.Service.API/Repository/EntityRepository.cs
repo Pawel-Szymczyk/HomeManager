@@ -31,21 +31,26 @@ namespace Wishlist.Service.API.Repository
 
         public Entity GetEntityById(Guid id)
         {
-            return _dbContext.Entities.Find(id);
+            var entity = _dbContext.Entities
+                .Include(e => e.Occasion)
+                .Include(e => e.Category)
+                .Include(e => e.State).FirstOrDefault(e => e.Id == id);
+
+            return entity;
         }
 
         public void InsertEntity(Entity model)
         {
-            model.CreateDate = DateTime.UtcNow;
-            model.ModifyDate = DateTime.UtcNow;
+            //model.CreatedDate = DateTime.UtcNow;
+            //model.ModifiedDate = DateTime.UtcNow;
 
-            _dbContext.Add(model);
+            _dbContext.Entry(model).State = EntityState.Added;
             Save();
         }
 
         public void UpdateEntity(Entity model)
         {
-            model.ModifyDate = DateTime.UtcNow;
+            //model.ModifiedDate = DateTime.UtcNow;
 
             _dbContext.Entry(model).State = EntityState.Modified;
             Save();
@@ -54,7 +59,8 @@ namespace Wishlist.Service.API.Repository
         public void DeleteEntity(Guid id)
         {
             var entity = _dbContext.Entities.Find(id);
-            _dbContext.Entities.Remove(entity);
+            //_dbContext.Entities.Remove(entity);
+            _dbContext.Entry(entity).State = EntityState.Deleted;
             Save();
         }
 
@@ -62,5 +68,7 @@ namespace Wishlist.Service.API.Repository
         {
             _dbContext.SaveChanges();
         }
+
+
     }
 }

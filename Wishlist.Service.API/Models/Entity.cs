@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Wishlist.Service.API.Models
 {
-    public class Entity
+    public class Entity : BaseEntity
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -31,9 +31,6 @@ namespace Wishlist.Service.API.Models
         public Guid? CategoryId { get; set; }
         public virtual Category Category { get; set; }
 
-
-        public DateTime CreateDate { get; set; }
-        public DateTime ModifyDate { get; set; }
 
     }
 }
