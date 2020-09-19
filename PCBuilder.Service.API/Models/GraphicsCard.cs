@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations;
 
 namespace PCBuilder.Service.API.Models
 {
@@ -9,6 +7,13 @@ namespace PCBuilder.Service.API.Models
     {
         [Key]
         public Guid Id { get; set; }
+        public string Dimensions { get; set; }
+        public string GPU { get; set; }
+        public string GPUFrequency { get; set; }
+        public string BoostClock { get; set; }
+        public string MemoryType { get; set; }
+        public int CUDA { get; set; }
+        public string PSU { get; set; }
 
     }
 }

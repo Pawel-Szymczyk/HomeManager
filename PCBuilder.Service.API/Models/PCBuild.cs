@@ -30,5 +30,9 @@ namespace PCBuilder.Service.API.Models
         [ForeignKey("RAM")]
         public Guid? RAMId { get; set; }
         public virtual RAM RAM { get; set; }
+        
+        [ForeignKey("GraphicsCard")]
+        public Guid? GraphicsCardId { get; set; }
+        public virtual GraphicsCard GraphicsCard { get; set; }
     }
 }

@@ -17,6 +17,7 @@ namespace PCBuilder.Service.API.DBContext
         public DbSet<Processor> Processors { get; set; }
         public DbSet<Motherboard> Motherboards { get; set; }
         public DbSet<RAM> RAMs { get; set; }
+        public DbSet<GraphicsCard> GraphicsCards { get; set; }
 
 
         public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
@@ -42,6 +43,7 @@ namespace PCBuilder.Service.API.DBContext
             modelBuilder.Entity<PCBuild>().HasIndex(x => x.ProcessorId).IsUnique(false);
             modelBuilder.Entity<PCBuild>().HasIndex(x => x.MotherboardId).IsUnique(false);
             modelBuilder.Entity<PCBuild>().HasIndex(x => x.RAMId).IsUnique(false);
+            modelBuilder.Entity<PCBuild>().HasIndex(x => x.GraphicsCardId).IsUnique(false);
 
             modelBuilder.Entity<Processor>().HasData(
                new Processor
