@@ -36,7 +36,8 @@ namespace PCBuilder.Service.API
             services.AddDbContext<PCBuilderContext>(options => options.UseSqlServer(Configuration.GetConnectionString("PCBuildDB")));
 
             //services.AddTransient<IPCBuildRepository, PCBuildRepository>();
-            services.AddScoped<IPCBuildRepository, PCBuildRepository>();
+            //services.AddScoped<IPCBuildRepository, PCBuildRepository>();
+            services.AddScoped<PCBuildRepository>();
 
             // Register the Swagger generator, defining 1 or more Swagger documents
             services.AddSwaggerGen(config =>

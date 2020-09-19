@@ -10,8 +10,8 @@ using PCBuilder.Service.API.DBContext;
 namespace PCBuilder.Service.API.Migrations
 {
     [DbContext(typeof(PCBuilderContext))]
-    [Migration("20200917205428_init")]
-    partial class init
+    [Migration("20200918162658_pcbuild")]
+    partial class pcbuild
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

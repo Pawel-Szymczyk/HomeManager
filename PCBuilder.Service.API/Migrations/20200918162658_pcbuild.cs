@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace PCBuilder.Service.API.Migrations
 {
-    public partial class init : Migration
+    public partial class pcbuild : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

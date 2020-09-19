@@ -1,9 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using PCBuilder.Service.API.Models;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace PCBuilder.Service.API.DBContext
 {
@@ -21,6 +18,20 @@ namespace PCBuilder.Service.API.DBContext
             // Ensure that specified processorId, in PCBuild class are not unique!
             modelBuilder.Entity<PCBuild>().HasIndex(x => x.ProcessorId).IsUnique(false);
 
+            modelBuilder.Entity<Processor>().HasData(
+               new Processor
+               {
+                   Id = Guid.NewGuid(),
+                   Name = "i7",
+                   Link = "no url",
+                   ProductCollection = "i7 10th gen",
+                   NumberOfCores = 4,
+                   NumberOfThreads = 4,
+                   Cache = 8,
+                   TDP = 100,
+                   ProcessorBaseFrequency = 1
+               }
+            );
 
         }
 
