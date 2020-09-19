@@ -10,7 +10,7 @@ using PCBuilder.Service.API.DBContext;
 namespace PCBuilder.Service.API.Migrations
 {
     [DbContext(typeof(PCBuilderContext))]
-    [Migration("20200919114501_init")]
+    [Migration("20200919132900_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -20,6 +20,47 @@ namespace PCBuilder.Service.API.Migrations
                 .HasAnnotation("ProductVersion", "3.1.8")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+            modelBuilder.Entity("PCBuilder.Service.API.Models.Motherboard", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("CPU")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Chipset")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("FormFactor")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Link")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Memory")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("ModifiedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("Price")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("Socket")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Motherboards");
+                });
 
             modelBuilder.Entity("PCBuilder.Service.API.Models.PCBuild", b =>
                 {
@@ -36,6 +77,9 @@ namespace PCBuilder.Service.API.Migrations
                     b.Property<DateTime>("ModifiedDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<Guid?>("MotherboardId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<Guid?>("ProcessorId")
                         .HasColumnType("uniqueidentifier");
 
@@ -43,6 +87,8 @@ namespace PCBuilder.Service.API.Migrations
                         .HasColumnType("decimal(18,2)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("MotherboardId");
 
                     b.HasIndex("ProcessorId");
 
@@ -95,7 +141,7 @@ namespace PCBuilder.Service.API.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("35e1c651-5741-4ccb-9c06-f97f64ee6752"),
+                            Id = new Guid("90b85e79-9dae-4ff2-8a66-51ef22df23ae"),
                             Cache = 8,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Link = "no url",
@@ -112,6 +158,10 @@ namespace PCBuilder.Service.API.Migrations
 
             modelBuilder.Entity("PCBuilder.Service.API.Models.PCBuild", b =>
                 {
+                    b.HasOne("PCBuilder.Service.API.Models.Motherboard", "Motherboard")
+                        .WithMany()
+                        .HasForeignKey("MotherboardId");
+
                     b.HasOne("PCBuilder.Service.API.Models.Processor", "Processor")
                         .WithMany()
                         .HasForeignKey("ProcessorId");

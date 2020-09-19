@@ -22,5 +22,9 @@ namespace PCBuilder.Service.API.Models
         [ForeignKey("Processor")]
         public Guid? ProcessorId { get; set; }
         public virtual Processor Processor { get; set; }
+
+        [ForeignKey("Motherboard")]
+        public Guid? MotherboardId { get; set; }
+        public virtual Motherboard Motherboard { get; set; }
     }
 }
