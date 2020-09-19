@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace PCBuilder.Service.API.Models
 {
-    public class PCBuild
+    public class PCBuild : BaseEntity
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -17,9 +17,6 @@ namespace PCBuilder.Service.API.Models
 
         [Column(TypeName = "decimal(18,2)")]
         public decimal TotalPrice { get; set; }
-
-        public DateTime CreateDate { get; set; }
-        public DateTime ModifyDate { get; set; }
 
 
         [ForeignKey("Processor")]

@@ -18,13 +18,6 @@ namespace PCBuilder.Service.API.Repository
 
         public async Task<TEntity> Add(TEntity model)
         {
-            //model.CreateDate = DateTime.UtcNow;
-            //model.ModifyDate = DateTime.UtcNow;
-
-            //await this._dbContext.AddAsync(model);
-            //await this.SaveAsync();
-
-            //this.context.Set<TEntity>().Add(model);
             await this.context.AddAsync(model);
             await this.SaveAsync();
             return model;
@@ -32,10 +25,6 @@ namespace PCBuilder.Service.API.Repository
 
         public async Task<TEntity> Delete(Guid Id)
         {
-            //PCBuild build = this._dbContext.PCBuilds.Find(id);
-            //this._dbContext.PCBuilds.Remove(build);
-            //await this.SaveAsync();
-
             TEntity entity = await this.context.Set<TEntity>().FindAsync(Id);
             if (entity == null)
             {
@@ -48,12 +37,12 @@ namespace PCBuilder.Service.API.Repository
             return entity;
         }
 
-        public async Task<TEntity> Get(Guid Id)
+        public virtual async Task<TEntity> Get(Guid Id)
         {
             return await this.context.Set<TEntity>().FindAsync(Id);
         }
 
-        public async Task<List<TEntity>> GetAll()
+        public virtual async Task<List<TEntity>> GetAll()
         {
             return await this.context.Set<TEntity>().ToListAsync();
         }

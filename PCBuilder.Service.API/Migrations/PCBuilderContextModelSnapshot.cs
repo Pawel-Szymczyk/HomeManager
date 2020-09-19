@@ -25,13 +25,13 @@ namespace PCBuilder.Service.API.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<DateTime>("CreateDate")
+                    b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("ModifyDate")
+                    b.Property<DateTime>("ModifiedDate")
                         .HasColumnType("datetime2");
 
                     b.Property<Guid?>("ProcessorId")
@@ -56,8 +56,14 @@ namespace PCBuilder.Service.API.Migrations
                     b.Property<int>("Cache")
                         .HasColumnType("int");
 
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("Link")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("ModifiedDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
@@ -87,8 +93,12 @@ namespace PCBuilder.Service.API.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("4b174e6f-53b5-4ada-8297-2dbcf983bc76"),
+                            Id = new Guid("35e1c651-5741-4ccb-9c06-f97f64ee6752"),
                             Cache = 8,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Link = "no url",
+                            ModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "i7",
                             NumberOfCores = 4,
                             NumberOfThreads = 4,
                             Price = 0m,

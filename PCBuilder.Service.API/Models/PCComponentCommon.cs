@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PCBuilder.Service.API.Models
 {
-    public abstract class PCComponentCommon
+    public abstract class PCComponentCommon : BaseEntity
     {
         public string Name { get; set; }
         public string Link { get; set; }
