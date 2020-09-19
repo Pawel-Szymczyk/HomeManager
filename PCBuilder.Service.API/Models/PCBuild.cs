@@ -26,5 +26,9 @@ namespace PCBuilder.Service.API.Models
         [ForeignKey("Motherboard")]
         public Guid? MotherboardId { get; set; }
         public virtual Motherboard Motherboard { get; set; }
+        
+        [ForeignKey("RAM")]
+        public Guid? RAMId { get; set; }
+        public virtual RAM RAM { get; set; }
     }
 }

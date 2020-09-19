@@ -16,6 +16,7 @@ namespace PCBuilder.Service.API.DBContext
         public DbSet<PCBuild> PCBuilds { get; set; }
         public DbSet<Processor> Processors { get; set; }
         public DbSet<Motherboard> Motherboards { get; set; }
+        public DbSet<RAM> RAMs { get; set; }
 
 
         public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
@@ -40,6 +41,7 @@ namespace PCBuilder.Service.API.DBContext
             // Ensure that specified processorId, in PCBuild class are not unique!
             modelBuilder.Entity<PCBuild>().HasIndex(x => x.ProcessorId).IsUnique(false);
             modelBuilder.Entity<PCBuild>().HasIndex(x => x.MotherboardId).IsUnique(false);
+            modelBuilder.Entity<PCBuild>().HasIndex(x => x.RAMId).IsUnique(false);
 
             modelBuilder.Entity<Processor>().HasData(
                new Processor
