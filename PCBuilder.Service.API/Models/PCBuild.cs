@@ -43,5 +43,9 @@ namespace PCBuilder.Service.API.Models
         [ForeignKey("Fan")]
         public Guid? FanId { get; set; }
         public virtual Fan Fan { get; set; }
+
+        [ForeignKey("PCCase")]
+        public Guid? PCCaseId { get; set; }
+        public virtual PCCase PCCase { get; set; }
     }
 }

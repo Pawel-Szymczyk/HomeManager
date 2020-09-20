@@ -21,6 +21,7 @@ namespace PCBuilder.Service.API.DBContext
         public DbSet<HardDrive> HardDrives { get; set; }
         public DbSet<CPUWatercooler> CPUWatercooler { get; set; }
         public DbSet<Fan> Fan { get; set; }
+        public DbSet<PCCase> PCCase { get; set; }
 
 
         public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
@@ -50,6 +51,7 @@ namespace PCBuilder.Service.API.DBContext
             modelBuilder.Entity<PCBuild>().HasIndex(x => x.HardDrivedId).IsUnique(false);
             modelBuilder.Entity<PCBuild>().HasIndex(x => x.CPUWatercoolerId).IsUnique(false);
             modelBuilder.Entity<PCBuild>().HasIndex(x => x.FanId).IsUnique(false);
+            modelBuilder.Entity<PCBuild>().HasIndex(x => x.PCCaseId).IsUnique(false);
 
             modelBuilder.Entity<Processor>().HasData(
                new Processor
