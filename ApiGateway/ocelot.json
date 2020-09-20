@@ -1,5 +1,6 @@
 {
   "Routes": [
+    // **************************************************************
     // User API
     {
       "DownstreamPathTemplate": "/api/user",
@@ -26,6 +27,7 @@
       "UpstreamHttpMethod": [ "GET" ]
     },
 
+    // **************************************************************
     // Wishlist API
     {
       "DownstreamPathTemplate": "/api/v1/Wishlist",
@@ -50,6 +52,286 @@
       ],
       "UpstreamPathTemplate": "/gateway/wishlist/{id}",
       "UpstreamHttpMethod": [ "GET", "DELETE" ]
+    },
+
+    // **************************************************************
+    // PC builder API
+    {
+      "DownstreamPathTemplate": "/api/v1/CPUWatercoolers",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "44324"
+        }
+      ],
+      "UpstreamPathTemplate": "/gateway/cpuwatercoolers",
+      "UpstreamHttpMethod": [ "POST", "PUT", "GET" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/v1/CPUWatercoolers/{id}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "44324"
+        }
+      ],
+      "UpstreamPathTemplate": "/gateway/cpuwatercoolers/{id}",
+      "UpstreamHttpMethod": [ "GET", "DELETE" ]
+    },
+
+    {
+      "DownstreamPathTemplate": "/api/v1/Fans",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "44324"
+        }
+      ],
+      "UpstreamPathTemplate": "/gateway/fans",
+      "UpstreamHttpMethod": [ "POST", "PUT", "GET" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/v1/Fans/{id}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "44324"
+        }
+      ],
+      "UpstreamPathTemplate": "/gateway/fans/{id}",
+      "UpstreamHttpMethod": [ "GET", "DELETE" ]
+    },
+
+    {
+      "DownstreamPathTemplate": "/api/v1/GraphicsCards",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "44324"
+        }
+      ],
+      "UpstreamPathTemplate": "/gateway/graphicscards",
+      "UpstreamHttpMethod": [ "POST", "PUT", "GET" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/v1/GraphicsCards/{id}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "44324"
+        }
+      ],
+      "UpstreamPathTemplate": "/gateway/graphicscards/{id}",
+      "UpstreamHttpMethod": [ "GET", "DELETE" ]
+    },
+
+    {
+      "DownstreamPathTemplate": "/api/v1/HardDrives",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "44324"
+        }
+      ],
+      "UpstreamPathTemplate": "/gateway/harddrives",
+      "UpstreamHttpMethod": [ "POST", "PUT", "GET" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/v1/HardDrives/{id}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "44324"
+        }
+      ],
+      "UpstreamPathTemplate": "/gateway/harddrives/{id}",
+      "UpstreamHttpMethod": [ "GET", "DELETE" ]
+    },
+
+    {
+      "DownstreamPathTemplate": "/api/v1/Motherboards",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "44324"
+        }
+      ],
+      "UpstreamPathTemplate": "/gateway/motherboards",
+      "UpstreamHttpMethod": [ "POST", "PUT", "GET" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/v1/Motherboards/{id}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "44324"
+        }
+      ],
+      "UpstreamPathTemplate": "/gateway/motherboards/{id}",
+      "UpstreamHttpMethod": [ "GET", "DELETE" ]
+    },
+
+    {
+      "DownstreamPathTemplate": "/api/v1/Others",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "44324"
+        }
+      ],
+      "UpstreamPathTemplate": "/gateway/others",
+      "UpstreamHttpMethod": [ "POST", "PUT", "GET" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/v1/Others/{id}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "44324"
+        }
+      ],
+      "UpstreamPathTemplate": "/gateway/others/{id}",
+      "UpstreamHttpMethod": [ "GET", "DELETE" ]
+    },
+
+    {
+      "DownstreamPathTemplate": "/api/v1/PCBuilds",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "44324"
+        }
+      ],
+      "UpstreamPathTemplate": "/gateway/pcbuilds",
+      "UpstreamHttpMethod": [ "POST", "PUT", "GET" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/v1/PCBuilds/{id}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "44324"
+        }
+      ],
+      "UpstreamPathTemplate": "/gateway/pcbuilds/{id}",
+      "UpstreamHttpMethod": [ "GET", "DELETE" ]
+    },
+
+    {
+      "DownstreamPathTemplate": "/api/v1/PCCases",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "44324"
+        }
+      ],
+      "UpstreamPathTemplate": "/gateway/pccases",
+      "UpstreamHttpMethod": [ "POST", "PUT", "GET" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/v1/PCCases/{id}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "44324"
+        }
+      ],
+      "UpstreamPathTemplate": "/gateway/pccases/{id}",
+      "UpstreamHttpMethod": [ "GET", "DELETE" ]
+    },
+
+    {
+      "DownstreamPathTemplate": "/api/v1/PowerSupplies",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "44324"
+        }
+      ],
+      "UpstreamPathTemplate": "/gateway/powersupplies",
+      "UpstreamHttpMethod": [ "POST", "PUT", "GET" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/v1/PowerSupplies/{id}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "44324"
+        }
+      ],
+      "UpstreamPathTemplate": "/gateway/powersupplies/{id}",
+      "UpstreamHttpMethod": [ "GET", "DELETE" ]
+    },
+
+    {
+      "DownstreamPathTemplate": "/api/v1/Processors",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "44324"
+        }
+      ],
+      "UpstreamPathTemplate": "/gateway/processors",
+      "UpstreamHttpMethod": [ "POST", "PUT", "GET" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/v1/Processors/{id}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "44324"
+        }
+      ],
+      "UpstreamPathTemplate": "/gateway/processors/{id}",
+      "UpstreamHttpMethod": [ "GET", "DELETE" ]
+    },
+
+    {
+      "DownstreamPathTemplate": "/api/v1/RAMs",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "44324"
+        }
+      ],
+      "UpstreamPathTemplate": "/gateway/rams",
+      "UpstreamHttpMethod": [ "POST", "PUT", "GET" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/v1/RAMs/{id}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "44324"
+        }
+      ],
+      "UpstreamPathTemplate": "/gateway/rams/{id}",
+      "UpstreamHttpMethod": [ "GET", "DELETE" ]
     }
+
+
+
   ]
 }
