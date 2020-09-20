@@ -51,5 +51,9 @@ namespace PCBuilder.Service.API.Models
         [ForeignKey("PowerSupply")]
         public Guid? PowerSupplyId { get; set; }
         public virtual PowerSupply PowerSupply { get; set; }
+
+        [ForeignKey("Other")]
+        public Guid? OtherId { get; set; }
+        public virtual Other Other { get; set; }
     }
 }
