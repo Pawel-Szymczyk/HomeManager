@@ -115,7 +115,7 @@ namespace PCBuilder.Service.API.Controllers
         ///         "rgb": true,
         ///         "name": "Corsair LL120 RGB, 120MM DUAL LIGHT LOOP RGB LED PWM FAN",
         ///         "link": "no url",
-        ///         "price": 92.99
+        ///         "price": 92.99,
         ///         "createdDate": "0001-01-01T00:00:00",
         ///         "modifiedDate": "0001-01-01T00:00:00"
         ///     }

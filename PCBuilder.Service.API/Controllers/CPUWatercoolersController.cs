@@ -112,7 +112,7 @@ namespace PCBuilder.Service.API.Controllers
         ///         "numberOfFans": 2",
         ///         "name": "Corsair HYDRO SERIES H100I PLATINUM SE ADDRESSABLE RGB PERFORMANCE LIQUID",
         ///         "link": "no url",
-        ///         "price": 109.99
+        ///         "price": 109.99,
         ///         "createdDate": "0001-01-01T00:00:00",
         ///         "modifiedDate": "0001-01-01T00:00:00"
         ///     }

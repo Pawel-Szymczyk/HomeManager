@@ -74,7 +74,7 @@ namespace PCBuilder.Service.API.Controllers
         ///         "numberOfModules": "2",
         ///         "name": "TEAM GROUP RIPPED EDITION ",
         ///         "link": "no url",
-        ///         "price": 128.99,
+        ///         "price": 128.99
         ///     }
         ///
         /// </remarks>

@@ -110,7 +110,7 @@ namespace PCBuilder.Service.API.Controllers
         ///         "type": "SSD ",
         ///         "name": "WD Blue PC SSD",
         ///         "link": "no url",
-        ///         "price": 99.99
+        ///         "price": 99.99,
         ///         "createdDate": "0001-01-01T00:00:00",
         ///         "modifiedDate": "0001-01-01T00:00:00"
         ///     }

@@ -47,5 +47,9 @@ namespace PCBuilder.Service.API.Models
         [ForeignKey("PCCase")]
         public Guid? PCCaseId { get; set; }
         public virtual PCCase PCCase { get; set; }
+
+        [ForeignKey("PowerSupply")]
+        public Guid? PowerSupplyId { get; set; }
+        public virtual PowerSupply PowerSupply { get; set; }
     }
 }

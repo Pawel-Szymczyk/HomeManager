@@ -75,7 +75,7 @@ namespace PCBuilder.Service.API.Controllers
         ///         "processorBaseFrequency": 1,
         ///         "name": "i7",
         ///         "link": "no url",
-        ///         "price": 0,
+        ///         "price": 0
         ///     }
         ///
         /// </remarks>
