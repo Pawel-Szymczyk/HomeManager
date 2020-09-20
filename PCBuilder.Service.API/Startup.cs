@@ -36,6 +36,7 @@ namespace PCBuilder.Service.API
             services.AddScoped<GraphicsCardRepository>();
             services.AddScoped<HardDriveRepository>();
             services.AddScoped<CPUWatercoolerRepository>();
+            services.AddScoped<FanRepository>();
 
             // Register the Swagger generator, defining 1 or more Swagger documents
             services.AddSwaggerGen(config =>

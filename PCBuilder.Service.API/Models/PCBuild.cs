@@ -39,5 +39,9 @@ namespace PCBuilder.Service.API.Models
         [ForeignKey("CPUWatercooler")]
         public Guid? CPUWatercoolerId { get; set; }
         public virtual CPUWatercooler CPUWatercooler { get; set; }
+
+        [ForeignKey("Fan")]
+        public Guid? FanId { get; set; }
+        public virtual Fan Fan { get; set; }
     }
 }
