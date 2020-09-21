@@ -20,6 +20,7 @@ namespace HomeManager.Areas.PcBuilds.Controllers
         private readonly ILogger<ProcessorController> _logger;
         private readonly IConfiguration _configure;
         private readonly string apiBaseUrl;
+        private readonly string apiController = "processors";
 
         public ProcessorController(ILogger<ProcessorController> logger, IConfiguration configuration)
         {
@@ -36,7 +37,7 @@ namespace HomeManager.Areas.PcBuilds.Controllers
             var processorsList = new List<Processor>();
             using (var httpClient = new HttpClient())
             {
-                using (HttpResponseMessage response = await httpClient.GetAsync(string.Format("{0}/processors", this.apiBaseUrl)))
+                using (HttpResponseMessage response = await httpClient.GetAsync(string.Format("{0}/{1}", this.apiBaseUrl, this.apiController)))
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
                     processorsList = JsonConvert.DeserializeObject<List<Processor>>(apiResponse);
@@ -53,7 +54,7 @@ namespace HomeManager.Areas.PcBuilds.Controllers
             Processor processor = new Processor();
             using(var httpClient = new HttpClient())
             {
-                using (HttpResponseMessage response = await httpClient.GetAsync(string.Format("{0}/processors/{1}", this.apiBaseUrl, id)))
+                using (HttpResponseMessage response = await httpClient.GetAsync(string.Format("{0}/{1}/{2}", this.apiBaseUrl, this.apiController, id)))
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
                     processor = JsonConvert.DeserializeObject<Processor>(apiResponse);
@@ -82,7 +83,7 @@ namespace HomeManager.Areas.PcBuilds.Controllers
                 {
                     StringContent content = new StringContent(JsonConvert.SerializeObject(model), Encoding.UTF8, "application/json");
 
-                    using (var response = await httpClient.PostAsync(string.Format("{0}/processors", this.apiBaseUrl), content))
+                    using (var response = await httpClient.PostAsync(string.Format("{0}/{1}", this.apiBaseUrl, this.apiController), content))
                     {
                         string apiResponse = await response.Content.ReadAsStringAsync();
                         //receivedReservation = JsonConvert.DeserializeObject<Reservation>(apiResponse);
@@ -103,7 +104,7 @@ namespace HomeManager.Areas.PcBuilds.Controllers
             Processor processor = new Processor();
             using (var httpClient = new HttpClient())
             {
-                using (HttpResponseMessage response = await httpClient.GetAsync(string.Format("{0}/processors/{1}", this.apiBaseUrl, id)))
+                using (HttpResponseMessage response = await httpClient.GetAsync(string.Format("{0}/{1}/{2}", this.apiBaseUrl, this.apiController, id)))
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
                     processor = JsonConvert.DeserializeObject<Processor>(apiResponse);
@@ -131,7 +132,7 @@ namespace HomeManager.Areas.PcBuilds.Controllers
                     string json = JsonConvert.SerializeObject(model, Formatting.Indented);
                     var httpContent = new StringContent(json, Encoding.UTF8, "application/json");
 
-                    using (var response = await httpClient.PutAsync(string.Format("{0}/processors", this.apiBaseUrl), httpContent))
+                    using (var response = await httpClient.PutAsync(string.Format("{0}/{1}", this.apiBaseUrl, this.apiController), httpContent))
                     {
                         string apiResponse = await response.Content.ReadAsStringAsync();    // returns object, todo: change response in api to return successfull message
                         //ViewBag.Result = "Success";
@@ -154,7 +155,7 @@ namespace HomeManager.Areas.PcBuilds.Controllers
             Processor processor = new Processor();
             using (var httpClient = new HttpClient())
             {
-                using (HttpResponseMessage response = await httpClient.GetAsync(string.Format("{0}/processors/{1}", this.apiBaseUrl, id)))
+                using (HttpResponseMessage response = await httpClient.GetAsync(string.Format("{0}/{1}/{2}", this.apiBaseUrl, this.apiController, id)))
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
                     processor = JsonConvert.DeserializeObject<Processor>(apiResponse);
@@ -173,7 +174,7 @@ namespace HomeManager.Areas.PcBuilds.Controllers
             {
                 using (var httpClient = new HttpClient())
                 {
-                    using (var response = await httpClient.DeleteAsync(string.Format("{0}/processors/{1}", this.apiBaseUrl, id)))
+                    using (var response = await httpClient.DeleteAsync(string.Format("{0}/{1}/{2}", this.apiBaseUrl, this.apiController, id)))
                     {
                         string apiResponse = await response.Content.ReadAsStringAsync();
                     }
