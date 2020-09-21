@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using HomeManager.Areas.PcBuilds.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using HomeManager.Models;
 
-namespace HomeManager.Controllers
+namespace HomeManager.Areas.PcBuilds.Controllers
 {
     public class HomeController : Controller
     {

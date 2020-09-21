@@ -1,15 +1,18 @@
-﻿using HomeManager.Models;
+﻿
+using HomeManager.Areas.PcBuilds.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Net.Http;
 using System.Threading.Tasks;
 
-namespace HomeManager.Controllers.PCBuild
+namespace HomeManager.Areas.PcBuilds.Controllers
 {
-
+    [Area("PcBuilds")]
     public class ProcessorController : Controller
     {
         private readonly ILogger<ProcessorController> _logger;
@@ -40,6 +43,21 @@ namespace HomeManager.Controllers.PCBuild
 
 
             return this.View(processorsList);
+        }
+
+        public async Task<IActionResult> Details(Guid id)
+        {
+            Processor processor = new Processor();
+            using(var httpClient = new HttpClient())
+            {
+                using (HttpResponseMessage response = await httpClient.GetAsync(string.Format("{0}/processors/{1}", this.apiBaseUrl, id)))
+                {
+                    string apiResponse = await response.Content.ReadAsStringAsync();
+                    processor = JsonConvert.DeserializeObject<Processor>(apiResponse);
+                }
+            }
+
+            return this.View(processor);
         }
 
         //// GET: Processor/Details/5

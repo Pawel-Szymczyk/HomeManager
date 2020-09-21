@@ -1,6 +1,6 @@
 using System;
 
-namespace HomeManager.Models
+namespace HomeManager.Areas.PcBuilds.Models
 {
     public class ErrorViewModel
     {
