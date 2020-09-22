@@ -1,28 +1,26 @@
-﻿
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Net.Http;
+using System.Text;
+using System.Threading.Tasks;
 using HomeManager.Areas.PcBuilds.Models;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Net.Http;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace HomeManager.Areas.PcBuilds.Controllers
 {
     [Area("PcBuilds")]
-    public class ProcessorsController : Controller
+    public class CPUWatercoolersController : Controller
     {
-        private readonly ILogger<ProcessorsController> _logger;
+        private readonly ILogger<CPUWatercoolersController> _logger;
         private readonly IConfiguration _configure;
         private readonly string apiBaseUrl;
-        private readonly string apiController = "processors";
+        private readonly string apiController = "cpuwatercoolers";
 
-        public ProcessorsController(ILogger<ProcessorsController> logger, IConfiguration configuration)
+        public CPUWatercoolersController(ILogger<CPUWatercoolersController> logger, IConfiguration configuration)
         {
             this._logger = logger;
             this._configure = configuration;
@@ -31,51 +29,51 @@ namespace HomeManager.Areas.PcBuilds.Controllers
         }
 
 
-        // GET: Processor
+        // GET: CPUWatercooler
         public async Task<IActionResult> Index()
         {
-            var processorsList = new List<Processor>();
+            var cpuWatercoolerList = new List<CPUWatercooler>();
             using (var httpClient = new HttpClient())
             {
                 using (HttpResponseMessage response = await httpClient.GetAsync(string.Format("{0}/{1}", this.apiBaseUrl, this.apiController)))
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
-                    processorsList = JsonConvert.DeserializeObject<List<Processor>>(apiResponse);
+                    cpuWatercoolerList = JsonConvert.DeserializeObject<List<CPUWatercooler>>(apiResponse);
                 }
             }
 
 
-            return this.View(processorsList);
+            return this.View(cpuWatercoolerList);
         }
 
-        // GET: Processor/Details/5
+        // GET: CPUWatercooler/Details/5
         public async Task<IActionResult> Details(Guid id)
         {
-            Processor processor = new Processor();
-            using(var httpClient = new HttpClient())
+            CPUWatercooler cpuWatercooler = new CPUWatercooler();
+            using (var httpClient = new HttpClient())
             {
                 using (HttpResponseMessage response = await httpClient.GetAsync(string.Format("{0}/{1}/{2}", this.apiBaseUrl, this.apiController, id)))
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
-                    processor = JsonConvert.DeserializeObject<Processor>(apiResponse);
+                    cpuWatercooler = JsonConvert.DeserializeObject<CPUWatercooler>(apiResponse);
                 }
             }
 
-            return this.View(processor);
+            return this.View(cpuWatercooler);
         }
 
 
 
-        // GET: Processor/Create
+        // GET: CPUWatercooler/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Processor/Create
+        // POST: CPUWatercooler/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(Processor model)
+        public async Task<IActionResult> Create(CPUWatercooler model)
         {
             try
             {
@@ -98,26 +96,26 @@ namespace HomeManager.Areas.PcBuilds.Controllers
             }
         }
 
-        // GET: Processor/Edit/5
+        // GET: CPUWatercooler/Edit/5
         public async Task<IActionResult> Edit(Guid id)
         {
-            Processor processor = new Processor();
+            CPUWatercooler cpuWatercooler = new CPUWatercooler();
             using (var httpClient = new HttpClient())
             {
                 using (HttpResponseMessage response = await httpClient.GetAsync(string.Format("{0}/{1}/{2}", this.apiBaseUrl, this.apiController, id)))
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
-                    processor = JsonConvert.DeserializeObject<Processor>(apiResponse);
+                    cpuWatercooler = JsonConvert.DeserializeObject<CPUWatercooler>(apiResponse);
                 }
             }
 
-            return this.View(processor);
+            return this.View(cpuWatercooler);
         }
 
-        // POST: Processor/Edit/5
+        // POST: CPUWatercooler/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(Guid id, Processor model)
+        public async Task<IActionResult> Edit(Guid id, CPUWatercooler model)
         {
             try
             {
@@ -152,23 +150,23 @@ namespace HomeManager.Areas.PcBuilds.Controllers
         [HttpGet]
         public async Task<IActionResult> Delete(Guid id)
         {
-            Processor processor = new Processor();
+            CPUWatercooler cpuWatercooler = new CPUWatercooler();
             using (var httpClient = new HttpClient())
             {
                 using (HttpResponseMessage response = await httpClient.GetAsync(string.Format("{0}/{1}/{2}", this.apiBaseUrl, this.apiController, id)))
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
-                    processor = JsonConvert.DeserializeObject<Processor>(apiResponse);
+                    cpuWatercooler = JsonConvert.DeserializeObject<CPUWatercooler>(apiResponse);
                 }
             }
 
-            return View(processor);
+            return View(cpuWatercooler);
         }
 
         // POST: Processor/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Delete(Guid id, Processor processor = null)
+        public async Task<IActionResult> Delete(Guid id, CPUWatercooler cpuWatercooler = null)
         {
             try
             {
