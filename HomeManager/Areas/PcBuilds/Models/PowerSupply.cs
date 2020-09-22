@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace HomeManager.Areas.PcBuilds.Models
 {
-    public class Processor
+    public class PowerSupply
     {
         [HiddenInput(DisplayValue = false)]
         public Guid Id { get; set; }
@@ -12,19 +12,18 @@ namespace HomeManager.Areas.PcBuilds.Models
         [Required]
         public string Name { get; set; }
 
-        [Display(Name = "Product Collection")]
-        public string ProductCollection { get; set; }
+        public string Manufacturer { get; set; }
 
-        [Display(Name = "Number of Cores")]
-        public int NumberOfCores { get; set; }
+        public string Model { get; set; }
 
-        [Display(Name = "Number of Threads")]
-        public int NumberOfThreads { get; set; }
-        public int Cache { get; set; }
-        public int TDP { get; set; }
+        public string Power { get; set; }
 
-        [Display(Name = "Base Frequency")]
-        public decimal ProcessorBaseFrequency { get; set; }
+        public string Color { get; set; }
+
+        public string Certificate { get; set; }
+
+        [Display(Name = "Modular cables")]
+        public bool ModularCables { get; set; }
 
         [Required]
         [DataType(DataType.Currency)]
@@ -33,5 +32,6 @@ namespace HomeManager.Areas.PcBuilds.Models
         [Required]
         [DataType(DataType.Url)]
         public string Link { get; set; }
+
     }
 }

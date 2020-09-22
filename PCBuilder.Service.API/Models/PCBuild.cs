@@ -16,17 +16,13 @@ namespace PCBuilder.Service.API.Models
         public decimal TotalPrice { get; set; }
 
 
-        [ForeignKey("Processor")]
-        public Guid? ProcessorId { get; set; }
-        public virtual Processor Processor { get; set; }
+        [ForeignKey("CPUWatercooler")]
+        public Guid? CPUWatercoolerId { get; set; }
+        public virtual CPUWatercooler CPUWatercooler { get; set; }
 
-        [ForeignKey("Motherboard")]
-        public Guid? MotherboardId { get; set; }
-        public virtual Motherboard Motherboard { get; set; }
-
-        [ForeignKey("RAM")]
-        public Guid? RAMId { get; set; }
-        public virtual RAM RAM { get; set; }
+        [ForeignKey("Fan")]
+        public Guid? FanId { get; set; }
+        public virtual Fan Fan { get; set; }
 
         [ForeignKey("GraphicsCard")]
         public Guid? GraphicsCardId { get; set; }
@@ -36,13 +32,13 @@ namespace PCBuilder.Service.API.Models
         public Guid? HardDrivedId { get; set; }
         public virtual HardDrive HardDrive { get; set; }
 
-        [ForeignKey("CPUWatercooler")]
-        public Guid? CPUWatercoolerId { get; set; }
-        public virtual CPUWatercooler CPUWatercooler { get; set; }
+        [ForeignKey("Motherboard")]
+        public Guid? MotherboardId { get; set; }
+        public virtual Motherboard Motherboard { get; set; }
 
-        [ForeignKey("Fan")]
-        public Guid? FanId { get; set; }
-        public virtual Fan Fan { get; set; }
+        [ForeignKey("Other")]
+        public Guid? OtherId { get; set; }
+        public virtual Other Other { get; set; }
 
         [ForeignKey("PCCase")]
         public Guid? PCCaseId { get; set; }
@@ -52,8 +48,13 @@ namespace PCBuilder.Service.API.Models
         public Guid? PowerSupplyId { get; set; }
         public virtual PowerSupply PowerSupply { get; set; }
 
-        [ForeignKey("Other")]
-        public Guid? OtherId { get; set; }
-        public virtual Other Other { get; set; }
+        [ForeignKey("Processor")]
+        public Guid? ProcessorId { get; set; }
+        public virtual Processor Processor { get; set; }
+
+        [ForeignKey("RAM")]
+        public Guid? RAMId { get; set; }
+        public virtual RAM RAM { get; set; }
+
     }
 }

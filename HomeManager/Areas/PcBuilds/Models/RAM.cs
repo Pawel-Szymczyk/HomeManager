@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace HomeManager.Areas.PcBuilds.Models
 {
-    public class Processor
+    public class RAM
     {
         [HiddenInput(DisplayValue = false)]
         public Guid Id { get; set; }
@@ -12,19 +12,19 @@ namespace HomeManager.Areas.PcBuilds.Models
         [Required]
         public string Name { get; set; }
 
-        [Display(Name = "Product Collection")]
-        public string ProductCollection { get; set; }
+        [Display(Name = "Memory type")]
+        public string MemoryType { get; set; }
 
-        [Display(Name = "Number of Cores")]
-        public int NumberOfCores { get; set; }
+        [Display(Name = "Memory speed")]
+        public string MemorySpeed { get; set; }
 
-        [Display(Name = "Number of Threads")]
-        public int NumberOfThreads { get; set; }
-        public int Cache { get; set; }
-        public int TDP { get; set; }
+        public string Capacity { get; set; }
 
-        [Display(Name = "Base Frequency")]
-        public decimal ProcessorBaseFrequency { get; set; }
+        [Display(Name = "Chipset compatibility")]
+        public string ChipsetCompatibility { get; set; }
+
+        [Display(Name = "Number of modules")]
+        public int NumberOfModules { get; set; }
 
         [Required]
         [DataType(DataType.Currency)]
