@@ -15,14 +15,14 @@ using System.Threading.Tasks;
 namespace HomeManager.Areas.PcBuilds.Controllers
 {
     [Area("PcBuilds")]
-    public class ProcessorController : Controller
+    public class ProcessorsController : Controller
     {
-        private readonly ILogger<ProcessorController> _logger;
+        private readonly ILogger<ProcessorsController> _logger;
         private readonly IConfiguration _configure;
         private readonly string apiBaseUrl;
         private readonly string apiController = "processors";
 
-        public ProcessorController(ILogger<ProcessorController> logger, IConfiguration configuration)
+        public ProcessorsController(ILogger<ProcessorsController> logger, IConfiguration configuration)
         {
             this._logger = logger;
             this._configure = configuration;
