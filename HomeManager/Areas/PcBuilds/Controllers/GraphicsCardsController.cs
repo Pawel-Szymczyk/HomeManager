@@ -12,14 +12,14 @@ using System.Threading.Tasks;
 namespace HomeManager.Areas.PcBuilds.Controllers
 {
     [Area("PcBuilds")]
-    public class CPUWatercoolersController : Controller
+    public class GraphicsCardsController : Controller
     {
-        private readonly ILogger<CPUWatercoolersController> _logger;
+        private readonly ILogger<GraphicsCardsController> _logger;
         private readonly IConfiguration _configure;
         private readonly string apiBaseUrl;
-        private readonly string apiController = "cpuwatercoolers";
+        private readonly string apiController = "graphicscards";
 
-        public CPUWatercoolersController(ILogger<CPUWatercoolersController> logger, IConfiguration configuration)
+        public GraphicsCardsController(ILogger<GraphicsCardsController> logger, IConfiguration configuration)
         {
             this._logger = logger;
             this._configure = configuration;
@@ -28,42 +28,42 @@ namespace HomeManager.Areas.PcBuilds.Controllers
         }
 
 
-        // GET: CPUWatercooler
+        // GET: GraphicsCards
         public async Task<IActionResult> Index()
         {
-            var cpuWatercoolerList = new List<CPUWatercooler>();
+            var graphicsCardsList = new List<GraphicsCard>();
             using (var httpClient = new HttpClient())
             {
                 using (HttpResponseMessage response = await httpClient.GetAsync(string.Format("{0}/{1}", this.apiBaseUrl, this.apiController)))
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
-                    cpuWatercoolerList = JsonConvert.DeserializeObject<List<CPUWatercooler>>(apiResponse);
+                    graphicsCardsList = JsonConvert.DeserializeObject<List<GraphicsCard>>(apiResponse);
                 }
             }
 
 
-            return this.View(cpuWatercoolerList);
+            return this.View(graphicsCardsList);
         }
 
-        // GET: CPUWatercooler/Details/5
+        // GET: GraphicsCards/Details/5
         public async Task<IActionResult> Details(Guid id)
         {
-            var cpuWatercooler = new CPUWatercooler();
+            var graphicsCard = new GraphicsCard();
             using (var httpClient = new HttpClient())
             {
                 using (HttpResponseMessage response = await httpClient.GetAsync(string.Format("{0}/{1}/{2}", this.apiBaseUrl, this.apiController, id)))
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
-                    cpuWatercooler = JsonConvert.DeserializeObject<CPUWatercooler>(apiResponse);
+                    graphicsCard = JsonConvert.DeserializeObject<GraphicsCard>(apiResponse);
                 }
             }
 
-            return this.View(cpuWatercooler);
+            return this.View(graphicsCard);
         }
 
 
 
-        // GET: CPUWatercooler/Create
+        // GET: GraphicsCards/Create
         public IActionResult Create()
         {
             return this.View();
@@ -72,7 +72,7 @@ namespace HomeManager.Areas.PcBuilds.Controllers
         // POST: CPUWatercooler/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(CPUWatercooler model)
+        public async Task<IActionResult> Create(GraphicsCard model)
         {
             try
             {
@@ -95,26 +95,26 @@ namespace HomeManager.Areas.PcBuilds.Controllers
             }
         }
 
-        // GET: CPUWatercooler/Edit/5
+        // GET: GraphicsCards/Edit/5
         public async Task<IActionResult> Edit(Guid id)
         {
-            var cpuWatercooler = new CPUWatercooler();
+            var graphicsCard = new GraphicsCard();
             using (var httpClient = new HttpClient())
             {
                 using (HttpResponseMessage response = await httpClient.GetAsync(string.Format("{0}/{1}/{2}", this.apiBaseUrl, this.apiController, id)))
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
-                    cpuWatercooler = JsonConvert.DeserializeObject<CPUWatercooler>(apiResponse);
+                    graphicsCard = JsonConvert.DeserializeObject<GraphicsCard>(apiResponse);
                 }
             }
 
-            return this.View(cpuWatercooler);
+            return this.View(graphicsCard);
         }
 
-        // POST: CPUWatercooler/Edit/5
+        // POST: GraphicsCards/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(Guid id, CPUWatercooler model)
+        public async Task<IActionResult> Edit(Guid id, GraphicsCard model)
         {
             try
             {
@@ -145,27 +145,27 @@ namespace HomeManager.Areas.PcBuilds.Controllers
             }
         }
 
-        // GET: Processor/Delete/5
+        // GET: GraphicsCard/Delete/5
         [HttpGet]
         public async Task<IActionResult> Delete(Guid id)
         {
-            var cpuWatercooler = new CPUWatercooler();
+            var graphicsCard = new GraphicsCard();
             using (var httpClient = new HttpClient())
             {
                 using (HttpResponseMessage response = await httpClient.GetAsync(string.Format("{0}/{1}/{2}", this.apiBaseUrl, this.apiController, id)))
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
-                    cpuWatercooler = JsonConvert.DeserializeObject<CPUWatercooler>(apiResponse);
+                    graphicsCard = JsonConvert.DeserializeObject<GraphicsCard>(apiResponse);
                 }
             }
 
-            return this.View(cpuWatercooler);
+            return this.View(graphicsCard);
         }
 
-        // POST: Processor/Delete/5
+        // POST: GraphicsCards/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Delete(Guid id, CPUWatercooler cpuWatercooler = null)
+        public async Task<IActionResult> Delete(Guid id, GraphicsCard graphicsCard = null)
         {
             try
             {
@@ -184,5 +184,8 @@ namespace HomeManager.Areas.PcBuilds.Controllers
                 return this.View();
             }
         }
+
+
+
     }
 }

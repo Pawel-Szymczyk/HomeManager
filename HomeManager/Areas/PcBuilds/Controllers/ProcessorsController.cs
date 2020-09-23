@@ -1,13 +1,10 @@
-﻿
-using HomeManager.Areas.PcBuilds.Models;
-using Microsoft.AspNetCore.Http;
+﻿using HomeManager.Areas.PcBuilds.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -51,8 +48,8 @@ namespace HomeManager.Areas.PcBuilds.Controllers
         // GET: Processor/Details/5
         public async Task<IActionResult> Details(Guid id)
         {
-            Processor processor = new Processor();
-            using(var httpClient = new HttpClient())
+            var processor = new Processor();
+            using (var httpClient = new HttpClient())
             {
                 using (HttpResponseMessage response = await httpClient.GetAsync(string.Format("{0}/{1}/{2}", this.apiBaseUrl, this.apiController, id)))
                 {
@@ -69,7 +66,7 @@ namespace HomeManager.Areas.PcBuilds.Controllers
         // GET: Processor/Create
         public IActionResult Create()
         {
-            return View();
+            return this.View();
         }
 
         // POST: Processor/Create
@@ -81,27 +78,27 @@ namespace HomeManager.Areas.PcBuilds.Controllers
             {
                 using (var httpClient = new HttpClient())
                 {
-                    StringContent content = new StringContent(JsonConvert.SerializeObject(model), Encoding.UTF8, "application/json");
+                    var content = new StringContent(JsonConvert.SerializeObject(model), Encoding.UTF8, "application/json");
 
-                    using (var response = await httpClient.PostAsync(string.Format("{0}/{1}", this.apiBaseUrl, this.apiController), content))
+                    using (HttpResponseMessage response = await httpClient.PostAsync(string.Format("{0}/{1}", this.apiBaseUrl, this.apiController), content))
                     {
                         string apiResponse = await response.Content.ReadAsStringAsync();
                         //receivedReservation = JsonConvert.DeserializeObject<Reservation>(apiResponse);
                     }
                 }
 
-                return RedirectToAction(nameof(Index));
+                return this.RedirectToAction(nameof(Index));
             }
             catch
             {
-                return View();
+                return this.View();
             }
         }
 
         // GET: Processor/Edit/5
         public async Task<IActionResult> Edit(Guid id)
         {
-            Processor processor = new Processor();
+            var processor = new Processor();
             using (var httpClient = new HttpClient())
             {
                 using (HttpResponseMessage response = await httpClient.GetAsync(string.Format("{0}/{1}/{2}", this.apiBaseUrl, this.apiController, id)))
@@ -123,7 +120,7 @@ namespace HomeManager.Areas.PcBuilds.Controllers
             {
                 if (id != model.Id || model == null)
                 {
-                    return NotFound();
+                    return this.NotFound();
                 }
 
                 using (var httpClient = new HttpClient())
@@ -132,7 +129,7 @@ namespace HomeManager.Areas.PcBuilds.Controllers
                     string json = JsonConvert.SerializeObject(model, Formatting.Indented);
                     var httpContent = new StringContent(json, Encoding.UTF8, "application/json");
 
-                    using (var response = await httpClient.PutAsync(string.Format("{0}/{1}", this.apiBaseUrl, this.apiController), httpContent))
+                    using (HttpResponseMessage response = await httpClient.PutAsync(string.Format("{0}/{1}", this.apiBaseUrl, this.apiController), httpContent))
                     {
                         string apiResponse = await response.Content.ReadAsStringAsync();    // returns object, todo: change response in api to return successfull message
                         //ViewBag.Result = "Success";
@@ -140,11 +137,11 @@ namespace HomeManager.Areas.PcBuilds.Controllers
                     }
                 }
 
-                return RedirectToAction(nameof(Index));
+                return this.RedirectToAction(nameof(Index));
             }
             catch
             {
-                return View();
+                return this.View();
             }
         }
 
@@ -152,7 +149,7 @@ namespace HomeManager.Areas.PcBuilds.Controllers
         [HttpGet]
         public async Task<IActionResult> Delete(Guid id)
         {
-            Processor processor = new Processor();
+            var processor = new Processor();
             using (var httpClient = new HttpClient())
             {
                 using (HttpResponseMessage response = await httpClient.GetAsync(string.Format("{0}/{1}/{2}", this.apiBaseUrl, this.apiController, id)))
@@ -162,7 +159,7 @@ namespace HomeManager.Areas.PcBuilds.Controllers
                 }
             }
 
-            return View(processor);
+            return this.View(processor);
         }
 
         // POST: Processor/Delete/5
@@ -174,17 +171,17 @@ namespace HomeManager.Areas.PcBuilds.Controllers
             {
                 using (var httpClient = new HttpClient())
                 {
-                    using (var response = await httpClient.DeleteAsync(string.Format("{0}/{1}/{2}", this.apiBaseUrl, this.apiController, id)))
+                    using (HttpResponseMessage response = await httpClient.DeleteAsync(string.Format("{0}/{1}/{2}", this.apiBaseUrl, this.apiController, id)))
                     {
                         string apiResponse = await response.Content.ReadAsStringAsync();
                     }
                 }
 
-                return RedirectToAction(nameof(Index));
+                return this.RedirectToAction(nameof(Index));
             }
             catch
             {
-                return View();
+                return this.View();
             }
         }
     }

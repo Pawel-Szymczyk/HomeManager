@@ -6,7 +6,6 @@ namespace HomeManager.Areas.PcBuilds.Models
 {
     public class PCCase
     {
-        [HiddenInput(DisplayValue = false)]
         public Guid Id { get; set; }
 
         [Required]

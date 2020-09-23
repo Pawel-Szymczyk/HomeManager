@@ -12,14 +12,14 @@ using System.Threading.Tasks;
 namespace HomeManager.Areas.PcBuilds.Controllers
 {
     [Area("PcBuilds")]
-    public class CPUWatercoolersController : Controller
+    public class FansController : Controller
     {
-        private readonly ILogger<CPUWatercoolersController> _logger;
+        private readonly ILogger<FansController> _logger;
         private readonly IConfiguration _configure;
         private readonly string apiBaseUrl;
-        private readonly string apiController = "cpuwatercoolers";
+        private readonly string apiController = "fans";
 
-        public CPUWatercoolersController(ILogger<CPUWatercoolersController> logger, IConfiguration configuration)
+        public FansController(ILogger<FansController> logger, IConfiguration configuration)
         {
             this._logger = logger;
             this._configure = configuration;
@@ -28,51 +28,51 @@ namespace HomeManager.Areas.PcBuilds.Controllers
         }
 
 
-        // GET: CPUWatercooler
+        // GET: Fans
         public async Task<IActionResult> Index()
         {
-            var cpuWatercoolerList = new List<CPUWatercooler>();
+            var fanList = new List<Fan>();
             using (var httpClient = new HttpClient())
             {
                 using (HttpResponseMessage response = await httpClient.GetAsync(string.Format("{0}/{1}", this.apiBaseUrl, this.apiController)))
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
-                    cpuWatercoolerList = JsonConvert.DeserializeObject<List<CPUWatercooler>>(apiResponse);
+                    fanList = JsonConvert.DeserializeObject<List<Fan>>(apiResponse);
                 }
             }
 
 
-            return this.View(cpuWatercoolerList);
+            return this.View(fanList);
         }
 
-        // GET: CPUWatercooler/Details/5
+        // GET: Fans/Details/5
         public async Task<IActionResult> Details(Guid id)
         {
-            var cpuWatercooler = new CPUWatercooler();
+            var fan = new Fan();
             using (var httpClient = new HttpClient())
             {
                 using (HttpResponseMessage response = await httpClient.GetAsync(string.Format("{0}/{1}/{2}", this.apiBaseUrl, this.apiController, id)))
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
-                    cpuWatercooler = JsonConvert.DeserializeObject<CPUWatercooler>(apiResponse);
+                    fan = JsonConvert.DeserializeObject<Fan>(apiResponse);
                 }
             }
 
-            return this.View(cpuWatercooler);
+            return this.View(fan);
         }
 
 
 
-        // GET: CPUWatercooler/Create
+        // GET: Fans/Create
         public IActionResult Create()
         {
             return this.View();
         }
 
-        // POST: CPUWatercooler/Create
+        // POST: Fans/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(CPUWatercooler model)
+        public async Task<IActionResult> Create(Fan model)
         {
             try
             {
@@ -95,26 +95,26 @@ namespace HomeManager.Areas.PcBuilds.Controllers
             }
         }
 
-        // GET: CPUWatercooler/Edit/5
+        // GET: Fans/Edit/5
         public async Task<IActionResult> Edit(Guid id)
         {
-            var cpuWatercooler = new CPUWatercooler();
+            var fan = new Fan();
             using (var httpClient = new HttpClient())
             {
                 using (HttpResponseMessage response = await httpClient.GetAsync(string.Format("{0}/{1}/{2}", this.apiBaseUrl, this.apiController, id)))
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
-                    cpuWatercooler = JsonConvert.DeserializeObject<CPUWatercooler>(apiResponse);
+                    fan = JsonConvert.DeserializeObject<Fan>(apiResponse);
                 }
             }
 
-            return this.View(cpuWatercooler);
+            return this.View(fan);
         }
 
-        // POST: CPUWatercooler/Edit/5
+        // POST: Fans/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(Guid id, CPUWatercooler model)
+        public async Task<IActionResult> Edit(Guid id, Fan model)
         {
             try
             {
@@ -145,27 +145,27 @@ namespace HomeManager.Areas.PcBuilds.Controllers
             }
         }
 
-        // GET: Processor/Delete/5
+        // GET: Fans/Delete/5
         [HttpGet]
         public async Task<IActionResult> Delete(Guid id)
         {
-            var cpuWatercooler = new CPUWatercooler();
+            var fan = new Fan();
             using (var httpClient = new HttpClient())
             {
                 using (HttpResponseMessage response = await httpClient.GetAsync(string.Format("{0}/{1}/{2}", this.apiBaseUrl, this.apiController, id)))
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
-                    cpuWatercooler = JsonConvert.DeserializeObject<CPUWatercooler>(apiResponse);
+                    fan = JsonConvert.DeserializeObject<Fan>(apiResponse);
                 }
             }
 
-            return this.View(cpuWatercooler);
+            return this.View(fan);
         }
 
-        // POST: Processor/Delete/5
+        // POST: Fans/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Delete(Guid id, CPUWatercooler cpuWatercooler = null)
+        public async Task<IActionResult> Delete(Guid id, Fan fan = null)
         {
             try
             {
@@ -184,5 +184,6 @@ namespace HomeManager.Areas.PcBuilds.Controllers
                 return this.View();
             }
         }
+
     }
 }

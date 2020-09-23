@@ -6,7 +6,6 @@ namespace HomeManager.Areas.PcBuilds.Models
 {
     public class Processor
     {
-        [HiddenInput(DisplayValue = false)]
         public Guid Id { get; set; }
 
         [Required]
