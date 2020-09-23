@@ -11,7 +11,7 @@
     "IIS Express": {
       "commandName": "IISExpress",
       "launchBrowser": true,
-      "launchUrl": "PcBuilds/Processors",
+      "launchUrl": "PcBuilds/Configurations",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
