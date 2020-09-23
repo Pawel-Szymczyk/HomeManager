@@ -12,14 +12,14 @@ using System.Threading.Tasks;
 namespace HomeManager.Areas.PcBuilds.Controllers
 {
     [Area("PcBuilds")]
-    public class HardDrivesController : Controller
+    public class MotherboardsController : Controller
     {
-        private readonly ILogger<HardDrivesController> _logger;
+        private readonly ILogger<MotherboardsController> _logger;
         private readonly IConfiguration _configure;
         private readonly string apiBaseUrl;
-        private readonly string apiController = "harddrives";
+        private readonly string apiController = "motherboards";
 
-        public HardDrivesController(ILogger<HardDrivesController> logger, IConfiguration configuration)
+        public MotherboardsController(ILogger<MotherboardsController> logger, IConfiguration configuration)
         {
             this._logger = logger;
             this._configure = configuration;
@@ -28,51 +28,51 @@ namespace HomeManager.Areas.PcBuilds.Controllers
         }
 
 
-        // GET: HardDrives
+        // GET: Motherboards
         public async Task<IActionResult> Index()
         {
-            var hardDrive = new List<HardDrive>();
+            var MotherboardList = new List<Motherboard>();
             using (var httpClient = new HttpClient())
             {
                 using (HttpResponseMessage response = await httpClient.GetAsync(string.Format("{0}/{1}", this.apiBaseUrl, this.apiController)))
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
-                    hardDrive = JsonConvert.DeserializeObject<List<HardDrive>>(apiResponse);
+                    MotherboardList = JsonConvert.DeserializeObject<List<Motherboard>>(apiResponse);
                 }
             }
 
 
-            return this.View(hardDrive);
+            return this.View(MotherboardList);
         }
 
-        // GET: HardDrives/Details/5
+        // GET: Motherboards/Details/5
         public async Task<IActionResult> Details(Guid id)
         {
-            var hardDrive = new HardDrive();
+            var motherboard = new Motherboard();
             using (var httpClient = new HttpClient())
             {
                 using (HttpResponseMessage response = await httpClient.GetAsync(string.Format("{0}/{1}/{2}", this.apiBaseUrl, this.apiController, id)))
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
-                    hardDrive = JsonConvert.DeserializeObject<HardDrive>(apiResponse);
+                    motherboard = JsonConvert.DeserializeObject<Motherboard>(apiResponse);
                 }
             }
 
-            return this.View(hardDrive);
+            return this.View(motherboard);
         }
 
 
 
-        // GET: HardDrives/Create
+        // GET: Motherboards/Create
         public IActionResult Create()
         {
             return this.View();
         }
 
-        // POST: HardDrives/Create
+        // POST: Motherboards/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(HardDrive model)
+        public async Task<IActionResult> Create(Motherboard model)
         {
             try
             {
@@ -95,26 +95,26 @@ namespace HomeManager.Areas.PcBuilds.Controllers
             }
         }
 
-        // GET: HardDrives/Edit/5
+        // GET: Motherboards/Edit/5
         public async Task<IActionResult> Edit(Guid id)
         {
-            var hardDrive = new HardDrive();
+            var motherboard = new Motherboard();
             using (var httpClient = new HttpClient())
             {
                 using (HttpResponseMessage response = await httpClient.GetAsync(string.Format("{0}/{1}/{2}", this.apiBaseUrl, this.apiController, id)))
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
-                    hardDrive = JsonConvert.DeserializeObject<HardDrive>(apiResponse);
+                    motherboard = JsonConvert.DeserializeObject<Motherboard>(apiResponse);
                 }
             }
 
-            return this.View(hardDrive);
+            return this.View(motherboard);
         }
 
-        // POST: HardDrives/Edit/5
+        // POST: Motherboards/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(Guid id, HardDrive model)
+        public async Task<IActionResult> Edit(Guid id, Motherboard model)
         {
             try
             {
@@ -145,27 +145,27 @@ namespace HomeManager.Areas.PcBuilds.Controllers
             }
         }
 
-        // GET: HardDrives/Delete/5
+        // GET: Motherboards/Delete/5
         [HttpGet]
         public async Task<IActionResult> Delete(Guid id)
         {
-            var hardDrive = new HardDrive();
+            var motherboard = new Motherboard();
             using (var httpClient = new HttpClient())
             {
                 using (HttpResponseMessage response = await httpClient.GetAsync(string.Format("{0}/{1}/{2}", this.apiBaseUrl, this.apiController, id)))
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
-                    hardDrive = JsonConvert.DeserializeObject<HardDrive>(apiResponse);
+                    motherboard = JsonConvert.DeserializeObject<Motherboard>(apiResponse);
                 }
             }
 
-            return this.View(hardDrive);
+            return this.View(motherboard);
         }
 
-        // POST: HardDrive/Delete/5
+        // POST: Motherboards/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Delete(Guid id, HardDrive hardDrive = null)
+        public async Task<IActionResult> Delete(Guid id, Motherboard motherboard = null)
         {
             try
             {
@@ -184,7 +184,6 @@ namespace HomeManager.Areas.PcBuilds.Controllers
                 return this.View();
             }
         }
-
 
     }
 }
