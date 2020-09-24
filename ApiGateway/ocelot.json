@@ -57,6 +57,19 @@
     // **************************************************************
     // PC builder API
     {
+      "DownstreamPathTemplate": "/api/v1/Components",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "44324"
+        }
+      ],
+      "UpstreamPathTemplate": "/gateway/components",
+      "UpstreamHttpMethod": [ "GET" ]
+    },
+
+    {
       "DownstreamPathTemplate": "/api/v1/CPUWatercoolers",
       "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [

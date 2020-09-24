@@ -19,6 +19,7 @@ namespace HomeManager.Areas.PcBuilds.Controllers
         private readonly IConfiguration _configure;
         private readonly string apiBaseUrl;
         private readonly string apiController = "pcbuilds";
+        private readonly string apiComponentsController = "components";
 
         public ConfigurationsController(ILogger<ConfigurationsController> logger, IConfiguration configuration)
         {
