@@ -18,6 +18,26 @@
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
                     <ul class="navbar-nav flex-grow-1">
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" id="configurationNav" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                PC Configuration
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="configurationNav">
+                                <a class="dropdown-item" asp-area="PcBuilds" asp-controller="Configurations" asp-action="Index">PC Configurations</a>
+                                <a class="dropdown-item" asp-area="PcBuilds" asp-controller="CPUWatercoolers" asp-action="Index">CPU Watercoolers</a>
+                                <a class="dropdown-item" asp-area="PcBuilds" asp-controller="Fans" asp-action="Index">Fans</a>
+                                <a class="dropdown-item" asp-area="PcBuilds" asp-controller="GraphicsCards" asp-action="Index">Graphics Cards</a>
+                                <a class="dropdown-item" asp-area="PcBuilds" asp-controller="HardDrives" asp-action="Index">Hard Drives</a>
+                                <a class="dropdown-item" asp-area="PcBuilds" asp-controller="Motherboards" asp-action="Index">Motherboards</a>
+                                <a class="dropdown-item" asp-area="PcBuilds" asp-controller="Others" asp-action="Index">Others</a>
+                                <a class="dropdown-item" asp-area="PcBuilds" asp-controller="PCCases" asp-action="Index">PC Cases</a>
+                                <a class="dropdown-item" asp-area="PcBuilds" asp-controller="PowerSupplies" asp-action="Index">Power Supplies</a>
+                                <a class="dropdown-item" asp-area="PcBuilds" asp-controller="Processors" asp-action="Index">Processors</a>
+                                <a class="dropdown-item" asp-area="PcBuilds" asp-controller="RAMs" asp-action="Index">RAM</a>
+                            </div>
+                        </li>
+
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>

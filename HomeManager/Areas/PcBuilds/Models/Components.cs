@@ -12,16 +12,6 @@ namespace HomeManager.Areas.PcBuilds.Models
         public Components()
         {
             Configuration = new Configuration();
-            //SelectedCPUWatercoolerId = string.Empty;
-            //SelectedFanId = string.Empty;
-            //SelectedGraphicsCardId = string.Empty;
-            //SelectedHardDriveId = string.Empty;
-            //SelectedMotherboardId = string.Empty;
-            //SelectedOtherId = string.Empty;
-            //SelectedPCCaseId = string.Empty;
-            //SelectedPowerSupplyId = string.Empty;
-            //SelectedProcessorId = string.Empty;
-            //SelectedRAMId = string.Empty;
         }
 
         public Configuration Configuration { get; set; }

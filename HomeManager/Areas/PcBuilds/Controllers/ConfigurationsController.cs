@@ -76,64 +76,7 @@ namespace HomeManager.Areas.PcBuilds.Controllers
             return this.View(components);
         }
 
-        public async Task<Components> ReturnListOfPcComponents(HttpClient httpClient)
-        {
-            // References: https://www.newtonsoft.com/json/help/html/ToObjectComplex.htm
-
-            Components components = new Components();
-
-            using (HttpResponseMessage response = await httpClient.GetAsync(string.Format("{0}/{1}", this.apiBaseUrl, this.apiComponentsController)))
-            {
-                string apiResponse = await response.Content.ReadAsStringAsync();
-
-                var jObject = JObject.Parse(apiResponse);
-
-
-                var cpuWatercoolers = (JArray)jObject["cpuWatercoolers"];
-                IList<CPUWatercooler> cpuWatercoolersList = cpuWatercoolers.ToObject<IList<CPUWatercooler>>();
-                components.CPUWatercoolers = new List<CPUWatercooler>(cpuWatercoolersList);
-
-                var fans = (JArray)jObject["fans"];
-                IList<Fan> fansList = fans.ToObject<IList<Fan>>();
-                components.Fans = new List<Fan>(fansList);
-
-                var graphicsCards = (JArray)jObject["graphicsCards"];
-                IList<GraphicsCard> graphicsCardsList = graphicsCards.ToObject<IList<GraphicsCard>>();
-                components.GraphicsCards = new List<GraphicsCard>(graphicsCardsList);
-
-                var hardDrives = (JArray)jObject["hardDrives"];
-                IList<HardDrive> hardDrivesList = hardDrives.ToObject<IList<HardDrive>>();
-                components.HardDrives = new List<HardDrive>(hardDrivesList);
-
-                var motherboards = (JArray)jObject["motherboards"];
-                IList<Motherboard> motherboardsList = motherboards.ToObject<IList<Motherboard>>();
-                components.Motherboards = new List<Motherboard>(motherboardsList);
-
-                var others = (JArray)jObject["others"];
-                IList<Other> othersList = others.ToObject<IList<Other>>();
-                components.Others = new List<Other>(othersList);
-
-                var pcCases = (JArray)jObject["pcCases"];
-                IList<PCCase> pcCasesList = pcCases.ToObject<IList<PCCase>>();
-                components.PCCases = new List<PCCase>(pcCasesList);
-
-                var powerSupplies = (JArray)jObject["powerSupplies"];
-                IList<PowerSupply> powerSuppliesList = powerSupplies.ToObject<IList<PowerSupply>>();
-                components.PowerSupplies = new List<PowerSupply>(powerSuppliesList);
-
-                var processors = (JArray)jObject["processors"];
-                IList<Processor> processorsList = processors.ToObject<IList<Processor>>();
-                components.Processors = new List<Processor>(processorsList);
-
-                var rams = (JArray)jObject["rams"];
-                IList<RAM> ramsList = rams.ToObject<IList<RAM>>();
-                components.RAMs = new List<RAM>(ramsList);
-
-
-            }
-
-            return components;
-        }
+        
 
 
 
@@ -302,6 +245,75 @@ namespace HomeManager.Areas.PcBuilds.Controllers
             {
                 return this.View();
             }
+        }
+
+
+
+
+
+
+        /// <summary>
+        /// Creates HttpResponseMessage object returning Component objects.
+        /// </summary>
+        /// <param name="httpClient"></param>
+        /// <returns></returns>
+        public async Task<Components> ReturnListOfPcComponents(HttpClient httpClient)
+        {
+            // References: https://www.newtonsoft.com/json/help/html/ToObjectComplex.htm
+
+            Components components = new Components();
+
+            using (HttpResponseMessage response = await httpClient.GetAsync(string.Format("{0}/{1}", this.apiBaseUrl, this.apiComponentsController)))
+            {
+                string apiResponse = await response.Content.ReadAsStringAsync();
+
+                var jObject = JObject.Parse(apiResponse);
+
+
+                var cpuWatercoolers = (JArray)jObject["cpuWatercoolers"];
+                IList<CPUWatercooler> cpuWatercoolersList = cpuWatercoolers.ToObject<IList<CPUWatercooler>>();
+                components.CPUWatercoolers = new List<CPUWatercooler>(cpuWatercoolersList);
+
+                var fans = (JArray)jObject["fans"];
+                IList<Fan> fansList = fans.ToObject<IList<Fan>>();
+                components.Fans = new List<Fan>(fansList);
+
+                var graphicsCards = (JArray)jObject["graphicsCards"];
+                IList<GraphicsCard> graphicsCardsList = graphicsCards.ToObject<IList<GraphicsCard>>();
+                components.GraphicsCards = new List<GraphicsCard>(graphicsCardsList);
+
+                var hardDrives = (JArray)jObject["hardDrives"];
+                IList<HardDrive> hardDrivesList = hardDrives.ToObject<IList<HardDrive>>();
+                components.HardDrives = new List<HardDrive>(hardDrivesList);
+
+                var motherboards = (JArray)jObject["motherboards"];
+                IList<Motherboard> motherboardsList = motherboards.ToObject<IList<Motherboard>>();
+                components.Motherboards = new List<Motherboard>(motherboardsList);
+
+                var others = (JArray)jObject["others"];
+                IList<Other> othersList = others.ToObject<IList<Other>>();
+                components.Others = new List<Other>(othersList);
+
+                var pcCases = (JArray)jObject["pcCases"];
+                IList<PCCase> pcCasesList = pcCases.ToObject<IList<PCCase>>();
+                components.PCCases = new List<PCCase>(pcCasesList);
+
+                var powerSupplies = (JArray)jObject["powerSupplies"];
+                IList<PowerSupply> powerSuppliesList = powerSupplies.ToObject<IList<PowerSupply>>();
+                components.PowerSupplies = new List<PowerSupply>(powerSuppliesList);
+
+                var processors = (JArray)jObject["processors"];
+                IList<Processor> processorsList = processors.ToObject<IList<Processor>>();
+                components.Processors = new List<Processor>(processorsList);
+
+                var rams = (JArray)jObject["rams"];
+                IList<RAM> ramsList = rams.ToObject<IList<RAM>>();
+                components.RAMs = new List<RAM>(ramsList);
+
+
+            }
+
+            return components;
         }
 
     }
