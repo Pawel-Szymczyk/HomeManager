@@ -1,0 +1,100 @@
+﻿@model HomeManager.Areas.PcBuilds.Models.Components
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Configuration</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group">
+                <label asp-for="Configuration.Description" class="control-label"></label>
+                <input asp-for="Configuration.Description" class="form-control" />
+                <span asp-validation-for="Configuration.Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Configuration.TotalPrice" class="control-label"></label>
+                <input asp-for="Configuration.TotalPrice" class="form-control" />
+                <span asp-validation-for="Configuration.TotalPrice" class="text-danger"></span>
+            </div>
+
+            <div class="input-group mb-3">
+                <select class="btn btn-light" asp-for="SelectedCPUWatercoolerId" asp-items="@(new SelectList(Model.CPUWatercoolers,"Id","Name"))">
+                    <option value="">Pick CPU Watercooler</option>
+                </select>
+            </div>
+
+            <div class="input-group mb-3">
+                <select class="btn btn-light" asp-for="SelectedFanId" asp-items="@(new SelectList(Model.Fans,"Id","Name"))">
+                    <option value="">Pick Fan</option>
+                </select>
+            </div>
+
+            <div class="input-group mb-3">
+                <select class="btn btn-light" asp-for="SelectedGraphicsCardId" asp-items="@(new SelectList(Model.GraphicsCards,"Id","Name"))">
+                    <option value="">Pick Graphics Card</option>
+                </select>
+            </div>
+
+            <div class="input-group mb-3">
+                <select class="btn btn-light" asp-for="SelectedHardDriveId" asp-items="@(new SelectList(Model.HardDrives,"Id","Name"))">
+                    <option value="">Pick Hard Drive</option>
+                </select>
+            </div>
+
+            <div class="input-group mb-3">
+                <select class="btn btn-light" asp-for="SelectedMotherboardId" asp-items="@(new SelectList(Model.Motherboards,"Id","Name"))">
+                    <option value="">Pick Motherboard</option>
+                </select>
+            </div>
+
+            <div class="input-group mb-3">
+                <select class="btn btn-light" asp-for="SelectedOtherId" asp-items="@(new SelectList(Model.Others,"Id","Name"))">
+                    <option value="">Pick Other Item</option>
+                </select>
+            </div>
+
+            <div class="input-group mb-3">
+                <select class="btn btn-light" asp-for="SelectedPCCaseId" asp-items="@(new SelectList(Model.PCCases,"Id","Name"))">
+                    <option value="">Pick PC Case</option>
+                </select>
+            </div>
+
+            <div class="input-group mb-3">
+                <select class="btn btn-light" asp-for="SelectedPowerSupplyId" asp-items="@(new SelectList(Model.PowerSupplies,"Id","Name"))">
+                    <option value="">Pick Power Supply</option>
+                </select>
+            </div>
+
+            <div class="input-group mb-3">
+                <select class="btn btn-light" asp-for="SelectedProcessorId" asp-items="@(new SelectList(Model.Processors,"Id","Name"))">
+                    <option value="">Pick Processor</option>
+                </select>
+            </div>
+
+            <div class="input-group mb-3">
+                <select class="btn btn-light" asp-for="SelectedRAMId" asp-items="@(new SelectList(Model.RAMs,"Id","Name"))">
+                    <option value="">Pick RAM</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
