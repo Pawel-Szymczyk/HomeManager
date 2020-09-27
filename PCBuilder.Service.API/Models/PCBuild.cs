@@ -58,17 +58,19 @@ namespace PCBuilder.Service.API.Models
         {
             get
             {
-                var totalPrice = new List<decimal>();
-                totalPrice.Add(this.CPUWatercooler?.Price ?? 0);
-                totalPrice.Add(this.Fan?.Price ?? 0);
-                totalPrice.Add(this.GraphicsCard?.Price ?? 0);
-                totalPrice.Add(this.HardDrive?.Price ?? 0);
-                totalPrice.Add(this.Motherboard?.Price ?? 0);
-                totalPrice.Add(this.Other?.Price ?? 0);
-                totalPrice.Add(this.PCCase?.Price ?? 0);
-                totalPrice.Add(this.PowerSupply?.Price ?? 0);
-                totalPrice.Add(this.Processor?.Price ?? 0);
-                totalPrice.Add(this.RAM?.Price ?? 0);
+                var totalPrice = new List<decimal>
+                {
+                    this.CPUWatercooler?.Price ?? 0,
+                    this.Fan?.Price ?? 0,
+                    this.GraphicsCard?.Price ?? 0,
+                    this.HardDrive?.Price ?? 0,
+                    this.Motherboard?.Price ?? 0,
+                    this.Other?.Price ?? 0,
+                    this.PCCase?.Price ?? 0,
+                    this.PowerSupply?.Price ?? 0,
+                    this.Processor?.Price ?? 0,
+                    this.RAM?.Price ?? 0
+                };
 
                 return totalPrice.Sum();
             }
