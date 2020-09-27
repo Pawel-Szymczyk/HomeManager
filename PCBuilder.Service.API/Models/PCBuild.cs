@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
 
 namespace PCBuilder.Service.API.Models
 {
@@ -9,12 +11,7 @@ namespace PCBuilder.Service.API.Models
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid Id { get; set; }
-
         public string Description { get; set; }
-
-        [Column(TypeName = "decimal(18,2)")]
-        public decimal TotalPrice { get; set; }
-
 
         [ForeignKey("CPUWatercooler")]
         public Guid? CPUWatercoolerId { get; set; }
@@ -55,6 +52,30 @@ namespace PCBuilder.Service.API.Models
         [ForeignKey("RAM")]
         public Guid? RAMId { get; set; }
         public virtual RAM RAM { get; set; }
+
+        [Column(TypeName = "decimal(18,2)")]
+        public decimal TotalPrice
+        {
+            get
+            {
+                var totalPrice = new List<decimal>();
+                totalPrice.Add(this.CPUWatercooler?.Price ?? 0);
+                totalPrice.Add(this.Fan?.Price ?? 0);
+                totalPrice.Add(this.GraphicsCard?.Price ?? 0);
+                totalPrice.Add(this.HardDrive?.Price ?? 0);
+                totalPrice.Add(this.Motherboard?.Price ?? 0);
+                totalPrice.Add(this.Other?.Price ?? 0);
+                totalPrice.Add(this.PCCase?.Price ?? 0);
+                totalPrice.Add(this.PowerSupply?.Price ?? 0);
+                totalPrice.Add(this.Processor?.Price ?? 0);
+                totalPrice.Add(this.RAM?.Price ?? 0);
+
+                return totalPrice.Sum();
+            }
+
+            //set; 
+
+        }
 
     }
 }
