@@ -18,11 +18,7 @@
                 <input asp-for="Configuration.Description" class="form-control" />
                 <span asp-validation-for="Configuration.Description" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="Configuration.TotalPrice" class="control-label"></label>
-                <input asp-for="Configuration.TotalPrice" class="form-control" />
-                <span asp-validation-for="Configuration.TotalPrice" class="text-danger"></span>
-            </div>
+
 
             <div class="input-group mb-3">
                 <select class="btn btn-light" asp-for="SelectedCPUWatercoolerId" asp-items="@(new SelectList(Model.CPUWatercoolers,"Id","Name"))">
