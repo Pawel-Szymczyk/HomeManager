@@ -15,7 +15,7 @@ namespace HomeManager.Areas.PcBuilds.Models
             GraphicsCard = new GraphicsCard();
             HardDrive = new HardDrive();
             Motherboard = new Motherboard();
-            Other = new Other();
+            Others = new List<Other>();
             PCCase = new PCCase();
             PowerSupply = new PowerSupply();
             Processor = new Processor();
@@ -47,7 +47,7 @@ namespace HomeManager.Areas.PcBuilds.Models
 
         public Motherboard Motherboard { get; set; }
 
-        public Other Other { get; set; }
+        public List<Other> Others { get; set; }
 
         public PCCase PCCase { get; set; }
 

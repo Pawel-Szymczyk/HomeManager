@@ -47,7 +47,9 @@ namespace PCBuilder.Service.API.Repositories
             return await this.context.Set<TEntity>().ToListAsync();
         }
 
-        public async Task<TEntity> Update(TEntity model)
+       
+
+        public virtual async Task<TEntity> Update(TEntity model)
         {
             this.context.Entry(model).State = EntityState.Modified;
             await this.SaveAsync();

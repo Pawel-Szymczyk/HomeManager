@@ -146,7 +146,7 @@ namespace HomeManager.Areas.PcBuilds.Controllers
                     components.SelectedGraphicsCardId = (result.GraphicsCard != null) ? result.GraphicsCard.Id.ToString() : string.Empty;
                     components.SelectedHardDriveId = (result.HardDrive != null) ? result.HardDrive.Id.ToString() : string.Empty;
                     components.SelectedMotherboardId = (result.Motherboard != null) ? result.Motherboard.Id.ToString() : string.Empty;
-                    components.SelectedOtherId = (result.Other != null) ? result.Other.Id.ToString() : string.Empty;
+                    //components.SelectedOtherId = (result.Others != null) ? result.Others.Id.ToString() : string.Empty;
                     components.SelectedPCCaseId = (result.PCCase != null) ? result.PCCase.Id.ToString() : string.Empty;
                     components.SelectedPowerSupplyId = (result.PowerSupply != null) ? result.PowerSupply.Id.ToString() : string.Empty;
                     components.SelectedProcessorId = (result.Processor != null) ? result.Processor.Id.ToString() : string.Empty;
