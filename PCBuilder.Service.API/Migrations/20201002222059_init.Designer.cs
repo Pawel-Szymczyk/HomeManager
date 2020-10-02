@@ -10,8 +10,8 @@ using PCBuilder.Service.API.DBContext;
 namespace PCBuilder.Service.API.Migrations
 {
     [DbContext(typeof(PCBuilderContext))]
-    [Migration("20201001163141_update")]
-    partial class update
+    [Migration("20201002222059_init")]
+    partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -20,6 +20,53 @@ namespace PCBuilder.Service.API.Migrations
                 .HasAnnotation("ProductVersion", "3.1.8")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+            modelBuilder.Entity("PCBuilder.Service.API.Models.GraphicsCard", b =>
+                {
+                    b.Property<Guid>("GraphicsCardId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("BoostClock")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("CUDA")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Dimensions")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("GPU")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("GPUFrequency")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Link")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("MemoryType")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("ModifiedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PSU")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("Price")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.HasKey("GraphicsCardId");
+
+                    b.ToTable("GraphicsCards");
+                });
 
             modelBuilder.Entity("PCBuilder.Service.API.Models.Other", b =>
                 {
@@ -68,6 +115,21 @@ namespace PCBuilder.Service.API.Migrations
                     b.HasKey("PCBuildId");
 
                     b.ToTable("PCBuilds");
+                });
+
+            modelBuilder.Entity("PCBuilder.Service.API.Models.PCBuildGraphicsCard", b =>
+                {
+                    b.Property<Guid>("PCBuildId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("GraphicsCardId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("PCBuildId", "GraphicsCardId");
+
+                    b.HasIndex("GraphicsCardId");
+
+                    b.ToTable("PCBuildGraphicsCard");
                 });
 
             modelBuilder.Entity("PCBuilder.Service.API.Models.PCBuildOther", b =>
@@ -131,7 +193,7 @@ namespace PCBuilder.Service.API.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("a6dd3edc-59c2-40b6-a983-3e9a976798b0"),
+                            Id = new Guid("31b734a1-5f23-4586-94c7-c8e9490697ab"),
                             Cache = 8,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Link = "no url",
@@ -144,6 +206,21 @@ namespace PCBuilder.Service.API.Migrations
                             ProductCollection = "i7 10th gen",
                             TDP = 100
                         });
+                });
+
+            modelBuilder.Entity("PCBuilder.Service.API.Models.PCBuildGraphicsCard", b =>
+                {
+                    b.HasOne("PCBuilder.Service.API.Models.GraphicsCard", "GraphicsCard")
+                        .WithMany()
+                        .HasForeignKey("GraphicsCardId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("PCBuilder.Service.API.Models.PCBuild", "PCBuild")
+                        .WithMany("PCBuildGraphicsCards")
+                        .HasForeignKey("PCBuildId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("PCBuilder.Service.API.Models.PCBuildOther", b =>

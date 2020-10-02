@@ -6,7 +6,7 @@ namespace PCBuilder.Service.API.Models
     public class GraphicsCard : PCComponentCommon
     {
         [Key]
-        public Guid Id { get; set; }
+        public Guid GraphicsCardId { get; set; }
         public string Dimensions { get; set; }
         public string GPU { get; set; }
         public string GPUFrequency { get; set; }

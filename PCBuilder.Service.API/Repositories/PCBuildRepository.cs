@@ -34,6 +34,7 @@ namespace PCBuilder.Service.API.Repositories
 
                 // add pcbuild id to each of referencing objects in the model
                 model.PCBuildOthers.ForEach(x => x.PCBuildId = model.PCBuildId);
+                model.PCBuildGraphicsCards.ForEach(x => x.PCBuildId = model.PCBuildId);
 
                 // add model to db and save changes
                 this._context.Add(model);
@@ -46,14 +47,7 @@ namespace PCBuilder.Service.API.Repositories
 
 
 
-            //var build = await this._context.PCBuilds.Include(x => x.PCBuildOthers).FirstOrDefaultAsync(x => x.PCBuildId == model.PCBuildId);
-
-            //this._context.Entry(build).CurrentValues.SetValues(model);
-            //foreach(var other in model.PCBuildOthers)
-            //{
-            //    this._context.Entry(build).CurrentValues.SetValues(other);
-            //}
-            //await this._context.SaveChangesAsync();
+           
 
             return null;
         }
@@ -80,7 +74,12 @@ namespace PCBuilder.Service.API.Repositories
             //    PCBuildOthers = p.PCBuildOthers.Select(x => x.Other).ToList()
             //}).ToListAsync();
 
-            var obj = await _context.PCBuilds.Include(x => x.PCBuildOthers).ThenInclude(x => x.Other).ToListAsync();
+            var obj = await _context.PCBuilds
+                .Include(x => x.PCBuildGraphicsCards)
+                .ThenInclude(x => x.GraphicsCard)
+                .Include(x => x.PCBuildOthers)
+                .ThenInclude(x => x.Other)
+                .ToListAsync();
 
             return obj;
 
@@ -105,7 +104,10 @@ namespace PCBuilder.Service.API.Repositories
             //    .Include(e => e.RAM)
             //    .FirstOrDefaultAsync(e => e.Id == Id);
 
-            return null;
+            var obj = await _context.PCBuilds.Include(x => x.PCBuildOthers).ThenInclude(x => x.Other).FirstOrDefaultAsync(e => e.PCBuildId == Id);
+
+            return obj;
+
         }
 
 

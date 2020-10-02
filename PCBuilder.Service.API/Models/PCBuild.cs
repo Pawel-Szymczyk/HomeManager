@@ -104,6 +104,8 @@ namespace PCBuilder.Service.API.Models
 
         public Guid PCBuildId { get; set; }
         public string Description { get; set; }
+
+        public List<PCBuildGraphicsCard> PCBuildGraphicsCards { get; set; }
         public List<PCBuildOther> PCBuildOthers { get; set; }
 
     }

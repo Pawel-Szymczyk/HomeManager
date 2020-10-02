@@ -14,13 +14,14 @@ namespace PCBuilder.Service.API.DBContext
         }
 
         public DbSet<PCBuild> PCBuilds { get; set; }
+        public DbSet<GraphicsCard> GraphicsCards { get; set; }
         public DbSet<Other> Others { get; set; }
 
 
         //public DbSet<Processor> Processors { get; set; }
         //public DbSet<Motherboard> Motherboards { get; set; }
         //public DbSet<RAM> RAMs { get; set; }
-        //public DbSet<GraphicsCard> GraphicsCards { get; set; }
+        //
         //public DbSet<HardDrive> HardDrives { get; set; }
         //public DbSet<CPUWatercooler> CPUWatercooler { get; set; }
         //public DbSet<Fan> Fan { get; set; }
@@ -64,11 +65,11 @@ namespace PCBuilder.Service.API.DBContext
             //modelBuilder.Entity<Other>()
             //    .HasMany(c => c.PCBuild).WithMany(i => i.).Map(t => t.MapLeftKey("CourseID").MapRightKey("InstructorID").ToTable("CourseInstructor"));
 
-            modelBuilder.Entity<PCBuildOther>()
-                .HasKey(po => new { po.PCBuildId, po.OtherId });
+            modelBuilder.Entity<PCBuildOther>().HasKey(po => new { po.PCBuildId, po.OtherId });
+            modelBuilder.Entity<PCBuildGraphicsCard>().HasKey(po => new { po.PCBuildId, po.GraphicsCardId });
 
             modelBuilder.Entity<PCBuildOther>().HasOne(po => po.PCBuild).WithMany(p => p.PCBuildOthers).HasForeignKey(po => po.PCBuildId);
-            //modelBuilder.Entity<PCBuildOther>().HasOne(po => po.Other).WithMany(p => p.PCBuildOthers).HasForeignKey(po => po.OtherId);
+            modelBuilder.Entity<PCBuildGraphicsCard>().HasOne(po => po.PCBuild).WithMany(p => p.PCBuildGraphicsCards).HasForeignKey(po => po.PCBuildId);
 
 
             modelBuilder.Entity<Processor>().HasData(
