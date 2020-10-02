@@ -20,10 +20,39 @@ namespace PCBuilder.Service.API.Repositories
 
         public override async Task<PCBuild> Update(PCBuild model)
         {
-            //this._context.PCBuilds.Attach(model);
-            //this._context.Entry(model);
-            //this._context.Entry(model).State = EntityState.Modified;
+            // the problem here is why normal update is not working?
+            try
+            {
+                // get list of all items with model id from db
+                var buildsList = await this._context.PCBuilds.Where(b => b.PCBuildId == model.PCBuildId).ToListAsync();
+                // remove these objs from db
+                if (buildsList.Count > 0)
+                {
+                    this._context.RemoveRange(buildsList);
+                    await _context.SaveChangesAsync();
+                }
 
+                // add pcbuild id to each of referencing objects in the model
+                model.PCBuildOthers.ForEach(x => x.PCBuildId = model.PCBuildId);
+
+                // add model to db and save changes
+                this._context.Add(model);
+                await _context.SaveChangesAsync();
+            }
+            catch(Exception ex)
+            {
+
+            }
+
+
+
+            //var build = await this._context.PCBuilds.Include(x => x.PCBuildOthers).FirstOrDefaultAsync(x => x.PCBuildId == model.PCBuildId);
+
+            //this._context.Entry(build).CurrentValues.SetValues(model);
+            //foreach(var other in model.PCBuildOthers)
+            //{
+            //    this._context.Entry(build).CurrentValues.SetValues(other);
+            //}
             //await this._context.SaveChangesAsync();
 
             return null;
