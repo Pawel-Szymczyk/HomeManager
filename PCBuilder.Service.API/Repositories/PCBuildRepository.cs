@@ -33,8 +33,9 @@ namespace PCBuilder.Service.API.Repositories
                 }
 
                 // add pcbuild id to each of referencing objects in the model
-                model.PCBuildOthers.ForEach(x => x.PCBuildId = model.PCBuildId);
                 model.PCBuildGraphicsCards.ForEach(x => x.PCBuildId = model.PCBuildId);
+                model.PCBuildHardDrives.ForEach(x => x.PCBuildId = model.PCBuildId);
+                model.PCBuildOthers.ForEach(x => x.PCBuildId = model.PCBuildId);
 
                 // add model to db and save changes
                 this._context.Add(model);
@@ -74,14 +75,12 @@ namespace PCBuilder.Service.API.Repositories
             //    PCBuildOthers = p.PCBuildOthers.Select(x => x.Other).ToList()
             //}).ToListAsync();
 
-            var obj = await _context.PCBuilds
-                .Include(x => x.PCBuildGraphicsCards)
-                .ThenInclude(x => x.GraphicsCard)
-                .Include(x => x.PCBuildOthers)
-                .ThenInclude(x => x.Other)
+            return await _context.PCBuilds
+                .Include(x => x.PCBuildGraphicsCards).ThenInclude(x => x.GraphicsCard)
+                .Include(x => x.PCBuildHardDrives).ThenInclude(x => x.HardDrive)
+                .Include(x => x.PCBuildOthers).ThenInclude(x => x.Other)
                 .ToListAsync();
 
-            return obj;
 
             //return await this._context.PCBuilds
             //    .Include(x => x.PCBuildOthers)
@@ -104,9 +103,12 @@ namespace PCBuilder.Service.API.Repositories
             //    .Include(e => e.RAM)
             //    .FirstOrDefaultAsync(e => e.Id == Id);
 
-            var obj = await _context.PCBuilds.Include(x => x.PCBuildOthers).ThenInclude(x => x.Other).FirstOrDefaultAsync(e => e.PCBuildId == Id);
+            return await _context.PCBuilds
+                .Include(x => x.PCBuildGraphicsCards).ThenInclude(x => x.GraphicsCard)
+                .Include(x => x.PCBuildHardDrives).ThenInclude(x => x.HardDrive)
+                .Include(x => x.PCBuildOthers).ThenInclude(x => x.Other)
+                .FirstOrDefaultAsync(e => e.PCBuildId == Id);
 
-            return obj;
 
         }
 

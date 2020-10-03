@@ -14,6 +14,7 @@ namespace PCBuilder.Service.API.DBContext
         }
 
         public DbSet<PCBuild> PCBuilds { get; set; }
+        public DbSet<HardDrive> HardDrives { get; set; }
         public DbSet<GraphicsCard> GraphicsCards { get; set; }
         public DbSet<Other> Others { get; set; }
 
@@ -21,8 +22,6 @@ namespace PCBuilder.Service.API.DBContext
         //public DbSet<Processor> Processors { get; set; }
         //public DbSet<Motherboard> Motherboards { get; set; }
         //public DbSet<RAM> RAMs { get; set; }
-        //
-        //public DbSet<HardDrive> HardDrives { get; set; }
         //public DbSet<CPUWatercooler> CPUWatercooler { get; set; }
         //public DbSet<Fan> Fan { get; set; }
         //public DbSet<PCCase> PCCase { get; set; }
@@ -65,11 +64,13 @@ namespace PCBuilder.Service.API.DBContext
             //modelBuilder.Entity<Other>()
             //    .HasMany(c => c.PCBuild).WithMany(i => i.).Map(t => t.MapLeftKey("CourseID").MapRightKey("InstructorID").ToTable("CourseInstructor"));
 
-            modelBuilder.Entity<PCBuildOther>().HasKey(po => new { po.PCBuildId, po.OtherId });
             modelBuilder.Entity<PCBuildGraphicsCard>().HasKey(po => new { po.PCBuildId, po.GraphicsCardId });
+            modelBuilder.Entity<PCBuildHardDrive>().HasKey(po => new { po.PCBuildId, po.HardDriveId });
+            modelBuilder.Entity<PCBuildOther>().HasKey(po => new { po.PCBuildId, po.OtherId });
 
-            modelBuilder.Entity<PCBuildOther>().HasOne(po => po.PCBuild).WithMany(p => p.PCBuildOthers).HasForeignKey(po => po.PCBuildId);
             modelBuilder.Entity<PCBuildGraphicsCard>().HasOne(po => po.PCBuild).WithMany(p => p.PCBuildGraphicsCards).HasForeignKey(po => po.PCBuildId);
+            modelBuilder.Entity<PCBuildHardDrive>().HasOne(po => po.PCBuild).WithMany(p => p.PCBuildHardDrives).HasForeignKey(po => po.PCBuildId);
+            modelBuilder.Entity<PCBuildOther>().HasOne(po => po.PCBuild).WithMany(p => p.PCBuildOthers).HasForeignKey(po => po.PCBuildId);
 
 
             modelBuilder.Entity<Processor>().HasData(
