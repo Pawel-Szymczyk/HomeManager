@@ -350,7 +350,7 @@ namespace PCBuilder.Service.API.Migrations
             migrationBuilder.InsertData(
                 table: "Processors",
                 columns: new[] { "Id", "Cache", "CreatedDate", "Link", "ModifiedDate", "Name", "NumberOfCores", "NumberOfThreads", "Price", "ProcessorBaseFrequency", "ProductCollection", "TDP" },
-                values: new object[] { new Guid("ce93df78-3d8b-4189-95a2-07656f45e22a"), 8, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "no url", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "i7", 4, 4, 0m, 1m, "i7 10th gen", 100 });
+                values: new object[] { new Guid("ba71cabd-7164-45fc-8965-cfa42f0f2f27"), 8, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "no url", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "i7", 4, 4, 0m, 1m, "i7 10th gen", 100 });
 
             migrationBuilder.CreateIndex(
                 name: "IX_PCBuildGraphicsCard_GraphicsCardId",

@@ -475,7 +475,7 @@ namespace PCBuilder.Service.API.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("ce93df78-3d8b-4189-95a2-07656f45e22a"),
+                            Id = new Guid("ba71cabd-7164-45fc-8965-cfa42f0f2f27"),
                             Cache = 8,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Link = "no url",
