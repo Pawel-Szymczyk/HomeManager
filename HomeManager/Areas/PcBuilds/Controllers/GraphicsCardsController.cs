@@ -118,14 +118,14 @@ namespace HomeManager.Areas.PcBuilds.Controllers
         {
             try
             {
-                if (id != model.Id || model == null)
+                if (model == null)
                 {
                     return this.NotFound();
                 }
 
                 using (var httpClient = new HttpClient())
                 {
-                    model.Id = id;
+                    model.GraphicsCardId = id;
                     string json = JsonConvert.SerializeObject(model, Formatting.Indented);
                     var httpContent = new StringContent(json, Encoding.UTF8, "application/json");
 

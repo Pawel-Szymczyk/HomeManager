@@ -6,7 +6,7 @@ namespace HomeManager.Areas.PcBuilds.Models
 {
     public class CPUWatercooler
     {
-        public Guid Id { get; set; }
+        public Guid CPUWatercoolerId { get; set; }
 
         [Required]
         public string Name { get; set; }

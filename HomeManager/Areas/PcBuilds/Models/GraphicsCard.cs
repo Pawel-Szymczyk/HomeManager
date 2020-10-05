@@ -6,7 +6,7 @@ namespace HomeManager.Areas.PcBuilds.Models
 {
     public class GraphicsCard
     {
-        public Guid Id { get; set; }
+        public Guid GraphicsCardId { get; set; }
 
         [Required]
         public string Name { get; set; }

@@ -73,13 +73,13 @@ namespace HomeManager.Areas.PcBuilds.Controllers
         // POST: PowerSupplies/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(PowerSupply model)
+        public async Task<IActionResult> Create(PowerSupply powerSupplyModel)
         {
             try
             {
                 using (var httpClient = new HttpClient())
                 {
-                    var content = new StringContent(JsonConvert.SerializeObject(model), Encoding.UTF8, "application/json");
+                    var content = new StringContent(JsonConvert.SerializeObject(powerSupplyModel), Encoding.UTF8, "application/json");
 
                     using (HttpResponseMessage response = await httpClient.PostAsync(string.Format("{0}/{1}", this.apiBaseUrl, this.apiController), content))
                     {
@@ -115,19 +115,19 @@ namespace HomeManager.Areas.PcBuilds.Controllers
         // POST: PowerSupplies/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(Guid id, PowerSupply model)
+        public async Task<IActionResult> Edit(Guid id, PowerSupply powerSupplyModel)
         {
             try
             {
-                if (id != model.Id || model == null)
+                if (id != powerSupplyModel.Id || powerSupplyModel == null)
                 {
                     return this.NotFound();
                 }
 
                 using (var httpClient = new HttpClient())
                 {
-                    model.Id = id;
-                    string json = JsonConvert.SerializeObject(model, Formatting.Indented);
+                    powerSupplyModel.Id = id;
+                    string json = JsonConvert.SerializeObject(powerSupplyModel, Formatting.Indented);
                     var httpContent = new StringContent(json, Encoding.UTF8, "application/json");
 
                     using (HttpResponseMessage response = await httpClient.PutAsync(string.Format("{0}/{1}", this.apiBaseUrl, this.apiController), httpContent))

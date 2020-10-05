@@ -72,13 +72,13 @@ namespace HomeManager.Areas.PcBuilds.Controllers
         // POST: Others/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(Other model)
+        public async Task<IActionResult> Create(Other otherModel)
         {
             try
             {
                 using (var httpClient = new HttpClient())
                 {
-                    var content = new StringContent(JsonConvert.SerializeObject(model), Encoding.UTF8, "application/json");
+                    var content = new StringContent(JsonConvert.SerializeObject(otherModel), Encoding.UTF8, "application/json");
 
                     using (HttpResponseMessage response = await httpClient.PostAsync(string.Format("{0}/{1}", this.apiBaseUrl, this.apiController), content))
                     {
@@ -114,19 +114,19 @@ namespace HomeManager.Areas.PcBuilds.Controllers
         // POST: Others/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(Guid id, Other model)
+        public async Task<IActionResult> Edit(Guid id, Other otherModel)
         {
             try
             {
-                if (id != model.Id || model == null)
+                if (otherModel == null)
                 {
                     return this.NotFound();
                 }
 
                 using (var httpClient = new HttpClient())
                 {
-                    model.Id = id;
-                    string json = JsonConvert.SerializeObject(model, Formatting.Indented);
+                    otherModel.OtherId = id;
+                    string json = JsonConvert.SerializeObject(otherModel, Formatting.Indented);
                     var httpContent = new StringContent(json, Encoding.UTF8, "application/json");
 
                     using (HttpResponseMessage response = await httpClient.PutAsync(string.Format("{0}/{1}", this.apiBaseUrl, this.apiController), httpContent))

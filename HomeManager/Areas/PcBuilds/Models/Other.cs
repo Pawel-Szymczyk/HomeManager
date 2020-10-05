@@ -6,7 +6,7 @@ namespace HomeManager.Areas.PcBuilds.Models
 {
     public class Other
     {
-        public Guid Id { get; set; }
+        public Guid OtherId { get; set; }
 
         [Required]
         public string Name { get; set; }

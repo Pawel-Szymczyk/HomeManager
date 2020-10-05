@@ -141,10 +141,10 @@ namespace HomeManager.Areas.PcBuilds.Controllers
                     components.Configuration.Description = result?.Description;
                     components.Configuration.TotalPrice = result.TotalPrice;
 
-                    components.SelectedCPUWatercoolerId = (result.CPUWatercooler != null) ? result.CPUWatercooler.Id.ToString() : string.Empty;
+                    components.SelectedCPUWatercoolerId = (result.CPUWatercooler != null) ? result.CPUWatercooler.CPUWatercoolerId.ToString() : string.Empty;
                     components.SelectedFanId = (result.Fan != null) ? result.Fan.Id.ToString() : string.Empty;
-                    components.SelectedGraphicsCardId = (result.GraphicsCard != null) ? result.GraphicsCard.Id.ToString() : string.Empty;
-                    components.SelectedHardDriveId = (result.HardDrive != null) ? result.HardDrive.Id.ToString() : string.Empty;
+                    components.SelectedGraphicsCardId = (result.GraphicsCard != null) ? result.GraphicsCard.GraphicsCardId.ToString() : string.Empty;
+                    components.SelectedHardDriveId = (result.HardDrive != null) ? result.HardDrive.HardDriveId.ToString() : string.Empty;
                     components.SelectedMotherboardId = (result.Motherboard != null) ? result.Motherboard.Id.ToString() : string.Empty;
                     //components.SelectedOtherId = (result.Others != null) ? result.Others.Id.ToString() : string.Empty;
                     components.SelectedPCCaseId = (result.PCCase != null) ? result.PCCase.Id.ToString() : string.Empty;

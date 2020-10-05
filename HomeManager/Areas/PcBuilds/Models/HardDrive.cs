@@ -6,7 +6,7 @@ namespace HomeManager.Areas.PcBuilds.Models
 {
     public class HardDrive
     {
-        public Guid Id { get; set; }
+        public Guid HardDriveId { get; set; }
 
         [Required]
         public string Name { get; set; }
