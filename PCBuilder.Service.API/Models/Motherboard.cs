@@ -9,7 +9,7 @@ namespace PCBuilder.Service.API.Models
     public class Motherboard : PCComponentCommon
     {
         [Key]
-        public Guid Id { get; set; }
+        public Guid MotherboardId { get; set; }
         public string CPU { get; set; }
         public string Chipset { get; set; }
         public string Socket { get; set; }

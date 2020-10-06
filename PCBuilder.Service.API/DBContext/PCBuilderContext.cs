@@ -54,22 +54,10 @@ namespace PCBuilder.Service.API.DBContext
             modelBuilder.Entity<PCBuild>().HasIndex(x => x.ProcessorId).IsUnique(false);
             modelBuilder.Entity<PCBuild>().HasIndex(x => x.MotherboardId).IsUnique(false);
             modelBuilder.Entity<PCBuild>().HasIndex(x => x.RAMId).IsUnique(false);
-            //modelBuilder.Entity<PCBuild>().HasIndex(x => x.GraphicsCardId).IsUnique(false);
-            //modelBuilder.Entity<PCBuild>().HasIndex(x => x.HardDrivedId).IsUnique(false);
             modelBuilder.Entity<PCBuild>().HasIndex(x => x.CPUWatercoolerId).IsUnique(false);
             modelBuilder.Entity<PCBuild>().HasIndex(x => x.FanId).IsUnique(false);
             modelBuilder.Entity<PCBuild>().HasIndex(x => x.PCCaseId).IsUnique(false);
             modelBuilder.Entity<PCBuild>().HasIndex(x => x.PowerSupplyId).IsUnique(false);
-
-
-            //modelBuilder.Entity<PCBuild>().HasIndex(x => x.OtherId).IsUnique(false);
-            //modelBuilder.Entity<PCBuild>().HasMany(p => p.Others).(i => i.PCBuild).Map(t => t.MapLeftKey("CourseID").MapRightKey("InstructorID").ToTable("CourseInstructor"));
-            //modelBuilder.Entity<Other>()
-            //    .HasMany(c => c.PCBuild).WithMany(i => i.).Map(t => t.MapLeftKey("CourseID").MapRightKey("InstructorID").ToTable("CourseInstructor"));
-
-            // one to many
-            //modelBuilder.Entity<PCBuild>().HasOne(c => c.CPUWatercooler).WithOne(p => p.PCBuild);
-            //modelBuilder.Entity<CPUWatercooler>().HasMany(p => p.PCBuilds).WithOne(c => c.CPUWatercooler);
 
             // many to many
             modelBuilder.Entity<PCBuildGraphicsCard>().HasKey(po => new { po.PCBuildId, po.GraphicsCardId });
@@ -84,7 +72,7 @@ namespace PCBuilder.Service.API.DBContext
             modelBuilder.Entity<Processor>().HasData(
                new Processor
                {
-                   Id = Guid.NewGuid(),
+                   ProcessorId = Guid.NewGuid(),
                    Name = "i7",
                    Link = "no url",
                    ProductCollection = "i7 10th gen",

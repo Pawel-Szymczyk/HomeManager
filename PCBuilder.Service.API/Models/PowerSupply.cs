@@ -9,8 +9,7 @@ namespace PCBuilder.Service.API.Models
     public class PowerSupply : PCComponentCommon
     {
         [Key]
-        public Guid Id { get; set; }
-        public string Manufacturer { get; set; }
+        public Guid PowerSupplyId { get; set; }
         public string Model { get; set; }
         public string Power { get; set; }
         public string Color { get; set; }

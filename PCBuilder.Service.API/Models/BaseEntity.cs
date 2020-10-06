@@ -7,6 +7,9 @@ namespace PCBuilder.Service.API.Models
 {
     public class BaseEntity
     {
+        public string ImageTitle { get; set; }
+        public byte[] ImageData { get; set; }
+
         public DateTime CreatedDate { get; set; }
         public DateTime ModifiedDate { get; set; }
     }

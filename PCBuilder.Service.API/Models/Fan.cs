@@ -9,7 +9,7 @@ namespace PCBuilder.Service.API.Models
     public class Fan : PCComponentCommon
     {
         [Key]
-        public Guid Id { get; set; }
+        public Guid FanId { get; set; }
 
         public string Dimensions { get; set; }
         public int NumberOfFuns { get; set; }

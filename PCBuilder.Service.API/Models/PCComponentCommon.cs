@@ -9,11 +9,11 @@ namespace PCBuilder.Service.API.Models
     public abstract class PCComponentCommon : BaseEntity
     {
         public string Name { get; set; }
+        public string Manufacturer { get; set; }
         public string Link { get; set; }
 
         [Column(TypeName = "decimal(18,2)")]
         public decimal Price { get; set; }
 
-        //public List<byte> Images { get; set; } // for later
     }
 }

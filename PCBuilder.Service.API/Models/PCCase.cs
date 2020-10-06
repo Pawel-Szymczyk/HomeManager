@@ -9,8 +9,7 @@ namespace PCBuilder.Service.API.Models
     public class PCCase : PCComponentCommon
     {
         [Key]
-        public Guid Id { get; set; }
-        public string Manufacturer { get; set; }
+        public Guid PCCaseId { get; set; }
         public string FormFactor { get; set; }
         public string Color { get; set; }
         public string MotherboardSupport { get; set; }

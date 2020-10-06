@@ -10,8 +10,7 @@ namespace PCBuilder.Service.API.Models
     public class Processor : PCComponentCommon
     {
         [Key]
-        public Guid Id { get; set; }
-
+        public Guid ProcessorId { get; set; }
         public string ProductCollection { get; set; }
         public int NumberOfCores { get; set; }
         public int NumberOfThreads { get; set; }

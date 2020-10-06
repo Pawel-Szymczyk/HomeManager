@@ -12,7 +12,5 @@ namespace PCBuilder.Service.API.Models
         public string SocketsCompatibility { get; set; }    // list ?
         public string NumberOfFans { get; set; }
 
-        //public List<PCBuild> PCBuilds { get; set; }
-        //public PCBuild PCBuild { get; set; }
     } 
 }

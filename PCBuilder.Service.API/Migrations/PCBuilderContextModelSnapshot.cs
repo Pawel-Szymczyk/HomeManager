@@ -31,7 +31,16 @@ namespace PCBuilder.Service.API.Migrations
                     b.Property<string>("Dimensions")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<byte[]>("ImageData")
+                        .HasColumnType("varbinary(max)");
+
+                    b.Property<string>("ImageTitle")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Link")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Manufacturer")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("ModifiedDate")
@@ -56,7 +65,7 @@ namespace PCBuilder.Service.API.Migrations
 
             modelBuilder.Entity("PCBuilder.Service.API.Models.Fan", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<Guid>("FanId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
@@ -66,7 +75,16 @@ namespace PCBuilder.Service.API.Migrations
                     b.Property<string>("Dimensions")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<byte[]>("ImageData")
+                        .HasColumnType("varbinary(max)");
+
+                    b.Property<string>("ImageTitle")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Link")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Manufacturer")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("ModifiedDate")
@@ -87,7 +105,7 @@ namespace PCBuilder.Service.API.Migrations
                     b.Property<bool>("RGB")
                         .HasColumnType("bit");
 
-                    b.HasKey("Id");
+                    b.HasKey("FanId");
 
                     b.ToTable("Fan");
                 });
@@ -116,7 +134,16 @@ namespace PCBuilder.Service.API.Migrations
                     b.Property<string>("GPUFrequency")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<byte[]>("ImageData")
+                        .HasColumnType("varbinary(max)");
+
+                    b.Property<string>("ImageTitle")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Link")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Manufacturer")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("MemoryType")
@@ -151,7 +178,16 @@ namespace PCBuilder.Service.API.Migrations
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<byte[]>("ImageData")
+                        .HasColumnType("varbinary(max)");
+
+                    b.Property<string>("ImageTitle")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Link")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Manufacturer")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("ModifiedDate")
@@ -173,7 +209,7 @@ namespace PCBuilder.Service.API.Migrations
 
             modelBuilder.Entity("PCBuilder.Service.API.Models.Motherboard", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<Guid>("MotherboardId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
@@ -189,7 +225,16 @@ namespace PCBuilder.Service.API.Migrations
                     b.Property<string>("FormFactor")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<byte[]>("ImageData")
+                        .HasColumnType("varbinary(max)");
+
+                    b.Property<string>("ImageTitle")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Link")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Manufacturer")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Memory")
@@ -207,7 +252,7 @@ namespace PCBuilder.Service.API.Migrations
                     b.Property<string>("Socket")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Id");
+                    b.HasKey("MotherboardId");
 
                     b.ToTable("Motherboards");
                 });
@@ -224,7 +269,16 @@ namespace PCBuilder.Service.API.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<byte[]>("ImageData")
+                        .HasColumnType("varbinary(max)");
+
+                    b.Property<string>("ImageTitle")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Link")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Manufacturer")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("ModifiedDate")
@@ -258,6 +312,12 @@ namespace PCBuilder.Service.API.Migrations
 
                     b.Property<Guid?>("FanId")
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<byte[]>("ImageData")
+                        .HasColumnType("varbinary(max)");
+
+                    b.Property<string>("ImageTitle")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("ModifiedDate")
                         .HasColumnType("datetime2");
@@ -346,7 +406,7 @@ namespace PCBuilder.Service.API.Migrations
 
             modelBuilder.Entity("PCBuilder.Service.API.Models.PCCase", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<Guid>("PCCaseId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
@@ -357,6 +417,12 @@ namespace PCBuilder.Service.API.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("FormFactor")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<byte[]>("ImageData")
+                        .HasColumnType("varbinary(max)");
+
+                    b.Property<string>("ImageTitle")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Link")
@@ -380,14 +446,14 @@ namespace PCBuilder.Service.API.Migrations
                     b.Property<string>("SideWindow")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Id");
+                    b.HasKey("PCCaseId");
 
                     b.ToTable("PCCase");
                 });
 
             modelBuilder.Entity("PCBuilder.Service.API.Models.PowerSupply", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<Guid>("PowerSupplyId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
@@ -399,6 +465,12 @@ namespace PCBuilder.Service.API.Migrations
 
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
+
+                    b.Property<byte[]>("ImageData")
+                        .HasColumnType("varbinary(max)");
+
+                    b.Property<string>("ImageTitle")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Link")
                         .HasColumnType("nvarchar(max)");
@@ -424,14 +496,14 @@ namespace PCBuilder.Service.API.Migrations
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
 
-                    b.HasKey("Id");
+                    b.HasKey("PowerSupplyId");
 
                     b.ToTable("PowerSupply");
                 });
 
             modelBuilder.Entity("PCBuilder.Service.API.Models.Processor", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<Guid>("ProcessorId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
@@ -441,7 +513,16 @@ namespace PCBuilder.Service.API.Migrations
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<byte[]>("ImageData")
+                        .HasColumnType("varbinary(max)");
+
+                    b.Property<string>("ImageTitle")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Link")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Manufacturer")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("ModifiedDate")
@@ -468,14 +549,14 @@ namespace PCBuilder.Service.API.Migrations
                     b.Property<int>("TDP")
                         .HasColumnType("int");
 
-                    b.HasKey("Id");
+                    b.HasKey("ProcessorId");
 
                     b.ToTable("Processors");
 
                     b.HasData(
                         new
                         {
-                            Id = new Guid("ba71cabd-7164-45fc-8965-cfa42f0f2f27"),
+                            ProcessorId = new Guid("2d65367d-53b2-4057-97cf-c1f839f4c044"),
                             Cache = 8,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Link = "no url",
@@ -492,7 +573,7 @@ namespace PCBuilder.Service.API.Migrations
 
             modelBuilder.Entity("PCBuilder.Service.API.Models.RAM", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<Guid>("RamId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
@@ -505,7 +586,16 @@ namespace PCBuilder.Service.API.Migrations
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<byte[]>("ImageData")
+                        .HasColumnType("varbinary(max)");
+
+                    b.Property<string>("ImageTitle")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Link")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Manufacturer")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("MemorySpeed")
@@ -526,7 +616,7 @@ namespace PCBuilder.Service.API.Migrations
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
 
-                    b.HasKey("Id");
+                    b.HasKey("RamId");
 
                     b.ToTable("RAMs");
                 });

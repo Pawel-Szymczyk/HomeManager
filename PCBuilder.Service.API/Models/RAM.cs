@@ -6,7 +6,7 @@ namespace PCBuilder.Service.API.Models
     public class RAM : PCComponentCommon
     {
         [Key]
-        public Guid Id { get; set; }
+        public Guid RamId { get; set; }
         public string MemoryType { get; set; }
         public string MemorySpeed { get; set; }
         public string Capacity { get; set; }

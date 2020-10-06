@@ -12,14 +12,5 @@ namespace PCBuilder.Service.API.Models
         [Key]
         public Guid OtherId { get; set; }
         public string Description { get; set; }
-
-        //[ForeignKey("PCBuild")]
-        // Foreign key
-        //public Guid? PcBuildId { get; set; }
-
-        //// Navigation properties
-        //public virtual PCBuild PCBuild { get; set; }
-
-        //public List<PCBuildOther> PCBuildOthers { get; set; }
     }
 }

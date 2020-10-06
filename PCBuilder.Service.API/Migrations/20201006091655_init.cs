@@ -12,9 +12,12 @@ namespace PCBuilder.Service.API.Migrations
                 columns: table => new
                 {
                     CPUWatercoolerId = table.Column<Guid>(nullable: false),
+                    ImageTitle = table.Column<string>(nullable: true),
+                    ImageData = table.Column<byte[]>(nullable: true),
                     CreatedDate = table.Column<DateTime>(nullable: false),
                     ModifiedDate = table.Column<DateTime>(nullable: false),
                     Name = table.Column<string>(nullable: true),
+                    Manufacturer = table.Column<string>(nullable: true),
                     Link = table.Column<string>(nullable: true),
                     Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     Dimensions = table.Column<string>(nullable: true),
@@ -30,10 +33,13 @@ namespace PCBuilder.Service.API.Migrations
                 name: "Fan",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(nullable: false),
+                    FanId = table.Column<Guid>(nullable: false),
+                    ImageTitle = table.Column<string>(nullable: true),
+                    ImageData = table.Column<byte[]>(nullable: true),
                     CreatedDate = table.Column<DateTime>(nullable: false),
                     ModifiedDate = table.Column<DateTime>(nullable: false),
                     Name = table.Column<string>(nullable: true),
+                    Manufacturer = table.Column<string>(nullable: true),
                     Link = table.Column<string>(nullable: true),
                     Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     Dimensions = table.Column<string>(nullable: true),
@@ -43,7 +49,7 @@ namespace PCBuilder.Service.API.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Fan", x => x.Id);
+                    table.PrimaryKey("PK_Fan", x => x.FanId);
                 });
 
             migrationBuilder.CreateTable(
@@ -51,9 +57,12 @@ namespace PCBuilder.Service.API.Migrations
                 columns: table => new
                 {
                     GraphicsCardId = table.Column<Guid>(nullable: false),
+                    ImageTitle = table.Column<string>(nullable: true),
+                    ImageData = table.Column<byte[]>(nullable: true),
                     CreatedDate = table.Column<DateTime>(nullable: false),
                     ModifiedDate = table.Column<DateTime>(nullable: false),
                     Name = table.Column<string>(nullable: true),
+                    Manufacturer = table.Column<string>(nullable: true),
                     Link = table.Column<string>(nullable: true),
                     Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     Dimensions = table.Column<string>(nullable: true),
@@ -74,9 +83,12 @@ namespace PCBuilder.Service.API.Migrations
                 columns: table => new
                 {
                     HardDriveId = table.Column<Guid>(nullable: false),
+                    ImageTitle = table.Column<string>(nullable: true),
+                    ImageData = table.Column<byte[]>(nullable: true),
                     CreatedDate = table.Column<DateTime>(nullable: false),
                     ModifiedDate = table.Column<DateTime>(nullable: false),
                     Name = table.Column<string>(nullable: true),
+                    Manufacturer = table.Column<string>(nullable: true),
                     Link = table.Column<string>(nullable: true),
                     Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     Capacity = table.Column<string>(nullable: true),
@@ -91,10 +103,13 @@ namespace PCBuilder.Service.API.Migrations
                 name: "Motherboards",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(nullable: false),
+                    MotherboardId = table.Column<Guid>(nullable: false),
+                    ImageTitle = table.Column<string>(nullable: true),
+                    ImageData = table.Column<byte[]>(nullable: true),
                     CreatedDate = table.Column<DateTime>(nullable: false),
                     ModifiedDate = table.Column<DateTime>(nullable: false),
                     Name = table.Column<string>(nullable: true),
+                    Manufacturer = table.Column<string>(nullable: true),
                     Link = table.Column<string>(nullable: true),
                     Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     CPU = table.Column<string>(nullable: true),
@@ -105,7 +120,7 @@ namespace PCBuilder.Service.API.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Motherboards", x => x.Id);
+                    table.PrimaryKey("PK_Motherboards", x => x.MotherboardId);
                 });
 
             migrationBuilder.CreateTable(
@@ -113,9 +128,12 @@ namespace PCBuilder.Service.API.Migrations
                 columns: table => new
                 {
                     OtherId = table.Column<Guid>(nullable: false),
+                    ImageTitle = table.Column<string>(nullable: true),
+                    ImageData = table.Column<byte[]>(nullable: true),
                     CreatedDate = table.Column<DateTime>(nullable: false),
                     ModifiedDate = table.Column<DateTime>(nullable: false),
                     Name = table.Column<string>(nullable: true),
+                    Manufacturer = table.Column<string>(nullable: true),
                     Link = table.Column<string>(nullable: true),
                     Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     Description = table.Column<string>(nullable: true)
@@ -129,13 +147,15 @@ namespace PCBuilder.Service.API.Migrations
                 name: "PCCase",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(nullable: false),
+                    PCCaseId = table.Column<Guid>(nullable: false),
+                    ImageTitle = table.Column<string>(nullable: true),
+                    ImageData = table.Column<byte[]>(nullable: true),
                     CreatedDate = table.Column<DateTime>(nullable: false),
                     ModifiedDate = table.Column<DateTime>(nullable: false),
                     Name = table.Column<string>(nullable: true),
+                    Manufacturer = table.Column<string>(nullable: true),
                     Link = table.Column<string>(nullable: true),
                     Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    Manufacturer = table.Column<string>(nullable: true),
                     FormFactor = table.Column<string>(nullable: true),
                     Color = table.Column<string>(nullable: true),
                     MotherboardSupport = table.Column<string>(nullable: true),
@@ -143,20 +163,22 @@ namespace PCBuilder.Service.API.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_PCCase", x => x.Id);
+                    table.PrimaryKey("PK_PCCase", x => x.PCCaseId);
                 });
 
             migrationBuilder.CreateTable(
                 name: "PowerSupply",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(nullable: false),
+                    PowerSupplyId = table.Column<Guid>(nullable: false),
+                    ImageTitle = table.Column<string>(nullable: true),
+                    ImageData = table.Column<byte[]>(nullable: true),
                     CreatedDate = table.Column<DateTime>(nullable: false),
                     ModifiedDate = table.Column<DateTime>(nullable: false),
                     Name = table.Column<string>(nullable: true),
+                    Manufacturer = table.Column<string>(nullable: true),
                     Link = table.Column<string>(nullable: true),
                     Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    Manufacturer = table.Column<string>(nullable: true),
                     Model = table.Column<string>(nullable: true),
                     Power = table.Column<string>(nullable: true),
                     Color = table.Column<string>(nullable: true),
@@ -165,17 +187,20 @@ namespace PCBuilder.Service.API.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_PowerSupply", x => x.Id);
+                    table.PrimaryKey("PK_PowerSupply", x => x.PowerSupplyId);
                 });
 
             migrationBuilder.CreateTable(
                 name: "Processors",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(nullable: false),
+                    ProcessorId = table.Column<Guid>(nullable: false),
+                    ImageTitle = table.Column<string>(nullable: true),
+                    ImageData = table.Column<byte[]>(nullable: true),
                     CreatedDate = table.Column<DateTime>(nullable: false),
                     ModifiedDate = table.Column<DateTime>(nullable: false),
                     Name = table.Column<string>(nullable: true),
+                    Manufacturer = table.Column<string>(nullable: true),
                     Link = table.Column<string>(nullable: true),
                     Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     ProductCollection = table.Column<string>(nullable: true),
@@ -187,17 +212,20 @@ namespace PCBuilder.Service.API.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Processors", x => x.Id);
+                    table.PrimaryKey("PK_Processors", x => x.ProcessorId);
                 });
 
             migrationBuilder.CreateTable(
                 name: "RAMs",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(nullable: false),
+                    RamId = table.Column<Guid>(nullable: false),
+                    ImageTitle = table.Column<string>(nullable: true),
+                    ImageData = table.Column<byte[]>(nullable: true),
                     CreatedDate = table.Column<DateTime>(nullable: false),
                     ModifiedDate = table.Column<DateTime>(nullable: false),
                     Name = table.Column<string>(nullable: true),
+                    Manufacturer = table.Column<string>(nullable: true),
                     Link = table.Column<string>(nullable: true),
                     Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     MemoryType = table.Column<string>(nullable: true),
@@ -208,7 +236,7 @@ namespace PCBuilder.Service.API.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_RAMs", x => x.Id);
+                    table.PrimaryKey("PK_RAMs", x => x.RamId);
                 });
 
             migrationBuilder.CreateTable(
@@ -216,6 +244,8 @@ namespace PCBuilder.Service.API.Migrations
                 columns: table => new
                 {
                     PCBuildId = table.Column<Guid>(nullable: false),
+                    ImageTitle = table.Column<string>(nullable: true),
+                    ImageData = table.Column<byte[]>(nullable: true),
                     CreatedDate = table.Column<DateTime>(nullable: false),
                     ModifiedDate = table.Column<DateTime>(nullable: false),
                     Description = table.Column<string>(nullable: true),
@@ -241,37 +271,37 @@ namespace PCBuilder.Service.API.Migrations
                         name: "FK_PCBuilds_Fan_FanId",
                         column: x => x.FanId,
                         principalTable: "Fan",
-                        principalColumn: "Id",
+                        principalColumn: "FanId",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_PCBuilds_Motherboards_MotherboardId",
                         column: x => x.MotherboardId,
                         principalTable: "Motherboards",
-                        principalColumn: "Id",
+                        principalColumn: "MotherboardId",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_PCBuilds_PCCase_PCCaseId",
                         column: x => x.PCCaseId,
                         principalTable: "PCCase",
-                        principalColumn: "Id",
+                        principalColumn: "PCCaseId",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_PCBuilds_PowerSupply_PowerSupplyId",
                         column: x => x.PowerSupplyId,
                         principalTable: "PowerSupply",
-                        principalColumn: "Id",
+                        principalColumn: "PowerSupplyId",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_PCBuilds_Processors_ProcessorId",
                         column: x => x.ProcessorId,
                         principalTable: "Processors",
-                        principalColumn: "Id",
+                        principalColumn: "ProcessorId",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_PCBuilds_RAMs_RAMId",
                         column: x => x.RAMId,
                         principalTable: "RAMs",
-                        principalColumn: "Id",
+                        principalColumn: "RamId",
                         onDelete: ReferentialAction.Restrict);
                 });
 
@@ -349,8 +379,8 @@ namespace PCBuilder.Service.API.Migrations
 
             migrationBuilder.InsertData(
                 table: "Processors",
-                columns: new[] { "Id", "Cache", "CreatedDate", "Link", "ModifiedDate", "Name", "NumberOfCores", "NumberOfThreads", "Price", "ProcessorBaseFrequency", "ProductCollection", "TDP" },
-                values: new object[] { new Guid("ba71cabd-7164-45fc-8965-cfa42f0f2f27"), 8, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "no url", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "i7", 4, 4, 0m, 1m, "i7 10th gen", 100 });
+                columns: new[] { "ProcessorId", "Cache", "CreatedDate", "ImageData", "ImageTitle", "Link", "Manufacturer", "ModifiedDate", "Name", "NumberOfCores", "NumberOfThreads", "Price", "ProcessorBaseFrequency", "ProductCollection", "TDP" },
+                values: new object[] { new Guid("2d65367d-53b2-4057-97cf-c1f839f4c044"), 8, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, null, "no url", null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "i7", 4, 4, 0m, 1m, "i7 10th gen", 100 });
 
             migrationBuilder.CreateIndex(
                 name: "IX_PCBuildGraphicsCard_GraphicsCardId",
