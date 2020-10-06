@@ -95,6 +95,7 @@ namespace PCBuilder.Service.API.Repositories
             return newPCBuild;
         }
 
+
         /// <summary>
         /// Reads prices of pc build components, and sum them to get total price, then return total price to the model.
         /// </summary>

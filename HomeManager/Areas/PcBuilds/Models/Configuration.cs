@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -6,14 +7,18 @@ using System.Threading.Tasks;
 
 namespace HomeManager.Areas.PcBuilds.Models
 {
+
     public class Configuration
     {
         public Configuration()
         {
             CPUWatercooler = new CPUWatercooler();
             Fan = new Fan();
-            GraphicsCard = new GraphicsCard();
-            HardDrive = new HardDrive();
+            //GraphicsCards = new List<GraphicsCard>();
+            //pcBuildGraphicsCards = new pcBuildGraphicsCards();
+
+            HardDrives = new List<HardDrive> ();
+
             Motherboard = new Motherboard();
             Others = new List<Other>();
             PCCase = new PCCase();
@@ -22,7 +27,7 @@ namespace HomeManager.Areas.PcBuilds.Models
             RAM = new RAM();
         }
 
-        public Guid Id { get; set; }
+        public Guid PCBuildId { get; set; }
 
         public string Description { get; set; }
         public string ImageTitle { get; set; }
@@ -44,9 +49,18 @@ namespace HomeManager.Areas.PcBuilds.Models
 
         public Fan Fan { get; set; }
 
-        public GraphicsCard GraphicsCard { get; set; }
 
-        public HardDrive HardDrive { get; set; }
+
+        //public pcBuildGraphicsCards pcBuildGraphicsCards { get; set; }
+
+        //public List<GraphicsCard> GraphicsCards { get; set; }
+
+
+
+
+
+
+        public List<HardDrive> HardDrives { get; set; }
 
         public Motherboard Motherboard { get; set; }
 
