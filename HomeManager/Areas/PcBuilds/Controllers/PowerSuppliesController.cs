@@ -5,6 +5,7 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using HomeManager.Areas.PcBuilds.Models;
+using HomeManager.Extentions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
@@ -77,6 +78,12 @@ namespace HomeManager.Areas.PcBuilds.Controllers
         {
             try
             {
+                if (powerSupplyModel.ImageFile != null)
+                {
+                    powerSupplyModel.ImageTitle = powerSupplyModel.ImageFile.FileName;
+                    powerSupplyModel.ImageData = ImageManager.GetByteArrayFromImage(powerSupplyModel.ImageFile);
+                }
+
                 using (var httpClient = new HttpClient())
                 {
                     var content = new StringContent(JsonConvert.SerializeObject(powerSupplyModel), Encoding.UTF8, "application/json");
@@ -122,6 +129,12 @@ namespace HomeManager.Areas.PcBuilds.Controllers
                 if (powerSupplyModel == null)
                 {
                     return this.NotFound();
+                }
+
+                if (powerSupplyModel.ImageFile != null)
+                {
+                    powerSupplyModel.ImageTitle = powerSupplyModel.ImageFile.FileName;
+                    powerSupplyModel.ImageData = ImageManager.GetByteArrayFromImage(powerSupplyModel.ImageFile);
                 }
 
                 using (var httpClient = new HttpClient())

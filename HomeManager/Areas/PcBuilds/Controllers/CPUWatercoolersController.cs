@@ -8,6 +8,8 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using HomeManager.Extentions;
+
 
 namespace HomeManager.Areas.PcBuilds.Controllers
 {
@@ -40,7 +42,6 @@ namespace HomeManager.Areas.PcBuilds.Controllers
                     cpuWatercoolerList = JsonConvert.DeserializeObject<List<CPUWatercooler>>(apiResponse);
                 }
             }
-
 
             return this.View(cpuWatercoolerList);
         }
@@ -76,6 +77,12 @@ namespace HomeManager.Areas.PcBuilds.Controllers
         {
             try
             {
+                if (model.ImageFile != null)
+                {
+                    model.ImageTitle = model.ImageFile.FileName;
+                    model.ImageData = ImageManager.GetByteArrayFromImage(model.ImageFile);
+                }
+
                 using (var httpClient = new HttpClient())
                 {
                     var content = new StringContent(JsonConvert.SerializeObject(model), Encoding.UTF8, "application/json");
@@ -83,7 +90,6 @@ namespace HomeManager.Areas.PcBuilds.Controllers
                     using (HttpResponseMessage response = await httpClient.PostAsync(string.Format("{0}/{1}", this.apiBaseUrl, this.apiController), content))
                     {
                         string apiResponse = await response.Content.ReadAsStringAsync();
-                        //receivedReservation = JsonConvert.DeserializeObject<Reservation>(apiResponse);
                     }
                 }
 
@@ -94,6 +100,9 @@ namespace HomeManager.Areas.PcBuilds.Controllers
                 return this.View();
             }
         }
+
+
+
 
         // GET: CPUWatercooler/Edit/5
         public async Task<IActionResult> Edit(Guid id)
@@ -121,6 +130,12 @@ namespace HomeManager.Areas.PcBuilds.Controllers
                 if (model == null)
                 {
                     return this.NotFound();
+                }
+
+                if (model.ImageFile != null)
+                {
+                    model.ImageTitle = model.ImageFile.FileName;
+                    model.ImageData = ImageManager.GetByteArrayFromImage(model.ImageFile);
                 }
 
                 using (var httpClient = new HttpClient())

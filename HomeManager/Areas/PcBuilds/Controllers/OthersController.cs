@@ -1,4 +1,5 @@
 ﻿using HomeManager.Areas.PcBuilds.Models;
+using HomeManager.Extentions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
@@ -76,6 +77,12 @@ namespace HomeManager.Areas.PcBuilds.Controllers
         {
             try
             {
+                if (otherModel.ImageFile != null)
+                {
+                    otherModel.ImageTitle = otherModel.ImageFile.FileName;
+                    otherModel.ImageData = ImageManager.GetByteArrayFromImage(otherModel.ImageFile);
+                }
+
                 using (var httpClient = new HttpClient())
                 {
                     var content = new StringContent(JsonConvert.SerializeObject(otherModel), Encoding.UTF8, "application/json");
@@ -121,6 +128,12 @@ namespace HomeManager.Areas.PcBuilds.Controllers
                 if (otherModel == null)
                 {
                     return this.NotFound();
+                }
+
+                if (otherModel.ImageFile != null)
+                {
+                    otherModel.ImageTitle = otherModel.ImageFile.FileName;
+                    otherModel.ImageData = ImageManager.GetByteArrayFromImage(otherModel.ImageFile);
                 }
 
                 using (var httpClient = new HttpClient())
