@@ -6,12 +6,13 @@ namespace HomeManager.Areas.PcBuilds.Models
 {
     public class PCCase
     {
-        public Guid Id { get; set; }
+        public Guid PCCaseId { get; set; }
 
         [Required]
         public string Name { get; set; }
-
         public string Manufacturer { get; set; }
+        public string ImageTitle { get; set; }
+        public byte[] ImageData { get; set; }
 
         [Display(Name = "Form factor")]
         public string FormFactor { get; set; }

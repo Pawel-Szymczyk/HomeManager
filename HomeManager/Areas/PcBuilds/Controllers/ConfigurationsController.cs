@@ -142,15 +142,15 @@ namespace HomeManager.Areas.PcBuilds.Controllers
                     components.Configuration.TotalPrice = result.TotalPrice;
 
                     components.SelectedCPUWatercoolerId = (result.CPUWatercooler != null) ? result.CPUWatercooler.CPUWatercoolerId.ToString() : string.Empty;
-                    components.SelectedFanId = (result.Fan != null) ? result.Fan.Id.ToString() : string.Empty;
+                    components.SelectedFanId = (result.Fan != null) ? result.Fan.FanId.ToString() : string.Empty;
                     components.SelectedGraphicsCardId = (result.GraphicsCard != null) ? result.GraphicsCard.GraphicsCardId.ToString() : string.Empty;
                     components.SelectedHardDriveId = (result.HardDrive != null) ? result.HardDrive.HardDriveId.ToString() : string.Empty;
-                    components.SelectedMotherboardId = (result.Motherboard != null) ? result.Motherboard.Id.ToString() : string.Empty;
+                    components.SelectedMotherboardId = (result.Motherboard != null) ? result.Motherboard.MotherboardId.ToString() : string.Empty;
                     //components.SelectedOtherId = (result.Others != null) ? result.Others.Id.ToString() : string.Empty;
-                    components.SelectedPCCaseId = (result.PCCase != null) ? result.PCCase.Id.ToString() : string.Empty;
-                    components.SelectedPowerSupplyId = (result.PowerSupply != null) ? result.PowerSupply.Id.ToString() : string.Empty;
-                    components.SelectedProcessorId = (result.Processor != null) ? result.Processor.Id.ToString() : string.Empty;
-                    components.SelectedRAMId = (result.RAM != null) ? result.RAM.Id.ToString() : string.Empty;
+                    components.SelectedPCCaseId = (result.PCCase != null) ? result.PCCase.PCCaseId.ToString() : string.Empty;
+                    components.SelectedPowerSupplyId = (result.PowerSupply != null) ? result.PowerSupply.PowerSupplyId.ToString() : string.Empty;
+                    components.SelectedProcessorId = (result.Processor != null) ? result.Processor.ProcessorId.ToString() : string.Empty;
+                    components.SelectedRAMId = (result.RAM != null) ? result.RAM.RamId.ToString() : string.Empty;
                 }
             }
 

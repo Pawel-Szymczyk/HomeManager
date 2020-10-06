@@ -6,10 +6,13 @@ namespace HomeManager.Areas.PcBuilds.Models
 {
     public class Fan
     {
-        public Guid Id { get; set; }
+        public Guid FanId { get; set; }
 
         [Required]
         public string Name { get; set; }
+        public string Manufacturer { get; set; }
+        public string ImageTitle { get; set; }
+        public byte[] ImageData { get; set; }
 
         public string Dimensions { get; set; }
 

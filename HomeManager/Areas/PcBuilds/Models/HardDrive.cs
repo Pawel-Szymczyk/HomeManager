@@ -11,6 +11,10 @@ namespace HomeManager.Areas.PcBuilds.Models
         [Required]
         public string Name { get; set; }
 
+        public string Manufacturer { get; set; }
+        public string ImageTitle { get; set; }
+        public byte[] ImageData { get; set; }
+
         public string Capacity { get; set; }
 
         public string Type { get; set; }

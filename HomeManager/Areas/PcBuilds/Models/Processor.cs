@@ -6,10 +6,13 @@ namespace HomeManager.Areas.PcBuilds.Models
 {
     public class Processor
     {
-        public Guid Id { get; set; }
+        public Guid ProcessorId { get; set; }
 
         [Required]
         public string Name { get; set; }
+        public string Manufacturer { get; set; }
+        public string ImageTitle { get; set; }
+        public byte[] ImageData { get; set; }
 
         [Display(Name = "Product Collection")]
         public string ProductCollection { get; set; }

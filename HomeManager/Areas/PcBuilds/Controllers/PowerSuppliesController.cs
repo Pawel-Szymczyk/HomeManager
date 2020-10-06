@@ -119,14 +119,14 @@ namespace HomeManager.Areas.PcBuilds.Controllers
         {
             try
             {
-                if (id != powerSupplyModel.Id || powerSupplyModel == null)
+                if (powerSupplyModel == null)
                 {
                     return this.NotFound();
                 }
 
                 using (var httpClient = new HttpClient())
                 {
-                    powerSupplyModel.Id = id;
+                    powerSupplyModel.PowerSupplyId = id;
                     string json = JsonConvert.SerializeObject(powerSupplyModel, Formatting.Indented);
                     var httpContent = new StringContent(json, Encoding.UTF8, "application/json");
 

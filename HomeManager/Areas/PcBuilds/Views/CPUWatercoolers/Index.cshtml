@@ -16,6 +16,9 @@
                 @Html.DisplayNameFor(model => model.Name)
             </th>
             <th>
+                @Html.DisplayNameFor(model => model.Manufacturer)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.Dimensions)
             </th>
             <th>
@@ -40,6 +43,9 @@
                 @Html.DisplayFor(modelItem => item.Name)
             </td>
             <td>
+                @Html.DisplayFor(modelItem => item.Manufacturer)
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.Dimensions)
             </td>
             <td>
@@ -55,7 +61,7 @@
                 @Html.DisplayFor(modelItem => item.Link)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id=item.CPUWatercoolerId }) |
+                @Html.ActionLink("Edit", "Edit", new { id = item.CPUWatercoolerId }) |
                 @Html.ActionLink("Details", "Details", new { id = item.CPUWatercoolerId }) |
                 @Html.ActionLink("Delete", "Delete", new { id = item.CPUWatercoolerId })
             </td>

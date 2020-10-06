@@ -6,12 +6,14 @@ namespace HomeManager.Areas.PcBuilds.Models
 {
     public class PowerSupply
     {
-        public Guid Id { get; set; }
+        public Guid PowerSupplyId { get; set; }
 
         [Required]
         public string Name { get; set; }
 
         public string Manufacturer { get; set; }
+        public string ImageTitle { get; set; }
+        public byte[] ImageData { get; set; }
 
         public string Model { get; set; }
 
