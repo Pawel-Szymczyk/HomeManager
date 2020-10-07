@@ -160,11 +160,9 @@
         </div>
         <div id="collapseGraphicsCard" class="collapse show" aria-labelledby="graphicsCard" data-parent="#configuration">
             <div class="card-body">
-                @foreach (var item in Model.pcBuildGraphicsCards)
-                {
                     <dl class="row">
-                        <dt class="col-sm-2">
-                            @Html.DisplayNameFor(model => item.graphicsCard.Name)
+                        @*<dt class="col-sm-2">
+                            @Html.DisplayNameFor(model => model.Name)
                         </dt>
                         <dd class="col-sm-10">
                             @Html.DisplayFor(model => item.graphicsCard.Name)
@@ -222,9 +220,9 @@
                         </dt>
                         <dd class="col-sm-10">
                             @Html.DisplayFor(model => item.graphicsCard.Link)
-                        </dd>
+                        </dd>*@
+                        @* just add new property : quantity *@
                     </dl>
-                }
             </div>
         </div>
     </div>
@@ -238,9 +236,9 @@
             </h2>
         </div>
         <div id="collapseHardDrive" class="collapse show" aria-labelledby="hardDrive" data-parent="#configuration">
-            <div class="card-body">
-                @foreach (var item in Model.pcBuildHardDrives)
-                {
+            @foreach (var item in Model.pcBuildHardDrives)
+            {
+                <div class="card-body">
                     <dl class="row">
                         <dt class="col-sm-2">
                             @Html.DisplayNameFor(model => item.hardDrive.Name)
@@ -273,8 +271,8 @@
                             @Html.DisplayFor(model => item.hardDrive.Link)
                         </dd>
                     </dl>
-                }
-            </div>
+                </div>
+            }
         </div>
     </div>
 
@@ -351,9 +349,9 @@
             </h2>
         </div>
         <div id="collapseOther" class="collapse show" aria-labelledby="other" data-parent="#configuration">
-            <div class="card-body">
-                @foreach (var item in Model.pcBuildOthers)
-                {
+            @foreach (var item in Model.pcBuildOthers)
+            {
+                <div class="card-body">
                     <dl class="row">
                         <dt class="col-sm-2">
                             @Html.DisplayNameFor(model => item.other.Name)
@@ -380,8 +378,8 @@
                             @Html.DisplayFor(model => item.other.Link)
                         </dd>
                     </dl>
-                }
-            </div>
+                </div>
+            }
         </div>
     </div>
 

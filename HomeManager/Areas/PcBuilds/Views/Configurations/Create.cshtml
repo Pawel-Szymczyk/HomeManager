@@ -36,14 +36,14 @@
 
             <div class="input-group mb-3">
                 <select class="btn btn-light btn-block" asp-for="SelectedGraphicsCardId" asp-items="@(new SelectList(Model.GraphicsCards,"GraphicsCardId","Name"))">
-                    <option value="">Pick Graphics Card</option>
+                    <option value="">Pick Graphics Cards</option>
                 </select>
                 <input type="button" class="btn btn-outline-primary" value="&#x2b;" onclick="window.location='@Url.Action("Create", "GraphicsCards")'" />
             </div>
 
             <div class="input-group mb-3">
-                <select class="btn btn-light btn-block" asp-for="SelectedHardDriveId" asp-items="@(new SelectList(Model.HardDrives,"HardDriveId","Name"))">
-                    <option value="">Pick Hard Drive</option>
+                <select class="btn btn-light btn-block" asp-for="SelectedHardDriveIds" asp-items="@(new SelectList(Model.HardDrives,"HardDriveId","Name"))" multiple size="3">
+                    <option value="">Pick Hard Drives</option>
                 </select>
                 <input type="button" class="btn btn-outline-primary" value="&#x2b;" onclick="window.location='@Url.Action("Create", "HardDrives")'" />
             </div>
@@ -56,8 +56,8 @@
             </div>
 
             <div class="input-group mb-3">
-                <select class="btn btn-light btn-block" asp-for="SelectedOtherId" asp-items="@(new SelectList(Model.Others,"OtherId","Name"))">
-                    <option value="">Pick Other Item</option>
+                <select class="btn btn-light btn-block" asp-for="SelectedOtherIds" asp-items="@(new SelectList(Model.Others,"OtherId","Name"))" multiple size="3">
+                    <option value="">Pick Other Items</option>
                 </select>
                 <input type="button" class="btn btn-outline-primary" value="&#x2b;" onclick="window.location='@Url.Action("Create", "Others")'" />
             </div>

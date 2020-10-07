@@ -31,10 +31,10 @@ namespace HomeManager.Areas.PcBuilds.Models
         // view
         public string SelectedCPUWatercoolerId { get; set; }
         public string SelectedFanId { get; set; }
-        public string SelectedGraphicsCardId { get; set; }  // this should be a list
-        public string SelectedHardDriveId { get; set; } // this should be a list
+        public string SelectedGraphicsCardId { get; set; }  
+        public List<string> SelectedHardDriveIds { get; set; } 
         public string SelectedMotherboardId { get; set; }
-        public string SelectedOtherId { get; set; } // this should be a list
+        public List<string> SelectedOtherIds { get; set; } 
         public string SelectedPCCaseId { get; set; }
         public string SelectedPowerSupplyId { get; set; }
         public string SelectedProcessorId { get; set; }

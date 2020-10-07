@@ -39,7 +39,7 @@
             </div>
 
             <div class="input-group mb-3">
-                <select class="btn btn-light" asp-for="SelectedHardDriveId" asp-items="@(new SelectList(Model.HardDrives,"HardDriveId","Name"))">
+                <select class="btn btn-light" asp-for="SelectedHardDriveIds" asp-items="@(new SelectList(Model.HardDrives,"HardDriveId","Name"))" multiple size="3">
                     <option value="">Pick Hard Drive</option>
                 </select>
             </div>
@@ -51,7 +51,7 @@
             </div>
 
             <div class="input-group mb-3">
-                <select class="btn btn-light" asp-for="SelectedOtherId" asp-items="@(new SelectList(Model.Others,"OtherId","Name"))">
+                <select class="btn btn-light" asp-for="SelectedOtherIds" asp-items="@(new SelectList(Model.Others,"OtherId","Name"))" multiple size="3">
                     <option value="">Pick Other Item</option>
                 </select>
             </div>

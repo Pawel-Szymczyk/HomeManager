@@ -33,7 +33,6 @@ namespace HomeManager.Areas.PcBuilds.Controllers
         // GET: Configurations
         public async Task<IActionResult> Index()
         {
-
             var configurationsList = new List<Configuration>();
             using (var httpClient = new HttpClient())
             {
@@ -44,7 +43,6 @@ namespace HomeManager.Areas.PcBuilds.Controllers
 
                 }
             }
-
 
             return this.View(configurationsList);
         }
@@ -95,27 +93,37 @@ namespace HomeManager.Areas.PcBuilds.Controllers
                     cpuWatercoolerId = model.SelectedCPUWatercoolerId,
                     description = model.Configuration.Description,
                     fanId = model.SelectedFanId,
-                    pcBuildGraphicsCards = new List<GraphicsCard> { 
-                        new GraphicsCard {
-                            GraphicsCardId = Guid.Parse(model.SelectedGraphicsCardId),
-                        }
-                    },
-                    pcBuildHardDrives = new List<HardDrive> {
-                        new HardDrive {
-                            HardDriveId = Guid.Parse(model.SelectedHardDriveId),
-                        }
-                    },
+                    graphicsCardId = model.SelectedGraphicsCardId,
+                    //pcBuildGraphicsCards = new List<GraphicsCard> {},
+                    pcBuildHardDrives = new List<HardDrive> {},
                     motherboardId = model.SelectedMotherboardId,
-                    pcBuildOthers = new List<Other> {
-                        new Other {
-                            OtherId = Guid.Parse(model.SelectedOtherId),
-                        }
-                    },
+                    pcBuildOthers = new List<Other> {},
                     pcCaseId = model.SelectedPCCaseId,
                     powerSupplyId = model.SelectedPowerSupplyId,
                     processorId = model.SelectedProcessorId,
                     ramId = model.SelectedRAMId,
                 };
+
+                // iterate over selected hard drives and add them to the configuration object.
+                foreach (string item in model.SelectedHardDriveIds)
+                {
+                    configuration.pcBuildHardDrives.Add(
+                         new HardDrive
+                         {
+                             HardDriveId = Guid.Parse(item),
+                         }
+                    );
+                }
+
+                foreach (string item in model.SelectedOtherIds)
+                {
+                    configuration.pcBuildOthers.Add(
+                         new Other
+                         {
+                             OtherId = Guid.Parse(item),
+                         }
+                    );
+                }
 
                 using (var httpClient = new HttpClient())
                 {
@@ -156,7 +164,7 @@ namespace HomeManager.Areas.PcBuilds.Controllers
 
                     components.SelectedCPUWatercoolerId = (result.CPUWatercooler != null) ? result.CPUWatercooler.CPUWatercoolerId.ToString() : string.Empty;
                     components.SelectedFanId = (result.Fan != null) ? result.Fan.FanId.ToString() : string.Empty;
-                    //components.SelectedGraphicsCardId = (result.GraphicsCards != null) ? result.GraphicsCards.GraphicsCardId.ToString() : string.Empty;
+                    components.SelectedGraphicsCardId = (result.GraphicsCard != null) ? result.GraphicsCard.GraphicsCardId.ToString() : string.Empty;
                     //components.SelectedHardDriveId = (result.HardDrives != null) ? result.HardDrives.HardDriveId.ToString() : string.Empty;
                     components.SelectedMotherboardId = (result.Motherboard != null) ? result.Motherboard.MotherboardId.ToString() : string.Empty;
                     //components.SelectedOtherId = (result.Others != null) ? result.Others.Id.ToString() : string.Empty;
@@ -185,9 +193,9 @@ namespace HomeManager.Areas.PcBuilds.Controllers
                     description = model.Configuration.Description,
                     fanId = model.SelectedFanId,
                     graphicsCardId = model.SelectedGraphicsCardId,
-                    hardDrivedId = model.SelectedHardDriveId,
+                    //hardDrivedId = model.SelectedHardDriveId,
                     motherboardId = model.SelectedMotherboardId,
-                    otherId = model.SelectedOtherId,
+                    //otherId = model.SelectedOtherId,
                     pcCaseId = model.SelectedPCCaseId,
                     powerSupplyId = model.SelectedPowerSupplyId,
                     processorId = model.SelectedProcessorId,

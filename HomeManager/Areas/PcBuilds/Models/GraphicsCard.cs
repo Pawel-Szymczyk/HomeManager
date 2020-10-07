@@ -41,5 +41,7 @@ namespace HomeManager.Areas.PcBuilds.Models
         [Required]
         [DataType(DataType.Url)]
         public string Link { get; set; }
+
+        // add quantity
     }
 }
