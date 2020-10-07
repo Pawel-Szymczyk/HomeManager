@@ -10,7 +10,7 @@ using PCBuilder.Service.API.DBContext;
 namespace PCBuilder.Service.API.Migrations
 {
     [DbContext(typeof(PCBuilderContext))]
-    [Migration("20201006091655_init")]
+    [Migration("20201007090453_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -162,6 +162,9 @@ namespace PCBuilder.Service.API.Migrations
 
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
+
+                    b.Property<int>("Qty")
+                        .HasColumnType("int");
 
                     b.HasKey("GraphicsCardId");
 
@@ -315,6 +318,9 @@ namespace PCBuilder.Service.API.Migrations
                     b.Property<Guid?>("FanId")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<Guid?>("GraphicsCardId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<byte[]>("ImageData")
                         .HasColumnType("varbinary(max)");
 
@@ -348,6 +354,8 @@ namespace PCBuilder.Service.API.Migrations
 
                     b.HasIndex("FanId");
 
+                    b.HasIndex("GraphicsCardId");
+
                     b.HasIndex("MotherboardId");
 
                     b.HasIndex("PCCaseId");
@@ -359,21 +367,6 @@ namespace PCBuilder.Service.API.Migrations
                     b.HasIndex("RAMId");
 
                     b.ToTable("PCBuilds");
-                });
-
-            modelBuilder.Entity("PCBuilder.Service.API.Models.PCBuildGraphicsCard", b =>
-                {
-                    b.Property<Guid>("PCBuildId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("GraphicsCardId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("PCBuildId", "GraphicsCardId");
-
-                    b.HasIndex("GraphicsCardId");
-
-                    b.ToTable("PCBuildGraphicsCard");
                 });
 
             modelBuilder.Entity("PCBuilder.Service.API.Models.PCBuildHardDrive", b =>
@@ -558,7 +551,7 @@ namespace PCBuilder.Service.API.Migrations
                     b.HasData(
                         new
                         {
-                            ProcessorId = new Guid("2d65367d-53b2-4057-97cf-c1f839f4c044"),
+                            ProcessorId = new Guid("127af72c-0ec2-4cb0-bfc2-358e3a8d0924"),
                             Cache = 8,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Link = "no url",
@@ -633,6 +626,10 @@ namespace PCBuilder.Service.API.Migrations
                         .WithMany()
                         .HasForeignKey("FanId");
 
+                    b.HasOne("PCBuilder.Service.API.Models.GraphicsCard", "GraphicsCard")
+                        .WithMany()
+                        .HasForeignKey("GraphicsCardId");
+
                     b.HasOne("PCBuilder.Service.API.Models.Motherboard", "Motherboard")
                         .WithMany()
                         .HasForeignKey("MotherboardId");
@@ -652,21 +649,6 @@ namespace PCBuilder.Service.API.Migrations
                     b.HasOne("PCBuilder.Service.API.Models.RAM", "RAM")
                         .WithMany()
                         .HasForeignKey("RAMId");
-                });
-
-            modelBuilder.Entity("PCBuilder.Service.API.Models.PCBuildGraphicsCard", b =>
-                {
-                    b.HasOne("PCBuilder.Service.API.Models.GraphicsCard", "GraphicsCard")
-                        .WithMany()
-                        .HasForeignKey("GraphicsCardId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("PCBuilder.Service.API.Models.PCBuild", "PCBuild")
-                        .WithMany("PCBuildGraphicsCards")
-                        .HasForeignKey("PCBuildId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("PCBuilder.Service.API.Models.PCBuildHardDrive", b =>

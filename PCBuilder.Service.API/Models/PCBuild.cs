@@ -8,14 +8,11 @@ namespace PCBuilder.Service.API.Models
 {
     public class PCBuild : BaseEntity
     {
-        
-
         public Guid PCBuildId { get; set; }
         public string Description { get; set; }
 
         [Column(TypeName = "decimal(18,2)")]
         public decimal TotalPrice { get; set; }
-
 
         [ForeignKey("CPUWatercooler")]
         public Guid? CPUWatercoolerId { get; set; }
@@ -24,6 +21,10 @@ namespace PCBuilder.Service.API.Models
         [ForeignKey("Fan")]
         public Guid? FanId { get; set; }
         public virtual Fan Fan { get; set; }
+
+        [ForeignKey("GraphicsCard")]
+        public Guid? GraphicsCardId { get; set; }
+        public virtual GraphicsCard GraphicsCard { get; set; }
 
         [ForeignKey("Motherboard")]
         public Guid? MotherboardId { get; set; }
@@ -45,7 +46,6 @@ namespace PCBuilder.Service.API.Models
         public Guid? RAMId { get; set; }
         public virtual RAM RAM { get; set; }
 
-        public List<PCBuildGraphicsCard> PCBuildGraphicsCards { get; set; }
         public List<PCBuildHardDrive> PCBuildHardDrives { get; set; }
         public List<PCBuildOther> PCBuildOthers { get; set; }
 

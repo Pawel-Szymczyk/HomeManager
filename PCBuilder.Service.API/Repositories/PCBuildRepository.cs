@@ -33,7 +33,6 @@ namespace PCBuilder.Service.API.Repositories
                 }
 
                 // add pcbuild id to each of referencing objects in the model
-                model.PCBuildGraphicsCards?.ForEach(x => x.PCBuildId = model.PCBuildId);
                 model.PCBuildHardDrives?.ForEach(x => x.PCBuildId = model.PCBuildId);
                 model.PCBuildOthers?.ForEach(x => x.PCBuildId = model.PCBuildId);
 
@@ -58,14 +57,14 @@ namespace PCBuilder.Service.API.Repositories
         {
 
             List<PCBuild> models = await this._context.PCBuilds
-                .Include(x => x.CPUWatercooler)
+                .Include(e => e.CPUWatercooler)
                 .Include(e => e.Fan)
+                .Include(e => e.GraphicsCard)
                 .Include(e => e.Motherboard)
                 .Include(e => e.PCCase)
                 .Include(e => e.PowerSupply)
                 .Include(e => e.Processor)
                 .Include(e => e.RAM)
-                .Include(x => x.PCBuildGraphicsCards).ThenInclude(x => x.GraphicsCard)
                 .Include(x => x.PCBuildHardDrives).ThenInclude(x => x.HardDrive)
                 .Include(x => x.PCBuildOthers).ThenInclude(x => x.Other)
                 .ToListAsync();
@@ -79,14 +78,14 @@ namespace PCBuilder.Service.API.Repositories
         public override async Task<PCBuild> Get(Guid Id)
         {
             PCBuild model = await this._context.PCBuilds
-                .Include(x => x.CPUWatercooler)
+                .Include(e => e.CPUWatercooler)
                 .Include(e => e.Fan)
+                .Include(e => e.GraphicsCard)
                 .Include(e => e.Motherboard)
                 .Include(e => e.PCCase)
                 .Include(e => e.PowerSupply)
                 .Include(e => e.Processor)
                 .Include(e => e.RAM)
-                .Include(x => x.PCBuildGraphicsCards).ThenInclude(x => x.GraphicsCard)
                 .Include(x => x.PCBuildHardDrives).ThenInclude(x => x.HardDrive)
                 .Include(x => x.PCBuildOthers).ThenInclude(x => x.Other)
                 .FirstOrDefaultAsync(e => e.PCBuildId == Id);
@@ -107,12 +106,12 @@ namespace PCBuilder.Service.API.Repositories
             {
                 model.CPUWatercooler?.Price ?? 0,
                 model.Fan?.Price ?? 0,
+                model.GraphicsCard?.Price ?? 0,
                 model.Motherboard?.Price ?? 0,
                 model.PCCase?.Price ?? 0,
                 model.PowerSupply?.Price ?? 0,
                 model.Processor?.Price ?? 0,
                 model.RAM?.Price ?? 0,
-                model.PCBuildGraphicsCards.Sum(x => x.GraphicsCard?.Price ?? 0),
                 model.PCBuildHardDrives.Sum(x => x.HardDrive?.Price ?? 0),
                 model.PCBuildOthers.Sum(x => x.Other?.Price ?? 0)
             }.Sum();
@@ -134,12 +133,12 @@ namespace PCBuilder.Service.API.Repositories
                 {
                     build.CPUWatercooler?.Price ?? 0,
                     build.Fan?.Price ?? 0,
+                    build.GraphicsCard?.Price ?? 0,
                     build.Motherboard?.Price ?? 0,
                     build.PCCase?.Price ?? 0,
                     build.PowerSupply?.Price ?? 0,
                     build.Processor?.Price ?? 0,
                     build.RAM?.Price ?? 0,
-                    build.PCBuildGraphicsCards.Sum(x => x.GraphicsCard?.Price ?? 0),
                     build.PCBuildHardDrives.Sum(x => x.HardDrive?.Price ?? 0),
                     build.PCBuildOthers.Sum(x => x.Other?.Price ?? 0)
                 }.Sum();

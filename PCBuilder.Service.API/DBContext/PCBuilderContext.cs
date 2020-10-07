@@ -56,15 +56,14 @@ namespace PCBuilder.Service.API.DBContext
             modelBuilder.Entity<PCBuild>().HasIndex(x => x.RAMId).IsUnique(false);
             modelBuilder.Entity<PCBuild>().HasIndex(x => x.CPUWatercoolerId).IsUnique(false);
             modelBuilder.Entity<PCBuild>().HasIndex(x => x.FanId).IsUnique(false);
+            modelBuilder.Entity<PCBuild>().HasIndex(x => x.GraphicsCardId).IsUnique(false);
             modelBuilder.Entity<PCBuild>().HasIndex(x => x.PCCaseId).IsUnique(false);
             modelBuilder.Entity<PCBuild>().HasIndex(x => x.PowerSupplyId).IsUnique(false);
 
             // many to many
-            modelBuilder.Entity<PCBuildGraphicsCard>().HasKey(po => new { po.PCBuildId, po.GraphicsCardId });
             modelBuilder.Entity<PCBuildHardDrive>().HasKey(po => new { po.PCBuildId, po.HardDriveId });
             modelBuilder.Entity<PCBuildOther>().HasKey(po => new { po.PCBuildId, po.OtherId });
 
-            modelBuilder.Entity<PCBuildGraphicsCard>().HasOne(po => po.PCBuild).WithMany(p => p.PCBuildGraphicsCards).HasForeignKey(po => po.PCBuildId);
             modelBuilder.Entity<PCBuildHardDrive>().HasOne(po => po.PCBuild).WithMany(p => p.PCBuildHardDrives).HasForeignKey(po => po.PCBuildId);
             modelBuilder.Entity<PCBuildOther>().HasOne(po => po.PCBuild).WithMany(p => p.PCBuildOthers).HasForeignKey(po => po.PCBuildId);
 

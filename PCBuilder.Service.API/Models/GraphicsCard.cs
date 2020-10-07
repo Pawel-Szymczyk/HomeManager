@@ -14,6 +14,7 @@ namespace PCBuilder.Service.API.Models
         public string MemoryType { get; set; }
         public int CUDA { get; set; }
         public string PSU { get; set; }
+        public int Qty { get; set; }
 
     }
 }
