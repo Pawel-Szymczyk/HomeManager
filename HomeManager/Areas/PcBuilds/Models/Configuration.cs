@@ -8,6 +8,28 @@ using System.Threading.Tasks;
 namespace HomeManager.Areas.PcBuilds.Models
 {
 
+    public class PCBuildGraphicsCards
+    {
+        public Guid pcBuildId { get; set; }
+        public Guid graphicsCardId { get; set; }
+
+        public GraphicsCard graphicsCard { get; set; }
+    }
+
+    public class PCBuildHardDrives
+    {
+        public Guid pcBuildId { get; set; }
+        public Guid hardDriveId { get; set; }
+        public HardDrive hardDrive { get; set; }
+    }
+
+    public class PCBuildOthers
+    {
+        public Guid pcBuildId { get; set; }
+        public Guid otherId { get; set; }
+        public Other other { get; set; }
+    }
+
     public class Configuration
     {
         public Configuration()
@@ -51,12 +73,10 @@ namespace HomeManager.Areas.PcBuilds.Models
 
 
 
-        //public pcBuildGraphicsCards pcBuildGraphicsCards { get; set; }
+        public List<PCBuildGraphicsCards> pcBuildGraphicsCards { get; set; }
 
-        //public List<GraphicsCard> GraphicsCards { get; set; }
-
-
-
+        public List<PCBuildHardDrives> pcBuildHardDrives { get; set; }
+        public List<PCBuildOthers> pcBuildOthers { get; set; }
 
 
 

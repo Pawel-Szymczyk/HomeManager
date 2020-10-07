@@ -59,8 +59,6 @@ namespace HomeManager.Areas.PcBuilds.Controllers
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
                     configuration = JsonConvert.DeserializeObject<Configuration>(apiResponse);
-                    //foreach(var item in apiResponse)
-
                 }
             }
 
@@ -91,7 +89,7 @@ namespace HomeManager.Areas.PcBuilds.Controllers
         {
             try
             {
-
+                // todo: errors when at least one of the items is null
                 var configuration = new
                 {
                     cpuWatercoolerId = model.SelectedCPUWatercoolerId,
@@ -131,7 +129,7 @@ namespace HomeManager.Areas.PcBuilds.Controllers
 
                 return this.RedirectToAction(nameof(Index));
             }
-            catch
+            catch(Exception ex)
             {
                 return this.View();
             }
