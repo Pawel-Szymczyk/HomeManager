@@ -43,14 +43,14 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
+    @foreach (var item in Model) {
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.Name)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Manufacturer)
-            </td>s
+            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.MemoryType)
             </td>
@@ -78,6 +78,6 @@
                 @Html.ActionLink("Delete", "Delete", new { id = item.RamId })
             </td>
         </tr>
-}
+    }
     </tbody>
 </table>

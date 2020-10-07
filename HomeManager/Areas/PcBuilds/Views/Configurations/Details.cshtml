@@ -58,6 +58,12 @@
                         @Html.DisplayFor(model => model.CPUWatercooler.Name)
                     </dd>
                     <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.CPUWatercooler.Manufacturer)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.CPUWatercooler.Manufacturer)
+                    </dd>
+                    <dt class="col-sm-2">
                         @Html.DisplayNameFor(model => model.CPUWatercooler.Dimensions)
                     </dt>
                     <dd class="col-sm-10">
@@ -110,6 +116,12 @@
                         @Html.DisplayFor(model => model.Fan.Name)
                     </dd>
                     <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.Fan.Manufacturer)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.Fan.Manufacturer)
+                    </dd>
+                    <dt class="col-sm-2">
                         @Html.DisplayNameFor(model => model.Fan.Dimensions)
                     </dt>
                     <dd class="col-sm-10">
@@ -160,69 +172,80 @@
         </div>
         <div id="collapseGraphicsCard" class="collapse show" aria-labelledby="graphicsCard" data-parent="#configuration">
             <div class="card-body">
-                    <dl class="row">
-                        @*<dt class="col-sm-2">
-                            @Html.DisplayNameFor(model => model.Name)
-                        </dt>
-                        <dd class="col-sm-10">
-                            @Html.DisplayFor(model => item.graphicsCard.Name)
-                        </dd>
-                        <dt class="col-sm-2">
-                            @Html.DisplayNameFor(model => item.graphicsCard.Dimensions)
-                        </dt>
-                        <dd class="col-sm-10">
-                            @Html.DisplayFor(model => item.graphicsCard.Dimensions)
-                        </dd>
-                        <dt class="col-sm-2">
-                            @Html.DisplayNameFor(model => item.graphicsCard.GPU)
-                        </dt>
-                        <dd class="col-sm-10">
-                            @Html.DisplayFor(model => item.graphicsCard.GPU)
-                        </dd>
-                        <dt class="col-sm-2">
-                            @Html.DisplayNameFor(model => item.graphicsCard.GPUFrequency)
-                        </dt>
-                        <dd class="col-sm-10">
-                            @Html.DisplayFor(model => item.graphicsCard.GPUFrequency)
-                        </dd>
-                        <dt class="col-sm-2">
-                            @Html.DisplayNameFor(model => item.graphicsCard.BoostClock)
-                        </dt>
-                        <dd class="col-sm-10">
-                            @Html.DisplayFor(model => item.graphicsCard.BoostClock)
-                        </dd>
-                        <dt class="col-sm-2">
-                            @Html.DisplayNameFor(model => item.graphicsCard.MemoryType)
-                        </dt>
-                        <dd class="col-sm-10">
-                            @Html.DisplayFor(model => item.graphicsCard.MemoryType)
-                        </dd>
-                        <dt class="col-sm-2">
-                            @Html.DisplayNameFor(model => item.graphicsCard.CUDA)
-                        </dt>
-                        <dd class="col-sm-10">
-                            @Html.DisplayFor(model => item.graphicsCard.CUDA)
-                        </dd>
-                        <dt class="col-sm-2">
-                            @Html.DisplayNameFor(model => item.graphicsCard.PSU)
-                        </dt>
-                        <dd class="col-sm-10">
-                            @Html.DisplayFor(model => item.graphicsCard.PSU)
-                        </dd>
-                        <dt class="col-sm-2">
-                            @Html.DisplayNameFor(model => item.graphicsCard.Price)
-                        </dt>
-                        <dd class="col-sm-10">
-                            @Html.DisplayFor(model => item.graphicsCard.Price)
-                        </dd>
-                        <dt class="col-sm-2">
-                            @Html.DisplayNameFor(model => item.graphicsCard.Link)
-                        </dt>
-                        <dd class="col-sm-10">
-                            @Html.DisplayFor(model => item.graphicsCard.Link)
-                        </dd>*@
-                        @* just add new property : quantity *@
-                    </dl>
+                <dl class="row">
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.GraphicsCard.Name)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.GraphicsCard.Name)
+                    </dd>
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.GraphicsCard.Manufacturer)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.GraphicsCard.Manufacturer)
+                    </dd>
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.GraphicsCardQty)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.GraphicsCardQty)
+                    </dd>
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.GraphicsCard.Dimensions)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.GraphicsCard.Dimensions)
+                    </dd>
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.GraphicsCard.GPU)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.GraphicsCard.GPU)
+                    </dd>
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.GraphicsCard.GPUFrequency)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.GraphicsCard.GPUFrequency)
+                    </dd>
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.GraphicsCard.BoostClock)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.GraphicsCard.BoostClock)
+                    </dd>
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.GraphicsCard.MemoryType)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.GraphicsCard.MemoryType)
+                    </dd>
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.GraphicsCard.CUDA)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.GraphicsCard.CUDA)
+                    </dd>
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.GraphicsCard.PSU)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.GraphicsCard.PSU)
+                    </dd>
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.GraphicsCard.Price)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.GraphicsCard.Price)
+                    </dd>
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.GraphicsCard.Link)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.GraphicsCard.Link)
+                    </dd>
+                </dl>
             </div>
         </div>
     </div>
@@ -245,6 +268,12 @@
                         </dt>
                         <dd class="col-sm-10">
                             @Html.DisplayFor(model => item.hardDrive.Name)
+                        </dd>
+                        <dt class="col-sm-2">
+                            @Html.DisplayNameFor(model => item.hardDrive.Manufacturer)
+                        </dt>
+                        <dd class="col-sm-10">
+                            @Html.DisplayFor(model => item.hardDrive.Manufacturer)
                         </dd>
                         <dt class="col-sm-2">
                             @Html.DisplayNameFor(model => item.hardDrive.Capacity)
@@ -292,6 +321,12 @@
                     </dt>
                     <dd class="col-sm-10">
                         @Html.DisplayFor(model => model.Motherboard.Name)
+                    </dd>
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.Motherboard.Manufacturer)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.Motherboard.Manufacturer)
                     </dd>
                     <dt class="col-sm-2">
                         @Html.DisplayNameFor(model => model.Motherboard.CPU)
@@ -358,6 +393,12 @@
                         </dt>
                         <dd class="col-sm-10">
                             @Html.DisplayFor(model => item.other.Name)
+                        </dd>
+                        <dt class="col-sm-2">
+                            @Html.DisplayNameFor(model => item.other.Manufacturer)
+                        </dt>
+                        <dd class="col-sm-10">
+                            @Html.DisplayFor(model => item.other.Manufacturer)
                         </dd>
                         <dt class="col-sm-2">
                             @Html.DisplayNameFor(model => item.other.Description)
@@ -535,6 +576,12 @@
                         @Html.DisplayFor(model => model.Processor.Name)
                     </dd>
                     <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.Processor.Manufacturer)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.Processor.Manufacturer)
+                    </dd>
+                    <dt class="col-sm-2">
                         @Html.DisplayNameFor(model => model.Processor.ProductCollection)
                     </dt>
                     <dd class="col-sm-10">
@@ -603,6 +650,12 @@
                     </dt>
                     <dd class="col-sm-10">
                         @Html.DisplayFor(model => model.RAM.Name)
+                    </dd>
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.RAM.Manufacturer)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.RAM.Manufacturer)
                     </dd>
                     <dt class="col-sm-2">
                         @Html.DisplayNameFor(model => model.RAM.MemoryType)

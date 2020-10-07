@@ -10,7 +10,7 @@ using PCBuilder.Service.API.DBContext;
 namespace PCBuilder.Service.API.Migrations
 {
     [DbContext(typeof(PCBuilderContext))]
-    [Migration("20201007090453_init")]
+    [Migration("20201007190128_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -162,9 +162,6 @@ namespace PCBuilder.Service.API.Migrations
 
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
-
-                    b.Property<int>("Qty")
-                        .HasColumnType("int");
 
                     b.HasKey("GraphicsCardId");
 
@@ -320,6 +317,9 @@ namespace PCBuilder.Service.API.Migrations
 
                     b.Property<Guid?>("GraphicsCardId")
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("GraphicsCardQty")
+                        .HasColumnType("int");
 
                     b.Property<byte[]>("ImageData")
                         .HasColumnType("varbinary(max)");
@@ -551,7 +551,7 @@ namespace PCBuilder.Service.API.Migrations
                     b.HasData(
                         new
                         {
-                            ProcessorId = new Guid("127af72c-0ec2-4cb0-bfc2-358e3a8d0924"),
+                            ProcessorId = new Guid("48bd351a-63b6-43b4-bf0b-d5cc84577f10"),
                             Cache = 8,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Link = "no url",

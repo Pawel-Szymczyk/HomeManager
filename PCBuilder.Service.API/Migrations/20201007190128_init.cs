@@ -71,8 +71,7 @@ namespace PCBuilder.Service.API.Migrations
                     BoostClock = table.Column<string>(nullable: true),
                     MemoryType = table.Column<string>(nullable: true),
                     CUDA = table.Column<int>(nullable: false),
-                    PSU = table.Column<string>(nullable: true),
-                    Qty = table.Column<int>(nullable: false)
+                    PSU = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -254,6 +253,7 @@ namespace PCBuilder.Service.API.Migrations
                     CPUWatercoolerId = table.Column<Guid>(nullable: true),
                     FanId = table.Column<Guid>(nullable: true),
                     GraphicsCardId = table.Column<Guid>(nullable: true),
+                    GraphicsCardQty = table.Column<int>(nullable: false),
                     MotherboardId = table.Column<Guid>(nullable: true),
                     PCCaseId = table.Column<Guid>(nullable: true),
                     PowerSupplyId = table.Column<Guid>(nullable: true),
@@ -364,7 +364,7 @@ namespace PCBuilder.Service.API.Migrations
             migrationBuilder.InsertData(
                 table: "Processors",
                 columns: new[] { "ProcessorId", "Cache", "CreatedDate", "ImageData", "ImageTitle", "Link", "Manufacturer", "ModifiedDate", "Name", "NumberOfCores", "NumberOfThreads", "Price", "ProcessorBaseFrequency", "ProductCollection", "TDP" },
-                values: new object[] { new Guid("127af72c-0ec2-4cb0-bfc2-358e3a8d0924"), 8, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, null, "no url", null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "i7", 4, 4, 0m, 1m, "i7 10th gen", 100 });
+                values: new object[] { new Guid("48bd351a-63b6-43b4-bf0b-d5cc84577f10"), 8, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, null, "no url", null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "i7", 4, 4, 0m, 1m, "i7 10th gen", 100 });
 
             migrationBuilder.CreateIndex(
                 name: "IX_PCBuildHardDrive_HardDriveId",

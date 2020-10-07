@@ -26,6 +26,8 @@ namespace PCBuilder.Service.API.Models
         public Guid? GraphicsCardId { get; set; }
         public virtual GraphicsCard GraphicsCard { get; set; }
 
+        public int GraphicsCardQty { get; set; }
+
         [ForeignKey("Motherboard")]
         public Guid? MotherboardId { get; set; }
         public virtual Motherboard Motherboard { get; set; }

@@ -94,7 +94,7 @@ namespace HomeManager.Areas.PcBuilds.Controllers
                     description = model.Configuration.Description,
                     fanId = model.SelectedFanId,
                     graphicsCardId = model.SelectedGraphicsCardId,
-                    //pcBuildGraphicsCards = new List<GraphicsCard> {},
+                    graphicsCardQty = model.Configuration.GraphicsCardQty,
                     pcBuildHardDrives = new List<HardDrive> {},
                     motherboardId = model.SelectedMotherboardId,
                     pcBuildOthers = new List<Other> {},
@@ -105,24 +105,29 @@ namespace HomeManager.Areas.PcBuilds.Controllers
                 };
 
                 // iterate over selected hard drives and add them to the configuration object.
-                foreach (string item in model.SelectedHardDriveIds)
+                if (model.SelectedHardDriveIds != null)
                 {
-                    configuration.pcBuildHardDrives.Add(
-                         new HardDrive
-                         {
-                             HardDriveId = Guid.Parse(item),
-                         }
-                    );
+                    foreach (string item in model.SelectedHardDriveIds)
+                    {
+                        configuration.pcBuildHardDrives.Add(
+                             new HardDrive
+                             {
+                                 HardDriveId = Guid.Parse(item),
+                             }
+                        );
+                    }
                 }
-
-                foreach (string item in model.SelectedOtherIds)
+                if (model.SelectedOtherIds != null)
                 {
-                    configuration.pcBuildOthers.Add(
-                         new Other
-                         {
-                             OtherId = Guid.Parse(item),
-                         }
-                    );
+                    foreach (string item in model.SelectedOtherIds)
+                    {
+                        configuration.pcBuildOthers.Add(
+                             new Other
+                             {
+                                 OtherId = Guid.Parse(item),
+                             }
+                        );
+                    }
                 }
 
                 using (var httpClient = new HttpClient())
@@ -161,13 +166,20 @@ namespace HomeManager.Areas.PcBuilds.Controllers
 
                     components.Configuration.Description = result?.Description;
                     components.Configuration.TotalPrice = result.TotalPrice;
+                    components.Configuration.GraphicsCardQty = result.GraphicsCardQty;
 
                     components.SelectedCPUWatercoolerId = (result.CPUWatercooler != null) ? result.CPUWatercooler.CPUWatercoolerId.ToString() : string.Empty;
                     components.SelectedFanId = (result.Fan != null) ? result.Fan.FanId.ToString() : string.Empty;
                     components.SelectedGraphicsCardId = (result.GraphicsCard != null) ? result.GraphicsCard.GraphicsCardId.ToString() : string.Empty;
-                    //components.SelectedHardDriveId = (result.HardDrives != null) ? result.HardDrives.HardDriveId.ToString() : string.Empty;
+               
+                    components.SelectedHardDriveIds = new List<string>();
+                    result.pcBuildHardDrives.ForEach(x => components.SelectedHardDriveIds.Add(x.hardDriveId.ToString()));
+
                     components.SelectedMotherboardId = (result.Motherboard != null) ? result.Motherboard.MotherboardId.ToString() : string.Empty;
-                    //components.SelectedOtherId = (result.Others != null) ? result.Others.Id.ToString() : string.Empty;
+
+                    components.SelectedOtherIds = new List<string>();
+                    result.pcBuildOthers.ForEach(x => components.SelectedOtherIds.Add(x.otherId.ToString()));
+
                     components.SelectedPCCaseId = (result.PCCase != null) ? result.PCCase.PCCaseId.ToString() : string.Empty;
                     components.SelectedPowerSupplyId = (result.PowerSupply != null) ? result.PowerSupply.PowerSupplyId.ToString() : string.Empty;
                     components.SelectedProcessorId = (result.Processor != null) ? result.Processor.ProcessorId.ToString() : string.Empty;
@@ -193,15 +205,41 @@ namespace HomeManager.Areas.PcBuilds.Controllers
                     description = model.Configuration.Description,
                     fanId = model.SelectedFanId,
                     graphicsCardId = model.SelectedGraphicsCardId,
-                    //hardDrivedId = model.SelectedHardDriveId,
+                    graphicsCardQty = model.Configuration.GraphicsCardQty,
+                    pcBuildHardDrives = new List<HardDrive> { },
                     motherboardId = model.SelectedMotherboardId,
-                    //otherId = model.SelectedOtherId,
+                    pcBuildOthers = new List<Other> { },
                     pcCaseId = model.SelectedPCCaseId,
                     powerSupplyId = model.SelectedPowerSupplyId,
                     processorId = model.SelectedProcessorId,
-                    ramId = model.SelectedRAMId,
-                    totalPrice = model.Configuration.TotalPrice // to do
+                    ramId = model.SelectedRAMId
                 };
+
+                // iterate over selected hard drives and add them to the configuration object.
+                if (model.SelectedHardDriveIds != null)
+                {
+                    foreach (string item in model.SelectedHardDriveIds)
+                    {
+                        configuration.pcBuildHardDrives.Add(
+                             new HardDrive
+                             {
+                                 HardDriveId = Guid.Parse(item),
+                             }
+                        );
+                    }
+                }
+                if (model.SelectedOtherIds != null)
+                {
+                    foreach (string item in model.SelectedOtherIds)
+                    {
+                        configuration.pcBuildOthers.Add(
+                             new Other
+                             {
+                                 OtherId = Guid.Parse(item),
+                             }
+                        );
+                    }
+                }
 
 
                 using (var httpClient = new HttpClient())
@@ -213,8 +251,7 @@ namespace HomeManager.Areas.PcBuilds.Controllers
                     using (HttpResponseMessage response = await httpClient.PutAsync(string.Format("{0}/{1}", this.apiBaseUrl, this.apiController), httpContent))
                     {
                         string apiResponse = await response.Content.ReadAsStringAsync();    // returns object, todo: change response in api to return successfull message
-                        //ViewBag.Result = "Success";
-                        //receivedReservation = JsonConvert.DeserializeObject<Reservation>(apiResponse);
+                  
                     }
                 }
 

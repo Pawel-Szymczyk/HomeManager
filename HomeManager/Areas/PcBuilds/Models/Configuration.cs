@@ -103,6 +103,10 @@ namespace HomeManager.Areas.PcBuilds.Models
         public CPUWatercooler CPUWatercooler { get; set; }
         public Fan Fan { get; set; }
         public GraphicsCard GraphicsCard { get; set; }
+
+        [Display(Name = "Graphics Card Quantity")]
+        [Range(1, Int32.MaxValue)]
+        public int GraphicsCardQty { get; set; }
         public Motherboard Motherboard { get; set; }
         public PCCase PCCase { get; set; }
         public PowerSupply PowerSupply { get; set; }

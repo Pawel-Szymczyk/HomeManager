@@ -102,11 +102,22 @@ namespace PCBuilder.Service.API.Repositories
         /// <returns>Returns pc build with updated total price parameter.</returns>
         private PCBuild UpdatePCBuildWithTotalPrice(PCBuild model)
         {
+            decimal? graphicsPrice = 0;
+            if (model.GraphicsCardQty > 0)
+            {
+                graphicsPrice = model.GraphicsCard?.Price * model.GraphicsCardQty;
+            }
+            else
+            {
+                graphicsPrice = model.GraphicsCard?.Price;
+            }
             decimal totalPrice = new List<decimal>
             {
+
                 model.CPUWatercooler?.Price ?? 0,
                 model.Fan?.Price ?? 0,
-                model.GraphicsCard?.Price ?? 0,
+                //model.GraphicsCard?.Price ?? 0,
+                graphicsPrice ?? 0,
                 model.Motherboard?.Price ?? 0,
                 model.PCCase?.Price ?? 0,
                 model.PowerSupply?.Price ?? 0,
@@ -127,13 +138,22 @@ namespace PCBuilder.Service.API.Repositories
         private List<PCBuild> UpdateListOfPCBuildsWithTotalPrice(List<PCBuild> pcBuilds)
         {
             var newPCBuilds = new List<PCBuild>();
+            decimal? graphicsPrice = 0;
             foreach (PCBuild build in pcBuilds)
             {
+                if (build.GraphicsCardQty > 0)
+                {
+                    graphicsPrice = build.GraphicsCard?.Price * build.GraphicsCardQty;
+                }
+                else
+                {
+                    graphicsPrice = build.GraphicsCard?.Price;
+                }
                 decimal totalPrice = new List<decimal>
                 {
                     build.CPUWatercooler?.Price ?? 0,
                     build.Fan?.Price ?? 0,
-                    build.GraphicsCard?.Price ?? 0,
+                    graphicsPrice ?? 0,
                     build.Motherboard?.Price ?? 0,
                     build.PCCase?.Price ?? 0,
                     build.PowerSupply?.Price ?? 0,
