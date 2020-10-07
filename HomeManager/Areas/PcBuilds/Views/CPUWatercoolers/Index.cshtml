@@ -1,71 +1,56 @@
 ﻿@model IEnumerable<HomeManager.Areas.PcBuilds.Models.CPUWatercooler>
 
+@section Banner {
+    @*... contents of the banner specific to that view*@
+    <div class="cpu-watercooler-8bit-background">
+        @*<p>
+            <a asp-action="Create">Create New</a>
+        </p>*@
+
+        <a type="button" class="nes-btn is-primary" asp-action="Create">Create New</a>
+
+        <img class="website-header-img" src="~/lib/images/cpu_watercooler.png" alt="cpu watercooler" />
+    </div>
+}
+
+
+
 @{
     ViewData["Title"] = "Index";
 }
 
-<h1>CPU Watercoolers</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Name)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Manufacturer)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Dimensions)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.SocketsCompatibility)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.NumberOfFans)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Price)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Link)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Manufacturer)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Dimensions)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.SocketsCompatibility)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.NumberOfFans)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Price)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Link)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.CPUWatercoolerId }) |
-                @Html.ActionLink("Details", "Details", new { id = item.CPUWatercoolerId }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.CPUWatercoolerId })
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+
+
+<article class="nes-container">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Price)
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Price)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.CPUWatercoolerId }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.CPUWatercoolerId }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.CPUWatercoolerId })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    </article>
