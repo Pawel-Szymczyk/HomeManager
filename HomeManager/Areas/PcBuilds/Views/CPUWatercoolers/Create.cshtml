@@ -12,9 +12,7 @@
 }
 
 <article class="nes-container">
-
     <form asp-action="Create" enctype="multipart/form-data">
-
         <div class="actions-container">
             <div>
                 <h1>Create</h1>
@@ -24,14 +22,10 @@
                 <a class="nes-btn" asp-action="Index">Back to List</a>
             </div>
         </div>
-
         <hr />
-
         <div class="row">
             <div class="col-md-8">
-
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
- 
                 <div class="nes-field">
                     <label asp-for="Name" class="control-label"></label>
                     <input asp-for="Name" class="nes-input" />
@@ -67,8 +61,6 @@
                     <input asp-for="Link" class="nes-input" />
                     <span asp-validation-for="Link" class="nes-text is-error"></span>
                 </div>
-
-
                 <div class="form-group">
                     <label asp-for="ImageFile" class="nes-btn">
                         <span>Select your image</span>
@@ -76,15 +68,8 @@
                     </label>
                     <span asp-validation-for="ImageFile" class="text-danger"></span>
                 </div>
-
-                @*<label class="nes-btn">
-                    <span>Select your image</span>
-                    <input type="file">
-                </label>*@
-
             </div>
         </div>
-
     </form>
 </article>
 

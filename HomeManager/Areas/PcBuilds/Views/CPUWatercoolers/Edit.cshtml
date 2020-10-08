@@ -13,7 +13,6 @@
 
 <article class="nes-container">
     <form asp-action="Edit" enctype="multipart/form-data">
-
         <div class="actions-container">
             <div>
                 <h1>Edit</h1>
@@ -23,13 +22,10 @@
                 <a class="nes-btn" asp-action="Index">Back to List</a>
             </div>
         </div>
-
         <hr />
-
         <div class="row">
             <div class="col-md-8">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-
                 <div class="nes-field">
                     <label asp-for="Name" class="control-label"></label>
                     <input asp-for="Name" class="nes-input" />
@@ -73,12 +69,11 @@
                     <span asp-validation-for="ImageFile" class="text-danger"></span>
                 </div>
             </div>
-
             <div class="col-md-4">
                 @if (Model.ImageData != null)
                 {
-                    <div class="nes-container is-rounded" style="width: max-content; float: right;">
-                        <img src="data:image;base64,@System.Convert.ToBase64String(Model.ImageData)" width="250px" height="250px" />
+                    <div class="nes-container is-rounded image-box edit-image-box">
+                        <img src="data:image;base64,@System.Convert.ToBase64String(Model.ImageData)" class="product-image"/>
                     </div>
                 }
             </div>

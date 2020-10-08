@@ -19,7 +19,6 @@
 <body>
     <header>
 
-
         @if (!IsSectionDefined("Banner"))
         {
             //... put the default banner contents here
@@ -58,12 +57,12 @@
                             </div>
                         </li>
 
-                        <li class="nav-item">
+                        @*<li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
+                        </li>*@
                     </ul>
                 </div>
             </div>
@@ -76,18 +75,8 @@
     </div>
 
 
-
-    @*<footer class="footer">
-            <div class="container">
-                <div class="nes-container is-dark">
-                    &copy; 2020 - HomeManager - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                </div>
-            </div>
-        </footer>*@
-
-
     <footer class="border-top footer">
-        <div class="container" style="color: white;">
+        <div class="container footer-box">
             &copy; 2020 - HomeManager - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
     </footer>

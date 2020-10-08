@@ -1,6 +1,14 @@
 ﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
 for details on configuring this project to bundle and minify static web assets. */
 
+.navbar {
+    background: #B4B7BA !important;
+    border-bottom: 4px solid black !important;
+}
+
+.border-top {
+    border-top: 4px solid #000000 !important;
+}
 
 
 a.navbar-brand {
@@ -65,102 +73,15 @@ body {
   margin-bottom: 60px;
 }
 .footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  white-space: nowrap;
-  line-height: 60px; /* Vertically center the text there */
-}
-
-/* CUSTOM BANNERS*/
-.eightbit-header-index {
-    grid-template-columns: 195px auto;
-    grid-gap: 100px;
-}
-
-.eightbit-header-cpu-watercooler {
-    display: grid;
-    height: 180px;
-    align-items: center;
-    justify-content: center;
-    background: linear-gradient(to bottom, #1C2462 26%, #212976 35%, #262f7d 45%, #2d3586 47%, #313d91 61%, #3c49a1 65%, #4156ae 75%, #4860AE 78%, #4e6fc5 88%, #dff7ff 100% );
-}
-
-
-/* common? */
-
-.navbar {
-    background: #B4B7BA !important;
-    border-bottom: 4px solid black !important;
-}
-
-.card-deck {
-    margin: 0 122px;
-}
-
-.card {
-    padding: 0 !important;
-    min-width: 400px !important;
-    max-width: 448px !important;
-}
-
-.card-footer {
-    background: white;
-    border: none;
-    padding-top: 1px;
-}
-
-.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    white-space: nowrap;
+    line-height: 60px; /* Vertically center the text there */
     background-color: #838487 !important;
 }
-.border-top {
-    border-top: 4px solid #000000 !important;
+
+.footer-box {
+    color: white;
 }
 
-.actions-container {
-    display: grid;
-    grid-template-columns: auto auto;
-}
-
-.actions-container-buttons {
-    justify-self: end;
-}
-
-
-/* ---------------------Layout response--------------------- */
-/* mobile */
-.content-container {
-    width: 100%;
-    padding-right: 15px;
-    padding-left: 15px;
-    margin-right: auto;
-    margin-left: auto;
-}
-
-@media (min-width: 576px) {
-    .content-container {
-        max-width: 540px;
-    }
-}
-
-@media (min-width: 768px) {
-    .content-container {
-        max-width: 720px;
-    }
-}
-
-@media (min-width: 992px) {
-    .content-container {
-        max-width: 960px;
-    }
-}
-
-/* desktop */
-@media (min-width: 1200px) {
-    .content-container {
-        max-width: 1857px;
-    }
-}
-
-
-/*colors #B4B7BA  #838487*/
