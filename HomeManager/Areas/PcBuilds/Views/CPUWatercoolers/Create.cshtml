@@ -1,71 +1,92 @@
 ﻿@model HomeManager.Areas.PcBuilds.Models.CPUWatercooler
 
-@{
-    ViewData["Title"] = "Create";
+@section Banner {
+    @*... contents of the banner specific to that view*@
+    <div class="eightbit-header-cpu-watercooler">
+        <img class="website-header-img" src="~/lib/images/cpu_watercooler.png" alt="cpu watercooler" />
+    </div>
 }
 
-<h1>Create</h1>
+@{
+    ViewData["Title"] = "CPU Watercooler";
+}
 
-<h4>CPUWatercooler</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create" enctype="multipart/form-data">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Name" class="control-label"></label>
-                <input asp-for="Name" class="form-control" />
-                <span asp-validation-for="Name" class="text-danger"></span>
+<article class="nes-container">
+
+    <form asp-action="Create" enctype="multipart/form-data">
+
+        <div class="actions-container">
+            <div>
+                <h1>Create</h1>
             </div>
-            <div class="form-group">
-                <label asp-for="Manufacturer" class="control-label"></label>
-                <input asp-for="Manufacturer" class="form-control" />
-                <span asp-validation-for="Manufacturer" class="text-danger"></span>
+            <div class="actions-container-buttons">
+                <button type="submit" class="nes-btn is-primary">Create</button>
+                <a class="nes-btn" asp-action="Index">Back to List</a>
             </div>
-            <div class="form-group">
-                <label asp-for="Dimensions" class="control-label"></label>
-                <input asp-for="Dimensions" class="form-control" />
-                <span asp-validation-for="Dimensions" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="SocketsCompatibility" class="control-label"></label>
-                <input asp-for="SocketsCompatibility" class="form-control" />
-                <span asp-validation-for="SocketsCompatibility" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="NumberOfFans" class="control-label"></label>
-                <input asp-for="NumberOfFans" class="form-control" />
-                <span asp-validation-for="NumberOfFans" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Price" class="control-label"></label>
-                <input asp-for="Price" class="form-control" />
-                <span asp-validation-for="Price" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Link" class="control-label"></label>
-                <input asp-for="Link" class="form-control" />
-                <span asp-validation-for="Link" class="text-danger"></span>
-            </div>
+        </div>
+
+        <hr />
+
+        <div class="row">
+            <div class="col-md-8">
+
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+ 
+                <div class="nes-field">
+                    <label asp-for="Name" class="control-label"></label>
+                    <input asp-for="Name" class="nes-input" />
+                    <span asp-validation-for="Name" class="nes-text is-error"></span>
+                </div>
+                <div class="nes-field">
+                    <label asp-for="Manufacturer" class="control-label"></label>
+                    <input asp-for="Manufacturer" class="nes-input" />
+                    <span asp-validation-for="Manufacturer" class="nes-text is-error"></span>
+                </div>
+                <div class="nes-field">
+                    <label asp-for="Dimensions" class="control-label"></label>
+                    <input asp-for="Dimensions" class="nes-input" />
+                    <span asp-validation-for="Dimensions" class="nes-text is-error"></span>
+                </div>
+                <div class="nes-field">
+                    <label asp-for="SocketsCompatibility" class="control-label"></label>
+                    <input asp-for="SocketsCompatibility" class="nes-input" />
+                    <span asp-validation-for="SocketsCompatibility" class="nes-text is-error"></span>
+                </div>
+                <div class="nes-field">
+                    <label asp-for="NumberOfFans" class="control-label"></label>
+                    <input asp-for="NumberOfFans" class="nes-input" />
+                    <span asp-validation-for="NumberOfFans" class="nes-text is-error"></span>
+                </div>
+                <div class="nes-field">
+                    <label asp-for="Price" class="control-label"></label>
+                    <input asp-for="Price" class="nes-input" />
+                    <span asp-validation-for="Price" class="nes-text is-error"></span>
+                </div>
+                <div class="nes-field">
+                    <label asp-for="Link" class="control-label"></label>
+                    <input asp-for="Link" class="nes-input" />
+                    <span asp-validation-for="Link" class="nes-text is-error"></span>
+                </div>
 
 
-            <div class="form-group">
-                <label asp-for="ImageFile" class="control-label"></label>
-                <input asp-for="ImageFile" accept="image/*" />
-                <span asp-validation-for="ImageFile" class="text-danger"></span>
+                <div class="form-group">
+                    <label asp-for="ImageFile" class="nes-btn">
+                        <span>Select your image</span>
+                        <input asp-for="ImageFile" accept="image/*" />
+                    </label>
+                    <span asp-validation-for="ImageFile" class="text-danger"></span>
+                </div>
+
+                @*<label class="nes-btn">
+                    <span>Select your image</span>
+                    <input type="file">
+                </label>*@
+
             </div>
+        </div>
 
-
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
-    </div>
-</div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
+    </form>
+</article>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

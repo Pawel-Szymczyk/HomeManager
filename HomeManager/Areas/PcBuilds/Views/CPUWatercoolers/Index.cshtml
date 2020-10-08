@@ -2,19 +2,14 @@
 
 @section Banner {
     @*... contents of the banner specific to that view*@
-    <div class="cpu-watercooler-8bit-background">
-        @*<p>
-            <a asp-action="Create">Create New</a>
-        </p>*@
-
+    <div class="eightbit-header-cpu-watercooler eightbit-header-index">
         <a type="button" class="nes-btn is-primary" asp-action="Create">Create New</a>
-
         <img class="website-header-img" src="~/lib/images/cpu_watercooler.png" alt="cpu watercooler" />
     </div>
 }
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "CPU Watercoolers";
 }
 
 
@@ -25,13 +20,11 @@
 
             @foreach (var item in Model)
             {
-                @*<div class="nes-container is-rounded card">*@
-
                 <div class="col mb-4">
                     <div class="card nes-container is-rounded">
                         @if (item.ImageData != null)
                         {
-                            <img src="data:image;base64,@System.Convert.ToBase64String(item.ImageData)" @*class="card-img-top"*@ @*width="250px" height="250px"*@ alt="cpu watercooler" />
+                            <img src="data:image;base64,@System.Convert.ToBase64String(item.ImageData)" alt="cpu watercooler" />
                         }
                         <div class="card-body">
                             <h5 class="card-title">@Html.DisplayFor(modelItem => item.Name)</h5>
