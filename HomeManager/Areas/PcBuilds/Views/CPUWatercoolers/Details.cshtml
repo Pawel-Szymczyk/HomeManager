@@ -2,7 +2,7 @@
 
 @section Banner {
     @*... contents of the banner specific to that view*@
-    <div class="eightbit-header-cpu-watercooler">
+    <div class="eightbit-header-cpu-watercooler eightbit-header ">
         <img class="website-header-img" src="~/lib/images/cpu_watercooler.png" alt="cpu watercooler" />
     </div>
 }
@@ -17,7 +17,7 @@
             <h1>Details</h1>
         </div>
         <div class="actions-container-buttons">
-            <button class="nes-btn" onclick="location.href='@Url.Action("Edit", new { id = Model.CPUWatercoolerId })'">Edit</button>
+            <button class="nes-btn is-warning" onclick="location.href='@Url.Action("Edit", new { id = Model.CPUWatercoolerId })'">Edit</button>
             <a class="nes-btn" asp-action="Index">Back to List</a>
         </div>
     </div>
@@ -64,11 +64,7 @@
                 @Html.DisplayNameFor(model => model.Link)
             </dt>
             <dd class="col-sm-10">
-                @if (String.IsNullOrEmpty(Model.Link))
-                {
-                    @Html.DisplayFor(modelItem => modelItem.Link)
-                }
-                else
+                @if (!String.IsNullOrEmpty(Model.Link))
                 {
                     <a href="@Model.Link" target=_blank>Product Website</a>
                 }

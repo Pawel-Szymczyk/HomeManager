@@ -98,13 +98,15 @@ namespace HomeManager.Areas.PcBuilds.Models
         public decimal TotalPrice { get; set; }
         [DataType(DataType.Date)]
         public DateTime CreatedDate { get; set; }
+        
+        [Display(Name= "Last time pc configuration was modified by")]
         [DataType(DataType.Date)]
         public DateTime ModifiedDate { get; set; }
         public CPUWatercooler CPUWatercooler { get; set; }
         public Fan Fan { get; set; }
         public GraphicsCard GraphicsCard { get; set; }
 
-        [Display(Name = "Graphics Card Quantity")]
+        [Display(Name = "Qty")]
         [Range(1, Int32.MaxValue)]
         public int GraphicsCardQty { get; set; }
         public Motherboard Motherboard { get; set; }

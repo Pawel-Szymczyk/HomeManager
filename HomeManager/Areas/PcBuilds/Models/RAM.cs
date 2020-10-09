@@ -14,11 +14,11 @@ namespace HomeManager.Areas.PcBuilds.Models
 
         public string Manufacturer { get; set; }
 
-        [Display(Name = "Image Title")]
+        [Display(Name = "Image title")]
         public string ImageTitle { get; set; }
         public byte[] ImageData { get; set; }
 
-        [Display(Name = "Upload Image")]
+        [Display(Name = "Upload image")]
         public IFormFile ImageFile { get; set; }
 
         [Display(Name = "Memory type")]

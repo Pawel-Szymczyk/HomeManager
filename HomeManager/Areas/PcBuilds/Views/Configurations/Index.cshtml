@@ -1,53 +1,40 @@
 ﻿@model IEnumerable<HomeManager.Areas.PcBuilds.Models.Configuration>
 
+@section Banner {
+    @*... contents of the banner specific to that view*@
+    <div class="eightbit-header-pc-configuration eightbit-header eightbit-header-index">
+        <a type="button" class="nes-btn is-primary" asp-action="Create">Create New</a>
+        <img class="website-header-img" src="~/lib/images/pc_configuration.png" alt="pc configuration" />
+    </div>
+}
+
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "PC Configuration";
 }
 
-<h1>PC Configurations</h1>
-
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Description)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.TotalPrice)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CreatedDate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ModifiedDate)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TotalPrice)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CreatedDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ModifiedDate)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.PCBuildId }) |
-                @Html.ActionLink("Details", "Details", new { id = item.PCBuildId }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.PCBuildId })
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+<article class="nes-container">
+    <div class="card-deck">
+        <div class="row row-cols-1 row-cols-md-3">
+            @foreach (var item in Model)
+            {
+                <div class="col mb-4">
+                    <div class="card nes-container is-rounded">
+                        @if (item.ImageData != null)
+                        {
+                            <img src="data:image;base64,@System.Convert.ToBase64String(item.ImageData)" alt="cpu watercooler" />
+                        }
+                        <div class="card-body">
+                            <h5 class="card-title">@Html.DisplayFor(modelItem => item.Description)</h5>
+                            <p class="card-text">@Html.DisplayFor(modelItem => item.TotalPrice)</p>
+                        </div>
+                        <div class="card-footer">
+                            <button class="nes-btn" onclick="location.href='@Url.Action("Details", new { id = item.PCBuildId })'">Details</button>
+                            <button class="nes-btn is-warning" onclick="location.href='@Url.Action("Edit", new { id = item.PCBuildId })'">Edit</button>
+                            <button class="nes-btn is-error" onclick="location.href='@Url.Action("Delete", new { id = item.PCBuildId })'">Delete</button>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</article>

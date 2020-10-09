@@ -1,722 +1,725 @@
 ﻿@model HomeManager.Areas.PcBuilds.Models.Configuration
 
-@{
-    ViewData["Title"] = "Details";
+@section Banner {
+    @*... contents of the banner specific to that view*@
+    <div class="eightbit-header-pc-configuration eightbit-header ">
+        <img class="website-header-img" src="~/lib/images/pc_configuration.png" alt="pc configuration" />
+    </div>
 }
 
-<h1>Details</h1>
+@{
+    ViewData["Title"] = "PC Configuration";
+}
 
-<div>
-    <h4>Configuration</h4>
+
+<article class="nes-container">
+    <div class="actions-container">
+        <div>
+            <h1>Details</h1>
+        </div>
+        <div class="actions-container-buttons">
+            <button class="nes-btn is-warning" onclick="location.href='@Url.Action("Edit", new { id = Model.PCBuildId })'">Edit</button>
+            <a class="nes-btn" asp-action="Index">Back to List</a>
+        </div>
+    </div>
     <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Description)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.TotalPrice)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.TotalPrice)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.CreatedDate)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.CreatedDate)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ModifiedDate)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ModifiedDate)
-        </dd>
-    </dl>
-</div>
-
-
-
-<div class="accordion" id="configuration">
-    <div class="card">
-        <div class="card-header" id="cpuWatercooler">
-            <h2 class="mb-0">
-                <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseCPUWatercooler" aria-expanded="true" aria-controls="collapseCPUWatercooler">
-                    <span class="glyphicon">&#x2b;</span> CPU Watercooler
-                </button>
-            </h2>
-        </div>
-        <div id="collapseCPUWatercooler" class="collapse show" aria-labelledby="cpuWatercooler" data-parent="#configuration">
-            <div class="card-body">
-                <dl class="row">
-                    <dt class="col-sm-2">
-                        @Html.DisplayNameFor(model => model.CPUWatercooler.Name)
-                    </dt>
-                    <dd class="col-sm-10">
-                        @Html.DisplayFor(model => model.CPUWatercooler.Name)
-                    </dd>
-                    <dt class="col-sm-2">
-                        @Html.DisplayNameFor(model => model.CPUWatercooler.Manufacturer)
-                    </dt>
-                    <dd class="col-sm-10">
-                        @Html.DisplayFor(model => model.CPUWatercooler.Manufacturer)
-                    </dd>
-                    <dt class="col-sm-2">
-                        @Html.DisplayNameFor(model => model.CPUWatercooler.Dimensions)
-                    </dt>
-                    <dd class="col-sm-10">
-                        @Html.DisplayFor(model => model.CPUWatercooler.Dimensions)
-                    </dd>
-                    <dt class="col-sm-2">
-                        @Html.DisplayNameFor(model => model.CPUWatercooler.SocketsCompatibility)
-                    </dt>
-                    <dd class="col-sm-10">
-                        @Html.DisplayFor(model => model.CPUWatercooler.SocketsCompatibility)
-                    </dd>
-                    <dt class="col-sm-2">
-                        @Html.DisplayNameFor(model => model.CPUWatercooler.NumberOfFans)
-                    </dt>
-                    <dd class="col-sm-10">
-                        @Html.DisplayFor(model => model.CPUWatercooler.NumberOfFans)
-                    </dd>
-                    <dt class="col-sm-2">
-                        @Html.DisplayNameFor(model => model.CPUWatercooler.Price)
-                    </dt>
-                    <dd class="col-sm-10">
-                        @Html.DisplayFor(model => model.CPUWatercooler.Price)
-                    </dd>
-                    <dt class="col-sm-2">
-                        @Html.DisplayNameFor(model => model.CPUWatercooler.Link)
-                    </dt>
-                    <dd class="col-sm-10">
-                        @Html.DisplayFor(model => model.CPUWatercooler.Link)
-                    </dd>
-                </dl>
-            </div>
-        </div>
+    <div class="actions-container">
+        <dl class="row">
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Description)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Description)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.TotalPrice)
+            </dt>
+            <dd class="col-sm-10">
+                <strong>@Html.DisplayFor(model => model.TotalPrice)</strong>
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.ModifiedDate)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.ModifiedDate)
+            </dd>
+        </dl>
     </div>
 
-    <div class="card">
-        <div class="card-header" id="fan">
-            <h2 class="mb-0">
-                <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseFan" aria-expanded="true" aria-controls="collapseFan">
-                    <span class="glyphicon">&#x2b;</span> Fan
-                </button>
-            </h2>
-        </div>
-        <div id="collapseFan" class="collapse show" aria-labelledby="fan" data-parent="#configuration">
-            <div class="card-body">
-                <dl class="row">
-                    <dt class="col-sm-2">
-                        @Html.DisplayNameFor(model => model.Fan.Name)
-                    </dt>
-                    <dd class="col-sm-10">
-                        @Html.DisplayFor(model => model.Fan.Name)
-                    </dd>
-                    <dt class="col-sm-2">
-                        @Html.DisplayNameFor(model => model.Fan.Manufacturer)
-                    </dt>
-                    <dd class="col-sm-10">
-                        @Html.DisplayFor(model => model.Fan.Manufacturer)
-                    </dd>
-                    <dt class="col-sm-2">
-                        @Html.DisplayNameFor(model => model.Fan.Dimensions)
-                    </dt>
-                    <dd class="col-sm-10">
-                        @Html.DisplayFor(model => model.Fan.Dimensions)
-                    </dd>
-                    <dt class="col-sm-2">
-                        @Html.DisplayNameFor(model => model.Fan.NumberOfFuns)
-                    </dt>
-                    <dd class="col-sm-10">
-                        @Html.DisplayFor(model => model.Fan.NumberOfFuns)
-                    </dd>
-                    <dt class="col-sm-2">
-                        @Html.DisplayNameFor(model => model.Fan.PWMControl)
-                    </dt>
-                    <dd class="col-sm-10">
-                        @Html.DisplayFor(model => model.Fan.PWMControl)
-                    </dd>
-                    <dt class="col-sm-2">
-                        @Html.DisplayNameFor(model => model.Fan.RGB)
-                    </dt>
-                    <dd class="col-sm-10">
-                        @Html.DisplayFor(model => model.Fan.RGB)
-                    </dd>
-                    <dt class="col-sm-2">
-                        @Html.DisplayNameFor(model => model.Fan.Price)
-                    </dt>
-                    <dd class="col-sm-10">
-                        @Html.DisplayFor(model => model.Fan.Price)
-                    </dd>
-                    <dt class="col-sm-2">
-                        @Html.DisplayNameFor(model => model.Fan.Link)
-                    </dt>
-                    <dd class="col-sm-10">
-                        @Html.DisplayFor(model => model.Fan.Link)
-                    </dd>
-                </dl>
-            </div>
-        </div>
-    </div>
 
-    <div class="card">
-        <div class="card-header" id="graphicsCard">
-            <h2 class="mb-0">
-                <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseGraphicsCard" aria-expanded="true" aria-controls="collapseGraphicsCard">
-                    <span class="glyphicon">&#x2b;</span> Graphics Card
-                </button>
-            </h2>
-        </div>
-        <div id="collapseGraphicsCard" class="collapse show" aria-labelledby="graphicsCard" data-parent="#configuration">
-            <div class="card-body">
-                <dl class="row">
-                    <dt class="col-sm-2">
-                        @Html.DisplayNameFor(model => model.GraphicsCard.Name)
-                    </dt>
-                    <dd class="col-sm-10">
-                        @Html.DisplayFor(model => model.GraphicsCard.Name)
-                    </dd>
-                    <dt class="col-sm-2">
-                        @Html.DisplayNameFor(model => model.GraphicsCard.Manufacturer)
-                    </dt>
-                    <dd class="col-sm-10">
-                        @Html.DisplayFor(model => model.GraphicsCard.Manufacturer)
-                    </dd>
-                    <dt class="col-sm-2">
-                        @Html.DisplayNameFor(model => model.GraphicsCardQty)
-                    </dt>
-                    <dd class="col-sm-10">
-                        @Html.DisplayFor(model => model.GraphicsCardQty)
-                    </dd>
-                    <dt class="col-sm-2">
-                        @Html.DisplayNameFor(model => model.GraphicsCard.Dimensions)
-                    </dt>
-                    <dd class="col-sm-10">
-                        @Html.DisplayFor(model => model.GraphicsCard.Dimensions)
-                    </dd>
-                    <dt class="col-sm-2">
-                        @Html.DisplayNameFor(model => model.GraphicsCard.GPU)
-                    </dt>
-                    <dd class="col-sm-10">
-                        @Html.DisplayFor(model => model.GraphicsCard.GPU)
-                    </dd>
-                    <dt class="col-sm-2">
-                        @Html.DisplayNameFor(model => model.GraphicsCard.GPUFrequency)
-                    </dt>
-                    <dd class="col-sm-10">
-                        @Html.DisplayFor(model => model.GraphicsCard.GPUFrequency)
-                    </dd>
-                    <dt class="col-sm-2">
-                        @Html.DisplayNameFor(model => model.GraphicsCard.BoostClock)
-                    </dt>
-                    <dd class="col-sm-10">
-                        @Html.DisplayFor(model => model.GraphicsCard.BoostClock)
-                    </dd>
-                    <dt class="col-sm-2">
-                        @Html.DisplayNameFor(model => model.GraphicsCard.MemoryType)
-                    </dt>
-                    <dd class="col-sm-10">
-                        @Html.DisplayFor(model => model.GraphicsCard.MemoryType)
-                    </dd>
-                    <dt class="col-sm-2">
-                        @Html.DisplayNameFor(model => model.GraphicsCard.CUDA)
-                    </dt>
-                    <dd class="col-sm-10">
-                        @Html.DisplayFor(model => model.GraphicsCard.CUDA)
-                    </dd>
-                    <dt class="col-sm-2">
-                        @Html.DisplayNameFor(model => model.GraphicsCard.PSU)
-                    </dt>
-                    <dd class="col-sm-10">
-                        @Html.DisplayFor(model => model.GraphicsCard.PSU)
-                    </dd>
-                    <dt class="col-sm-2">
-                        @Html.DisplayNameFor(model => model.GraphicsCard.Price)
-                    </dt>
-                    <dd class="col-sm-10">
-                        @Html.DisplayFor(model => model.GraphicsCard.Price)
-                    </dd>
-                    <dt class="col-sm-2">
-                        @Html.DisplayNameFor(model => model.GraphicsCard.Link)
-                    </dt>
-                    <dd class="col-sm-10">
-                        @Html.DisplayFor(model => model.GraphicsCard.Link)
-                    </dd>
-                </dl>
-            </div>
-        </div>
-    </div>
 
-    <div class="card">
-        <div class="card-header" id="hardDrive">
-            <h2 class="mb-0">
-                <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseHardDrive" aria-expanded="true" aria-controls="collapseHardDrive">
-                    <span class="glyphicon">&#x2b;</span> Hard Drive
-                </button>
-            </h2>
-        </div>
-        <div id="collapseHardDrive" class="collapse show" aria-labelledby="hardDrive" data-parent="#configuration">
-            @foreach (var item in Model.pcBuildHardDrives)
+    <div class="nes-container with-title">
+        <p class="title">CPU Watercooler</p>
+        <div class="actions-container">
+            <dl class="row">
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.CPUWatercooler.Name)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.CPUWatercooler.Name)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.CPUWatercooler.Manufacturer)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.CPUWatercooler.Manufacturer)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.CPUWatercooler.Dimensions)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.CPUWatercooler.Dimensions)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.CPUWatercooler.SocketsCompatibility)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.CPUWatercooler.SocketsCompatibility)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.CPUWatercooler.NumberOfFans)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.CPUWatercooler.NumberOfFans)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.CPUWatercooler.Price)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.CPUWatercooler.Price)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.CPUWatercooler.Link)
+                </dt>
+                <dd class="col-sm-10">
+                    @if (!String.IsNullOrEmpty(Model.CPUWatercooler.Link))
+                    {
+                        <a href="@Model.CPUWatercooler.Link" target=_blank>Product Website</a>
+                    }
+                </dd>
+            </dl>
+            @if (Model.CPUWatercooler.ImageData != null)
             {
-                <div class="card-body">
-                    <dl class="row">
-                        <dt class="col-sm-2">
-                            @Html.DisplayNameFor(model => item.hardDrive.Name)
-                        </dt>
-                        <dd class="col-sm-10">
-                            @Html.DisplayFor(model => item.hardDrive.Name)
-                        </dd>
-                        <dt class="col-sm-2">
-                            @Html.DisplayNameFor(model => item.hardDrive.Manufacturer)
-                        </dt>
-                        <dd class="col-sm-10">
-                            @Html.DisplayFor(model => item.hardDrive.Manufacturer)
-                        </dd>
-                        <dt class="col-sm-2">
-                            @Html.DisplayNameFor(model => item.hardDrive.Capacity)
-                        </dt>
-                        <dd class="col-sm-10">
-                            @Html.DisplayFor(model => item.hardDrive.Capacity)
-                        </dd>
-                        <dt class="col-sm-2">
-                            @Html.DisplayNameFor(model => item.hardDrive.Type)
-                        </dt>
-                        <dd class="col-sm-10">
-                            @Html.DisplayFor(model => item.hardDrive.Type)
-                        </dd>
-                        <dt class="col-sm-2">
-                            @Html.DisplayNameFor(model => item.hardDrive.Price)
-                        </dt>
-                        <dd class="col-sm-10">
-                            @Html.DisplayFor(model => item.hardDrive.Price)
-                        </dd>
-                        <dt class="col-sm-2">
-                            @Html.DisplayNameFor(model => item.hardDrive.Link)
-                        </dt>
-                        <dd class="col-sm-10">
-                            @Html.DisplayFor(model => item.hardDrive.Link)
-                        </dd>
-                    </dl>
+                <div class="nes-container is-rounded image-box">
+                    <img src="data:image;base64,@System.Convert.ToBase64String(Model.CPUWatercooler.ImageData)" class="product-image" alt="cpu watercooler"/>
                 </div>
             }
         </div>
     </div>
 
-    <div class="card">
-        <div class="card-header" id="motherboard">
-            <h2 class="mb-0">
-                <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseMotherboard" aria-expanded="true" aria-controls="collapseMotherboard">
-                    <span class="glyphicon">&#x2b;</span> Motherboard
-                </button>
-            </h2>
-        </div>
-        <div id="collapseMotherboard" class="collapse show" aria-labelledby="motherboard" data-parent="#configuration">
-            <div class="card-body">
-                <dl class="row">
-                    <dt class="col-sm-2">
-                        @Html.DisplayNameFor(model => model.Motherboard.Name)
-                    </dt>
-                    <dd class="col-sm-10">
-                        @Html.DisplayFor(model => model.Motherboard.Name)
-                    </dd>
-                    <dt class="col-sm-2">
-                        @Html.DisplayNameFor(model => model.Motherboard.Manufacturer)
-                    </dt>
-                    <dd class="col-sm-10">
-                        @Html.DisplayFor(model => model.Motherboard.Manufacturer)
-                    </dd>
-                    <dt class="col-sm-2">
-                        @Html.DisplayNameFor(model => model.Motherboard.CPU)
-                    </dt>
-                    <dd class="col-sm-10">
-                        @Html.DisplayFor(model => model.Motherboard.CPU)
-                    </dd>
-                    <dt class="col-sm-2">
-                        @Html.DisplayNameFor(model => model.Motherboard.Chipset)
-                    </dt>
-                    <dd class="col-sm-10">
-                        @Html.DisplayFor(model => model.Motherboard.Chipset)
-                    </dd>
-                    <dt class="col-sm-2">
-                        @Html.DisplayNameFor(model => model.Motherboard.Socket)
-                    </dt>
-                    <dd class="col-sm-10">
-                        @Html.DisplayFor(model => model.Motherboard.Socket)
-                    </dd>
-                    <dt class="col-sm-2">
-                        @Html.DisplayNameFor(model => model.Motherboard.Memory)
-                    </dt>
-                    <dd class="col-sm-10">
-                        @Html.DisplayFor(model => model.Motherboard.Memory)
-                    </dd>
-                    <dt class="col-sm-2">
-                        @Html.DisplayNameFor(model => model.Motherboard.FormFactor)
-                    </dt>
-                    <dd class="col-sm-10">
-                        @Html.DisplayFor(model => model.Motherboard.FormFactor)
-                    </dd>
-                    <dt class="col-sm-2">
-                        @Html.DisplayNameFor(model => model.Motherboard.Price)
-                    </dt>
-                    <dd class="col-sm-10">
-                        @Html.DisplayFor(model => model.Motherboard.Price)
-                    </dd>
-                    <dt class="col-sm-2">
-                        @Html.DisplayNameFor(model => model.Motherboard.Link)
-                    </dt>
-                    <dd class="col-sm-10">
-                        @Html.DisplayFor(model => model.Motherboard.Link)
-                    </dd>
-                </dl>
-            </div>
-        </div>
-    </div>
-
-    <div class="card">
-        <div class="card-header" id="other">
-            <h2 class="mb-0">
-                <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseOther" aria-expanded="true" aria-controls="collapseOther">
-                    <span class="glyphicon">&#x2b;</span> Other
-                </button>
-            </h2>
-        </div>
-        <div id="collapseOther" class="collapse show" aria-labelledby="other" data-parent="#configuration">
-            @foreach (var item in Model.pcBuildOthers)
+    <div class="nes-container is-dark with-title" style="margin: 50px;">
+        <p class="title">Fan</p>
+        <div class="actions-container">
+            <dl class="row">
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Fan.Name)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Fan.Name)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Fan.Manufacturer)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Fan.Manufacturer)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Fan.Dimensions)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Fan.Dimensions)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Fan.NumberOfFuns)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Fan.NumberOfFuns)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Fan.PWMControl)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Fan.PWMControl)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Fan.RGB)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Fan.RGB)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Fan.Price)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Fan.Price)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Fan.Link)
+                </dt>
+                <dd class="col-sm-10">
+                    @if (!String.IsNullOrEmpty(Model.Fan.Link))
+                    {
+                        <a href="@Model.Fan.Link" target=_blank>Product Website</a>
+                    }
+                </dd>
+            </dl>
+            @if (Model.Fan.ImageData != null)
             {
-                <div class="card-body">
-                    <dl class="row">
-                        <dt class="col-sm-2">
-                            @Html.DisplayNameFor(model => item.other.Name)
-                        </dt>
-                        <dd class="col-sm-10">
-                            @Html.DisplayFor(model => item.other.Name)
-                        </dd>
-                        <dt class="col-sm-2">
-                            @Html.DisplayNameFor(model => item.other.Manufacturer)
-                        </dt>
-                        <dd class="col-sm-10">
-                            @Html.DisplayFor(model => item.other.Manufacturer)
-                        </dd>
-                        <dt class="col-sm-2">
-                            @Html.DisplayNameFor(model => item.other.Description)
-                        </dt>
-                        <dd class="col-sm-10">
-                            @Html.DisplayFor(model => item.other.Description)
-                        </dd>
-                        <dt class="col-sm-2">
-                            @Html.DisplayNameFor(model => item.other.Price)
-                        </dt>
-                        <dd class="col-sm-10">
-                            @Html.DisplayFor(model => item.other.Price)
-                        </dd>
-                        <dt class="col-sm-2">
-                            @Html.DisplayNameFor(model => item.other.Link)
-                        </dt>
-                        <dd class="col-sm-10">
-                            @Html.DisplayFor(model => item.other.Link)
-                        </dd>
-                    </dl>
+                <div class="nes-container is-dark is-rounded image-box">
+                    <img src="data:image;base64,@System.Convert.ToBase64String(Model.Fan.ImageData)" class="product-image" alt="fan" />
                 </div>
             }
         </div>
     </div>
 
-    <div class="card">
-        <div class="card-header" id="case">
-            <h2 class="mb-0">
-                <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseCase" aria-expanded="true" aria-controls="collapseCase">
-                    <span class="glyphicon">&#x2b;</span> Case
-                </button>
-            </h2>
-        </div>
-        <div id="collapseCase" class="collapse show" aria-labelledby="case" data-parent="#configuration">
-            <div class="card-body">
-                <dl class="row">
-                    <dt class="col-sm-2">
-                        @Html.DisplayNameFor(model => model.PCCase.Name)
-                    </dt>
-                    <dd class="col-sm-10">
-                        @Html.DisplayFor(model => model.PCCase.Name)
-                    </dd>
-                    <dt class="col-sm-2">
-                        @Html.DisplayNameFor(model => model.PCCase.Manufacturer)
-                    </dt>
-                    <dd class="col-sm-10">
-                        @Html.DisplayFor(model => model.PCCase.Manufacturer)
-                    </dd>
-                    <dt class="col-sm-2">
-                        @Html.DisplayNameFor(model => model.PCCase.FormFactor)
-                    </dt>
-                    <dd class="col-sm-10">
-                        @Html.DisplayFor(model => model.PCCase.FormFactor)
-                    </dd>
-                    <dt class="col-sm-2">
-                        @Html.DisplayNameFor(model => model.PCCase.Color)
-                    </dt>
-                    <dd class="col-sm-10">
-                        @Html.DisplayFor(model => model.PCCase.Color)
-                    </dd>
-                    <dt class="col-sm-2">
-                        @Html.DisplayNameFor(model => model.PCCase.MotherboardSupport)
-                    </dt>
-                    <dd class="col-sm-10">
-                        @Html.DisplayFor(model => model.PCCase.MotherboardSupport)
-                    </dd>
-                    <dt class="col-sm-2">
-                        @Html.DisplayNameFor(model => model.PCCase.SideWindow)
-                    </dt>
-                    <dd class="col-sm-10">
-                        @Html.DisplayFor(model => model.PCCase.SideWindow)
-                    </dd>
-                    <dt class="col-sm-2">
-                        @Html.DisplayNameFor(model => model.PCCase.Price)
-                    </dt>
-                    <dd class="col-sm-10">
-                        @Html.DisplayFor(model => model.PCCase.Price)
-                    </dd>
-                    <dt class="col-sm-2">
-                        @Html.DisplayNameFor(model => model.PCCase.Link)
-                    </dt>
-                    <dd class="col-sm-10">
-                        @Html.DisplayFor(model => model.PCCase.Link)
-                    </dd>
-                </dl>
-            </div>
-        </div>
-    </div>
-
-    <div class="card">
-        <div class="card-header" id="powerSupply">
-            <h2 class="mb-0">
-                <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapsePowerSupply" aria-expanded="true" aria-controls="collapsePowerSupply">
-                    <span class="glyphicon">&#x2b;</span> Power Supply
-                </button>
-            </h2>
-        </div>
-        <div id="collapsePowerSupply" class="collapse show" aria-labelledby="powerSupply" data-parent="#configuration">
-            <div class="card-body">
-                <dl class="row">
-                    <dt class="col-sm-2">
-                        @Html.DisplayNameFor(model => model.PowerSupply.Name)
-                    </dt>
-                    <dd class="col-sm-10">
-                        @Html.DisplayFor(model => model.PowerSupply.Name)
-                    </dd>
-                    <dt class="col-sm-2">
-                        @Html.DisplayNameFor(model => model.PowerSupply.Manufacturer)
-                    </dt>
-                    <dd class="col-sm-10">
-                        @Html.DisplayFor(model => model.PowerSupply.Manufacturer)
-                    </dd>
-                    <dt class="col-sm-2">
-                        @Html.DisplayNameFor(model => model.PowerSupply.Model)
-                    </dt>
-                    <dd class="col-sm-10">
-                        @Html.DisplayFor(model => model.PowerSupply.Model)
-                    </dd>
-                    <dt class="col-sm-2">
-                        @Html.DisplayNameFor(model => model.PowerSupply.Power)
-                    </dt>
-                    <dd class="col-sm-10">
-                        @Html.DisplayFor(model => model.PowerSupply.Power)
-                    </dd>
-                    <dt class="col-sm-2">
-                        @Html.DisplayNameFor(model => model.PowerSupply.Color)
-                    </dt>
-                    <dd class="col-sm-10">
-                        @Html.DisplayFor(model => model.PowerSupply.Color)
-                    </dd>
-                    <dt class="col-sm-2">
-                        @Html.DisplayNameFor(model => model.PowerSupply.Certificate)
-                    </dt>
-                    <dd class="col-sm-10">
-                        @Html.DisplayFor(model => model.PowerSupply.Certificate)
-                    </dd>
-                    <dt class="col-sm-2">
-                        @Html.DisplayNameFor(model => model.PowerSupply.ModularCables)
-                    </dt>
-                    <dd class="col-sm-10">
-                        @Html.DisplayFor(model => model.PowerSupply.ModularCables)
-                    </dd>
-                    <dt class="col-sm-2">
-                        @Html.DisplayNameFor(model => model.PowerSupply.Price)
-                    </dt>
-                    <dd class="col-sm-10">
-                        @Html.DisplayFor(model => model.PowerSupply.Price)
-                    </dd>
-                    <dt class="col-sm-2">
-                        @Html.DisplayNameFor(model => model.PowerSupply.Link)
-                    </dt>
-                    <dd class="col-sm-10">
-                        @Html.DisplayFor(model => model.PowerSupply.Link)
-                    </dd>
-                </dl>
-            </div>
+    <div class="nes-container with-title">
+        <p class="title">Graphics Card</p>
+        <div class="actions-container">
+            <dl class="row">
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.GraphicsCard.Name)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.GraphicsCard.Name)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.GraphicsCard.Manufacturer)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.GraphicsCard.Manufacturer)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.GraphicsCardQty)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.GraphicsCardQty)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.GraphicsCard.Dimensions)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.GraphicsCard.Dimensions)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.GraphicsCard.GPU)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.GraphicsCard.GPU)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.GraphicsCard.GPUFrequency)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.GraphicsCard.GPUFrequency)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.GraphicsCard.BoostClock)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.GraphicsCard.BoostClock)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.GraphicsCard.MemoryType)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.GraphicsCard.MemoryType)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.GraphicsCard.CUDA)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.GraphicsCard.CUDA)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.GraphicsCard.PSU)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.GraphicsCard.PSU)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.GraphicsCard.Price)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.GraphicsCard.Price)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.GraphicsCard.Link)
+                </dt>
+                <dd class="col-sm-10">
+                    @if (!String.IsNullOrEmpty(Model.GraphicsCard.Link))
+                    {
+                        <a href="@Model.GraphicsCard.Link" target=_blank>Product Website</a>
+                    }
+                </dd>
+            </dl>
+            @if (Model.GraphicsCard.ImageData != null)
+            {
+                <div class="nes-container is-rounded image-box">
+                    <img src="data:image;base64,@System.Convert.ToBase64String(Model.GraphicsCard.ImageData)" class="product-image" alt="graphics card" />
+                </div>
+            }
         </div>
     </div>
 
-    <div class="card">
-        <div class="card-header" id="processor">
-            <h2 class="mb-0">
-                <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseProcessor" aria-expanded="true" aria-controls="collapseProcessor">
-                    <span class="glyphicon">&#x2b;</span> Processor
-                </button>
-            </h2>
-        </div>
-        <div id="collapseProcessor" class="collapse show" aria-labelledby="processor" data-parent="#configuration">
-            <div class="card-body">
+    <div class="nes-container is-dark with-title" style="margin: 50px;">
+        <p class="title">Hard Drive</p>
+        @foreach (var item in Model.pcBuildHardDrives)
+        {
+            <div class="actions-container">
                 <dl class="row">
                     <dt class="col-sm-2">
-                        @Html.DisplayNameFor(model => model.Processor.Name)
+                        @Html.DisplayNameFor(model => item.hardDrive.Name)
                     </dt>
                     <dd class="col-sm-10">
-                        @Html.DisplayFor(model => model.Processor.Name)
+                        @Html.DisplayFor(model => item.hardDrive.Name)
                     </dd>
                     <dt class="col-sm-2">
-                        @Html.DisplayNameFor(model => model.Processor.Manufacturer)
+                        @Html.DisplayNameFor(model => item.hardDrive.Manufacturer)
                     </dt>
                     <dd class="col-sm-10">
-                        @Html.DisplayFor(model => model.Processor.Manufacturer)
+                        @Html.DisplayFor(model => item.hardDrive.Manufacturer)
                     </dd>
                     <dt class="col-sm-2">
-                        @Html.DisplayNameFor(model => model.Processor.ProductCollection)
+                        @Html.DisplayNameFor(model => item.hardDrive.Capacity)
                     </dt>
                     <dd class="col-sm-10">
-                        @Html.DisplayFor(model => model.Processor.ProductCollection)
+                        @Html.DisplayFor(model => item.hardDrive.Capacity)
                     </dd>
                     <dt class="col-sm-2">
-                        @Html.DisplayNameFor(model => model.Processor.NumberOfCores)
+                        @Html.DisplayNameFor(model => item.hardDrive.Type)
                     </dt>
                     <dd class="col-sm-10">
-                        @Html.DisplayFor(model => model.Processor.NumberOfCores)
+                        @Html.DisplayFor(model => item.hardDrive.Type)
                     </dd>
                     <dt class="col-sm-2">
-                        @Html.DisplayNameFor(model => model.Processor.NumberOfThreads)
+                        @Html.DisplayNameFor(model => item.hardDrive.Price)
                     </dt>
                     <dd class="col-sm-10">
-                        @Html.DisplayFor(model => model.Processor.NumberOfThreads)
+                        @Html.DisplayFor(model => item.hardDrive.Price)
                     </dd>
                     <dt class="col-sm-2">
-                        @Html.DisplayNameFor(model => model.Processor.Cache)
+                        @Html.DisplayNameFor(model => item.hardDrive.Link)
                     </dt>
                     <dd class="col-sm-10">
-                        @Html.DisplayFor(model => model.Processor.Cache)
-                    </dd>
-                    <dt class="col-sm-2">
-                        @Html.DisplayNameFor(model => model.Processor.TDP)
-                    </dt>
-                    <dd class="col-sm-10">
-                        @Html.DisplayFor(model => model.Processor.TDP)
-                    </dd>
-                    <dt class="col-sm-2">
-                        @Html.DisplayNameFor(model => model.Processor.ProcessorBaseFrequency)
-                    </dt>
-                    <dd class="col-sm-10">
-                        @Html.DisplayFor(model => model.Processor.ProcessorBaseFrequency)
-                    </dd>
-                    <dt class="col-sm-2">
-                        @Html.DisplayNameFor(model => model.Processor.Price)
-                    </dt>
-                    <dd class="col-sm-10">
-                        @Html.DisplayFor(model => model.Processor.Price)
-                    </dd>
-                    <dt class="col-sm-2">
-                        @Html.DisplayNameFor(model => model.Processor.Link)
-                    </dt>
-                    <dd class="col-sm-10">
-                        @Html.DisplayFor(model => model.Processor.Link)
+                        @if (!String.IsNullOrEmpty(item.hardDrive.Link))
+                        {
+                            <a href="@item.hardDrive.Link" target=_blank>Product Website</a>
+                        }
                     </dd>
                 </dl>
+                @if (item.hardDrive.ImageData != null)
+                {
+                    <div class="nes-container is-rounded image-box">
+                        <img src="data:image;base64,@System.Convert.ToBase64String(item.hardDrive.ImageData)" class="product-image" alt="hard drive" />
+                    </div>
+                }
             </div>
+         }
+    </div>
+
+    <div class="nes-container with-title">
+        <p class="title">Motherboard</p>
+        <div class="actions-container">
+            <dl class="row">
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Motherboard.Name)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Motherboard.Name)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Motherboard.Manufacturer)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Motherboard.Manufacturer)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Motherboard.CPU)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Motherboard.CPU)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Motherboard.Chipset)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Motherboard.Chipset)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Motherboard.Socket)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Motherboard.Socket)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Motherboard.Memory)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Motherboard.Memory)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Motherboard.FormFactor)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Motherboard.FormFactor)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Motherboard.Price)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Motherboard.Price)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Motherboard.Link)
+                </dt>
+                <dd class="col-sm-10">
+                    @if (!String.IsNullOrEmpty(Model.Motherboard.Link))
+                    {
+                        <a href="@Model.Motherboard.Link" target=_blank>Product Website</a>
+                    }
+                </dd>
+            </dl>
+            @if (Model.Motherboard.ImageData != null)
+            {
+                <div class="nes-container is-rounded image-box">
+                    <img src="data:image;base64,@System.Convert.ToBase64String(Model.Motherboard.ImageData)" class="product-image" alt="motherboard" />
+                </div>
+            }
+        </div>
+    </div>
+    
+    <div class="nes-container is-dark with-title" style="margin: 50px;">
+        <p class="title">Other</p>
+        @foreach (var item in Model.pcBuildOthers)
+        {
+            <div class="actions-container">
+                <dl class="row">
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => item.other.Name)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => item.other.Name)
+                    </dd>
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => item.other.Manufacturer)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => item.other.Manufacturer)
+                    </dd>
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => item.other.Description)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => item.other.Description)
+                    </dd>
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => item.other.Price)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => item.other.Price)
+                    </dd>
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => item.other.Link)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @if (!String.IsNullOrEmpty(item.other.Link))
+                        {
+                            <a href="@item.other.Link" target=_blank>Product Website</a>
+                        }
+                    </dd>
+                </dl>
+                @if (item.other.ImageData != null)
+                {
+                    <div class="nes-container is-rounded image-box">
+                        <img src="data:image;base64,@System.Convert.ToBase64String(item.other.ImageData)" class="product-image" alt="other" />
+                    </div>
+                }
+            </div>
+        }
+    </div>
+
+    <div class="nes-container with-title">
+        <p class="title">PC Case</p>
+        <div class="actions-container">
+            <dl class="row">
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.PCCase.Name)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.PCCase.Name)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.PCCase.Manufacturer)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.PCCase.Manufacturer)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.PCCase.FormFactor)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.PCCase.FormFactor)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.PCCase.Color)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.PCCase.Color)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.PCCase.MotherboardSupport)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.PCCase.MotherboardSupport)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.PCCase.SideWindow)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.PCCase.SideWindow)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.PCCase.Price)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.PCCase.Price)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.PCCase.Link)
+                </dt>
+                <dd class="col-sm-10">
+                    @if (!String.IsNullOrEmpty(Model.PCCase.Link))
+                    {
+                        <a href="@Model.PCCase.Link" target=_blank>Product Website</a>
+                    }
+                </dd>
+            </dl>
+            @if (Model.PCCase.ImageData != null)
+            {
+                <div class="nes-container is-rounded image-box">
+                    <img src="data:image;base64,@System.Convert.ToBase64String(Model.PCCase.ImageData)" class="product-image" alt="pc case" />
+                </div>
+            }
         </div>
     </div>
 
-    <div class="card">
-        <div class="card-header" id="ram">
-            <h2 class="mb-0">
-                <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseRam" aria-expanded="true" aria-controls="collapseRam">
-                    <span class="glyphicon">&#x2b;</span> RAM
-                </button>
-            </h2>
-        </div>
-        <div id="collapseRam" class="collapse show" aria-labelledby="ram" data-parent="#configuration">
-            <div class="card-body">
-                <dl class="row">
-                    <dt class="col-sm-2">
-                        @Html.DisplayNameFor(model => model.RAM.Name)
-                    </dt>
-                    <dd class="col-sm-10">
-                        @Html.DisplayFor(model => model.RAM.Name)
-                    </dd>
-                    <dt class="col-sm-2">
-                        @Html.DisplayNameFor(model => model.RAM.Manufacturer)
-                    </dt>
-                    <dd class="col-sm-10">
-                        @Html.DisplayFor(model => model.RAM.Manufacturer)
-                    </dd>
-                    <dt class="col-sm-2">
-                        @Html.DisplayNameFor(model => model.RAM.MemoryType)
-                    </dt>
-                    <dd class="col-sm-10">
-                        @Html.DisplayFor(model => model.RAM.MemoryType)
-                    </dd>
-                    <dt class="col-sm-2">
-                        @Html.DisplayNameFor(model => model.RAM.MemorySpeed)
-                    </dt>
-                    <dd class="col-sm-10">
-                        @Html.DisplayFor(model => model.RAM.MemorySpeed)
-                    </dd>
-                    <dt class="col-sm-2">
-                        @Html.DisplayNameFor(model => model.RAM.Capacity)
-                    </dt>
-                    <dd class="col-sm-10">
-                        @Html.DisplayFor(model => model.RAM.Capacity)
-                    </dd>
-                    <dt class="col-sm-2">
-                        @Html.DisplayNameFor(model => model.RAM.ChipsetCompatibility)
-                    </dt>
-                    <dd class="col-sm-10">
-                        @Html.DisplayFor(model => model.RAM.ChipsetCompatibility)
-                    </dd>
-                    <dt class="col-sm-2">
-                        @Html.DisplayNameFor(model => model.RAM.NumberOfModules)
-                    </dt>
-                    <dd class="col-sm-10">
-                        @Html.DisplayFor(model => model.RAM.NumberOfModules)
-                    </dd>
-                    <dt class="col-sm-2">
-                        @Html.DisplayNameFor(model => model.RAM.Price)
-                    </dt>
-                    <dd class="col-sm-10">
-                        @Html.DisplayFor(model => model.RAM.Price)
-                    </dd>
-                    <dt class="col-sm-2">
-                        @Html.DisplayNameFor(model => model.RAM.Link)
-                    </dt>
-                    <dd class="col-sm-10">
-                        @Html.DisplayFor(model => model.RAM.Link)
-                    </dd>
-                </dl>
-            </div>
+    <div class="nes-container is-dark with-title" style="margin: 50px;">
+        <p class="title">Power Supply</p>
+        <div class="actions-container">
+            <dl class="row">
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.PowerSupply.Name)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.PowerSupply.Name)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.PowerSupply.Manufacturer)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.PowerSupply.Manufacturer)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.PowerSupply.Model)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.PowerSupply.Model)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.PowerSupply.Power)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.PowerSupply.Power)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.PowerSupply.Color)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.PowerSupply.Color)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.PowerSupply.Certificate)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.PowerSupply.Certificate)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.PowerSupply.ModularCables)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.PowerSupply.ModularCables)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.PowerSupply.Price)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.PowerSupply.Price)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.PowerSupply.Link)
+                </dt>
+                <dd class="col-sm-10">
+                    @if (!String.IsNullOrEmpty(Model.PowerSupply.Link))
+                    {
+                        <a href="@Model.PowerSupply.Link" target=_blank>Product Website</a>
+                    }
+                </dd>
+            </dl>
+            @if (Model.PowerSupply.ImageData != null)
+            {
+                <div class="nes-container is-rounded image-box">
+                    <img src="data:image;base64,@System.Convert.ToBase64String(Model.PowerSupply.ImageData)" class="product-image" alt="power supply" />
+                </div>
+            }
         </div>
     </div>
 
+    <div class="nes-container with-title">
+        <p class="title">Processor</p>
+        <div class="actions-container">
+            <dl class="row">
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Processor.Name)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Processor.Name)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Processor.Manufacturer)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Processor.Manufacturer)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Processor.ProductCollection)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Processor.ProductCollection)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Processor.NumberOfCores)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Processor.NumberOfCores)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Processor.NumberOfThreads)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Processor.NumberOfThreads)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Processor.Cache)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Processor.Cache)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Processor.TDP)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Processor.TDP)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Processor.ProcessorBaseFrequency)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Processor.ProcessorBaseFrequency)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Processor.Price)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Processor.Price)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Processor.Link)
+                </dt>
+                <dd class="col-sm-10">
+                    @if (!String.IsNullOrEmpty(Model.Processor.Link))
+                    {
+                        <a href="@Model.Processor.Link" target=_blank>Product Website</a>
+                    }
+                </dd>
+            </dl>
+            @if (Model.Processor.ImageData != null)
+            {
+                <div class="nes-container is-rounded image-box">
+                    <img src="data:image;base64,@System.Convert.ToBase64String(Model.Processor.ImageData)" class="product-image" alt="processor" />
+                </div>
+            }
+        </div>
+    </div>
 
-</div>
+    <div class="nes-container is-dark with-title" style="margin: 50px;">
+        <p class="title">RAM</p>
+        <div class="actions-container">
+            <dl class="row">
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.RAM.Name)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.RAM.Name)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.RAM.Manufacturer)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.RAM.Manufacturer)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.RAM.MemoryType)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.RAM.MemoryType)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.RAM.MemorySpeed)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.RAM.MemorySpeed)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.RAM.Capacity)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.RAM.Capacity)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.RAM.ChipsetCompatibility)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.RAM.ChipsetCompatibility)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.RAM.NumberOfModules)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.RAM.NumberOfModules)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.RAM.Price)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.RAM.Price)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.RAM.Link)
+                </dt>
+                <dd class="col-sm-10">
+                    @if (!String.IsNullOrEmpty(Model.RAM.Link))
+                    {
+                        <a href="@Model.RAM.Link" target=_blank>Product Website</a>
+                    }
+                </dd>
+            </dl>
+            @if (Model.RAM.ImageData != null)
+            {
+                <div class="nes-container is-rounded image-box">
+                    <img src="data:image;base64,@System.Convert.ToBase64String(Model.RAM.ImageData)" class="product-image" alt="ram" />
+                </div>
+            }
+        </div>
+    </div>
 
-
-
-
-
-
-
-
-
-
-<div>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.PCBuildId }) |
-    <a asp-action="Index">Back to List</a>
-</div>
+</article>

@@ -13,20 +13,22 @@ namespace HomeManager.Areas.PcBuilds.Models
         public string Name { get; set; }
         public string Manufacturer { get; set; }
 
-        [Display(Name = "Image Title")]
+        [Display(Name = "Image title")]
         public string ImageTitle { get; set; }
         public byte[] ImageData { get; set; }
 
-        [Display(Name = "Upload Image")]
+        [Display(Name = "Upload image")]
         public IFormFile ImageFile { get; set; }
 
         public string Dimensions { get; set; }
 
-        [Display(Name = "Number of funs")]
-        public int NumberOfFuns { get; set; }
+        [Display(Name = "Number of fans")]
+        public int NumberOfFuns { get; set; }   //spelling mistake here ;(
 
-        [Display(Name = "PWM control")]
+        [Display(Name = "PWM support")]
         public bool PWMControl { get; set; }
+
+        [Display(Name = "RGB support")]
         public bool RGB { get; set; }
 
         [Required]
