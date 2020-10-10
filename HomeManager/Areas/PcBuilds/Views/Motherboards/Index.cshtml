@@ -1,83 +1,40 @@
 ﻿@model IEnumerable<HomeManager.Areas.PcBuilds.Models.Motherboard>
 
+@section Banner {
+    @*... contents of the banner specific to that view*@
+    <div class="eightbit-header-motherboard eightbit-header eightbit-header-index">
+        <a type="button" class="nes-btn is-primary" asp-action="Create">Create New</a>
+        <img class="website-header-img" src="~/lib/images/motherboard.png" alt="motherboard" />
+    </div>
+}
+
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Motherboards";
 }
 
-<h1>Motherboards</h1>
-
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Name)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Manufacturer)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CPU)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Chipset)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Socket)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Memory)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.FormFactor)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Price)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Link)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Manufacturer)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CPU)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Chipset)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Socket)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Memory)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.FormFactor)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Price)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Link)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.MotherboardId }) |
-                @Html.ActionLink("Details", "Details", new { id = item.MotherboardId }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.MotherboardId })
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+<article class="nes-container">
+    <div class="card-deck">
+        <div class="row row-cols-1 row-cols-md-3">
+            @foreach (var item in Model)
+            {
+                <div class="col mb-4">
+                    <div class="card nes-container is-rounded">
+                        @if (item.ImageData != null)
+                        {
+                            <img src="data:image;base64,@System.Convert.ToBase64String(item.ImageData)" alt="motherboard" />
+                        }
+                        <div class="card-body">
+                            <h5 class="card-title">@Html.DisplayFor(modelItem => item.Name)</h5>
+                            <p class="card-text">@Html.DisplayFor(modelItem => item.Price)</p>
+                        </div>
+                        <div class="card-footer">
+                            <button class="nes-btn" onclick="location.href='@Url.Action("Details", new { id = item.MotherboardId })'">Details</button>
+                            <button class="nes-btn is-warning" onclick="location.href='@Url.Action("Edit", new { id = item.MotherboardId })'">Edit</button>
+                            <button class="nes-btn is-error" onclick="location.href='@Url.Action("Delete", new { id = item.MotherboardId })'">Delete</button>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</article>

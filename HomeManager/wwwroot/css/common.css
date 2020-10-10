@@ -37,6 +37,10 @@ body {
     background-color: yellowgreen;
 }
 
+.eightbit-header-motherboard {
+    background-color: orangered;
+}
+
 
 /* Card Deck*/
 .card-deck {
