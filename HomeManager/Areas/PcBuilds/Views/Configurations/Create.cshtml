@@ -1,112 +1,148 @@
 ﻿@*@model HomeManager.Areas.PcBuilds.Models.Configuration*@
 @model HomeManager.Areas.PcBuilds.Models.Components
 
-@{
-    ViewData["Title"] = "Create";
+@section Banner {
+    @*... contents of the banner specific to that view*@
+    <div class="eightbit-header-pc-configuration eightbit-header ">
+        <img class="website-header-img" src="~/lib/images/pc_configuration.png" alt="pc configuration" />
+    </div>
 }
 
-<h1>Create</h1>
+@{
+    ViewData["Title"] = "PC Configuration";
+}
 
-<h4>Configuration</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
 
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Configuration.Description" class="control-label"></label>
-                <input asp-for="Configuration.Description" class="form-control" />
-                <span asp-validation-for="Configuration.Description" class="text-danger"></span>
+<article class="nes-container">
+    <form asp-action="Create" enctype="multipart/form-data">
+
+        <div class="actions-container">
+            <div>
+                <h1>Create</h1>
             </div>
-
-            <div class="input-group mb-3">
-                <select class="btn btn-light btn-block" asp-for="SelectedCPUWatercoolerId" asp-items="@(new SelectList(Model.CPUWatercoolers,"CPUWatercoolerId","Name"))">
-                    <option value="">Pick CPU Watercooler</option>
-                </select>
-                <input type="button" class="btn btn-outline-primary" value="&#x2b;" onclick="window.location='@Url.Action("Create", "CPUWatercoolers")'" />
+            <div class="actions-container-buttons">
+                <button type="submit" class="nes-btn is-primary">Create</button>
+                <a class="nes-btn" asp-action="Index">Back to List</a>
             </div>
+        </div>
+        <hr />
+        <div class="row">
+            <div class="col-md-8">
 
-            <div class="input-group mb-3">
-                <select class="btn btn-light btn-block" asp-for="SelectedFanId" asp-items="@(new SelectList(Model.Fans,"FanId","Name"))">
-                    <option value="">Pick Fan</option>
-                </select>
-                <input type="button" class="btn btn-outline-primary" value="&#x2b;" onclick="window.location='@Url.Action("Create", "Fans")'" />
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="nes-field">
+                    <label asp-for="Configuration.Description" class="control-label"></label>
+                    <input asp-for="Configuration.Description" class="nes-input">
+                    <span asp-validation-for="Configuration.Description" class="nes-text is-error"></span>
+                </div>
+
+
+                <label for="default_select">CPU Watercoolers</label>
+                <div style="display: grid; grid-template-columns: auto 5%; grid-gap: 20px;">
+                    <div class="nes-select">
+                        <select class="btn btn-light btn-block" asp-for="SelectedCPUWatercoolerId" asp-items="@(new SelectList(Model.CPUWatercoolers,"CPUWatercoolerId","Name"))">
+                            <option value="">Pick CPU Watercooler</option>
+                        </select>
+                    </div>
+                    <input type="button" class="nes-btn is-primary" value="&#x2b;" onclick="window.location='@Url.Action("Create", "CPUWatercoolers")'" />
+                </div>
+
+                <label for="default_select">Fans</label>
+                <div style="display: grid; grid-template-columns: auto 5%; grid-gap: 20px;">
+                    <div class="nes-select">
+                        <select class="btn btn-light btn-block" asp-for="SelectedFanId" asp-items="@(new SelectList(Model.Fans,"FanId","Name"))">
+                            <option value="">Pick Fan</option>
+                        </select>
+                    </div>
+                    <input type="button" class="nes-btn is-primary" value="&#x2b;" onclick="window.location='@Url.Action("Create", "Fans")'" />
+                </div>
+
+                <label for="default_select">Graphics Cards</label>
+                <div style="display: grid; grid-template-columns: auto 5%; grid-gap: 20px;">
+                    <div class="nes-select">
+                        <select class="btn btn-light btn-block" asp-for="SelectedGraphicsCardId" asp-items="@(new SelectList(Model.GraphicsCards,"GraphicsCardId","Name"))">
+                            <option value="">Pick Graphics Cards</option>
+                        </select>
+                    </div>
+                    <input type="button" class="nes-btn is-primary" value="&#x2b;" onclick="window.location='@Url.Action("Create", "GraphicsCards")'" />
+                </div>
+
+                <div class="nes-field">
+                    <label asp-for="Configuration.GraphicsCardQty" class="control-label">Graphics Card Qty</label>
+                    <input asp-for="Configuration.GraphicsCardQty" class="nes-input">
+                    <span asp-validation-for="Configuration.GraphicsCardQty" class="text-danger"></span>
+                </div>
+
+                <label for="default_select">Hard Drives</label>
+                <div style="display: grid; grid-template-columns: auto 5%; grid-gap: 20px;">
+                    <div class="nes-select">
+                        <select class="btn btn-light btn-block" asp-for="SelectedHardDriveIds" asp-items="@(new SelectList(Model.HardDrives,"HardDriveId","Name"))" multiple size="3"></select>
+                    </div>
+                    <input type="button" class="nes-btn is-primary" value="&#x2b;" onclick="window.location='@Url.Action("Create", "HardDrives")'" />
+                </div>
+
+                <label for="default_select">Motherboards</label>
+                <div style="display: grid; grid-template-columns: auto 5%; grid-gap: 20px;">
+                    <div class="nes-select">
+                        <select class="btn btn-light btn-block" asp-for="SelectedMotherboardId" asp-items="@(new SelectList(Model.Motherboards,"MotherboardId","Name"))">
+                            <option value="">Pick Motherboard</option>
+                        </select>
+                    </div>
+                    <input type="button" class="nes-btn is-primary" value="&#x2b;" onclick="window.location='@Url.Action("Create", "Motherboards")'" />
+                </div>
+
+                <label for="default_select">Others</label>
+                <div style="display: grid; grid-template-columns: auto 5%; grid-gap: 20px;">
+                    <div class="nes-select">
+                        <select class="btn btn-light btn-block" asp-for="SelectedOtherIds" asp-items="@(new SelectList(Model.Others,"OtherId","Name"))" multiple size="3"></select>
+                    </div>
+                    <input type="button" class="nes-btn is-primary" value="&#x2b;" onclick="window.location='@Url.Action("Create", "Others")'" />
+                </div>
+
+                <label for="default_select">PC Cases</label>
+                <div style="display: grid; grid-template-columns: auto 5%; grid-gap: 20px;">
+                    <div class="nes-select">
+                        <select class="btn btn-light btn-block" asp-for="SelectedPCCaseId" asp-items="@(new SelectList(Model.PCCases,"PCCaseId","Name"))">
+                            <option value="">Pick PC Case</option>
+                        </select>
+                    </div>
+                    <input type="button" class="nes-btn is-primary" value="&#x2b;" onclick="window.location='@Url.Action("Create", "PCCases")'" />
+                </div>
+
+                <label for="default_select">Power Supplies</label>
+                <div style="display: grid; grid-template-columns: auto 5%; grid-gap: 20px;">
+                    <div class="nes-select">
+                        <select class="btn btn-light btn-block" asp-for="SelectedPowerSupplyId" asp-items="@(new SelectList(Model.PowerSupplies,"PowerSupplyId","Name"))">
+                            <option value="">Pick Power Supply</option>
+                        </select>
+                    </div>
+                    <input type="button" class="nes-btn is-primary" value="&#x2b;" onclick="window.location='@Url.Action("Create", "PowerSupplies")'" />
+                </div>
+
+                <label for="default_select">Processors</label>
+                <div style="display: grid; grid-template-columns: auto 5%; grid-gap: 20px;">
+                    <div class="nes-select">
+                        <select class="btn btn-light btn-block" asp-for="SelectedProcessorId" asp-items="@(new SelectList(Model.Processors,"ProcessorId","Name"))">
+                            <option value="">Pick Processor</option>
+                        </select>
+                    </div>
+                    <input type="button" class="nes-btn is-primary" value="&#x2b;" onclick="window.location='@Url.Action("Create", "Processors")'" />
+                </div>
+
+                <label for="default_select">RAMs</label>
+                <div style="display: grid; grid-template-columns: auto 5%; grid-gap: 20px;">
+                    <div class="nes-select">
+                        <select class="btn btn-light btn-block" asp-for="SelectedRAMId" asp-items="@(new SelectList(Model.RAMs,"RamId","Name"))">
+                            <option value="">Pick RAM</option>
+                        </select>
+                    </div>
+                    <input type="button" class="nes-btn is-primary" value="&#x2b;" onclick="window.location='@Url.Action("Create", "RAMs")'" />
+                </div>
+
             </div>
-
-            <div class="input-group mb-3">
-                <select class="btn btn-light btn-block" asp-for="SelectedGraphicsCardId" asp-items="@(new SelectList(Model.GraphicsCards,"GraphicsCardId","Name"))">
-                    <option value="">Pick Graphics Cards</option>
-                </select>
-                <input type="button" class="btn btn-outline-primary" value="&#x2b;" onclick="window.location='@Url.Action("Create", "GraphicsCards")'" />
-            </div>
-
-            <div class="form-group">
-                <label asp-for="Configuration.GraphicsCardQty" class="control-label"></label>
-                <input asp-for="Configuration.GraphicsCardQty" class="form-control" />
-                <span asp-validation-for="Configuration.GraphicsCardQty" class="text-danger"></span>
-            </div>
-
-            <div class="input-group mb-3">
-                <select class="btn btn-light btn-block" asp-for="SelectedHardDriveIds" asp-items="@(new SelectList(Model.HardDrives,"HardDriveId","Name"))" multiple size="3">
-                    <option value="">Pick Hard Drives</option>
-                </select>
-                <input type="button" class="btn btn-outline-primary" value="&#x2b;" onclick="window.location='@Url.Action("Create", "HardDrives")'" />
-            </div>
-
-            <div class="input-group mb-3">
-                <select class="btn btn-light btn-block" asp-for="SelectedMotherboardId" asp-items="@(new SelectList(Model.Motherboards,"MotherboardId","Name"))">
-                    <option value="">Pick Motherboard</option>
-                </select>
-                <input type="button" class="btn btn-outline-primary" value="&#x2b;" onclick="window.location='@Url.Action("Create", "Motherboards")'" />
-            </div>
-
-            <div class="input-group mb-3">
-                <select class="btn btn-light btn-block" asp-for="SelectedOtherIds" asp-items="@(new SelectList(Model.Others,"OtherId","Name"))" multiple size="3">
-                    <option value="">Pick Other Items</option>
-                </select>
-                <input type="button" class="btn btn-outline-primary" value="&#x2b;" onclick="window.location='@Url.Action("Create", "Others")'" />
-            </div>
-
-            <div class="input-group mb-3">
-                <select class="btn btn-light btn-block" asp-for="SelectedPCCaseId" asp-items="@(new SelectList(Model.PCCases,"PCCaseId","Name"))">
-                    <option value="">Pick PC Case</option>
-                </select>
-                <input type="button" class="btn btn-outline-primary" value="&#x2b;" onclick="window.location='@Url.Action("Create", "PCCases")'" />
-            </div>
-
-            <div class="input-group mb-3">
-                <select class="btn btn-light btn-block" asp-for="SelectedPowerSupplyId" asp-items="@(new SelectList(Model.PowerSupplies,"PowerSupplyId","Name"))">
-                    <option value="">Pick Power Supply</option>
-                </select>
-                <input type="button" class="btn btn-outline-primary" value="&#x2b;" onclick="window.location='@Url.Action("Create", "PowerSupplies")'" />
-            </div>
-
-            <div class="input-group mb-3">
-                <select class="btn btn-light btn-block" asp-for="SelectedProcessorId" asp-items="@(new SelectList(Model.Processors,"ProcessorId","Name"))">
-                    <option value="">Pick Processor</option>
-                </select>
-                <input type="button" class="btn btn-outline-primary" value="&#x2b;" onclick="window.location='@Url.Action("Create", "Processors")'" />
-            </div>
-
-            <div class="input-group mb-3">
-                <select class="btn btn-light btn-block" asp-for="SelectedRAMId" asp-items="@(new SelectList(Model.RAMs,"RamId","Name"))">
-                    <option value="">Pick RAM</option>
-                </select>
-                <input type="button" class="btn btn-outline-primary" value="&#x2b;" onclick="window.location='@Url.Action("Create", "RAMs")'" />
-            </div>
-
-
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
-    </div>
-</div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
+        </div>
+    </form>
+</article>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

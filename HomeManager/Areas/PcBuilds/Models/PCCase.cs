@@ -10,7 +10,10 @@ namespace HomeManager.Areas.PcBuilds.Models
         public Guid PCCaseId { get; set; }
 
         [Required]
+        [StringLength(200, MinimumLength = 1)]
         public string Name { get; set; }
+
+        [StringLength(50, MinimumLength = 1)]
         public string Manufacturer { get; set; }
 
         [Display(Name = "Image title")]
@@ -32,6 +35,7 @@ namespace HomeManager.Areas.PcBuilds.Models
         public string SideWindow { get; set; }
 
         [Required]
+        [Range(1, 10000)]
         [DataType(DataType.Currency)]
         public decimal Price { get; set; }
 

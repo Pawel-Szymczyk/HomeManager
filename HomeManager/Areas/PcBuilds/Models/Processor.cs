@@ -9,8 +9,12 @@ namespace HomeManager.Areas.PcBuilds.Models
     {
         public Guid ProcessorId { get; set; }
 
+        [StringLength(200, MinimumLength = 1)]
         [Required]
         public string Name { get; set; }
+
+        [StringLength(50, MinimumLength = 1)]
+        [Required]
         public string Manufacturer { get; set; }
 
         [Display(Name = "Image title")]
@@ -34,7 +38,7 @@ namespace HomeManager.Areas.PcBuilds.Models
         [Display(Name = "Base clock speed")]
         public decimal ProcessorBaseFrequency { get; set; }
 
-        [Required]
+        [Range(1, 10000)]
         [DataType(DataType.Currency)]
         public decimal Price { get; set; }
 

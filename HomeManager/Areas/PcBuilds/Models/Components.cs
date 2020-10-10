@@ -15,7 +15,6 @@ namespace HomeManager.Areas.PcBuilds.Models
         }
 
         public Configuration Configuration { get; set; }
-
         public List<CPUWatercooler> CPUWatercoolers { get; set; }
         public List<Fan> Fans { get; set; }
         public List<GraphicsCard> GraphicsCards { get; set; }

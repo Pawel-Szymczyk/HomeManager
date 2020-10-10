@@ -7,27 +7,6 @@ using System.Threading.Tasks;
 
 namespace HomeManager.Areas.PcBuilds.Models
 {
-    ///// <summary>
-    ///// Class responsible for getting nested objects: pcBuildGraphicsCards
-    ///// </summary>
-    //public class PCBuildGraphicsCards
-    //{
-    //    /// <summary>
-    //    /// (Guid) PC build ID.
-    //    /// </summary>
-    //    public Guid pcBuildId { get; set; }
-
-    //    /// <summary>
-    //    /// (Guid) Graphics card ID.
-    //    /// </summary>
-    //    public Guid graphicsCardId { get; set; }
-
-    //    /// <summary>
-    //    /// (GraphicsCard) Graphics card object.
-    //    /// </summary>
-    //    public GraphicsCard graphicsCard { get; set; }
-    //}
-
     /// <summary>
     /// Class responsible for getting nested objects: pcBuildHardDrives
     /// </summary>
@@ -74,15 +53,9 @@ namespace HomeManager.Areas.PcBuilds.Models
     {
         public Configuration()
         {
-            CPUWatercooler = new CPUWatercooler();
             Fan = new Fan();
             GraphicsCard = new GraphicsCard();
-            //pcBuildGraphicsCards = new pcBuildGraphicsCards();
-
-            //HardDrives = new List<HardDrive> ();
-
             Motherboard = new Motherboard();
-            //Others = new List<Other>();
             PCCase = new PCCase();
             PowerSupply = new PowerSupply();
             Processor = new Processor();
@@ -96,8 +69,6 @@ namespace HomeManager.Areas.PcBuilds.Models
         [Display(Name = "Total price")]
         [DataType(DataType.Currency)]
         public decimal TotalPrice { get; set; }
-        [DataType(DataType.Date)]
-        public DateTime CreatedDate { get; set; }
         
         [Display(Name= "Last time pc configuration was modified by")]
         [DataType(DataType.Date)]
@@ -115,7 +86,6 @@ namespace HomeManager.Areas.PcBuilds.Models
         public Processor Processor { get; set; }
         public RAM RAM { get; set; }
 
-        //public List<PCBuildGraphicsCards> pcBuildGraphicsCards { get; set; }
         public List<PCBuildHardDrives> pcBuildHardDrives { get; set; }
         public List<PCBuildOthers> pcBuildOthers { get; set; }
     }
