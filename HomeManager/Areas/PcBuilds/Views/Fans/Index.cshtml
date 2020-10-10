@@ -1,10 +1,61 @@
 ﻿@model IEnumerable<HomeManager.Areas.PcBuilds.Models.Fan>
 
-@{
-    ViewData["Title"] = "Index";
+@section Banner {
+    @*... contents of the banner specific to that view*@
+    <div class="eightbit-header-fan eightbit-header eightbit-header-index">
+        <a type="button" class="nes-btn is-primary" asp-action="Create">Create New</a>
+        <img class="website-header-img" src="~/lib/images/fan.png" alt="fan" />
+    </div>
 }
 
-<h1>Fans</h1>
+@{
+    ViewData["Title"] = "Fans";
+}
+
+
+<article class="nes-container">
+    <div class="card-deck">
+        <div class="row row-cols-1 row-cols-md-3">
+            @foreach (var item in Model)
+            {
+                <div class="col mb-4">
+                    <div class="card nes-container is-rounded">
+                        @if (item.ImageData != null)
+                        {
+                            <img src="data:image;base64,@System.Convert.ToBase64String(item.ImageData)" alt="fan" />
+                        }
+                        <div class="card-body">
+                            <h5 class="card-title">@Html.DisplayFor(modelItem => item.Name)</h5>
+                            <p class="card-text">@Html.DisplayFor(modelItem => item.Price)</p>
+                        </div>
+                        <div class="card-footer">
+                            <button class="nes-btn" onclick="location.href='@Url.Action("Details", new { id = item.FanId })'">Details</button>
+                            <button class="nes-btn is-warning" onclick="location.href='@Url.Action("Edit", new { id = item.FanId })'">Edit</button>
+                            <button class="nes-btn is-error" onclick="location.href='@Url.Action("Delete", new { id = item.FanId })'">Delete</button>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</article>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@*<h1>Fans</h1>
 
 <p>
     <a asp-action="Create">Create New</a>
@@ -40,38 +91,39 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Manufacturer)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Dimensions)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.NumberOfFuns)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PWMControl)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.RGB)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Price)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Link)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.FanId }) |
-                @Html.ActionLink("Details", "Details", new { id = item.FanId }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.FanId })
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Manufacturer)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Dimensions)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NumberOfFuns)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PWMControl)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RGB)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Link)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.FanId }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.FanId }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.FanId })
+                </td>
+            </tr>
+        }
     </tbody>
-</table>
+</table>*@

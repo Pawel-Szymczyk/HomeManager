@@ -25,6 +25,10 @@ body {
     background-color: dimgray; 
 }
 
+.eightbit-header-fan {
+    background-color: dimgray; 
+}
+
 /* Card Deck*/
 .card-deck {
     margin: 0 122px;
