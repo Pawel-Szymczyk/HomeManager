@@ -29,6 +29,16 @@ body {
     background-color: dimgray; 
 }
 
+.eightbit-header-graphics-card {
+    background-color: rebeccapurple;
+}
+
+
+
+
+
+
+
 /* Card Deck*/
 .card-deck {
     margin: 0 122px;
