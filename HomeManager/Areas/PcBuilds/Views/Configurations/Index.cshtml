@@ -21,7 +21,11 @@
                     <div class="card nes-container is-rounded">
                         @if (item.ImageData != null)
                         {
-                            <img src="data:image;base64,@System.Convert.ToBase64String(item.ImageData)" alt="cpu watercooler" />
+                            <img src="data:image;base64,@System.Convert.ToBase64String(item.ImageData)" alt="pc build" />
+                        }
+                        else
+                        {
+                            <img src="~/lib/images/pc_build_b.png" alt="pc build" style="height: 293px; object-fit: scale-down;"}/>
                         }
                         <div class="card-body">
                             <h5 class="card-title">@Html.DisplayFor(modelItem => item.Description)</h5>
