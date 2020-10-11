@@ -41,6 +41,11 @@ body {
     background-color: orangered;
 }
 
+.eightbit-header-other {
+    background-color: cadetblue;
+}
+
+
 
 /* Card Deck*/
 .card-deck {
