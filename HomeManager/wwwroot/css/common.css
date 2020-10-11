@@ -26,7 +26,8 @@ body {
 }
 
 .eightbit-header-fan {
-    background-color: dimgray; 
+    /*background-color: dimgray;*/
+    background-image:url('/lib/images/morning.png');
 }
 
 .eightbit-header-graphics-card {
