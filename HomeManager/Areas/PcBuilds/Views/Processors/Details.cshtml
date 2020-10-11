@@ -1,94 +1,98 @@
 ﻿@model HomeManager.Areas.PcBuilds.Models.Processor
 
-@{
-    ViewData["Title"] = "Details";
+@section Banner {
+    @*... contents of the banner specific to that view*@
+    <div class="eightbit-header-processor eightbit-header">
+        <img class="website-header-img" src="~/lib/images/processor.png" alt="processor" />
+    </div>
 }
 
-<h1>Details</h1>
+@{
+    ViewData["Title"] = "Processor";
+}
 
-<div>
-    <h4>Processor</h4>
+<article class="nes-container">
+    <div class="actions-container">
+        <div>
+            <h1>Details</h1>
+        </div>
+        <div class="actions-container-buttons">
+            <button class="nes-btn is-warning" onclick="location.href='@Url.Action("Edit", new { id = Model.ProcessorId })'">Edit</button>
+            <a class="nes-btn" asp-action="Index">Back to List</a>
+        </div>
+    </div>
     <hr />
-    <dl class="row">
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Manufacturer)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Manufacturer)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.ProductCollection)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.ProductCollection)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.NumberOfCores)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.NumberOfCores)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.NumberOfThreads)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.NumberOfThreads)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Cache)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Cache)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.TDP)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.TDP)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.ProcessorBaseFrequency)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.ProcessorBaseFrequency)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Price)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Price)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Link)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Link)
-        </dd>
-
+    <div class="actions-container">
+        <dl class="row">
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Name)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Name)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Manufacturer)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Manufacturer)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.ProductCollection)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.ProductCollection)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.NumberOfCores)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.NumberOfCores)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.NumberOfThreads)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.NumberOfThreads)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Cache)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Cache)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.TDP)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.TDP)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.ProcessorBaseFrequency)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.ProcessorBaseFrequency)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Price)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Price)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Link)
+            </dt>
+            <dd class="col-sm-10">
+                @if (!String.IsNullOrEmpty(Model.Link))
+                {
+                    <a href="@Model.Link" target=_blank>Product Website</a>
+                }
+            </dd>
+        </dl>
         @if (Model.ImageData != null)
         {
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.ImageTitle)
-            </dt>
-            <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.ImageTitle)
-            </dd>
-            <dt class="col-sm-2">
-                Uploaded Image
-            </dt>
-            <dd class="col-sm-10">
-                <img src="data:image;base64,@System.Convert.ToBase64String(Model.ImageData)" width="250px" height="250px" />
-            </dd>
+            <div class="nes-container is-rounded image-box">
+                <img src="data:image;base64,@System.Convert.ToBase64String(Model.ImageData)" class="product-image" />
+            </div>
         }
-    </dl>
-</div>
-<div>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.ProcessorId }) |
-    <a asp-action="Index">Back to List</a>
-</div>
+    </div>
+</article>
