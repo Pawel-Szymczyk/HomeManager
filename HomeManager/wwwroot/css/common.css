@@ -57,6 +57,10 @@ body {
     background-color: palevioletred;
 }
 
+.eightbit-header-ram {
+    background-color: lightyellow;
+}
+
 
 /* Card Deck*/
 .card-deck {

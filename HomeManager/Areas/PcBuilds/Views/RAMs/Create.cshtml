@@ -1,79 +1,88 @@
 ﻿@model HomeManager.Areas.PcBuilds.Models.RAM
 
-@{
-    ViewData["Title"] = "Create";
+@section Banner {
+    @*... contents of the banner specific to that view*@
+    <div class="eightbit-header-ram eightbit-header">
+        <img class="website-header-img" src="~/lib/images/ram.png" alt="ram" />
+    </div>
 }
 
-<h1>Create</h1>
+@{
+    ViewData["Title"] = "RAM";
+}
 
-<h4>RAM</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create" enctype="multipart/form-data">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Name" class="control-label"></label>
-                <input asp-for="Name" class="form-control" />
-                <span asp-validation-for="Name" class="text-danger"></span>
+<article class="nes-container">
+    <form asp-action="Create" enctype="multipart/form-data">
+        <div class="actions-container">
+            <div>
+                <h1>Create</h1>
             </div>
-            <div class="form-group">
-                <label asp-for="Manufacturer" class="control-label"></label>
-                <input asp-for="Manufacturer" class="form-control" />
-                <span asp-validation-for="Manufacturer" class="text-danger"></span>
+            <div class="actions-container-buttons">
+                <button type="submit" class="nes-btn is-primary">Create</button>
+                <a class="nes-btn" asp-action="Index">Back to List</a>
             </div>
-            <div class="form-group">
-                <label asp-for="MemoryType" class="control-label"></label>
-                <input asp-for="MemoryType" class="form-control" />
-                <span asp-validation-for="MemoryType" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="MemorySpeed" class="control-label"></label>
-                <input asp-for="MemorySpeed" class="form-control" />
-                <span asp-validation-for="MemorySpeed" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Capacity" class="control-label"></label>
-                <input asp-for="Capacity" class="form-control" />
-                <span asp-validation-for="Capacity" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ChipsetCompatibility" class="control-label"></label>
-                <input asp-for="ChipsetCompatibility" class="form-control" />
-                <span asp-validation-for="ChipsetCompatibility" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="NumberOfModules" class="control-label"></label>
-                <input asp-for="NumberOfModules" class="form-control" />
-                <span asp-validation-for="NumberOfModules" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Price" class="control-label"></label>
-                <input asp-for="Price" class="form-control" />
-                <span asp-validation-for="Price" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Link" class="control-label"></label>
-                <input asp-for="Link" class="form-control" />
-                <span asp-validation-for="Link" class="text-danger"></span>
-            </div>
+        </div>
+        <hr />
+        <div class="row">
+            <div class="col-md-8">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="nes-field">
+                    <label asp-for="Name" class="control-label"></label>
+                    <input asp-for="Name" class="nes-input" />
+                    <span asp-validation-for="Name" class="nes-text is-error"></span>
+                </div>
+                <div class="nes-field">
+                    <label asp-for="Manufacturer" class="control-label"></label>
+                    <input asp-for="Manufacturer" class="nes-input" />
+                    <span asp-validation-for="Manufacturer" class="nes-text is-error"></span>
+                </div>
+                <div class="nes-field">
+                    <label asp-for="MemoryType" class="control-label"></label>
+                    <input asp-for="MemoryType" class="nes-input" />
+                    <span asp-validation-for="MemoryType" class="nes-text is-error"></span>
+                </div>
+                <div class="nes-field">
+                    <label asp-for="MemorySpeed" class="control-label"></label>
+                    <input asp-for="MemorySpeed" class="nes-input" />
+                    <span asp-validation-for="MemorySpeed" class="nes-text is-error"></span>
+                </div>
+                <div class="nes-field">
+                    <label asp-for="Capacity" class="control-label"></label>
+                    <input asp-for="Capacity" class="nes-input" />
+                    <span asp-validation-for="Capacity" class="nes-text is-error"></span>
+                </div>
+                <div class="nes-field">
+                    <label asp-for="ChipsetCompatibility" class="control-label"></label>
+                    <input asp-for="ChipsetCompatibility" class="nes-input" />
+                    <span asp-validation-for="ChipsetCompatibility" class="nes-text is-error"></span>
+                </div>
+                <div class="nes-field">
+                    <label asp-for="NumberOfModules" class="control-label"></label>
+                    <input asp-for="NumberOfModules" class="nes-input" />
+                    <span asp-validation-for="NumberOfModules" class="nes-text is-error"></span>
+                </div>
 
-            <div class="form-group">
-                <label asp-for="ImageFile" class="control-label"></label>
-                <input asp-for="ImageFile" accept="image/*" />
-                <span asp-validation-for="ImageFile" class="text-danger"></span>
+                <div class="nes-field">
+                    <label asp-for="Price" class="control-label"></label>
+                    <input asp-for="Price" class="nes-input" />
+                    <span asp-validation-for="Price" class="nes-text is-error"></span>
+                </div>
+                <div class="nes-field">
+                    <label asp-for="Link" class="control-label"></label>
+                    <input asp-for="Link" class="nes-input" />
+                    <span asp-validation-for="Link" class="nes-text is-error"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="ImageFile" class="nes-btn">
+                        <span>Select your image</span>
+                        <input asp-for="ImageFile" accept="image/*" />
+                    </label>
+                    <span asp-validation-for="ImageFile" class="text-danger"></span>
+                </div>
             </div>
-
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
-    </div>
-</div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
+        </div>
+    </form>
+</article>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
