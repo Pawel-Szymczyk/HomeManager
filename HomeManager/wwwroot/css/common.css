@@ -11,6 +11,16 @@ body {
     background-position-y: -274px;
 }
 
+.eightbit-header:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 712px;
+    background: rgba(0,0,0,0.2);
+}
+
 .eightbit-header-index {
     grid-template-columns: 195px auto;
     grid-gap: 100px;
@@ -23,7 +33,9 @@ body {
     justify-content: center;
 }
 
-
+.website-header-img {
+    position: relative;
+}
 
 
 /* Card Deck*/
