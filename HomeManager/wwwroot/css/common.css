@@ -49,6 +49,12 @@ body {
     max-width: 448px !important;
 }
 
+.card-image {
+    width: 440px;
+    height: 299px;
+    background-color: black;
+}
+
 .card-footer {
     background: white;
     border: none;
