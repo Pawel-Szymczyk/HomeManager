@@ -11,15 +11,15 @@ body {
     background-position-y: -274px;
 }
 
-.eightbit-header:before {
+/*.eightbit-header:before {
     content: '';
     position: absolute;
     top: 0;
     right: 0;
     left: 0;
-    bottom: 712px;
+    bottom: 710px;
     background: rgba(0,0,0,0.2);
-}
+}*/
 
 .eightbit-header-index {
     grid-template-columns: 195px auto;
@@ -40,7 +40,7 @@ body {
 
 /* Card Deck*/
 .card-deck {
-    margin: 0 122px;
+   
 }
 
 .card {
@@ -81,6 +81,11 @@ body {
     width: 250px;
     height: 250px;
 }
+
+
+
+
+
 
 /* ---------------------Layout response--------------------- */
 /* mobile */

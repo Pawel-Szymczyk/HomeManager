@@ -16,79 +16,6 @@
     <link rel="stylesheet" href="~/css/site.css" />
     <link rel="stylesheet" href="~/css/common.css" />
 
-
-
-
-
-
-    <style>
-        .sticky {
-            position: fixed;
-            top: 0;
-            width: 100%;
-        }
-
-        .sticky + .content-container {
-            padding-top: 60px;
-        }
-
-
-        .overlay {
-            height: 0%;
-            width: 100%;
-            position: fixed;
-            z-index: 1;
-            top: 0;
-            left: 0;
-            background-color: rgb(0,0,0);
-            background-color: rgba(0,0,0, 0.9);
-            overflow-y: hidden;
-            transition: 0.5s;
-            z-index: 2;
-        }
-
-        .overlay-content {
-            position: relative;
-            top: 10%;
-            width: 100%;
-            text-align: center;
-            margin-top: 30px;
-        }
-
-        .overlay a {
-            padding: 8px;
-            text-decoration: none;
-            font-size: 36px;
-            color: #818181;
-            display: block;
-            transition: 0.3s;
-        }
-
-        .overlay a:hover, .overlay a:focus {
-            color: #f1f1f1;
-        }
-
-        .overlay .closebtn {
-            position: absolute;
-            top: 20px;
-            right: 45px;
-            font-size: 60px;
-        }
-
-        @*@media screen and (max-height: 450px) {
-            .overlay {overflow-y: auto;}
-            .overlay a {font-size: 20px}
-            .overlay .closebtn {
-            font-size: 40px;
-            top: 15px;
-            right: 35px;
-            }
-        }*@
-
-
-    </style>
-
-
 </head>
 <body>
     <header>
@@ -102,77 +29,88 @@
             @RenderSection("Banner", required: true)
         }
 
-        <nav id="overlay-nav" class="overlay">
+        <div id="overlay-nav" class="overlay">
             <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
 
-            <div class="overlay-content">
-                @* TODO: make sections/groups and have smaller fonts *@
-                <a asp-area="PcBuilds" asp-controller="Configurations" asp-action="Index">PC Configurations</a>
-                <a asp-area="PcBuilds" asp-controller="CPUWatercoolers" asp-action="Index">CPU Watercoolers</a>
-                <a asp-area="PcBuilds" asp-controller="Fans" asp-action="Index">Fans</a>
-                <a asp-area="PcBuilds" asp-controller="GraphicsCards" asp-action="Index">Graphics Cards</a>
-                <a asp-area="PcBuilds" asp-controller="HardDrives" asp-action="Index">Hard Drives</a>
-                <a asp-area="PcBuilds" asp-controller="Motherboards" asp-action="Index">Motherboards</a>
-                <a asp-area="PcBuilds" asp-controller="Others" asp-action="Index">Others</a>
-                <a asp-area="PcBuilds" asp-controller="PCCases" asp-action="Index">PC Cases</a>
-                <a asp-area="PcBuilds" asp-controller="PowerSupplies" asp-action="Index">Power Supplies</a>
-                <a asp-area="PcBuilds" asp-controller="Processors" asp-action="Index">Processors</a>
-                <a asp-area="PcBuilds" asp-controller="RAMs" asp-action="Index">RAM</a>
-
+            <div class="overlay-box">
+                <div class="nes-container is-dark with-title overlay-content">
+                    <p class="title">MENU</p>
+                    <a asp-area="PcBuilds" asp-controller="Configurations" asp-action="Index">PC Configurations</a>
+                    <a asp-area="PcBuilds" asp-controller="CPUWatercoolers" asp-action="Index">CPU Watercoolers</a>
+                    <a asp-area="PcBuilds" asp-controller="Fans" asp-action="Index">Fans</a>
+                    <a asp-area="PcBuilds" asp-controller="GraphicsCards" asp-action="Index">Graphics Cards</a>
+                    <a asp-area="PcBuilds" asp-controller="HardDrives" asp-action="Index">Hard Drives</a>
+                    <a asp-area="PcBuilds" asp-controller="Motherboards" asp-action="Index">Motherboards</a>
+                    <a asp-area="PcBuilds" asp-controller="Others" asp-action="Index">Others</a>
+                    <a asp-area="PcBuilds" asp-controller="PCCases" asp-action="Index">PC Cases</a>
+                    <a asp-area="PcBuilds" asp-controller="PowerSupplies" asp-action="Index">Power Supplies</a>
+                    <a asp-area="PcBuilds" asp-controller="Processors" asp-action="Index">Processors</a>
+                    <a asp-area="PcBuilds" asp-controller="RAMs" asp-action="Index">RAM</a>
+                </div>
             </div>
-        </nav>
+
+         
+        </div>
+
+        <div style="background-color: white;">
+            <nav id="navbar" class="navbar navbar-expand-sm navbar-toggleable-sm mb-3 ">
+                <div class="">
+                    <a class="nes-btn" onclick="openNav()">PC Builder</a>
+                    <a class="nes-btn" href="">Finance</a>
+                </div>
+            </nav>
+        </div>
 
 
 
-
-        <nav id="navbar" class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3" style="z-index: 1;">
-            <div class="container">
+        @*<nav id="navbar" class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3" style="z-index: 1;">
+            <div class="container">*@
                 @*<a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">HomeManager</a>*@
 
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                @*<button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
-                <a class="nes-btn" onclick="openNav()">Home Manager</a>
+                <a class="nes-btn" onclick="openNav()">Home Manager</a>*@
 
 
                 @*<a class="nav-link dropdown-toggle" id="configurationNav" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        PC Configuration
-                    </a>*@
+                    PC Configuration
+                </a>*@
 
                 @*<div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
-                    <ul class="navbar-nav flex-grow-1">*@
+                <ul class="navbar-nav flex-grow-1">*@
 
                 @*<li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" id="configurationNav" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            PC Configuration
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="configurationNav">
-                            <a class="dropdown-item" asp-area="PcBuilds" asp-controller="Configurations" asp-action="Index">PC Configurations</a>
-                            <a class="dropdown-item" asp-area="PcBuilds" asp-controller="CPUWatercoolers" asp-action="Index">CPU Watercoolers</a>
-                            <a class="dropdown-item" asp-area="PcBuilds" asp-controller="Fans" asp-action="Index">Fans</a>
-                            <a class="dropdown-item" asp-area="PcBuilds" asp-controller="GraphicsCards" asp-action="Index">Graphics Cards</a>
-                            <a class="dropdown-item" asp-area="PcBuilds" asp-controller="HardDrives" asp-action="Index">Hard Drives</a>
-                            <a class="dropdown-item" asp-area="PcBuilds" asp-controller="Motherboards" asp-action="Index">Motherboards</a>
-                            <a class="dropdown-item" asp-area="PcBuilds" asp-controller="Others" asp-action="Index">Others</a>
-                            <a class="dropdown-item" asp-area="PcBuilds" asp-controller="PCCases" asp-action="Index">PC Cases</a>
-                            <a class="dropdown-item" asp-area="PcBuilds" asp-controller="PowerSupplies" asp-action="Index">Power Supplies</a>
-                            <a class="dropdown-item" asp-area="PcBuilds" asp-controller="Processors" asp-action="Index">Processors</a>
-                            <a class="dropdown-item" asp-area="PcBuilds" asp-controller="RAMs" asp-action="Index">RAM</a>
-                        </div>
-                    </li>*@
+                    <a class="nav-link dropdown-toggle" id="configurationNav" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        PC Configuration
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="configurationNav">
+                        <a class="dropdown-item" asp-area="PcBuilds" asp-controller="Configurations" asp-action="Index">PC Configurations</a>
+                        <a class="dropdown-item" asp-area="PcBuilds" asp-controller="CPUWatercoolers" asp-action="Index">CPU Watercoolers</a>
+                        <a class="dropdown-item" asp-area="PcBuilds" asp-controller="Fans" asp-action="Index">Fans</a>
+                        <a class="dropdown-item" asp-area="PcBuilds" asp-controller="GraphicsCards" asp-action="Index">Graphics Cards</a>
+                        <a class="dropdown-item" asp-area="PcBuilds" asp-controller="HardDrives" asp-action="Index">Hard Drives</a>
+                        <a class="dropdown-item" asp-area="PcBuilds" asp-controller="Motherboards" asp-action="Index">Motherboards</a>
+                        <a class="dropdown-item" asp-area="PcBuilds" asp-controller="Others" asp-action="Index">Others</a>
+                        <a class="dropdown-item" asp-area="PcBuilds" asp-controller="PCCases" asp-action="Index">PC Cases</a>
+                        <a class="dropdown-item" asp-area="PcBuilds" asp-controller="PowerSupplies" asp-action="Index">Power Supplies</a>
+                        <a class="dropdown-item" asp-area="PcBuilds" asp-controller="Processors" asp-action="Index">Processors</a>
+                        <a class="dropdown-item" asp-area="PcBuilds" asp-controller="RAMs" asp-action="Index">RAM</a>
+                    </div>
+                </li>*@
 
                 @*<li class="nav-item">
-                        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                    </li>*@
+                    <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                </li>*@
                 @*</ul>
-                    </div>*@
-            </div>
-        </nav>
+                </div>*@
+            @*</div>
+        </nav>*@
 
 
     </header>
@@ -183,9 +121,11 @@
     </div>
 
 
-    <footer class="border-top footer">
-        <div class="container footer-box">
-            &copy; 2020 - HomeManager - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+    <footer class="footer">
+        <div class="footer-box">
+            <span class="product">Home Manager &copy;</span>
+            <span class="author">Pawel Szymczyk</span>
+            <span class="year">2020</span>
         </div>
     </footer>
 
@@ -193,39 +133,8 @@
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     <script src="~/js/banner.js" asp-append-version="true"></script>
+    <script src="~/js/navigation.js" asp-append-version="true"></script>
     @RenderSection("Scripts", required: false)
-
-
-
-    @* menu scroll *@
-    <script>
-        window.onscroll = function () { myFunction() };
-
-        var navbar = document.getElementById("navbar");
-        var sticky = navbar.offsetTop;
-
-        function myFunction() {
-            if (window.pageYOffset >= sticky) {
-                navbar.classList.add("sticky")
-            } else {
-                navbar.classList.remove("sticky");
-            }
-        }
-
-        function openNav() {
-            document.getElementById("overlay-nav").style.height = "100%";
-        }
-
-        function closeNav() {
-            document.getElementById("overlay-nav").style.height = "0%";
-        }
-
-    </script>
-
    
-    
-
-
-
 </body>
 </html>
