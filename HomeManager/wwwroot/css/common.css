@@ -5,6 +5,12 @@ body {
 }
 
 /* CUSTOM BANNERS*/
+#pc-builder-banner {
+    background-color: black;
+    height: 600px;
+    background-position-y: -274px;
+}
+
 .eightbit-header-index {
     grid-template-columns: 195px auto;
     grid-gap: 100px;
@@ -17,50 +23,7 @@ body {
     justify-content: center;
 }
 
-.eightbit-header-cpu-watercooler {
-    background: linear-gradient(to bottom, #1C2462 26%, #212976 35%, #262f7d 45%, #2d3586 47%, #313d91 61%, #3c49a1 65%, #4156ae 75%, #4860AE 78%, #4e6fc5 88%, #dff7ff 100% );
-}
 
-.eightbit-header-pc-configuration {
-    background-color: dimgray; 
-}
-
-.eightbit-header-fan {
-    /*background-color: dimgray;*/
-    background-image:url('/lib/images/morning.png');
-}
-
-.eightbit-header-graphics-card {
-    background-color: rebeccapurple;
-}
-
-.eightbit-header-hard-drive {
-    background-color: yellowgreen;
-}
-
-.eightbit-header-motherboard {
-    background-color: orangered;
-}
-
-.eightbit-header-other {
-    background-color: cadetblue;
-}
-
-.eightbit-header-pc-case {
-    background-color: forestgreen;
-}
-
-.eightbit-header-power-supply {
-    background-color: lightskyblue;
-}
-
-.eightbit-header-processor {
-    background-color: palevioletred;
-}
-
-.eightbit-header-ram {
-    background-color: lightyellow;
-}
 
 
 /* Card Deck*/

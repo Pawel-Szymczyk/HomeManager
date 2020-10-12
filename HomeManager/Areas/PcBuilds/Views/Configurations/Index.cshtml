@@ -1,59 +1,8 @@
 ﻿@model IEnumerable<HomeManager.Areas.PcBuilds.Models.Configuration>
 
-@section Scripts
-{
-    @*<script src="@Url.Content("~/Scripts/jqueryFoo.js")"></script>*@
-    <script type="text/javascript">
-
-        let urlString;
-        let banner = document.getElementById("pc-build-banner");
-        let curHr = new Date().getHours();
-
-        if (curHr >= 5 && curHr < 10) {
-            urlString = 'url(/lib/images/morning.png)';
-            banner.style.backgroundImage = urlString;
-        } else if (curHr >= 10 && curHr < 12) {
-            urlString = 'url(/lib/images/late_morning.png)';
-            banner.style.backgroundImage = urlString;
-        } else if (curHr >= 12 && curHr < 15) {
-            urlString = 'url(/lib/images/afternoon.png)';
-            banner.style.backgroundImage = urlString;
-        } else if (curHr >= 15 && curHr < 18) {
-            urlString = 'url(/lib/images/late_afternoon.png)';
-            banner.style.backgroundImage = urlString;
-        } else if (curHr >= 18 && curHr < 20) {
-            urlString = 'url(/lib/images/evening.png)';
-            banner.style.backgroundImage = urlString;
-        } else if (curHr >= 20 && curHr < 22) {
-            urlString = 'url(/lib/images/late_evening.png)';
-            banner.style.backgroundImage = urlString;
-        } else if (curHr >= 22 && curHr < 24) {
-            urlString = 'url(/lib/images/night.png)';
-            banner.style.backgroundImage = urlString;
-        } else {
-            urlString = 'url(/lib/images/late_night.png)';
-            banner.style.backgroundImage = urlString;
-        }
-
-        //function change() {
-        //    //var doc = document.getElementById("pc-build-banner");
-        //    //var color = ["black", "blue", "brown", "green"];
-        //    //doc.style.backgroundColor = color[i];
-        //    //i = (i + 1) % color.length;
-
-        //    let banner = document.getElementById("pc-build-banner");
-
-
-        //}
-        //// 1000 - sec, 1000*60 - min 1000*60*60 -godz
-        //setInterval(change, 1000);
-
-    </script>
-}
-
 @section Banner {
     @*... contents of the banner specific to that view*@
-    <div id="pc-build-banner" class="eightbit-header-pc-configuration eightbit-header eightbit-header-index" style="height: 600px; background-position-y: -274px;">
+    <div id="pc-builder-banner" class="eightbit-header eightbit-header-index">
         <a type="button" class="nes-btn is-primary" asp-action="Create">Create New</a>
         <img class="website-header-img" src="~/lib/images/pc_configuration.png" alt="pc configuration" />
     </div>

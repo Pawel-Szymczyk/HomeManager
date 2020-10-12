@@ -102,7 +102,7 @@
             @RenderSection("Banner", required: true)
         }
 
-        <nav id="overlay-nav"  class="overlay">
+        <nav id="overlay-nav" class="overlay">
             <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
 
             <div class="overlay-content">
@@ -138,39 +138,39 @@
 
 
                 @*<a class="nav-link dropdown-toggle" id="configurationNav" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            PC Configuration
-        </a>*@
+                        PC Configuration
+                    </a>*@
 
                 @*<div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
-        <ul class="navbar-nav flex-grow-1">*@
+                    <ul class="navbar-nav flex-grow-1">*@
 
                 @*<li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" id="configurationNav" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                PC Configuration
-            </a>
-            <div class="dropdown-menu" aria-labelledby="configurationNav">
-                <a class="dropdown-item" asp-area="PcBuilds" asp-controller="Configurations" asp-action="Index">PC Configurations</a>
-                <a class="dropdown-item" asp-area="PcBuilds" asp-controller="CPUWatercoolers" asp-action="Index">CPU Watercoolers</a>
-                <a class="dropdown-item" asp-area="PcBuilds" asp-controller="Fans" asp-action="Index">Fans</a>
-                <a class="dropdown-item" asp-area="PcBuilds" asp-controller="GraphicsCards" asp-action="Index">Graphics Cards</a>
-                <a class="dropdown-item" asp-area="PcBuilds" asp-controller="HardDrives" asp-action="Index">Hard Drives</a>
-                <a class="dropdown-item" asp-area="PcBuilds" asp-controller="Motherboards" asp-action="Index">Motherboards</a>
-                <a class="dropdown-item" asp-area="PcBuilds" asp-controller="Others" asp-action="Index">Others</a>
-                <a class="dropdown-item" asp-area="PcBuilds" asp-controller="PCCases" asp-action="Index">PC Cases</a>
-                <a class="dropdown-item" asp-area="PcBuilds" asp-controller="PowerSupplies" asp-action="Index">Power Supplies</a>
-                <a class="dropdown-item" asp-area="PcBuilds" asp-controller="Processors" asp-action="Index">Processors</a>
-                <a class="dropdown-item" asp-area="PcBuilds" asp-controller="RAMs" asp-action="Index">RAM</a>
-            </div>
-        </li>*@
+                        <a class="nav-link dropdown-toggle" id="configurationNav" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            PC Configuration
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="configurationNav">
+                            <a class="dropdown-item" asp-area="PcBuilds" asp-controller="Configurations" asp-action="Index">PC Configurations</a>
+                            <a class="dropdown-item" asp-area="PcBuilds" asp-controller="CPUWatercoolers" asp-action="Index">CPU Watercoolers</a>
+                            <a class="dropdown-item" asp-area="PcBuilds" asp-controller="Fans" asp-action="Index">Fans</a>
+                            <a class="dropdown-item" asp-area="PcBuilds" asp-controller="GraphicsCards" asp-action="Index">Graphics Cards</a>
+                            <a class="dropdown-item" asp-area="PcBuilds" asp-controller="HardDrives" asp-action="Index">Hard Drives</a>
+                            <a class="dropdown-item" asp-area="PcBuilds" asp-controller="Motherboards" asp-action="Index">Motherboards</a>
+                            <a class="dropdown-item" asp-area="PcBuilds" asp-controller="Others" asp-action="Index">Others</a>
+                            <a class="dropdown-item" asp-area="PcBuilds" asp-controller="PCCases" asp-action="Index">PC Cases</a>
+                            <a class="dropdown-item" asp-area="PcBuilds" asp-controller="PowerSupplies" asp-action="Index">Power Supplies</a>
+                            <a class="dropdown-item" asp-area="PcBuilds" asp-controller="Processors" asp-action="Index">Processors</a>
+                            <a class="dropdown-item" asp-area="PcBuilds" asp-controller="RAMs" asp-action="Index">RAM</a>
+                        </div>
+                    </li>*@
 
                 @*<li class="nav-item">
-            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </li>*@
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                    </li>*@
                 @*</ul>
-        </div>*@
+                    </div>*@
             </div>
         </nav>
 
@@ -192,6 +192,7 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/js/banner.js" asp-append-version="true"></script>
     @RenderSection("Scripts", required: false)
 
 
@@ -221,6 +222,42 @@
 
     </script>
 
+    
+
+    @*<script type="text/javascript">
+
+        let urlString;
+        let banner = document.getElementById("pc-build-banner");
+        let curHr = new Date().getHours();
+
+        if (curHr >= 5 && curHr < 10) {
+            urlString = 'url(/lib/images/morning.png)';
+            banner.style.backgroundImage = urlString;
+        } else if (curHr >= 10 && curHr < 12) {
+            urlString = 'url(/lib/images/late_morning.png)';
+            banner.style.backgroundImage = urlString;
+        } else if (curHr >= 12 && curHr < 15) {
+            urlString = 'url(/lib/images/afternoon.png)';
+            banner.style.backgroundImage = urlString;
+        } else if (curHr >= 15 && curHr < 18) {
+            urlString = 'url(/lib/images/late_afternoon.png)';
+            banner.style.backgroundImage = urlString;
+        } else if (curHr >= 18 && curHr < 20) {
+            urlString = 'url(/lib/images/evening.png)';
+            banner.style.backgroundImage = urlString;
+        } else if (curHr >= 20 && curHr < 22) {
+            urlString = 'url(/lib/images/late_evening.png)';
+            banner.style.backgroundImage = urlString;
+        } else if (curHr >= 22 && curHr < 24) {
+            urlString = 'url(/lib/images/night.png)';
+            banner.style.backgroundImage = urlString;
+        } else {
+            urlString = 'url(/lib/images/late_night.png)';
+            banner.style.backgroundImage = urlString;
+        }
+
+    </script>*@
+    
 
 
 
