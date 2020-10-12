@@ -30,7 +30,7 @@
             <div class="col-md-8">
 
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                <div class="nes-field">
+                <div class="nes-field form-field">
                     <label asp-for="Configuration.Description" class="control-label"></label>
                     <input asp-for="Configuration.Description" class="nes-input">
                     <span asp-validation-for="Configuration.Description" class="nes-text is-error"></span>
@@ -38,7 +38,7 @@
 
 
                 <label for="default_select">CPU Watercoolers</label>
-                <div style="display: grid; grid-template-columns: auto 5%; grid-gap: 20px;">
+                <div class="create-form-field">
                     <div class="nes-select">
                         <select class="btn btn-light btn-block" asp-for="SelectedCPUWatercoolerId" asp-items="@(new SelectList(Model.CPUWatercoolers,"CPUWatercoolerId","Name"))">
                             <option value="">Pick CPU Watercooler</option>
@@ -48,7 +48,7 @@
                 </div>
 
                 <label for="default_select">Fans</label>
-                <div style="display: grid; grid-template-columns: auto 5%; grid-gap: 20px;">
+                <div class="create-form-field">
                     <div class="nes-select">
                         <select class="btn btn-light btn-block" asp-for="SelectedFanId" asp-items="@(new SelectList(Model.Fans,"FanId","Name"))">
                             <option value="">Pick Fan</option>
@@ -58,7 +58,7 @@
                 </div>
 
                 <label for="default_select">Graphics Cards</label>
-                <div style="display: grid; grid-template-columns: auto 5%; grid-gap: 20px;">
+                <div class="create-form-field">
                     <div class="nes-select">
                         <select class="btn btn-light btn-block" asp-for="SelectedGraphicsCardId" asp-items="@(new SelectList(Model.GraphicsCards,"GraphicsCardId","Name"))">
                             <option value="">Pick Graphics Cards</option>
@@ -67,14 +67,14 @@
                     <input type="button" class="nes-btn is-primary" value="&#x2b;" onclick="window.location='@Url.Action("Create", "GraphicsCards")'" />
                 </div>
 
-                <div class="nes-field">
+                <div class="nes-field form-field">
                     <label asp-for="Configuration.GraphicsCardQty" class="control-label">Graphics Card Qty</label>
                     <input asp-for="Configuration.GraphicsCardQty" class="nes-input">
                     <span asp-validation-for="Configuration.GraphicsCardQty" class="text-danger"></span>
                 </div>
 
                 <label for="default_select">Hard Drives</label>
-                <div style="display: grid; grid-template-columns: auto 5%; grid-gap: 20px;">
+                <div class="create-form-field">
                     <div class="nes-select">
                         <select class="btn btn-light btn-block" asp-for="SelectedHardDriveIds" asp-items="@(new SelectList(Model.HardDrives,"HardDriveId","Name"))" multiple size="3"></select>
                     </div>
@@ -82,7 +82,7 @@
                 </div>
 
                 <label for="default_select">Motherboards</label>
-                <div style="display: grid; grid-template-columns: auto 5%; grid-gap: 20px;">
+                <div class="create-form-field">
                     <div class="nes-select">
                         <select class="btn btn-light btn-block" asp-for="SelectedMotherboardId" asp-items="@(new SelectList(Model.Motherboards,"MotherboardId","Name"))">
                             <option value="">Pick Motherboard</option>
@@ -92,7 +92,7 @@
                 </div>
 
                 <label for="default_select">Others</label>
-                <div style="display: grid; grid-template-columns: auto 5%; grid-gap: 20px;">
+                <div class="create-form-field">
                     <div class="nes-select">
                         <select class="btn btn-light btn-block" asp-for="SelectedOtherIds" asp-items="@(new SelectList(Model.Others,"OtherId","Name"))" multiple size="3"></select>
                     </div>
@@ -100,7 +100,7 @@
                 </div>
 
                 <label for="default_select">PC Cases</label>
-                <div style="display: grid; grid-template-columns: auto 5%; grid-gap: 20px;">
+                <div class="create-form-field">
                     <div class="nes-select">
                         <select class="btn btn-light btn-block" asp-for="SelectedPCCaseId" asp-items="@(new SelectList(Model.PCCases,"PCCaseId","Name"))">
                             <option value="">Pick PC Case</option>
@@ -110,7 +110,7 @@
                 </div>
 
                 <label for="default_select">Power Supplies</label>
-                <div style="display: grid; grid-template-columns: auto 5%; grid-gap: 20px;">
+                <div class="create-form-field">
                     <div class="nes-select">
                         <select class="btn btn-light btn-block" asp-for="SelectedPowerSupplyId" asp-items="@(new SelectList(Model.PowerSupplies,"PowerSupplyId","Name"))">
                             <option value="">Pick Power Supply</option>
@@ -120,7 +120,7 @@
                 </div>
 
                 <label for="default_select">Processors</label>
-                <div style="display: grid; grid-template-columns: auto 5%; grid-gap: 20px;">
+                <div class="create-form-field">
                     <div class="nes-select">
                         <select class="btn btn-light btn-block" asp-for="SelectedProcessorId" asp-items="@(new SelectList(Model.Processors,"ProcessorId","Name"))">
                             <option value="">Pick Processor</option>
@@ -130,7 +130,7 @@
                 </div>
 
                 <label for="default_select">RAMs</label>
-                <div style="display: grid; grid-template-columns: auto 5%; grid-gap: 20px;">
+                <div class="create-form-field">
                     <div class="nes-select">
                         <select class="btn btn-light btn-block" asp-for="SelectedRAMId" asp-items="@(new SelectList(Model.RAMs,"RamId","Name"))">
                             <option value="">Pick RAM</option>

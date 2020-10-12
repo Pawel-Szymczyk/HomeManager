@@ -82,11 +82,17 @@ body {
     height: 250px;
 }
 
+/* ---------------------Edit/ create form fields--------------------- */
+.form-field {
+    margin-bottom: 20px;
+}
 
-
-
-
-
+.create-form-field {
+    display: grid;
+    grid-template-columns: auto 5%;
+    grid-gap: 20px;
+    margin-bottom: 20px;
+}
 /* ---------------------Layout response--------------------- */
 /* mobile */
 .content-container {
