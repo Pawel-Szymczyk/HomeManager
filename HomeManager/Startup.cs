@@ -13,15 +13,40 @@ namespace HomeManager
 {
     public class Startup
     {
+        public IConfiguration Configuration { get; }
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
         }
 
-        public IConfiguration Configuration { get; }
 
         public void ConfigureServices(IServiceCollection services)
         {
+            //services.AddAuthentication("Bearer")
+            //    .AddJwtBearer("Bearer", config => {
+            //        config.Authority = "https://localhost:44394/"; // server url
+            //        config.Audience = "HomeManager";
+            //    });
+
+            services.AddAuthentication(config => {
+                config.DefaultScheme = "Cookie";
+                config.DefaultChallengeScheme = "oidc";
+            })
+                .AddCookie("Cookie")
+                .AddOpenIdConnect("oidc", config => {
+                    config.Authority = "https://localhost:44394/"; // server url
+                    config.ClientId = "client_id";
+                    config.ClientSecret = "client_secret";
+                    config.SaveTokens = true;
+
+                    config.ResponseType = "code";
+                });
+
+            // add http client to be able to request the token and then use this http client to 
+            // call the HomeBudget.API
+            //services.AddHttpClient();
+
             services.AddControllersWithViews();
         }
 
@@ -43,6 +68,7 @@ namespace HomeManager
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
