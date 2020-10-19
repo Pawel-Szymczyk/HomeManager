@@ -6,18 +6,20 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using IdentityModel.Client;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Authentication;
+using System.IdentityModel.Tokens.Jwt;
 
 namespace HomeManager.Areas.HomeBudget.Controllers
 {
     [Area("HomeBudget")]
     public class HomeController : Controller
     {
-        //private readonly IHttpClientFactory _httpClientFactory;
+        private readonly IHttpClientFactory _httpClientFactory;
 
-        //public HomeController(IHttpClientFactory httpClientFactory)
-        //{
-        //    this._httpClientFactory = httpClientFactory;
-        //}
+        public HomeController(IHttpClientFactory httpClientFactory)
+        {
+            this._httpClientFactory = httpClientFactory;
+        }
 
 
         //public async Task<IActionResult> Index()
@@ -60,9 +62,34 @@ namespace HomeManager.Areas.HomeBudget.Controllers
         }
 
         [Authorize]
-        public IActionResult Secret()
+        public async Task<IActionResult> Secret()
         {
+            var accessToken = await HttpContext.GetTokenAsync("access_token");
+            var idToken = await HttpContext.GetTokenAsync("id_token");
+            var refreshToken = await HttpContext.GetTokenAsync("refresh_token");
+
+
+            var claims = User.Claims.ToList();
+            var _accessToken = new JwtSecurityTokenHandler().ReadJwtToken(accessToken);
+            var _idToken = new JwtSecurityTokenHandler().ReadJwtToken(idToken);
+
+            var result = await GetSecret(accessToken);
+
             return View();
+        }
+
+        public async Task<string> GetSecret(string accessToken)
+        {
+            // retrieve secret data
+            var apiClient = _httpClientFactory.CreateClient();
+
+            apiClient.SetBearerToken(accessToken);
+
+            var response = await apiClient.GetAsync("https://localhost:44385/secret");  // api url
+
+            var content = await response.Content.ReadAsStringAsync();
+
+            return content;
         }
 
 

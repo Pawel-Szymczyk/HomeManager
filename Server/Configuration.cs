@@ -10,17 +10,27 @@ namespace Server
 {
     public static class Configuration
     {
+        // identity token
         public static IEnumerable<IdentityResource> GetIdentityResources() =>
               new List<IdentityResource>
               {
                   new IdentityResources.OpenId(),
                   new IdentityResources.Profile(),
+                  new IdentityResource
+                  {
+                      Name = "rc.scope",
+                      UserClaims = 
+                      {
+                        "rc.grandma"
+                      }
+                  }
               };
 
+        // access token
         public static IEnumerable<ApiResource> GetApis() =>
             new List<ApiResource> 
             {
-                new ApiResource("HomeBudget.API")
+                new ApiResource("HomeBudget.API", new string [] { "rc.api.grandma" }),
             };
 
         public static IEnumerable<ApiScope> GetScopes() =>
@@ -47,8 +57,12 @@ namespace Server
                     {
                         IdentityServerConstants.StandardScopes.OpenId,
                         IdentityServerConstants.StandardScopes.Profile,
-                        "HomeBudget.API"
+                        "HomeBudget.API",
+                        "rc.scope"
                     },
+
+                    // puts all the claims in the id token
+                    //AlwaysIncludeUserClaimsInIdToken = true,
 
                     RequireConsent = false,
                     

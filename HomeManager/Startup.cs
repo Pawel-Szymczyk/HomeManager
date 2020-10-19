@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -41,11 +42,26 @@ namespace HomeManager
                     config.SaveTokens = true;
 
                     config.ResponseType = "code";
+
+                    // configure cookie claim mapping
+                    config.ClaimActions.MapUniqueJsonKey("RawCoding.Grandma", "rc.grandma");
+
+                    // two trips to load claims in to the cookie
+                    // but the id token is smaller !
+                    config.GetClaimsFromUserInfoEndpoint = true;
+
+                    // configure scope
+                    // clear and add options allow you to remove all scopes 
+                    // and manually add only scopes you need
+                    //config.Scope.Clear();
+                    //config.Scope.Add("openid");
+                    config.Scope.Add("rc.scope");
+                    config.Scope.Add("HomeBudget.API");
                 });
 
             // add http client to be able to request the token and then use this http client to 
             // call the HomeBudget.API
-            //services.AddHttpClient();
+            services.AddHttpClient();
 
             services.AddControllersWithViews();
         }
