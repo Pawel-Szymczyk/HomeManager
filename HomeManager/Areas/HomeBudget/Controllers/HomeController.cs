@@ -82,6 +82,11 @@ namespace HomeManager.Areas.HomeBudget.Controllers
             return View();
         }
 
+        public IActionResult Logout()
+        {
+            return SignOut("Cookie", "oidc");
+        }
+
         public async Task<string> GetSecret(string accessToken)
         {
             // retrieve secret data

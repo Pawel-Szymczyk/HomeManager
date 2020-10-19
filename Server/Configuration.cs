@@ -33,7 +33,7 @@ namespace Server
                 new ApiResource("HomeBudget.API", new string [] { "rc.api.grandma" }),
             };
 
-        public static IEnumerable<ApiScope> GetScopes() =>
+        public static IEnumerable<ApiScope> GetApiScopes() =>
             new List<ApiScope>
             {
                 new ApiScope("HomeBudget.API", "HomeBudget.Service")
@@ -44,6 +44,9 @@ namespace Server
             {
                 new Client
                 {
+                    ClientName = "Home Manager App",
+
+                    // Todo:  the secret simply being hashed using an extension method provided by IdentityServer. 
                     ClientId = "client_id",
                     ClientSecrets = { new Secret("client_secret".ToSha256()) },
                     
@@ -52,12 +55,16 @@ namespace Server
                     AllowedGrantTypes = GrantTypes.Code,    // user to machine communication ?
 
                     RedirectUris = { "https://localhost:44363/signin-oidc" },
+                    PostLogoutRedirectUris = { "https://localhost:44363/Home/Index" },
 
                     AllowedScopes = new List<string>
                     {
                         IdentityServerConstants.StandardScopes.OpenId,
                         IdentityServerConstants.StandardScopes.Profile,
                         "HomeBudget.API",
+                        //"homeBudget.api.read",
+                        //"homeBudget.api.write",
+
                         "rc.scope"
                     },
 
