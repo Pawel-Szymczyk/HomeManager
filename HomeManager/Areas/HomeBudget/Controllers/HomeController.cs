@@ -8,6 +8,8 @@ using IdentityModel.Client;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Authentication;
 using System.IdentityModel.Tokens.Jwt;
+using System.Text;
+using Newtonsoft.Json;
 
 namespace HomeManager.Areas.HomeBudget.Controllers
 {
@@ -75,6 +77,8 @@ namespace HomeManager.Areas.HomeBudget.Controllers
 
             var result = await GetSecret(accessToken);
 
+            await RefreshAccessToken();
+
             return View();
         }
 
@@ -92,6 +96,44 @@ namespace HomeManager.Areas.HomeBudget.Controllers
             return content;
         }
 
+
+        private async Task RefreshAccessToken()
+        {
+            var serverClient = _httpClientFactory.CreateClient();
+            // discover endpoint
+            var discoveryDocument = await serverClient.GetDiscoveryDocumentAsync("https://localhost:44394/"); // server url
+
+            var accessToken = await HttpContext.GetTokenAsync("access_token");
+            var idToken = await HttpContext.GetTokenAsync("id_token");
+            var refreshToken = await HttpContext.GetTokenAsync("refresh_token");
+            var refreshTokenClient = _httpClientFactory.CreateClient();
+
+            var tokenResponse = await refreshTokenClient.RequestRefreshTokenAsync(
+                new RefreshTokenRequest
+            {
+                Address = discoveryDocument.TokenEndpoint,
+                RefreshToken = refreshToken,
+                ClientId = "client_id",
+                ClientSecret = "client_secret",
+            }); 
+
+            var authInfo = await HttpContext.AuthenticateAsync("Cookie");
+
+            // reset/refresh tokens 
+            authInfo.Properties.UpdateTokenValue("access_token", tokenResponse.AccessToken);
+            authInfo.Properties.UpdateTokenValue("id_token", tokenResponse.IdentityToken);
+            authInfo.Properties.UpdateTokenValue("refresh_token", tokenResponse.RefreshToken);
+
+
+            await HttpContext.SignInAsync("Cookie", authInfo.Principal, authInfo.Properties);
+
+            // validate tokens
+            var accessTokenDifferent = !accessToken.Equals(tokenResponse.AccessToken);
+            var identityTokenDifferent = !idToken.Equals(tokenResponse.IdentityToken);
+            var refreshTokenDifferent = !refreshToken.Equals(tokenResponse.RefreshToken);
+
+            // do sth here if refresh failed...
+        }
 
     }
 }

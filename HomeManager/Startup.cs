@@ -55,8 +55,10 @@ namespace HomeManager
                     // and manually add only scopes you need
                     //config.Scope.Clear();
                     //config.Scope.Add("openid");
+                    config.Scope.Add("offline_access");
                     config.Scope.Add("rc.scope");
                     config.Scope.Add("HomeBudget.API");
+
                 });
 
             // add http client to be able to request the token and then use this http client to 
