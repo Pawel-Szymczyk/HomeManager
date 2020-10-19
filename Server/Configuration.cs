@@ -16,27 +16,47 @@ namespace Server
               {
                   new IdentityResources.OpenId(),
                   new IdentityResources.Profile(),
+                  //new IdentityResources.Email(),
+                  //new IdentityResource
+                  //{
+                  //    Name = "rc.scope",
+                  //    UserClaims = 
+                  //    {
+                  //      "rc.grandma"
+                  //    }
+                  //}
                   new IdentityResource
                   {
-                      Name = "rc.scope",
-                      UserClaims = 
+                      Name = "role",
+                      UserClaims =
                       {
-                        "rc.grandma"
+                        "role"
                       }
                   }
               };
 
         // access token
-        public static IEnumerable<ApiResource> GetApis() =>
-            new List<ApiResource> 
-            {
-                new ApiResource("HomeBudget.API", new string [] { "rc.api.grandma" }),
-            };
+        //public static IEnumerable<ApiResource> GetApiResources() =>
+        //    new List<ApiResource> 
+        //    {
+        //        //new ApiResource("HomeBudget.API", new string [] { "rc.api.grandma" }),
+        //        new ApiResource
+        //        {
+        //            Name = "homeBudget.api",
+        //            DisplayName = "Home Budget API",
+        //            Description = "Allow the application to access Home Budget API on your behalf",
+        //            Scopes = new List<string> { "homeBudget.api.read", "homeBudget.api.write" },
+        //            ApiSecrets = new List<Secret> {new Secret("ScopeSecret".Sha256())},
+        //            UserClaims = new List<string> {"role"}
+        //        }
+        //    };
 
         public static IEnumerable<ApiScope> GetApiScopes() =>
             new List<ApiScope>
             {
-                new ApiScope("HomeBudget.API", "HomeBudget.Service")
+                //new ApiScope("HomeBudget.API", "HomeBudget.Service")
+                new ApiScope("homeBudget.api.read", "Read Access to Home Budget API"),
+                new ApiScope("homeBudget.api.write", "Write Access to Home Budget API")
             };
 
         public static IEnumerable<Client> GetClients() =>
@@ -61,11 +81,11 @@ namespace Server
                     {
                         IdentityServerConstants.StandardScopes.OpenId,
                         IdentityServerConstants.StandardScopes.Profile,
-                        "HomeBudget.API",
-                        //"homeBudget.api.read",
-                        //"homeBudget.api.write",
+                        //"HomeBudget.API",
+                        "homeBudget.api.read",
+                        "homeBudget.api.write",
 
-                        "rc.scope"
+                        //"rc.scope"
                     },
 
                     // puts all the claims in the id token

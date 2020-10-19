@@ -44,7 +44,8 @@ namespace HomeManager
                     config.SignedOutCallbackPath = "/Home/Index";
 
                     // configure cookie claim mapping
-                    config.ClaimActions.MapUniqueJsonKey("RawCoding.Grandma", "rc.grandma");
+                    //config.ClaimActions.MapUniqueJsonKey("RawCoding.Grandma", "rc.grandma");
+                    config.ClaimActions.MapUniqueJsonKey("RawCoding.Role", "role");
 
                     // two trips to load claims in to the cookie
                     // but the id token is smaller !
@@ -56,8 +57,12 @@ namespace HomeManager
                     //config.Scope.Clear();
                     //config.Scope.Add("openid");
                     config.Scope.Add("offline_access");
-                    config.Scope.Add("rc.scope");
-                    config.Scope.Add("HomeBudget.API");
+                    //config.Scope.Add("rc.scope");
+                    //config.Scope.Add("HomeBudget.API");
+
+                    config.Scope.Add("homeBudget.api.read");
+                    config.Scope.Add("homeBudget.api.write");
+                 
 
                 });
 

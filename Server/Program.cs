@@ -31,8 +31,10 @@ namespace Server
 
                 var user = new IdentityUser("bob"); // replace it
                 userManager.CreateAsync(user, "password").GetAwaiter().GetResult();
-                userManager.AddClaimAsync(user, new Claim("rc.grandma", "big.cookie")).GetAwaiter().GetResult();
-                userManager.AddClaimAsync(user, new Claim("rc.api.grandma", "big.api.cookie")).GetAwaiter().GetResult();
+                //userManager.AddClaimAsync(user, new Claim("rc.grandma", "big.cookie")).GetAwaiter().GetResult();
+                //userManager.AddClaimAsync(user, new Claim("rc.api.grandma", "big.api.cookie")).GetAwaiter().GetResult();
+                userManager.AddClaimAsync(user, new Claim("role", "admin.cookie")).GetAwaiter().GetResult();
+                //userManager.AddClaimAsync(user, new Claim("rc.api.grandma", "big.api.cookie")).GetAwaiter().GetResult();
 
                 scope.ServiceProvider.GetRequiredService<PersistedGrantDbContext>().Database.Migrate();
 
