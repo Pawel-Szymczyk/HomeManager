@@ -16,6 +16,16 @@ namespace HomeBudget.API
 {
     public class Startup
     {
+        /// <summary>
+        /// Server URL used when making OpenIdConnect call.
+        /// </summary>
+        private string authority = "https://localhost:44394/"; 
+
+        /// <summary>
+        /// Valid audience value for any received OpenIdConnect token.
+        /// </summary>
+        private string audience = "homeBudget.api";
+
         public IConfiguration Configuration { get; }
 
         public Startup(IConfiguration configuration)
@@ -26,12 +36,12 @@ namespace HomeBudget.API
         public void ConfigureServices(IServiceCollection services)
         {
             
+            // TODO: set up policies here based on claims and user roles 
+
             services.AddAuthentication("Bearer")
                 .AddJwtBearer("Bearer", config => {
-
-                    config.Authority = "https://localhost:44394/"; // server url
-                    
-                    config.Audience = "homeBudget.api";
+                    config.Authority = this.authority;
+                    config.Audience = this.audience;
                 });
 
   

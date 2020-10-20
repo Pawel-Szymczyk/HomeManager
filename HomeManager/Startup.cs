@@ -24,11 +24,6 @@ namespace HomeManager
 
         public void ConfigureServices(IServiceCollection services)
         {
-            //services.AddAuthentication("Bearer")
-            //    .AddJwtBearer("Bearer", config => {
-            //        config.Authority = "https://localhost:44394/"; // server url
-            //        config.Audience = "HomeManager";
-            //    });
 
             services.AddAuthentication(config => {
                 config.DefaultScheme = "Cookie";
@@ -44,7 +39,6 @@ namespace HomeManager
                     config.SignedOutCallbackPath = "/Home/Index";
 
                     // configure cookie claim mapping
-                    //config.ClaimActions.MapUniqueJsonKey("RawCoding.Grandma", "rc.grandma");
                     config.ClaimActions.MapUniqueJsonKey("RawCoding.Role", "role");
 
                     // two trips to load claims in to the cookie
