@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using IdentityModel;
 using IdentityServer4.EntityFramework.DbContexts;
 using IdentityServer4.EntityFramework.Mappers;
 using Microsoft.AspNetCore.Hosting;
@@ -31,10 +32,7 @@ namespace Server
 
                 var user = new IdentityUser("bob"); // replace it
                 userManager.CreateAsync(user, "password").GetAwaiter().GetResult();
-                //userManager.AddClaimAsync(user, new Claim("rc.grandma", "big.cookie")).GetAwaiter().GetResult();
-                //userManager.AddClaimAsync(user, new Claim("rc.api.grandma", "big.api.cookie")).GetAwaiter().GetResult();
-                userManager.AddClaimAsync(user, new Claim("role", "admin.cookie")).GetAwaiter().GetResult();
-                //userManager.AddClaimAsync(user, new Claim("rc.api.grandma", "big.api.cookie")).GetAwaiter().GetResult();
+                userManager.AddClaimAsync(user, new Claim(JwtClaimTypes.Role, "admin")).GetAwaiter().GetResult();
 
                 scope.ServiceProvider.GetRequiredService<PersistedGrantDbContext>().Database.Migrate();
 
@@ -54,6 +52,15 @@ namespace Server
                     foreach (var resource in Configuration.GetIdentityResources())
                     {
                         context.IdentityResources.Add(resource.ToEntity());
+                    }
+                    context.SaveChanges();
+                }
+
+                if(!context.ApiResources.Any())
+                {
+                    foreach(var resource in Configuration.GetApiResources())
+                    {
+                        context.ApiResources.Add(resource.ToEntity());
                     }
                     context.SaveChanges();
                 }

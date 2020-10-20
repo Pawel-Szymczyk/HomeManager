@@ -30,11 +30,8 @@ namespace HomeBudget.API
                 .AddJwtBearer("Bearer", config => {
 
                     config.Authority = "https://localhost:44394/"; // server url
-                    //config.Audience = "HomeBudget.API";
-                    config.TokenValidationParameters = new TokenValidationParameters
-                    {
-                        ValidateAudience = false
-                    };
+                    
+                    config.Audience = "homeBudget.api";
                 });
 
   

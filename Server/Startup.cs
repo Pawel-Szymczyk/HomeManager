@@ -27,7 +27,6 @@ namespace Server
             services.AddDbContext<AppDbContext>(config =>
             {
                 config.UseSqlServer(connectionString);
-                //config.UseInMemoryDatabase("Memory");
             });
 
             // Add identity registers the services
@@ -49,14 +48,8 @@ namespace Server
                 config.LogoutPath = "/Auth/Logout";
             });
 
-            
-
             services.AddIdentityServer()
                 .AddAspNetIdentity<IdentityUser>()
-                //.AddInMemoryApiResources(Configuration.GetApis())           // in-memory database (repalce it with normal db)
-                //.AddInMemoryIdentityResources(Configuration.GetIdentityResources())
-                //.AddInMemoryApiScopes(Configuration.GetScopes())
-                //.AddInMemoryClients(Configuration.GetClients())
                 .AddConfigurationStore(options =>
                 {
                     options.ConfigureDbContext = b => b.UseSqlServer(connectionString,
