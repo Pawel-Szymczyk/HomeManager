@@ -1,7 +1,9 @@
-﻿using IdentityServer4.Services;
+﻿using IdentityModel;
+using IdentityServer4.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Server.Models;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace Server.Controllers
@@ -79,8 +81,11 @@ namespace Server.Controllers
             }
 
             var user = new IdentityUser(model.Username);
+
+
             var result = await this._userManager.CreateAsync(user, model.Password);
-           
+            await this._userManager.AddClaimAsync(user, new Claim(JwtClaimTypes.Role, "user"));
+
             // ( chenge IsPersistent to true if you want to cookie not be deleted after close browser and 
             // be still remembered )
 
