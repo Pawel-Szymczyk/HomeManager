@@ -1,0 +1,81 @@
+﻿@model Client.Areas.PCBuilds.Models.HardDrive
+
+@section Banner {
+    @*... contents of the banner specific to that view*@
+    <div id="pc-builder-banner" class="eightbit-header">
+        <img class="website-header-img" src="~/lib/images/hard_drive.png" alt="hard drive" />
+    </div>
+}
+
+@{
+    ViewData["Title"] = "Hard Drive";
+}
+
+<article class="nes-container">
+    <form asp-action="Edit" enctype="multipart/form-data">
+        <div class="actions-container">
+            <div>
+                <h1>Edit</h1>
+            </div>
+            <div class="actions-container-buttons">
+                <button type="submit" class="nes-btn is-primary">Save</button>
+                <a class="nes-btn" asp-action="Index">Back to List</a>
+            </div>
+        </div>
+        <hr />
+        <div class="row">
+            <div class="col-md-8">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="nes-field form-field">
+                    <label asp-for="Name" class="control-label"></label>
+                    <input asp-for="Name" class="nes-input" />
+                    <span asp-validation-for="Name" class="nes-text is-error"></span>
+                </div>
+                <div class="nes-field form-field">
+                    <label asp-for="Manufacturer" class="control-label"></label>
+                    <input asp-for="Manufacturer" class="nes-input" />
+                    <span asp-validation-for="Manufacturer" class="nes-text is-error"></span>
+                </div>
+                <div class="nes-field form-field">
+                    <label asp-for="Capacity" class="control-label"></label>
+                    <input asp-for="Capacity" class="nes-input" />
+                    <span asp-validation-for="Capacity" class="nes-text is-error"></span>
+                </div>
+                <div class="nes-field form-field">
+                    <label asp-for="Type" class="control-label"></label>
+                    <input asp-for="Type" class="nes-input" />
+                    <span asp-validation-for="Type" class="nes-text is-error"></span>
+                </div>
+                <div class="nes-field form-field">
+                    <label asp-for="Price" class="control-label"></label>
+                    <input asp-for="Price" class="nes-input" />
+                    <span asp-validation-for="Price" class="nes-text is-error"></span>
+                </div>
+                <div class="nes-field form-field">
+                    <label asp-for="Link" class="control-label"></label>
+                    <input asp-for="Link" class="nes-input" />
+                    <span asp-validation-for="Link" class="nes-text is-error"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="ImageFile" class="nes-btn">
+                        <span>Select your image</span>
+                        <input asp-for="ImageFile" accept="image/*" />
+                    </label>
+                    <span asp-validation-for="ImageFile" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="col-md-4">
+                @if (Model.ImageData != null)
+                {
+                    <div class="nes-container is-rounded image-box edit-image-box">
+                        <img src="data:image;base64,@System.Convert.ToBase64String(Model.ImageData)" class="product-image" />
+                    </div>
+                }
+            </div>
+        </div>
+    </form>
+</article>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

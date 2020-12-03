@@ -1,0 +1,136 @@
+﻿@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+body {
+    font-family: 'Press Start 2P';
+}
+
+/* CUSTOM BANNERS*/
+#pc-builder-banner {
+    background-color: black;
+    height: 600px;
+    background-position-y: -274px;
+}
+
+/*.eightbit-header:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 710px;
+    background: rgba(0,0,0,0.2);
+}*/
+
+.eightbit-header-index {
+    grid-template-columns: 195px auto;
+    grid-gap: 100px;
+}
+
+.eightbit-header {
+    display: grid;
+    height: 180px;
+    align-items: center;
+    justify-content: center;
+}
+
+.website-header-img {
+    position: relative;
+}
+
+
+/* Card Deck*/
+.card-deck {
+   
+}
+
+.card {
+    padding: 0 !important;
+    min-width: 400px !important;
+    max-width: 448px !important;
+}
+
+.card-image {
+    width: 440px;
+    height: 299px;
+    background-color: black;
+    object-fit: cover;
+}
+
+.card-footer {
+    background: white;
+    border: none;
+    padding-top: 1px;
+}
+
+
+/* pages actions */
+.actions-container {
+    display: grid;
+    grid-template-columns: auto auto;
+}
+
+.actions-container-buttons {
+    justify-self: end;
+}
+
+
+
+/* Image object in edit, details and delete pages */
+.image-box {
+    width: max-content;
+}
+
+.edit-image-box {
+    float: right;
+}
+
+.product-image {
+    width: 250px;
+    height: 250px;
+}
+
+/* ---------------------Edit/ create form fields--------------------- */
+.form-field {
+    margin-bottom: 20px;
+}
+
+.create-form-field {
+    display: grid;
+    grid-template-columns: auto 5%;
+    grid-gap: 20px;
+    margin-bottom: 20px;
+}
+/* ---------------------Layout response--------------------- */
+/* mobile */
+.content-container {
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+@media (min-width: 576px) {
+    .content-container {
+        max-width: 540px;
+    }
+}
+
+@media (min-width: 768px) {
+    .content-container {
+        max-width: 720px;
+    }
+}
+
+@media (min-width: 992px) {
+    .content-container {
+        max-width: 960px;
+    }
+}
+
+/* desktop */
+@media (min-width: 1200px) {
+    .content-container {
+        max-width: 1857px;
+    }
+}

@@ -1,0 +1,44 @@
+﻿@model IEnumerable<Client.Areas.PCBuilds.Models.GraphicsCard>
+
+@section Banner {
+    @*... contents of the banner specific to that view*@
+    <div id="pc-builder-banner" class="eightbit-header eightbit-header-index">
+        <a type="button" class="nes-btn is-primary" asp-action="Create">Create New</a>
+        <img class="website-header-img" src="~/lib/images/graphics_card.png" alt="graphics card" />
+    </div>
+}
+
+@{
+    ViewData["Title"] = "Graphics Cards";
+}
+
+<article class="nes-container">
+    <div class="card-deck">
+        <div class="row row-cols-1 row-cols-md-3">
+            @foreach (var item in Model)
+            {
+                <div class="col mb-4">
+                    <div class="card nes-container is-rounded">
+                        @if (item.ImageData != null)
+                        {
+                            <img class="card-image" src="data:image;base64,@System.Convert.ToBase64String(item.ImageData)" alt="graphics card" />
+                        }
+                        else
+                        {
+                            <img class="card-image" />
+                        }
+                        <div class="card-body">
+                            <h5 class="card-title">@Html.DisplayFor(modelItem => item.Name)</h5>
+                            <p class="card-text">@Html.DisplayFor(modelItem => item.Price)</p>
+                        </div>
+                        <div class="card-footer">
+                            <button class="nes-btn" onclick="location.href='@Url.Action("Details", new { id = item.GraphicsCardId })'">Details</button>
+                            <button class="nes-btn is-warning" onclick="location.href='@Url.Action("Edit", new { id = item.GraphicsCardId })'">Edit</button>
+                            <button class="nes-btn is-error" onclick="location.href='@Url.Action("Delete", new { id = item.GraphicsCardId })'">Delete</button>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</article>

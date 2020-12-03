@@ -1,0 +1,140 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - HomeManager</title>
+
+    <!-- minify -->
+    <link href="https://unpkg.com/nes.css@2.3.0/css/nes.min.css" rel="stylesheet" />
+    <!-- latest -->
+    <link href="https://unpkg.com/nes.css@latest/css/nes.min.css" rel="stylesheet" />
+    <!-- core style only -->
+    <link href="https://unpkg.com/nes.css/css/nes-core.min.css" rel="stylesheet" />
+
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/PCBuilds/site.css" />
+    <link rel="stylesheet" href="~/css/PCBuilds/common.css" />
+
+</head>
+<body>
+    <header>
+
+        @if (!IsSectionDefined("Banner"))
+        {
+            //... put the default banner contents here
+        }
+        else
+        {
+            @RenderSection("Banner", required: true)
+        }
+
+        <div id="overlay-nav" class="overlay">
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+
+            <div class="overlay-box">
+                <div class="nes-container is-dark with-title overlay-content">
+                    <p class="title">MENU</p>
+                    <a asp-area="PcBuilds" asp-controller="Configurations" asp-action="Index">PC Configurations</a>
+                    <a asp-area="PcBuilds" asp-controller="CPUWatercoolers" asp-action="Index">CPU Watercoolers</a>
+                    <a asp-area="PcBuilds" asp-controller="Fans" asp-action="Index">Fans</a>
+                    <a asp-area="PcBuilds" asp-controller="GraphicsCards" asp-action="Index">Graphics Cards</a>
+                    <a asp-area="PcBuilds" asp-controller="HardDrives" asp-action="Index">Hard Drives</a>
+                    <a asp-area="PcBuilds" asp-controller="Motherboards" asp-action="Index">Motherboards</a>
+                    <a asp-area="PcBuilds" asp-controller="Others" asp-action="Index">Others</a>
+                    <a asp-area="PcBuilds" asp-controller="PCCases" asp-action="Index">PC Cases</a>
+                    <a asp-area="PcBuilds" asp-controller="PowerSupplies" asp-action="Index">Power Supplies</a>
+                    <a asp-area="PcBuilds" asp-controller="Processors" asp-action="Index">Processors</a>
+                    <a asp-area="PcBuilds" asp-controller="RAMs" asp-action="Index">RAM</a>
+                </div>
+            </div>
+
+         
+        </div>
+
+        <div style="background-color: white;">
+            <nav id="navbar" class="navbar navbar-expand-sm navbar-toggleable-sm mb-3 ">
+                <div class="">
+                    <a class="nes-btn" onclick="openNav()">PC Builder</a>
+                    <a class="nes-btn" href="">Finance</a>
+                </div>
+            </nav>
+        </div>
+
+
+
+        @*<nav id="navbar" class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3" style="z-index: 1;">
+            <div class="container">*@
+                @*<a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">HomeManager</a>*@
+
+                @*<button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <a class="nes-btn" onclick="openNav()">Home Manager</a>*@
+
+
+                @*<a class="nav-link dropdown-toggle" id="configurationNav" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    PC Configuration
+                </a>*@
+
+                @*<div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+                <ul class="navbar-nav flex-grow-1">*@
+
+                @*<li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" id="configurationNav" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        PC Configuration
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="configurationNav">
+                        <a class="dropdown-item" asp-area="PcBuilds" asp-controller="Configurations" asp-action="Index">PC Configurations</a>
+                        <a class="dropdown-item" asp-area="PcBuilds" asp-controller="CPUWatercoolers" asp-action="Index">CPU Watercoolers</a>
+                        <a class="dropdown-item" asp-area="PcBuilds" asp-controller="Fans" asp-action="Index">Fans</a>
+                        <a class="dropdown-item" asp-area="PcBuilds" asp-controller="GraphicsCards" asp-action="Index">Graphics Cards</a>
+                        <a class="dropdown-item" asp-area="PcBuilds" asp-controller="HardDrives" asp-action="Index">Hard Drives</a>
+                        <a class="dropdown-item" asp-area="PcBuilds" asp-controller="Motherboards" asp-action="Index">Motherboards</a>
+                        <a class="dropdown-item" asp-area="PcBuilds" asp-controller="Others" asp-action="Index">Others</a>
+                        <a class="dropdown-item" asp-area="PcBuilds" asp-controller="PCCases" asp-action="Index">PC Cases</a>
+                        <a class="dropdown-item" asp-area="PcBuilds" asp-controller="PowerSupplies" asp-action="Index">Power Supplies</a>
+                        <a class="dropdown-item" asp-area="PcBuilds" asp-controller="Processors" asp-action="Index">Processors</a>
+                        <a class="dropdown-item" asp-area="PcBuilds" asp-controller="RAMs" asp-action="Index">RAM</a>
+                    </div>
+                </li>*@
+
+                @*<li class="nav-item">
+                    <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                </li>*@
+                @*</ul>
+                </div>*@
+            @*</div>
+        </nav>*@
+
+
+    </header>
+    <div class="content-container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+
+    <footer class="footer">
+        <div class="footer-box">
+            <span class="product">Home Manager &copy;</span>
+            <span class="author">Pawel Szymczyk</span>
+            <span class="year">2020</span>
+        </div>
+    </footer>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/js/banner.js" asp-append-version="true"></script>
+    <script src="~/js/navigation.js" asp-append-version="true"></script>
+    @RenderSection("Scripts", required: false)
+   
+</body>
+</html>

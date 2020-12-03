@@ -1,0 +1,95 @@
+﻿@model Client.Areas.PCBuilds.Models.RAM
+
+@section Banner {
+    @*... contents of the banner specific to that view*@
+    <div id="pc-builder-banner" class="eightbit-header">
+        <img class="website-header-img" src="~/lib/images/ram.png" alt="ram" />
+    </div>
+}
+
+@{
+    ViewData["Title"] = "RAM";
+}
+
+<article class="nes-container">
+    <div class="actions-container">
+        <div>
+            <h1>Delete</h1>
+        </div>
+        <div class="actions-container-buttons">
+            <form asp-action="Delete">
+                <button type="submit" class="nes-btn is-error">Delete</button>
+                <a class="nes-btn" asp-action="Index">Back to List</a>
+            </form>
+        </div>
+    </div>
+    <h3>Are you sure you want to delete this?</h3>
+    <hr />
+    <div class="actions-container">
+        <dl class="row">
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Name)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Name)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Manufacturer)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Manufacturer)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.MemoryType)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.MemoryType)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.MemorySpeed)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.MemorySpeed)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Capacity)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Capacity)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.ChipsetCompatibility)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.ChipsetCompatibility)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.NumberOfModules)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.NumberOfModules)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Price)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Price)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Link)
+            </dt>
+            <dd class="col-sm-10">
+                @if (!String.IsNullOrEmpty(Model.Link))
+                {
+                    <a href="@Model.Link" target=_blank>Product Website</a>
+                }
+            </dd>
+        </dl>
+        @if (Model.ImageData != null)
+        {
+            <div class="nes-container is-rounded image-box">
+                <img src="data:image;base64,@System.Convert.ToBase64String(Model.ImageData)" class="product-image" />
+            </div>
+        }
+    </div>
+</article>

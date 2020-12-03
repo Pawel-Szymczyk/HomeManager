@@ -1,0 +1,44 @@
+﻿@model IEnumerable<Client.Areas.PCBuilds.Models.PCCase>
+
+@section Banner {
+    @*... contents of the banner specific to that view*@
+    <div id="pc-builder-banner" class="eightbit-header eightbit-header-index">
+        <a type="button" class="nes-btn is-primary" asp-action="Create">Create New</a>
+        <img class="website-header-img" src="~/lib/images/pc_case.png" alt="pc case" />
+    </div>
+}
+
+@{
+    ViewData["Title"] = "PC Cases";
+}
+
+<article class="nes-container">
+    <div class="card-deck">
+        <div class="row row-cols-1 row-cols-md-3">
+            @foreach (var item in Model)
+            {
+                <div class="col mb-4">
+                    <div class="card nes-container is-rounded">
+                        @if (item.ImageData != null)
+                        {
+                            <img class="card-image" src="data:image;base64,@System.Convert.ToBase64String(item.ImageData)" alt="pc case" />
+                        }
+                        else
+                        {
+                            <img class="card-image" />
+                        }
+                        <div class="card-body">
+                            <h5 class="card-title">@Html.DisplayFor(modelItem => item.Name)</h5>
+                            <p class="card-text">@Html.DisplayFor(modelItem => item.Price)</p>
+                        </div>
+                        <div class="card-footer">
+                            <button class="nes-btn" onclick="location.href='@Url.Action("Details", new { id = item.PCCaseId })'">Details</button>
+                            <button class="nes-btn is-warning" onclick="location.href='@Url.Action("Edit", new { id = item.PCCaseId })'">Edit</button>
+                            <button class="nes-btn is-error" onclick="location.href='@Url.Action("Delete", new { id = item.PCCaseId })'">Delete</button>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</article>

@@ -1,0 +1,23 @@
+﻿{
+  "Routes": [
+    {
+      "DownstreamPathTemplate": "/api/WeatherForecast/Test",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "44325"
+        }
+      ],
+      "UpstreamPathTemplate": "/gateway/weather-forecast/test",
+      "UpstreamHttpMethod": [ "GET" ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "OcelotKey",
+        "AllowedScopes": []
+      }
+    }
+  ],
+  "GlobalConfiguration": {
+      "BaseUrl": "https://localhost:5001"
+  }
+}

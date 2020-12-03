@@ -1,0 +1,122 @@
+﻿@model Client.Areas.PCBuilds.Models.Components
+
+@section Banner {
+    @*... contents of the banner specific to that view*@
+    <div id="pc-builder-banner" class="eightbit-header">
+        <img class="website-header-img" src="~/lib/images/pc_configuration.png" alt="pc configuration" />
+    </div>
+}
+
+@{
+    ViewData["Title"] = "PC Configuration";
+}
+
+<article class="nes-container">
+    <form asp-action="Edit" enctype="multipart/form-data">
+
+        <div class="actions-container">
+            <div>
+                <h1>Edit</h1>
+            </div>
+            <div class="actions-container-buttons">
+                <button type="submit" class="nes-btn is-primary">Save</button>
+                <a class="nes-btn" asp-action="Index">Back to List</a>
+            </div>
+        </div>
+        <hr />
+
+        <div class="row">
+            <div class="col-md-8">
+
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                <div class="nes-field form-field">
+                    <label asp-for="Configuration.Description" class="control-label"></label>
+                    <input asp-for="Configuration.Description" class="nes-input">
+                    <span asp-validation-for="Configuration.Description" class="nes-text is-error"></span>
+                </div>
+
+                <label for="default_select">CPU Watercoolers</label>
+                <div class="nes-select form-field">
+                    <select class="btn btn-light btn-block" asp-for="SelectedCPUWatercoolerId" asp-items="@(new SelectList(Model.CPUWatercoolers,"CPUWatercoolerId","Name"))">
+                        <option value="">Pick CPU Watercooler</option>
+                    </select>
+                </div>
+
+                <label for="default_select">Fans</label>
+                <div class="nes-select form-field">
+                    <select class="btn btn-light" asp-for="SelectedFanId" asp-items="@(new SelectList(Model.Fans,"FanId","Name"))">
+                        <option value="">Pick Fan</option>
+                    </select>
+                </div>
+
+                <label for="default_select">Graphics Cards</label>
+                <div class="nes-select form-field">
+                    <select class="btn btn-light" asp-for="SelectedGraphicsCardId" asp-items="@(new SelectList(Model.GraphicsCards,"GraphicsCardId","Name"))">
+                        <option value="">Pick Graphics Card</option>
+                    </select>
+                </div>
+
+                <div class="nes-field form-field">
+                    <label asp-for="Configuration.GraphicsCardQty" class="control-label">Graphics Card Qty</label>
+                    <input asp-for="Configuration.GraphicsCardQty" class="nes-input">
+                    <span asp-validation-for="Configuration.GraphicsCardQty" class="text-danger"></span>
+                </div>
+
+                <label for="default_select">Hard Drives</label>
+                <div class="nes-select form-field">
+                    <select class="btn btn-light" asp-for="SelectedHardDriveIds" asp-items="@(new SelectList(Model.HardDrives,"HardDriveId","Name"))" multiple size="3">
+                        <option value="">Pick Hard Drive</option>
+                    </select>
+                </div>
+
+                <label for="default_select">Motherboards</label>
+                <div class="nes-select form-field">
+                    <select class="btn btn-light" asp-for="SelectedMotherboardId" asp-items="@(new SelectList(Model.Motherboards,"MotherboardId","Name"))">
+                        <option value="">Pick Motherboard</option>
+                    </select>
+                </div>
+
+                <label for="default_select">Others</label>
+                <div class="nes-select form-field">
+                    <select class="btn btn-light" asp-for="SelectedOtherIds" asp-items="@(new SelectList(Model.Others,"OtherId","Name"))" multiple size="3">
+                        <option value="">Pick Other Item</option>
+                    </select>
+                </div>
+
+                <label for="default_select">PC Cases</label>
+                <div class="nes-select form-field">
+                    <select class="btn btn-light" asp-for="SelectedPCCaseId" asp-items="@(new SelectList(Model.PCCases,"PCCaseId","Name"))">
+                        <option value="">Pick PC Case</option>
+                    </select>
+                </div>
+
+                <label for="default_select">Power Supplies</label>
+                <div class="nes-select form-field">
+                    <select class="btn btn-light" asp-for="SelectedPowerSupplyId" asp-items="@(new SelectList(Model.PowerSupplies,"PowerSupplyId","Name"))">
+                        <option value="">Pick Power Supply</option>
+                    </select>
+                </div>
+
+                <label for="default_select">Processors</label>
+                <div class="nes-select form-field">
+                    <select class="btn btn-light" asp-for="SelectedProcessorId" asp-items="@(new SelectList(Model.Processors,"ProcessorId","Name"))">
+                        <option value="">Pick Processor</option>
+                    </select>
+                </div>
+
+                <label for="default_select">RAMs</label>
+                <div class="nes-select form-field">
+                    <select class="btn btn-light" asp-for="SelectedRAMId" asp-items="@(new SelectList(Model.RAMs,"RamId","Name"))">
+                        <option value="">Pick RAM</option>
+                    </select>
+                </div>
+
+            </div>
+        </div>
+    </form>
+</article>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
