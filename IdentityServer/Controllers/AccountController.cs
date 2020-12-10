@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using AutoMapper;
 using IdentityModel;
 using IdentityServer.Models;
 using IdentityServer4;
@@ -14,7 +11,13 @@ using IdentityServer4.Test;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Security.Claims;
+using System.Threading.Tasks;
 
 namespace IdentityServer.Controllers
 {
@@ -33,7 +36,12 @@ namespace IdentityServer.Controllers
         private readonly IAuthenticationSchemeProvider _schemeProvider;
         private readonly IEventService _events;
 
+        private readonly IMapper _mapper;
+        private readonly UserManager<User> _userManager;
+
         public AccountController(
+            IMapper mapper,
+            UserManager<User> userManager,
             IIdentityServerInteractionService interaction,
             IClientStore clientStore,
             IAuthenticationSchemeProvider schemeProvider,
@@ -48,6 +56,9 @@ namespace IdentityServer.Controllers
             _clientStore = clientStore;
             _schemeProvider = schemeProvider;
             _events = events;
+
+            _mapper = mapper;
+            _userManager = userManager;
         }
 
         /// <summary>
@@ -108,10 +119,13 @@ namespace IdentityServer.Controllers
             if (ModelState.IsValid)
             {
                 // validate username/password against in-memory store
-                if (_users.ValidateCredentials(model.Username, model.Password))
+                //if (_users.ValidateCredentials(model.Username, model.Password))
+                var user = await _userManager.FindByEmailAsync(model.Username);
+                if (user != null && await _userManager.CheckPasswordAsync(user, model.Password))
                 {
-                    var user = _users.FindByUsername(model.Username);
-                    await _events.RaiseAsync(new UserLoginSuccessEvent(user.Username, user.SubjectId, user.Username, clientId: context?.Client.ClientId));
+                    //var user = _users.FindByUsername(model.Username);
+                    //await _events.RaiseAsync(new UserLoginSuccessEvent(user.Username, user.SubjectId, user.Username, clientId: context?.Client.ClientId));
+                    await _events.RaiseAsync(new UserLoginSuccessEvent(user.UserName, user.Id, user.UserName, clientId: context?.Client.ClientId));
 
                     // only set explicit expiration here if user chooses "remember me". 
                     // otherwise we rely upon expiration configured in cookie middleware.
@@ -126,12 +140,30 @@ namespace IdentityServer.Controllers
                     };
 
                     // issue authentication cookie with subject ID and username
-                    var isuser = new IdentityServerUser(user.SubjectId)
+                    //var isuser = new IdentityServerUser(user.SubjectId)
+                    //{
+                    //    DisplayName = user.Username
+                    //};
+
+                    //await HttpContext.SignInAsync(isuser, props);
+
+
+                    //var identity = new ClaimsIdentity(IdentityConstants.ApplicationScheme);
+
+                    //identity.AddClaim(new Claim(ClaimTypes.NameIdentifier, user.Id));
+                    //identity.AddClaim(new Claim(ClaimTypes.Name, user.UserName));
+
+                    var identity = new IdentityServerUser(user.Id)
                     {
-                        DisplayName = user.Username
+                        DisplayName = user.UserName,
+                        AdditionalClaims = new List<Claim>()
+                        {
+                            new Claim(ClaimTypes.NameIdentifier, user.Id),
+                            new Claim(ClaimTypes.Name, user.UserName)
+                        }
                     };
 
-                    await HttpContext.SignInAsync(isuser, props);
+                    await HttpContext.SignInAsync( identity, props);
 
                     if (context != null)
                     {
@@ -239,9 +271,30 @@ namespace IdentityServer.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Register(RegisterViewModel model)
+        public async Task<IActionResult> Register(UserRegistrationModel model)
         {
-            return View();
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+            var user = _mapper.Map<User>(model);
+
+            var result = await _userManager.CreateAsync(user, model.Password);
+            if (!result.Succeeded)
+            {
+                foreach (var error in result.Errors)
+                {
+                    ModelState.TryAddModelError(error.Code, error.Description);
+                }
+
+                return View(model);
+            }
+
+            await _userManager.AddToRoleAsync(user, "Visitor");
+
+            return RedirectToAction("Login");
+
         }
 
 

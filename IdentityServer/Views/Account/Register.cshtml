@@ -1,10 +1,10 @@
-﻿@model RegisterViewModel
+﻿@model UserRegistrationModel
 
 @{
     ViewData["Title"] = "Register";
 }
 
-<h1>Register</h1>
+<h1>Registration</h1>
 <hr />
 
 <div class="row">
@@ -48,9 +48,9 @@
     </div>
 </div>
 
-@section Scripts {
+@*@section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
+}*@
 
 
 @*<form asp-controller="Auth" asp-action="Register" method="post">

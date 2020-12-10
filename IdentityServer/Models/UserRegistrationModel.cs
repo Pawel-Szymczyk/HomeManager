@@ -2,7 +2,7 @@
 
 namespace IdentityServer.Models
 {
-    public class RegisterViewModel
+    public class UserRegistrationModel
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
@@ -14,14 +14,14 @@ namespace IdentityServer.Models
         [Required]
         public string Username { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Password is required")]
         [DataType(DataType.Password)]
         public string Password { get; set; }
 
         [Required]
         [DataType(DataType.Password)]
-        [Compare("Password")]
+        [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
-        public string ReturnUrl { get; set; }
+        //public string ReturnUrl { get; set; }
     }
 }

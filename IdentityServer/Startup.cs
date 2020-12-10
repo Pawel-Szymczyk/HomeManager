@@ -1,7 +1,11 @@
+using AutoMapper;
+using IdentityServer.Data;
+using IdentityServer.Models;
 using IdentityServer4.EntityFramework.DbContexts;
 using IdentityServer4.EntityFramework.Mappers;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -11,6 +15,10 @@ using System.Reflection;
 
 namespace IdentityServer
 {
+    // Registration process comes from: 
+    // - https://code-maze.com/identity-asp-net-core-project/
+    // - https://code-maze.com/user-registration-aspnet-core-identity/
+
     public class Startup
     {
         private readonly IConfiguration _config;
@@ -47,16 +55,28 @@ namespace IdentityServer
             //    //config.LogoutPath = "/Auth/Logout";
             //});
 
+
+            services.AddAutoMapper(typeof(Startup));
+
+
             string migrationsAssembly = typeof(Startup).GetTypeInfo().Assembly.GetName().Name;
             string connectionString = this._config.GetConnectionString("DefaultConnection");
 
-            //services.AddDbContext<AppDbContext>(config =>
-            //{
-            //    config.UseSqlServer(connectionString);
-            //});
+
+            services.AddDbContext<ApplicationContext>(options =>
+                options.UseSqlServer(connectionString));
+
+            services.AddIdentity<User, IdentityRole>(options =>
+            {
+                options.Password.RequiredLength = 4;
+                options.Password.RequireDigit = false;
+                options.Password.RequireUppercase = false;
+                options.User.RequireUniqueEmail = true;
+            })
+                .AddEntityFrameworkStores<ApplicationContext>();
 
             services.AddIdentityServer()
-                .AddTestUsers(TestUsers.Users)
+                //.AddTestUsers(TestUsers.Users)
                 .AddConfigurationStore(options =>
                 {
                     options.ConfigureDbContext = b => b.UseSqlServer(connectionString,
@@ -146,6 +166,7 @@ namespace IdentityServer
             // but this approach is not ideal to leave in to execute each time the application runs.
             // Once your database is populated, consider removing the call to the API.
            InitializeDatabase(app);
+
 
             app.UseStaticFiles();
 
