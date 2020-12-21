@@ -1,4 +1,4 @@
-﻿@using IdentityServer4.Extensions
+@using IdentityServer4.Extensions
 
 @{
     string name = null;
@@ -12,11 +12,16 @@
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 
         <a href="~/" class="navbar-brand">
-            <img src="~/images/logo.png" class="icon-banner">
+            <img src="~/icon.png" class="icon-banner">
             IdentityServer4
         </a>
 
-        <partial name="_LoginPartial" />
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link text-light" asp-controller="Account"
+                   asp-action="Register">Register</a>
+            </li>
+        </ul>
 
         @if (!string.IsNullOrWhiteSpace(name))
         {

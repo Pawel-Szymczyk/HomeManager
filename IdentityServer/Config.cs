@@ -1,4 +1,7 @@
-﻿using IdentityModel;
+﻿// Copyright (c) Brock Allen & Dominick Baier. All rights reserved.
+// Licensed under the Apache License, Version 2.0. See LICENSE in the project root for license information.
+
+
 using IdentityServer4;
 using IdentityServer4.Models;
 using System.Collections.Generic;
@@ -10,139 +13,44 @@ namespace IdentityServer
         public static IEnumerable<IdentityResource> IdentityResources =>
             new List<IdentityResource>
             {
-                new IdentityResources.OpenId(),
-                new IdentityResources.Profile(),
+                new IdentityResources.OpenId(), //standard openid (subject id)
+                new IdentityResources.Profile(), //(first name, last name etc..)
+                new IdentityResource("roles", "User role(s)", new List<string> { "role" })
             };
 
         public static IEnumerable<ApiScope> ApiScopes =>
             new List<ApiScope>
             {
-                new ApiScope("PCBuilder.API", "PC Builder API."),
+                //new ApiScope("PCBuilder.API", "PC Builder API."),
                 new ApiScope("Test.API", "My API"),
             };
 
         public static IEnumerable<Client> Clients =>
             new List<Client>
             {
-                // api client
-                //new Client
-                //{
-                //    ClientId = "client",
-
-                //    // no interactive user, use the clientid/secret for authentication
-                //    AllowedGrantTypes = GrantTypes.ClientCredentials,
-
-                //    // secret for authentication 
-                //    ClientSecrets =
-                //    {
-                //        new Secret("secret".Sha256())
-                //    },
-
-                //    //scopes that client has access to
-                //    AllowedScopes =
-                //    {
-                //        "api1",
-                //    }
-                //},
-
-                // mvc
                 new Client
                 {
-                    ClientId = "mvc",
-                    ClientSecrets = { new Secret("secret".Sha256()) },
+                    ClientId = "wasmappauth-client",
+                    ClientName = "Blazor WebAssembly App Client",
+                    RequireClientSecret = false,
 
                     AllowedGrantTypes = GrantTypes.Code,
+                    RequirePkce = true,
 
-                    // where to redirect to after login
-                    RedirectUris = { "https://localhost:44317/signin-oidc" },
+                    AllowedCorsOrigins = { "https://localhost:5015", "http://localhost:5005"  },
+                    RedirectUris = { "https://localhost:5015/authentication/login-callback", "http://localhost:5005/authentication/login-callback" },
+                    PostLogoutRedirectUris = { "https://localhost:5015/authentication/logout-callback", "http://localhost:5005/authentication/logout-callback" },
 
-                    // where to redirect to after logout
-                    PostLogoutRedirectUris = { "https://localhost:44317/signout-callback-oidc" },
-
-                    AllowOfflineAccess = true,
-
+                    //AllowedScopes = {"openid", "profile", "Test.API",},
                     AllowedScopes = new List<string>
                     {
                         IdentityServerConstants.StandardScopes.OpenId,
                         IdentityServerConstants.StandardScopes.Profile,
-                         "PCBuilder.API",
-                         "Test.API",
-                    }
+                        "Test.API",
+                        "roles"
+                         //"PCBuilder.API",
+                    },
                 }
             };
-
-
-        //// identity token
-        //public static IEnumerable<IdentityResource> GetIdentityResources() =>
-        //      new List<IdentityResource>
-        //      {
-        //          new IdentityResources.OpenId(),
-        //          new IdentityResources.Profile(),
-        //          //new IdentityResources.Email(),
-
-        //          // identitfy user
-        //          new IdentityResource
-        //          {
-        //              Name = "rc.scope",
-        //              UserClaims =
-        //              {
-        //                "rc.grandma"
-        //              }
-
-        //          }
-        //      };
-
-        //// use it to protect api
-        //public static IEnumerable<ApiResource> GetApiResources() =>
-        //    new List<ApiResource>
-        //    {
-        //        new ApiResource("Test.API"),
-        //    };
-
-
-        ////A scope is a logical name for (a part of) functionality of the resource. 
-        ////So a resource without scopes would mean that the resource has no functionality.
-        //public static IEnumerable<ApiScope> GetScopes() =>
-        //     new List<ApiScope>
-        //     {
-        //         new ApiScope("Test.API"),
-        //     };
-
-
-        //public static IEnumerable<Client> GetClients() =>
-        //    new List<Client>
-        //    {
-        //        new Client
-        //        {
-        //            ClientId = "client-id-some-guid",
-
-        //            // secret for authentication
-        //            ClientSecrets =
-        //            {
-        //                new Secret("client_secret".Sha256())
-        //            },
-
-        //            // no interactive user, use the clientid/secret for authentication
-        //            AllowedGrantTypes = GrantTypes.Code,
-
-        //            RedirectUris = { "https://localhost:44317/signin-oidc" },
-
-
-        //            // scopes that client has access to
-        //            AllowedScopes = new List<string>
-        //            {
-        //                IdentityServerConstants.StandardScopes.OpenId,
-        //                IdentityServerConstants.StandardScopes.Profile,
-        //                "Test.API",
-        //                "rc.scope"
-        //            },
-
-        //            AllowOfflineAccess = true,
-        //            RequireConsent = false,
-
-                   
-                   
-        //        }
-        //    };
     }
 }
