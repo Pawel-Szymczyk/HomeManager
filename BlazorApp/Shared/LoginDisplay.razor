@@ -2,19 +2,40 @@
 @using Microsoft.AspNetCore.Components.WebAssembly.Authentication
 
 @inject NavigationManager Navigation
+@inject IDialogService Dialog
 @inject SignOutSessionStateManager SignOutManager
 
 <AuthorizeView>
     <Authorized>
-        Hello, @context.User.Identity.Name!
+        @*Hello, @context.User.Identity.Name!*@
+
+        <MudButton @onclick="OpenDialog" Variant="Variant.Text"> @context.User.Identity.Name</MudButton>
+       @* <MudButton @onclick="((e) => OpenDialog(dialogOptions))" Variant="Variant.Text"> @context.User.Identity.Name</MudButton>*@
+
         <button class="nav-link btn btn-link" @onclick="BeginSignOut">Log out</button>
     </Authorized>
     <NotAuthorized>
-        <a href="authentication/login">Log in</a>
+        @*<a href="authentication/login">Log in</a>*@
+        <MudLink Href="authentication/login" Underline="Underline.None" Style="@white">Log in</MudLink>
     </NotAuthorized>
 </AuthorizeView>
 
 @code{
+
+    string white = $"color:{Colors.Shades.White} !important;";
+
+    //DialogOptions dialogOptions = new DialogOptions() { CloseButton = true, NoHeader = true, DisableBackdropClick = true };
+
+    //private async Task OpenDialog(DialogOptions options)
+    //{
+    //    Dialog.Show<DialogFile>("Simple Dialog", options);
+    //}
+
+    private async Task OpenDialog()
+    {
+        Dialog.Show<DialogFile>("Simple Dialog");
+    }
+
     private async Task BeginSignOut(MouseEventArgs args)
     {
         await SignOutManager.SetSignOutState();

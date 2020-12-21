@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using MudBlazor;
+using MudBlazor.Services;
 
 namespace BlazorApp
 {
@@ -27,6 +29,10 @@ namespace BlazorApp
                 options.UserOptions.RoleClaim = "role";
                
             });
+
+            builder.Services.AddMudBlazorDialog();
+            builder.Services.AddMudBlazorSnackbar();
+            builder.Services.AddMudBlazorResizeListener();
 
             await builder.Build().RunAsync();
         }
