@@ -34,6 +34,9 @@ namespace BlazorApp
             builder.Services.AddMudBlazorSnackbar();
             builder.Services.AddMudBlazorResizeListener();
 
+
+            
+
             await builder.Build().RunAsync();
         }
     }

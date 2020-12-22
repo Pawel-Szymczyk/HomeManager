@@ -119,15 +119,15 @@ namespace IdentityServer.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "915fd502-28f8-473d-96e3-46d8b7bf9374",
-                            ConcurrencyStamp = "37665ae3-90e1-41db-aa3f-d3e32404a372",
+                            Id = "4bf2ca66-7470-431a-8765-ee681b9e91a6",
+                            ConcurrencyStamp = "3657885a-905c-4bb6-95e0-25da2a4377a9",
                             Name = "Visitor",
                             NormalizedName = "VISITOR"
                         },
                         new
                         {
-                            Id = "1c5f1765-9ff1-44ad-870f-af1a37a09dcd",
-                            ConcurrencyStamp = "9552aa59-f1ac-4d4e-8084-28377958040a",
+                            Id = "8786055f-28a1-41d5-b324-613cc6285559",
+                            ConcurrencyStamp = "f98afe69-2f09-4e21-9b98-a447029c1bf4",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
                         });

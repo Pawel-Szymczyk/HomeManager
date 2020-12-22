@@ -4,7 +4,7 @@
 <MudDialogProvider 
     CloseButton="true" 
     DisableBackdropClick="true" 
-    NoHeader="true" 
+    NoHeader="false" 
     Position="DialogPosition.Center" 
 />
 <MudSnackbarProvider />
@@ -23,7 +23,7 @@
         </MudMenu>*@
 
         <MudDivider Vertical="true" FlexItem="true" Style="margin: 15px" />
-        <MudIconButton Icon="@Icons.Custom.GitHub" Color="Color.Inherit" />
+        <MudIconButton Link="https://github.com/Pawel-Szymczyk" Icon="@Icons.Custom.GitHub" Color="Color.Inherit"  Target="_blank"/>
     </MudAppBar>
     <MudDrawer @bind-Open="_drawerOpen" Clipped="true" Elevation="2">
         @*NavMenu*@

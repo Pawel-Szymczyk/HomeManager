@@ -1,0 +1,86 @@
+﻿
+@using Microsoft.AspNetCore.Components.Authorization
+@using Microsoft.AspNetCore.Components.WebAssembly.Authentication
+
+@inject SignOutSessionStateManager SignOutManager
+@inject NavigationManager Navigation
+
+<!--<AuthorizeView>
+    <Authorized>-->
+        @*Hello, @context.User.Identity.Name!*@
+
+        <!--<MudButton @onclick="OpenDialog" Variant="Variant.Text"> @context.User.Identity.Name</MudButton>-->
+        @* <MudButton @onclick="((e) => OpenDialog(dialogOptions))" Variant="Variant.Text"> @context.User.Identity.Name</MudButton>*@
+
+        @*<button class="nav-link btn btn-link" @onclick="BeginSignOut">Log out</button>*@
+    <!--</Authorized>
+    <NotAuthorized>-->
+        @*<a href="authentication/login">Log in</a>*@
+        <!--<MudLink Href="authentication/login" Underline="Underline.None" Style="@white">Log in</MudLink>
+    </NotAuthorized>
+</AuthorizeView>-->
+
+
+<MudDialog>
+    <DialogContent>
+
+        <AuthorizeView>
+            <Authorized>
+
+                @context.User.FindFirst("role")
+                @context.User.FindFirst("name")
+
+                @context.User.FindFirst("preferred_username")
+
+                <MudCard Outlined="true">
+                    <MudCardHeader>
+                        <CardHeaderAvatar>
+                            <MudAvatar Color="Color.Secondary">I</MudAvatar>
+                        </CardHeaderAvatar>
+                        <CardHeaderContent>
+                            <MudText Typo="Typo.body1">Istra Croatia</MudText>
+                            <MudText Typo="Typo.body2">Peninsula in Europe</MudText>
+                            <MudButton Variant="Variant.Text" Color="Color.Primary" @onclick="BeginSignOut">Sign out</MudButton>
+
+
+                        </CardHeaderContent>
+
+
+
+                    </MudCardHeader>
+
+                    @*<MudCardContent>
+                <MudText Typo="Typo.body2">This photo was taken in a small village in Istra Croatia.</MudText>
+            </MudCardContent>*@
+                    @*<MudCardActions>
+                <MudIconButton Icon="@Icons.Material.Favorite" Color="Color.Default" />
+                <MudIconButton Icon="@Icons.Material.Share" Color="Color.Default" />
+            </MudCardActions>*@
+                </MudCard>
+
+
+                @*<button class="nav-link btn btn-link" @onclick="BeginSignOut">Log out</button>*@
+
+
+            </Authorized>
+        </AuthorizeView>
+
+
+    </DialogContent>
+    <DialogActions>
+        <MudButton OnClick="Cancel">Close</MudButton>
+        @*<MudButton Color="Color.Primary" OnClick="Submit">Ok</MudButton>*@
+    </DialogActions>
+</MudDialog>
+
+@code {
+    [CascadingParameter] MudDialogInstance MudDialog { get; set; }
+
+    void Cancel() => MudDialog.Cancel();
+
+    private async Task BeginSignOut(MouseEventArgs args)
+    {
+        await SignOutManager.SetSignOutState();
+        Navigation.NavigateTo("authentication/logout");
+    }
+}

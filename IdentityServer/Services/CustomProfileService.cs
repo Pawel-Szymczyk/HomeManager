@@ -23,6 +23,18 @@ namespace IdentityServer.Services
             var roleClaims = context.Subject.FindAll(JwtClaimTypes.Role);
             context.IssuedClaims.AddRange(roleClaims);
 
+            var firstNameClaim = context.Subject.FindAll(JwtClaimTypes.GivenName);
+            context.IssuedClaims.AddRange(firstNameClaim);
+
+            var lastnameClaim = context.Subject.FindAll(JwtClaimTypes.FamilyName);
+            context.IssuedClaims.AddRange(lastnameClaim);
+
+            var usernameClaim = context.Subject.FindAll(JwtClaimTypes.PreferredUserName);
+            context.IssuedClaims.AddRange(usernameClaim);
+
+            var emailClaim = context.Subject.FindAll(JwtClaimTypes.Email);
+            context.IssuedClaims.AddRange(emailClaim);
+
             await Task.CompletedTask;
         }
 

@@ -21,7 +21,7 @@ namespace IdentityServer
         public static IEnumerable<ApiScope> ApiScopes =>
             new List<ApiScope>
             {
-                //new ApiScope("PCBuilder.API", "PC Builder API."),
+                new ApiScope("PCBuilder.API", "PC Builder API."),
                 new ApiScope("Test.API", "My API"),
             };
 
@@ -41,14 +41,13 @@ namespace IdentityServer
                     RedirectUris = { "https://localhost:5015/authentication/login-callback", "http://localhost:5005/authentication/login-callback" },
                     PostLogoutRedirectUris = { "https://localhost:5015/authentication/logout-callback", "http://localhost:5005/authentication/logout-callback" },
 
-                    //AllowedScopes = {"openid", "profile", "Test.API",},
                     AllowedScopes = new List<string>
                     {
                         IdentityServerConstants.StandardScopes.OpenId,
                         IdentityServerConstants.StandardScopes.Profile,
                         "Test.API",
+                        "PCBuilder.API",
                         "roles"
-                         //"PCBuilder.API",
                     },
                 }
             };
