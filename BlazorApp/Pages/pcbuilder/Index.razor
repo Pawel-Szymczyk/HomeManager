@@ -1,7 +1,64 @@
-﻿@page "/pcbuilder"
+﻿@inject HttpClient Http
+@using Models.pcbuilder;
+@using Microsoft.AspNetCore.Authorization
+@page "/pcbuilder"
+@attribute [Authorize]
+
+
 
 <h3>PC Builder</h3>
 
+
+@if (fans == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Manufacturer</th>
+                <th>Dimensions</th>
+                <th>Number of fans</th>
+                <th>PWM Control</th>
+                <th>RGB</th>
+                <th>Price</th>
+                <th>Link</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var fan in fans)
+            {
+                <tr>
+                    <td>@fan.FanId</td>
+                    <td>@fan.Name</td>
+                    <td>@fan.Manufacturer</td>
+                    <td>@fan.Dimensions</td>
+                    <td>@fan.NumberOfFuns</td>
+                    <td>@fan.PWMControl</td>
+                    <td>@fan.RGB</td>
+                    <td>@fan.Price</td>
+                    <td>@fan.Link</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
 @code {
+    private Fan[] fans;
+
+    protected override async Task OnInitializedAsync()
+    {
+
+        fans = await Http.GetFromJsonAsync<Fan[]>("https://localhost:44324/api/v1/fans");
+        //fans = await Http.GetFromJsonAsync<Fan[]>("v1/fans");
+    }
 
 }
+
+
+

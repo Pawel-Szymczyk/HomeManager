@@ -1,10 +1,12 @@
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Cors.Infrastructure;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.Net.Http.Headers;
 using Microsoft.OpenApi.Models;
 using PCBuilder.Service.API.DBContext;
 using PCBuilder.Service.API.Repositories;
@@ -19,7 +21,7 @@ namespace PCBuilder.Service.API
         /// <summary>
         /// Server URL used when making OpenIdConnect call.
         /// </summary>
-        private string authority = "https://localhost:5001/";
+        private string authority = "https://localhost:5015/";
         public IConfiguration Configuration { get; }
 
         public Startup(IConfiguration configuration)
@@ -31,6 +33,25 @@ namespace PCBuilder.Service.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            //services.AddCors(policy =>
+            //{
+            //    policy.AddPolicy("CorsPolicy", opt => opt
+            //        .AllowAnyOrigin()
+            //        .AllowAnyHeader()
+            //        .AllowAnyMethod());
+            //});
+
+            //services.AddCors(options =>
+            //{
+            //    options.AddPolicy(
+            //        "Open",
+            //        builder => builder
+            //        .WithOrigins("https://localhost:5015")
+            //        .SetIsOriginAllowed((host) => true)
+            //        .AllowAnyHeader()
+            //        .AllowCredentials());
+            //});
+
             services.AddControllers().AddNewtonsoftJson(options =>
                 options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
 
@@ -68,7 +89,6 @@ namespace PCBuilder.Service.API
                 .AddJwtBearer("Bearer", config =>
                 {
                     config.Authority = this.authority;
-
                     config.TokenValidationParameters = new TokenValidationParameters
                     {
                         ValidateAudience = false
@@ -99,21 +119,39 @@ namespace PCBuilder.Service.API
 
             // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.),
             // specifying the Swagger JSON endpoint.
-            app.UseSwaggerUI(c =>
+            app.UseSwaggerUI(c => 
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "PC builder API V1");
             });
 
+            //app.UseCors("Open");
+            //app.UseCors("CorsPolicy");
+            //app.UseCors(config =>
+            //{
+            //    config.AllowAnyOrigin();
+            //    config.AllowAnyMethod();
+            //    config.AllowAnyHeader();
+            //});
+            //app.UseCors(policy =>
+            //    policy.WithOrigins("https://localhost:5015")
+            //    .AllowAnyMethod()
+            //    .WithHeaders(HeaderNames.ContentType, HeaderNames.Authorization)
+            //    .AllowCredentials());
+
+
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            //app.UseCors("Open");
 
             app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllers().RequireAuthorization("ApiScope");
+                //endpoints.MapControllers().RequireAuthorization("ApiScope");
+                endpoints.MapControllers();
             });
         }
     }

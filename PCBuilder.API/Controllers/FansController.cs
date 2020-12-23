@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.Json;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using PCBuilder.Service.API.Models;
@@ -13,7 +15,8 @@ namespace PCBuilder.Service.API.Controllers
     [Produces("application/json")]
     [Route("api/v1/[controller]")]
     [ApiController]
-    [Authorize]
+    //[Authorize]
+    //[EnableCors("Open")]
     public class FansController : ControllerBase
     {
         private readonly FanRepository _repository;
@@ -34,9 +37,17 @@ namespace PCBuilder.Service.API.Controllers
         /// </remarks>
         /// <returns>IEnumerable List of fans.</returns>
         [HttpGet]
+        //public async Task<ActionResult<IEnumerable<Fan>>> Get()
+        //{
+
+        //    //return await this._repository.GetAll();
+        //    var result =  await this._repository.GetAll();
+
+        //    return Ok(new JsonResult(result));
+        //}
         public async Task<ActionResult<IEnumerable<Fan>>> Get()
         {
-            return await this._repository.GetAll();
+           return await this._repository.GetAll();
         }
 
         /// <summary>
