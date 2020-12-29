@@ -48,7 +48,6 @@ namespace BlazorApp
             });
 
 
-          
 
 
             builder.Services.AddMudBlazorDialog();

@@ -105,7 +105,9 @@ namespace PCBuilder.Service.API.Controllers
                 model.ModifiedDate = DateTime.UtcNow;
 
                 await this._repository.Add(model);
-                return this.StatusCode(StatusCodes.Status201Created, model);
+
+                //return this.StatusCode(StatusCodes.Status201Created, model);
+                return CreatedAtAction(nameof(Get), new { id = model.FanId }, model);
             }
             catch (Exception ex)
             {

@@ -82,9 +82,11 @@ namespace BlazorApp.Models.pcbuilder
             }
             else
             {
-                //await Http.SendJsonAsync(HttpMethod.Post, "/api/Employee/Create", emp);
+                Console.WriteLine(fan);
+                // create
+                await Http.PostAsJsonAsync("https://localhost:44324/api/v1/fans", fan);
             }
-            UrlNavigationManager.NavigateTo("/employee/fetch");
+            //UrlNavigationManager.NavigateTo("/pcbuilder/fans/all");
         }
 
 

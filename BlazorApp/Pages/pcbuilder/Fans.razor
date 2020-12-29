@@ -80,14 +80,20 @@
             </MudForm>
         </MudPaper>*@
 
-    <div style="max-width: 400px;">
-        <EditForm Model="@fan" OnValidSubmit="OnValidSubmit">
+    <div style="display: flex; justify-content: center;">
+        <EditForm Model="@fan" OnValidSubmit="CreateFan">
             <DataAnnotationsValidator />
-            <MudCard>
+            <MudCard style="width: 500px;">
                 <MudCardContent>
-                    <MudTextField Label="First name" HelperText="Max. 8 characters"
-                                  @bind-Value="fan.Name" For="@(() => fan.Name)" />
-                    
+
+                    <MudTextField Label="Label" @bind-Value="fan.Name" For="@(() => fan.Name)" />
+                    <MudTextField Label="Manufacturer" @bind-Value="fan.Manufacturer" For="@(() => fan.Manufacturer)" />
+                    <MudTextField Label="Dimensions" @bind-Value="fan.Dimensions" For="@(() => fan.Dimensions)" />
+                    <MudTextField Label="Number Of Fans" @bind-Value="fan.NumberOfFuns" For="@(() => fan.NumberOfFuns)" />
+                    <MudSwitch @bind-Checked="fan.PWMControl" Label="PWM Control" For="@(() => fan.PWMControl)" Color="Color.Primary" />
+                    <MudSwitch @bind-Checked="fan.RGB" Label="RGB" For="@(() => fan.RGB)" Color="Color.Primary" />
+                    <MudTextField Label="Price" @bind-Value="fan.Price" For="@(() => fan.Price)" />
+
                 </MudCardContent>
                 <MudCardActions>
                     <MudButton ButtonType="ButtonType.Submit" Variant="Variant.Filled" Color="Color.Primary" Class="ml-auto">Register</MudButton>

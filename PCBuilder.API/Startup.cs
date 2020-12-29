@@ -33,25 +33,6 @@ namespace PCBuilder.Service.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            //services.AddCors(policy =>
-            //{
-            //    policy.AddPolicy("CorsPolicy", opt => opt
-            //        .AllowAnyOrigin()
-            //        .AllowAnyHeader()
-            //        .AllowAnyMethod());
-            //});
-
-            //services.AddCors(options =>
-            //{
-            //    options.AddPolicy(
-            //        "Open",
-            //        builder => builder
-            //        .WithOrigins("https://localhost:5015")
-            //        .SetIsOriginAllowed((host) => true)
-            //        .AllowAnyHeader()
-            //        .AllowCredentials());
-            //});
-
             services.AddControllers().AddNewtonsoftJson(options =>
                 options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
 
@@ -104,6 +85,8 @@ namespace PCBuilder.Service.API
                 });
             });
 
+
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -124,26 +107,19 @@ namespace PCBuilder.Service.API
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "PC builder API V1");
             });
 
-            //app.UseCors("Open");
-            //app.UseCors("CorsPolicy");
-            //app.UseCors(config =>
-            //{
-            //    config.AllowAnyOrigin();
-            //    config.AllowAnyMethod();
-            //    config.AllowAnyHeader();
-            //});
-            //app.UseCors(policy =>
-            //    policy.WithOrigins("https://localhost:5015")
-            //    .AllowAnyMethod()
-            //    .WithHeaders(HeaderNames.ContentType, HeaderNames.Authorization)
-            //    .AllowCredentials());
-
 
             app.UseHttpsRedirection();
 
             app.UseRouting();
 
-            //app.UseCors("Open");
+            app.UseCors(policy =>
+                 policy.WithOrigins("http://localhost:5005", "https://localhost:5015")
+                 .AllowAnyMethod()
+                 .WithHeaders(HeaderNames.ContentType, HeaderNames.Authorization)
+                 .AllowCredentials());
+
+
+
 
             app.UseAuthentication();
             app.UseAuthorization();
