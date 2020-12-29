@@ -18,7 +18,7 @@ namespace BlazorApp.Models.pcbuilder
 
         #region Parameters
         [Parameter]
-        public int ParamFanId { get; set; }
+        public Guid ParamFanId { get; set; }
         [Parameter]
         public string Action { get; set; }
 
@@ -38,7 +38,7 @@ namespace BlazorApp.Models.pcbuilder
         protected override async Task OnParametersSetAsync()
         {
             //if (Action == "fetch")
-            if (Action == "fans")
+            if (Action == "all")
             {
                 await FetchFans();
             }
@@ -47,6 +47,19 @@ namespace BlazorApp.Models.pcbuilder
                 Title = "Add Fan";
                 fan = new Fan();
             }
+            else if (ParamFanId != Guid.Empty)
+            {
+                if (Action == "edit")
+                {
+                    Title = "Edit Fan";
+                }
+                else if (Action == "delete")
+                {
+                    Title = "Delete Fan";
+                }
+
+                await FetchFan();
+            }
         }
 
         protected async Task FetchFans()
@@ -54,6 +67,11 @@ namespace BlazorApp.Models.pcbuilder
             Title = "Fans";
             fans = await Http.GetFromJsonAsync<List<Fan>>("https://localhost:44324/api/v1/fans");
             //fans = await Http.GetFromJsonAsync<Fan[]>("v1/fans");
+        }
+
+        protected async Task FetchFan()
+        {
+            fan = await Http.GetFromJsonAsync<Fan>("https://localhost:44324/api/v1/fans/" + ParamFanId);
         }
 
         protected async Task CreateFan()
@@ -68,6 +86,10 @@ namespace BlazorApp.Models.pcbuilder
             }
             UrlNavigationManager.NavigateTo("/employee/fetch");
         }
+
+
+
+
 
 
         protected bool FilterFunc(Fan element)
