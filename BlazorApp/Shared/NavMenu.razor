@@ -1,38 +1,14 @@
-﻿@*<div class="top-row pl-4 navbar navbar-dark">
-    
-    <button class="navbar-toggler" @onclick="ToggleNavMenu">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-</div>*@
-
-@*<div class="@NavMenuCssClass" @onclick="ToggleNavMenu">
-    <ul class="nav flex-column">
-        <li class="nav-item px-3">
-            <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
-                <span class="oi oi-home" aria-hidden="true"></span> Home
-            </NavLink>
-        </li>
-        <li class="nav-item px-3">
-            <NavLink class="nav-link" href="counter">
-                <span class="oi oi-plus" aria-hidden="true"></span> Counter
-            </NavLink>
-        </li>
-        <li class="nav-item px-3">
-            <NavLink class="nav-link" href="fetchdata">
-                <span class="oi oi-list-rich" aria-hidden="true"></span> Fetch data
-            </NavLink>
-        </li>
-    </ul>
-</div>*@
-
-
+﻿
 <MudNavMenu Class="demo-navmenu">
     <MudNavLink Href="" Icon="@Icons.Material.Dashboard">Dashboard/Home</MudNavLink>
     <MudNavLink Href="counter" Icon="@Icons.Material.Storage">Counter</MudNavLink>
     <MudNavLink Href="fetchdata" Icon="@Icons.Material.Receipt">Fetch data</MudNavLink>
-    <MudNavLink Href="pcbuilder" Icon="@Icons.Material.Receipt">PC Builder</MudNavLink>
-</MudNavMenu>
 
+    <MudNavGroup Title="PC Builder" Icon="@Icons.Material.Computer" Expanded="true">
+        <MudNavLink Href="pcbuilder" Icon="@Icons.Material.Build">Builds</MudNavLink>
+        <MudNavLink Href="pcbuilder/fans/all" Icon="">Fans</MudNavLink>
+    </MudNavGroup>
+</MudNavMenu>
 
 @code {
     //private bool collapseNavMenu = true;

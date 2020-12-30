@@ -1,8 +1,10 @@
 ﻿using Microsoft.AspNetCore.Components;
+using MudBlazor;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Http.Json;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace BlazorApp.Models.pcbuilder
@@ -24,9 +26,8 @@ namespace BlazorApp.Models.pcbuilder
 
         #endregion
 
+        private const string ServiceEndpoint = "https://localhost:44324/api/v1/fans";
 
-
-        //private Fan[] fans;
         protected List<Fan> fans = new List<Fan>();
         public Fan fan = new Fan();
 
@@ -37,7 +38,6 @@ namespace BlazorApp.Models.pcbuilder
 
         protected override async Task OnParametersSetAsync()
         {
-            //if (Action == "fetch")
             if (Action == "all")
             {
                 await FetchFans();
@@ -62,34 +62,50 @@ namespace BlazorApp.Models.pcbuilder
             }
         }
 
+        /// <summary>
+        /// Gets list of fans.
+        /// </summary>
         protected async Task FetchFans()
         {
             Title = "Fans";
-            fans = await Http.GetFromJsonAsync<List<Fan>>("https://localhost:44324/api/v1/fans");
-            //fans = await Http.GetFromJsonAsync<Fan[]>("v1/fans");
+            fans = await Http.GetFromJsonAsync<List<Fan>>(ServiceEndpoint);
         }
 
+        /// <summary>
+        /// Gets specific single fan details. 
+        /// </summary>
         protected async Task FetchFan()
         {
-            fan = await Http.GetFromJsonAsync<Fan>("https://localhost:44324/api/v1/fans/" + ParamFanId);
+            //"https://localhost:44324/api/v1/fans/" + ParamFanId
+            fan = await Http.GetFromJsonAsync<Fan>($"{ServiceEndpoint}/{ParamFanId}");
         }
 
+        /// <summary>
+        /// Stores/updates fan in the servers' database.
+        /// </summary>
         protected async Task CreateFan()
         {
             if ( fan.FanId != Guid.Empty )
             {
-                //await Http.SendJsonAsync(HttpMethod.Put, "api/Employee/Edit", emp);
+                await Http.PutAsJsonAsync(ServiceEndpoint, fan);
             }
             else
             {
-                Console.WriteLine(fan);
                 // create
-                await Http.PostAsJsonAsync("https://localhost:44324/api/v1/fans", fan);
+                await Http.PostAsJsonAsync(ServiceEndpoint, fan);
             }
-            //UrlNavigationManager.NavigateTo("/pcbuilder/fans/all");
+            UrlNavigationManager.NavigateTo("/pcbuilder/fans/all");
         }
 
-
+        /// <summary>
+        /// Deletes specific fan from server.
+        /// </summary>
+        /// <returns></returns>
+        protected async Task DeleteFan()
+        {
+            await Http.DeleteAsync($"{ServiceEndpoint}/{ParamFanId}");
+            UrlNavigationManager.NavigateTo("/pcbuilder/fans/all");
+        }
 
 
 
@@ -106,6 +122,7 @@ namespace BlazorApp.Models.pcbuilder
             //    return true;
             return false;
         }
+
 
 
     }
