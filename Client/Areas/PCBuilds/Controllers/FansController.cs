@@ -14,7 +14,6 @@ using System.Threading.Tasks;
 namespace HomeManager.Areas.PcBuilds.Controllers
 {
     [Area("PCBuilds")]
-    [Authorize]
     public class FansController : Controller
     {
         private readonly ILogger<FansController> _logger;

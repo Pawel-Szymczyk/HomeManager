@@ -8,65 +8,66 @@
 @using System.ComponentModel.DataAnnotations
 @attribute [Authorize]
 
+<MudPaper Style="padding: 20px 0;">
+    <MudContainer Fixed="true">
 
-<h1>@Title</h1>
+        @if (Action == "all")
+        {
+            <MudGrid Spacing="2" >
+                <MudItem xs="12" Style="text-align: end;">
+                    <MudButton 
+                               StartIcon="@Icons.Material.Add" 
+                               Variant="Variant.Outlined" 
+                               Link="/pcbuilder/fans/create" 
+                               Size="Size.Large" 
+                               Color="Color.Success">Create New</MudButton>
+                </MudItem>
+                <MudItem xs="12">
+                    @if (fans == null)
+                    {
+                        <p><em>Loading...</em></p>
+                    }
+                    else
+                    {
+                        <MudTable Items="fans" Hover="true" Breakpoint="Breakpoint.Sm" FixedHeader="true" SortLabel="Sort By" @bind-SelectedItem="selected_item" Elevation="25">
+                            <ToolBarContent>
+                                <MudText Typo="Typo.h6">Fans</MudText>
+                                <MudToolBarSpacer />
+                                <MudTextField @bind-Value="search_string" Placeholder="Search" Adornment="Adornment.Start" AdornmentIcon="@Icons.Material.Search" IconSize="Size.Medium" Class="mt-0"></MudTextField>
+                            </ToolBarContent>
+                            <HeaderContent>
+                                <MudTh><MudTableSortLabel InitialDirection="SortDirection.Ascending" SortBy="new Func<Fans, object>(x=>x.fan.Name)">Name</MudTableSortLabel></MudTh>
+                                <MudTh><MudTableSortLabel SortBy="new Func<Fans, object>(x=>x.fan.Manufacturer)">Manufacturer</MudTableSortLabel></MudTh>
+                                <MudTh><MudTableSortLabel SortBy="new Func<Fans, object>(x=>x.fan.Price)">Price</MudTableSortLabel></MudTh>
+                                <MudTh><MudTableSortLabel SortBy="new Func<Fans, object>(x=>x.fan.Link)">Link</MudTableSortLabel></MudTh>
+                            </HeaderContent>
+                            <RowTemplate>
+                                <MudTd DataLabel="Name">
+                                    <MudLink Href="@("/pcbuilder/fans/details/" + @selected_item?.FanId)" Color="Color.Dark" Underline="Underline.None">@context.Name</MudLink>
+                                </MudTd>
+                                <MudTd DataLabel="Manufacturer">@context.Manufacturer</MudTd>
+                                <MudTd DataLabel="Price">@context.Price</MudTd>
+                                <MudTd DataLabel="Link">@context.Link</MudTd>
+                                <MudTd DataLabel="Edit">
+                                    <MudLink Href="@("/pcbuilder/fans/edit/" + @selected_item?.FanId)" Color="Color.Info" Underline="Underline.None">Edit</MudLink>
+                                </MudTd>
+                                <MudTd DataLabel="Delete">
+                                    <MudLink Href="@("/pcbuilder/fans/delete/" + @selected_item?.FanId)" Color="Color.Error" Underline="Underline.None">Delete</MudLink>
+                                </MudTd>
+                            </RowTemplate>
+                            <PagerContent>
+                                <MudTablePager />
+                            </PagerContent>
+                        </MudTable>
+                    }
+                </MudItem>
+            </MudGrid>
+         }
 
-@if (Action == "all")
-{
-    <MudGrid Spacing="0" >
-        <MudItem xs="12" sm="12" md="12" lg="12" xl="6">
-            <MudLink Href="/pcbuilder/fans/create">Create New</MudLink>
-        </MudItem>
-        <MudItem  xs="12" sm="12" md="12" lg="10" xl="6" >
-            @if (fans == null)
-            {
-                <p><em>Loading...</em></p>
-            }
-            else
-            {
 
-                <MudTable Items="fans" Hover="true" Breakpoint="Breakpoint.Sm" FixedHeader="true" SortLabel="Sort By" @bind-SelectedItem="selected_item">
-                    <ToolBarContent>
-                        <MudText Typo="Typo.h6">Fans</MudText>
-                        <MudToolBarSpacer />
-                        <MudTextField @bind-Value="search_string" Placeholder="Search" Adornment="Adornment.Start" AdornmentIcon="@Icons.Material.Search" IconSize="Size.Medium" Class="mt-0"></MudTextField>
-                    </ToolBarContent>
-                    <HeaderContent>
-                        <MudTh><MudTableSortLabel InitialDirection="SortDirection.Ascending" SortBy="new Func<Fans, object>(x=>x.fan.Name)">Name</MudTableSortLabel></MudTh>
-                        <MudTh><MudTableSortLabel SortBy="new Func<Fans, object>(x=>x.fan.Manufacturer)">Manufacturer</MudTableSortLabel></MudTh>
-                        <MudTh><MudTableSortLabel SortBy="new Func<Fans, object>(x=>x.fan.Price)">Price</MudTableSortLabel></MudTh>
-                        <MudTh><MudTableSortLabel SortBy="new Func<Fans, object>(x=>x.fan.Link)">Link</MudTableSortLabel></MudTh>
-                    </HeaderContent>
-                    <RowTemplate>
-                        <MudTd DataLabel="Name">@context.Name</MudTd>
-                        <MudTd DataLabel="Manufacturer">@context.Manufacturer</MudTd>
-                        <MudTd DataLabel="Price">@context.Price</MudTd>
-                        <MudTd DataLabel="Link">@context.Link</MudTd>
-
-                        <MudTd DataLabel="Edit">
-                            <MudLink Href="@("/pcbuilder/fans/edit/" + @selected_item?.FanId)">Edit</MudLink>
-                        </MudTd>
-                        <MudTd DataLabel="Delete">
-                            <MudLink Href="@("/pcbuilder/fans/delete/" + @selected_item?.FanId)">Delete</MudLink>
-                        </MudTd>
-
-
-                    </RowTemplate>
-                    <PagerContent>
-                        <MudTablePager />
-                    </PagerContent>
-                </MudTable>
-
-
-            }
-            </MudItem>
-    </MudGrid>
-}
-    
-
-    @if (Action == "create" || Action == "edit")
-    {
-        @*<MudPaper  Outlined="true">
+        @if (Action == "create" || Action == "edit")
+        {
+            @*<MudPaper  Outlined="true">
                 <MudForm @ref="form" @bind-IsValid="@success" @bind-Errors="@errors">
                     <MudTextField T="string" Label="Username" Required="true" RequiredError="User name is required!" />
                     <MudTextField T="string" Class="mt-3" Label="Email" Required="true" RequiredError="Email is required!"
@@ -83,80 +84,84 @@
                 </MudForm>
             </MudPaper>*@
 
-        <MudGrid>
-            @*<MudContainer></MudContainer>*@
-            <MudItem xs="12" sm="12" md="12" lg="6" xl="6">
-                <MudCard>
-                    <MudCardMedia Image="sample-data/1.jpg" Height="600" />
-                </MudCard>
-            </MudItem>
-            <MudItem xs="12" sm="6" md="12" lg="6" xl="12">
-                <EditForm Model="@fan" OnValidSubmit="CreateFan">
-                    <DataAnnotationsValidator />
-                    <MudCard style="width: 500px;">
-                        <MudCardContent>
-
-                            <MudTextField Label="Name" @bind-Value="fan.Name" For="@(() => fan.Name)" />
-                            <MudTextField Label="Manufacturer" @bind-Value="fan.Manufacturer" For="@(() => fan.Manufacturer)" />
-                            <MudTextField Label="Dimensions" @bind-Value="fan.Dimensions" For="@(() => fan.Dimensions)" />
-                            <MudTextField Label="Number Of Fans" @bind-Value="fan.NumberOfFuns" For="@(() => fan.NumberOfFuns)" />
-                            <MudSwitch @bind-Checked="fan.PWMControl" Label="PWM Control" For="@(() => fan.PWMControl)" Color="Color.Primary" />
-                            <MudSwitch @bind-Checked="fan.RGB" Label="RGB" For="@(() => fan.RGB)" Color="Color.Primary" />
-                            <MudTextField Label="Price" @bind-Value="fan.Price" For="@(() => fan.Price)" />
-
-                        </MudCardContent>
-                        <MudCardActions>
-                            <MudButton ButtonType="ButtonType.Submit" Variant="Variant.Filled" Color="Color.Primary" Class="ml-auto">Register</MudButton>
-                        </MudCardActions>
+            <MudGrid>
+                @*<MudContainer></MudContainer>*@
+                <MudItem xs="12" sm="12" md="12" lg="6" xl="6">
+                    <MudCard>
+                        <MudCardMedia Image="sample-data/1.jpg" Height="600" />
                     </MudCard>
+                </MudItem>
+                <MudItem xs="12" sm="6" md="12" lg="6" xl="12">
+                    <EditForm Model="@fan" OnValidSubmit="CreateFan">
+                        <DataAnnotationsValidator />
+                        <MudCard style="width: 500px;">
+                            <MudCardContent>
 
-                </EditForm>
-            </MudItem>
-        </MudGrid>
+                                <MudTextField Label="Name" @bind-Value="fan.Name" For="@(() => fan.Name)" />
+                                <MudTextField Label="Manufacturer" @bind-Value="fan.Manufacturer" For="@(() => fan.Manufacturer)" />
+                                <MudTextField Label="Dimensions" @bind-Value="fan.Dimensions" For="@(() => fan.Dimensions)" />
+                                <MudTextField Label="Number Of Fans" @bind-Value="fan.NumberOfFuns" For="@(() => fan.NumberOfFuns)" />
+                                <MudSwitch @bind-Checked="fan.PWMControl" Label="PWM Control" For="@(() => fan.PWMControl)" Color="Color.Primary" />
+                                <MudSwitch @bind-Checked="fan.RGB" Label="RGB" For="@(() => fan.RGB)" Color="Color.Primary" />
+                                <MudTextField Label="Price" @bind-Value="fan.Price" For="@(() => fan.Price)" />
 
+                            </MudCardContent>
+                            <MudCardActions>
+                                <MudButton ButtonType="ButtonType.Submit" Variant="Variant.Filled" Color="Color.Primary" Class="ml-auto">Register</MudButton>
+                            </MudCardActions>
+                        </MudCard>
 
-
-    }
-    else if (Action == "delete")
-    {
-        <MudSimpleTable>
-
-            <tbody>
-                <tr>
-                    <td>Name</td>
-                    <td>@fan.Name</td>
-                </tr>
-                <tr>
-                    <td>Manufacturer</td>
-                    <td>@fan.Manufacturer</td>
-                </tr>
-                <tr>
-                    <td>Dimensions</td>
-                    <td>@fan.Dimensions</td>
-                </tr>
-                <tr>
-                    <td>Number Of Fans</td>
-                    <td>@fan.NumberOfFuns</td>
-                </tr>
-                <tr>
-                    <td>PWM Control</td>
-                    <td>@fan.PWMControl</td>
-                </tr>
-                <tr>
-                    <td>RGB</td>
-                    <td>@fan.RGB</td>
-                </tr>
-                <tr>
-                    <td>Price</td>
-                    <td>@fan.Price</td>
-                </tr>
-            </tbody>
-        </MudSimpleTable>
-        <MudButton Variant="Variant.Outlined" Color="Color.Secondary" @onclick="(async () => await DeleteFan())">Delete</MudButton>
-        <MudButton Variant="Variant.Outlined" Color="Color.Primary">Cancel</MudButton>
-    }
+                    </EditForm>
+                </MudItem>
+            </MudGrid>
 
 
+
+        }
+        else if (Action == "details")
+        {
+
+        }
+        else if (Action == "delete")
+        {
+            <MudSimpleTable>
+
+                <tbody>
+                    <tr>
+                        <td>Name</td>
+                        <td>@fan.Name</td>
+                    </tr>
+                    <tr>
+                        <td>Manufacturer</td>
+                        <td>@fan.Manufacturer</td>
+                    </tr>
+                    <tr>
+                        <td>Dimensions</td>
+                        <td>@fan.Dimensions</td>
+                    </tr>
+                    <tr>
+                        <td>Number Of Fans</td>
+                        <td>@fan.NumberOfFuns</td>
+                    </tr>
+                    <tr>
+                        <td>PWM Control</td>
+                        <td>@fan.PWMControl</td>
+                    </tr>
+                    <tr>
+                        <td>RGB</td>
+                        <td>@fan.RGB</td>
+                    </tr>
+                    <tr>
+                        <td>Price</td>
+                        <td>@fan.Price</td>
+                    </tr>
+                </tbody>
+            </MudSimpleTable>
+            <MudButton Variant="Variant.Outlined" Color="Color.Secondary" @onclick="(async () => await DeleteFan())">Delete</MudButton>
+            <MudButton Variant="Variant.Outlined" Color="Color.Primary">Cancel</MudButton>
+        }
+    </MudContainer>
+</MudPaper>
 
 
     @code {

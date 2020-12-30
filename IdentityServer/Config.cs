@@ -49,7 +49,9 @@ namespace IdentityServer
                         "PCBuilder.API",
                         "roles"
                     },
-                }
+                },
+
+               
             };
     }
 }

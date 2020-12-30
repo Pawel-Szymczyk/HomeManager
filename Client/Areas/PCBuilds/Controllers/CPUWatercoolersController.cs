@@ -14,7 +14,6 @@ using System.Threading.Tasks;
 namespace HomeManager.Areas.PcBuilds.Controllers
 {
     [Area("PCBuilds")]
-    [Authorize]
     public class CPUWatercoolersController : Controller
     {
         private readonly ILogger<CPUWatercoolersController> _logger;

@@ -15,7 +15,7 @@ using System.IdentityModel.Tokens.Jwt;
 namespace Client.Controllers
 {
     [Area("HomeManager")]
-    [Authorize]
+    //[Authorize]    //[Authorize]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
