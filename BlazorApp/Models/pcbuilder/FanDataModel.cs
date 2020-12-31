@@ -1,8 +1,12 @@
-﻿using Microsoft.AspNetCore.Components;
+﻿using BlazorInputFile;
+using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Forms;
 using MudBlazor;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Net.Http.Json;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -35,6 +39,7 @@ namespace BlazorApp.Models.pcbuilder
         protected Fan selected_item = null;
 
         protected string Title { get; set; }
+        protected string ButtonName { get; set; }
 
         protected override async Task OnParametersSetAsync()
         {
@@ -44,6 +49,7 @@ namespace BlazorApp.Models.pcbuilder
             }
             else if (Action == "create")
             {
+                ButtonName = "Create";
                 Title = "Add Fan";
                 fan = new Fan();
             }
@@ -51,10 +57,12 @@ namespace BlazorApp.Models.pcbuilder
             {
                 if (Action == "edit")
                 {
+                    ButtonName = "Update";
                     Title = "Edit Fan";
                 }
                 else if (Action == "delete")
                 {
+                    ButtonName = "Delete";
                     Title = "Delete Fan";
                 }
 
@@ -78,6 +86,13 @@ namespace BlazorApp.Models.pcbuilder
         {
             //"https://localhost:44324/api/v1/fans/" + ParamFanId
             fan = await Http.GetFromJsonAsync<Fan>($"{ServiceEndpoint}/{ParamFanId}");
+
+            imgUrl = string.Empty;
+            if (fan.ImageData != null)
+            {
+                string imageBase64Data = Convert.ToBase64String(fan.ImageData);
+                imgUrl = string.Format("data:image/png;base64,{0}", imageBase64Data);
+            }
         }
 
         /// <summary>
@@ -85,6 +100,15 @@ namespace BlazorApp.Models.pcbuilder
         /// </summary>
         protected async Task CreateFan()
         {
+            //Console.WriteLine(imageName);
+            //Console.WriteLine(imageInByte.ToString());
+            //Console.WriteLine(fan.ImageFile.FileName);
+            if (imageInByte != null)
+            {
+                fan.ImageTitle = imageName;
+                fan.ImageData = imageInByte;
+            }
+
             if ( fan.FanId != Guid.Empty )
             {
                 await Http.PutAsJsonAsync(ServiceEndpoint, fan);
@@ -94,6 +118,8 @@ namespace BlazorApp.Models.pcbuilder
                 // create
                 await Http.PostAsJsonAsync(ServiceEndpoint, fan);
             }
+
+            imgUrl = string.Empty;
             UrlNavigationManager.NavigateTo("/pcbuilder/fans/all");
         }
 
@@ -124,6 +150,87 @@ namespace BlazorApp.Models.pcbuilder
         }
 
 
+
+
+        protected IEnumerable<IFileListEntry> files;
+
+        [Parameter]
+        public string imgUrl { get; set; }
+
+        [Parameter]
+        public byte[] imageInByte { get; set; }
+
+        [Parameter]
+        public string imageName { get; set; }
+
+
+        protected async Task UploadFiles(IFileListEntry[] entries)
+        {
+            files = entries;
+
+            
+
+            var file = entries.FirstOrDefault();
+            if (file != null)
+            {
+                //Console.WriteLine(file.Type); 
+                if (file.Type == "image/jpeg" || file.Type == "jpg" || file.Type == "image/png")
+                {
+                    imageName = file.Name;
+                    using (var ms = new System.IO.MemoryStream())
+                    {
+                        await file.Data.CopyToAsync(ms);
+
+                        imageInByte = ms.ToArray();
+
+
+                        string imageBase64Data = Convert.ToBase64String(ms.ToArray());
+                        imgUrl = string.Format("data:image/png;base64,{0}", imageBase64Data);
+                    }
+                }
+
+            }
+
+
+        }
+
+
+        
+
+
+        //[Parameter]
+        //public string ImgUrl { get; set; }
+        //[Parameter]
+        //public EventCallback<string> OnChange { get; set; }
+        ////[Inject]
+        ////public IProductHttpRepository Repository { get; set; }
+        //protected async Task HandleSelected(InputFileChangeEventArgs e)
+        //{
+        //    var imageFiles = e.GetMultipleFiles();
+        //    foreach (var imageFile in imageFiles)
+        //    {
+        //        if (imageFile != null)
+        //        {
+        //            var resizedFile = await imageFile.RequestImageFileAsync("image/png", 300, 500);
+
+        //            using (var ms = resizedFile.OpenReadStream(resizedFile.Size))
+        //            {
+        //                //var content = new MultipartFormDataContent();
+        //                //content.Headers.ContentDisposition = new ContentDispositionHeaderValue("form-data");
+        //                //content.Add(new StreamContent(ms, Convert.ToInt32(resizedFile.Size)), "image", imageFile.Name);
+        //                //ImgUrl = await Repository.UploadProductImage(content);
+        //                //await OnChange.InvokeAsync(ImgUrl);
+
+
+
+        //                var x = new StreamContent(ms, Convert.ToInt32(resizedFile.Size));
+        //                ImgUrl = await x.ReadAsStringAsync();
+
+        //                await OnChange.InvokeAsync(ImgUrl);
+        //            }
+        //        }
+        //    }
+        //}
 
     }
 }

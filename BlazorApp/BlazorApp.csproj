@@ -14,7 +14,7 @@
     <PackageReference Include="MudBlazor" Version="1.2.1" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
     <PackageReference Include="System.Net.Http.Json" Version="5.0.0" />
-
+    <PackageReference Include="BlazorInputFile" Version="0.1.0-preview" />
   </ItemGroup>
 
 </Project>
