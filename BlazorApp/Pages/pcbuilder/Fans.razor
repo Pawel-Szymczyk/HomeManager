@@ -2,6 +2,8 @@
 @page "/pcbuilder/fans/{action}/{ParamFanId:guid}"
 @page "/pcbuilder/fans/{action}"
 @using Microsoft.AspNetCore.Authorization
+@inject IDialogService Dialog
+@inject ISnackbar Snackbar
 
 @attribute [Authorize]
 
@@ -129,8 +131,8 @@
             {
                 <MudItem xs="12" Style="text-align: end;">
                     <MudButton StartIcon="@Icons.Material.Cancel" Variant="Variant.Outlined" Size="Size.Large" Color="Color.Dark" Link="/pcbuilder/fans/all">Cancel</MudButton>
-                    <MudButton StartIcon="@Icons.Material.Edit" Variant="Variant.Outlined" Size="Size.Large" Color="Color.Info" Link="@("/pcbuilder/fans/edit/" + @selected_item?.FanId)">Update</MudButton>
-                    <MudButton StartIcon="@Icons.Material.Delete" Variant="Variant.Outlined" Size="Size.Large" Color="Color.Error" @onclick="(async () => await DeleteFan())">Delete</MudButton>
+                    <MudButton StartIcon="@Icons.Material.Edit" Variant="Variant.Outlined" Size="Size.Large" Color="Color.Success" Link="@("/pcbuilder/fans/edit/" + @selected_item?.FanId)">Update</MudButton>
+                    <MudButton StartIcon="@Icons.Material.Delete" Variant="Variant.Outlined" Size="Size.Large" Color="Color.Error" @onclick="DeleteItem">Delete</MudButton>
                 </MudItem>
                 <MudItem xs="12">
                     <MudGrid>
@@ -186,7 +188,7 @@
             {
                 <MudItem xs="12" Style="text-align: end;">
                     <MudButton StartIcon="@Icons.Material.Cancel" Variant="Variant.Outlined" Size="Size.Large" Color="Color.Dark" Link="/pcbuilder/fans/all">Cancel</MudButton>
-                    <MudButton StartIcon="@Icons.Material.Delete" Variant="Variant.Outlined" Size="Size.Large" Color="Color.Error" @onclick="(async () => await DeleteFan())">@ButtonName</MudButton>
+                    <MudButton StartIcon="@Icons.Material.Delete" Variant="Variant.Outlined" Size="Size.Large" Color="Color.Error" @onclick="DeleteItem">Delete</MudButton>
                 </MudItem>
                 <MudItem xs="12">
                     <MudGrid>
@@ -241,3 +243,25 @@
         </MudGrid>
     </MudContainer>
 </MudPaper>
+
+
+@code {
+    private async Task DeleteItem()
+    {
+        var parameters = new DialogParameters();
+        parameters.Add("ContentText", $"Do you really want to delete { fan.Name }? This process cannot be undone.");
+        parameters.Add("ButtonText", "Delete");
+        parameters.Add("Color", Color.Error);
+
+        var options = new DialogOptions() { CloseButton = true, MaxWidth = MaxWidth.ExtraSmall };
+
+        var dialog = Dialog.Show<DeleteDialog>("Delete", parameters, options);
+        var result = await dialog.Result;
+
+        if (!result.Cancelled)
+        {
+            await DeleteFan();
+            Snackbar.Add($"Item { fan.Name } was successfully deleted.", Severity.Success);
+        }
+    }
+}

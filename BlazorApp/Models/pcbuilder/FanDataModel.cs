@@ -28,6 +28,15 @@ namespace BlazorApp.Models.pcbuilder
         [Parameter]
         public string Action { get; set; }
 
+        [Parameter]
+        public string imgUrl { get; set; }
+
+        [Parameter]
+        public byte[] imageInByte { get; set; }
+
+        [Parameter]
+        public string imageName { get; set; }
+
         #endregion
 
         private const string ServiceEndpoint = "https://localhost:44324/api/v1/fans";
@@ -40,6 +49,10 @@ namespace BlazorApp.Models.pcbuilder
 
         protected string Title { get; set; }
         protected string ButtonName { get; set; }
+
+        protected IEnumerable<IFileListEntry> files;
+
+       
 
         protected override async Task OnParametersSetAsync()
         {
@@ -100,9 +113,6 @@ namespace BlazorApp.Models.pcbuilder
         /// </summary>
         protected async Task CreateFan()
         {
-            //Console.WriteLine(imageName);
-            //Console.WriteLine(imageInByte.ToString());
-            //Console.WriteLine(fan.ImageFile.FileName);
             if (imageInByte != null)
             {
                 fan.ImageTitle = imageName;
@@ -152,23 +162,12 @@ namespace BlazorApp.Models.pcbuilder
 
 
 
-        protected IEnumerable<IFileListEntry> files;
-
-        [Parameter]
-        public string imgUrl { get; set; }
-
-        [Parameter]
-        public byte[] imageInByte { get; set; }
-
-        [Parameter]
-        public string imageName { get; set; }
+      
 
 
         protected async Task UploadFiles(IFileListEntry[] entries)
         {
             files = entries;
-
-            
 
             var file = entries.FirstOrDefault();
             if (file != null)
@@ -188,49 +187,11 @@ namespace BlazorApp.Models.pcbuilder
                         imgUrl = string.Format("data:image/png;base64,{0}", imageBase64Data);
                     }
                 }
-
             }
-
-
         }
 
 
-        
 
-
-        //[Parameter]
-        //public string ImgUrl { get; set; }
-        //[Parameter]
-        //public EventCallback<string> OnChange { get; set; }
-        ////[Inject]
-        ////public IProductHttpRepository Repository { get; set; }
-        //protected async Task HandleSelected(InputFileChangeEventArgs e)
-        //{
-        //    var imageFiles = e.GetMultipleFiles();
-        //    foreach (var imageFile in imageFiles)
-        //    {
-        //        if (imageFile != null)
-        //        {
-        //            var resizedFile = await imageFile.RequestImageFileAsync("image/png", 300, 500);
-
-        //            using (var ms = resizedFile.OpenReadStream(resizedFile.Size))
-        //            {
-        //                //var content = new MultipartFormDataContent();
-        //                //content.Headers.ContentDisposition = new ContentDispositionHeaderValue("form-data");
-        //                //content.Add(new StreamContent(ms, Convert.ToInt32(resizedFile.Size)), "image", imageFile.Name);
-        //                //ImgUrl = await Repository.UploadProductImage(content);
-        //                //await OnChange.InvokeAsync(ImgUrl);
-
-
-
-        //                var x = new StreamContent(ms, Convert.ToInt32(resizedFile.Size));
-        //                ImgUrl = await x.ReadAsStringAsync();
-
-        //                await OnChange.InvokeAsync(ImgUrl);
-        //            }
-        //        }
-        //    }
-        //}
 
     }
 }

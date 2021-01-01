@@ -51,7 +51,18 @@ namespace BlazorApp
 
 
             builder.Services.AddMudBlazorDialog();
-            builder.Services.AddMudBlazorSnackbar();
+            builder.Services.AddMudBlazorSnackbar(config =>
+            {
+                config.PositionClass = Defaults.Classes.Position.BottomCenter;
+
+                config.PreventDuplicates = false;
+                config.NewestOnTop = false;
+                config.ShowCloseIcon = true;
+                config.VisibleStateDuration = 3000;
+                config.HideTransitionDuration = 500;
+                config.ShowTransitionDuration = 500;
+                config.SnackbarVariant = Variant.Outlined;
+            });
             builder.Services.AddMudBlazorResizeListener();
 
 
