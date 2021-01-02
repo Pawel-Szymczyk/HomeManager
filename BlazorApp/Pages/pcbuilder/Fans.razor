@@ -7,9 +7,12 @@
 
 @attribute [Authorize]
 
-<MudPaper Style="padding: 20px 0;">
+<MudPaper Style="padding: 20px 0 130px 0;">
     <MudContainer Fixed="true">
         <MudGrid Spacing="2">
+
+
+
             @if (Action == "all")
             {
                 <MudItem xs="12" Style="text-align: end;">
@@ -240,6 +243,11 @@
                     </MudGrid>
                 </MudItem>
             }
+
+
+
+
+
         </MudGrid>
     </MudContainer>
 </MudPaper>

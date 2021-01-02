@@ -1,12 +1,10 @@
 @inherits LayoutComponentBase
 
 <MudThemeProvider />
-<MudDialogProvider 
-    CloseButton="true" 
-    DisableBackdropClick="true" 
-    NoHeader="false" 
-    Position="DialogPosition.Center" 
-/>
+<MudDialogProvider CloseButton="true"
+                   DisableBackdropClick="true"
+                   NoHeader="false"
+                   Position="DialogPosition.Center" />
 <MudSnackbarProvider />
 
 <MudLayout>
@@ -17,22 +15,18 @@
 
         <LoginDisplay />
 
-        @*<MudMenu Icon="@Icons.Material.MoreVert" Color="Color.Inherit" Edge="Edge.End">
-            <MudMenuItem>My account</MudMenuItem>
-            <MudMenuItem>Logout</MudMenuItem>
-        </MudMenu>*@
-
         <MudDivider Vertical="true" FlexItem="true" Style="margin: 15px" />
-        <MudIconButton Link="https://github.com/Pawel-Szymczyk" Icon="@Icons.Custom.GitHub" Color="Color.Inherit"  Target="_blank"/>
+        <MudIconButton Link="https://github.com/Pawel-Szymczyk" Icon="@Icons.Custom.GitHub" Color="Color.Inherit" Target="_blank" />
     </MudAppBar>
     <MudDrawer @bind-Open="_drawerOpen" Clipped="true" Elevation="2">
-        @*NavMenu*@
         <NavMenu />
     </MudDrawer>
     <MudMainContent>
         @Body
     </MudMainContent>
+
 </MudLayout>
+
 
 
 @code {
