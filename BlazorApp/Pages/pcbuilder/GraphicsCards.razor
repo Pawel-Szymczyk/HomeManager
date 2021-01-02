@@ -1,0 +1,296 @@
+﻿@inherits Models.pcbuilder.GraphicsCardDataModel
+@page "/pcbuilder/graphics-cards/{action}/{Id:guid}"
+@page "/pcbuilder/graphics-cards/{action}"
+@using Microsoft.AspNetCore.Authorization
+@inject IDialogService Dialog
+@inject ISnackbar Snackbar
+
+@attribute [Authorize]
+
+
+<MudPaper Style="padding: 20px 0 130px 0;">
+    <MudContainer Fixed="true">
+        <MudGrid Spacing="2">
+
+            @if (Action == "all")
+            {
+                <MudItem xs="12" Style="text-align: end;">
+                    <MudButton StartIcon="@Icons.Material.Add"
+                               Variant="Variant.Outlined"
+                               Link="/pcbuilder/graphics-cards/create"
+                               Size="Size.Large"
+                               Color="Color.Success">
+                        Create New
+                    </MudButton>
+                </MudItem>
+                <MudItem xs="12">
+                    @if (graphicsCards == null)
+                    {
+                        <p><em>Loading...</em></p>
+                    }
+                    else
+                    {
+                        <MudTable Items="graphicsCards" Hover="true" Breakpoint="Breakpoint.Sm" FixedHeader="true" SortLabel="Sort By" @bind-SelectedItem="selected_item" Elevation="25">
+                            <ToolBarContent>
+                                <MudText Typo="Typo.h6">Graphics Cards</MudText>
+                                <MudToolBarSpacer />
+                                <MudTextField @bind-Value="search_string" Placeholder="Search" Adornment="Adornment.Start" AdornmentIcon="@Icons.Material.Search" IconSize="Size.Medium" Class="mt-0"></MudTextField>
+                            </ToolBarContent>
+                            <HeaderContent>
+                                <MudTh><MudTableSortLabel InitialDirection="SortDirection.Ascending" SortBy="new Func<GraphicsCards, object>(x=>x.graphicsCard.Name)">Name</MudTableSortLabel></MudTh>
+                                <MudTh><MudTableSortLabel SortBy="new Func<GraphicsCards, object>(x=>x.graphicsCard.Manufacturer)">Manufacturer</MudTableSortLabel></MudTh>
+                                <MudTh><MudTableSortLabel SortBy="new Func<GraphicsCards, object>(x=>x.graphicsCard.Price)">Price</MudTableSortLabel></MudTh>
+                                <MudTh><MudTableSortLabel SortBy="new Func<GraphicsCards, object>(x=>x.graphicsCard.Link)">Link</MudTableSortLabel></MudTh>
+                            </HeaderContent>
+                            <RowTemplate>
+                                <MudTd DataLabel="Name">
+                                    <MudLink Href="@("/pcbuilder/graphics-cards/details/" + @selected_item?.GraphicsCardId)" Color="Color.Dark" Underline="Underline.None">@context.Name</MudLink>
+                                </MudTd>
+                                <MudTd DataLabel="Manufacturer">@context.Manufacturer</MudTd>
+                                <MudTd DataLabel="Price">@context.Price</MudTd>
+                                <MudTd DataLabel="Link">
+                                    <MudLink Href="@context.Link" Color="Color.Dark" Underline="Underline.None" Target="_blank">@context.Link</MudLink>
+                                </MudTd>
+                                <MudTd DataLabel="Edit">
+                                    <MudLink Href="@("/pcbuilder/graphics-cards/edit/" + @selected_item?.GraphicsCardId)" Color="Color.Info" Underline="Underline.None">Udpate</MudLink>
+                                </MudTd>
+                                <MudTd DataLabel="Delete">
+                                    <MudLink Href="@("/pcbuilder/graphics-cards/delete/" + @selected_item?.GraphicsCardId)" Color="Color.Error" Underline="Underline.None">Delete</MudLink>
+                                </MudTd>
+                            </RowTemplate>
+                            <PagerContent>
+                                <MudTablePager />
+                            </PagerContent>
+                        </MudTable>
+                    }
+                </MudItem>
+            }
+
+            @if (Action == "create" || Action == "edit")
+            {
+                <MudItem xs="12">
+                    <EditForm Model="@graphicsCard" OnValidSubmit="CreateGraphicsCard">
+                        <MudGrid Spacing="2">
+                            <MudItem xs="12" Style="text-align: end;">
+                                <MudButton StartIcon="@Icons.Material.Cancel" Variant="Variant.Outlined" Size="Size.Large" Color="Color.Dark" Link="/pcbuilder/graphics-cards/all">Cancel</MudButton>
+                                <MudButton EndIcon="@Icons.Material.Send" Variant="Variant.Outlined" Size="Size.Large" Color="Color.Success" ButtonType="ButtonType.Submit">@ButtonName</MudButton>
+                            </MudItem>
+                            <MudItem xs="12">
+                                <MudGrid>
+                                    <MudItem xs="12" sm="12" md="12" lg="6" xl="6">
+                                        <MudCard Elevation="0">
+                                            <div class="row">
+                                                <img src="@imgUrl" style="height:500px; width:100%; object-fit: cover;">
+                                            </div>
+                                        </MudCard>
+
+                                        @if (files != null)
+                                        {
+                                            <MudText Typo="@Typo.h6">@files.Count() File@(files.Count()>1?"s":""):</MudText>
+                                            <MudList>
+                                                @foreach (var file in files)
+                                                {
+                                                    <MudListItem Icon="@Filled.AttachFile" @key="@file">
+                                                        @file.Name <code>@file.Size bytes</code>
+                                                    </MudListItem>
+                                                }
+                                            </MudList>
+                                        }
+                                    </MudItem>
+                                    <MudItem xs="12" sm="6" md="12" lg="6" xl="6">
+                                        <DataAnnotationsValidator />
+                                        <MudCard Elevation="25">
+                                            <MudCardContent>
+                                                <MudTextField Label="Name" @bind-Value="graphicsCard.Name" For="@(() => graphicsCard.Name)" />
+                                                <MudTextField Label="Manufacturer" @bind-Value="graphicsCard.Manufacturer" For="@(() => graphicsCard.Manufacturer)" />
+                                                <MudTextField Label="Dimensions" @bind-Value="graphicsCard.Dimensions" For="@(() => graphicsCard.Dimensions)" />
+                                                <MudTextField Label="Graphics processing / engine" @bind-Value="graphicsCard.GPU" For="@(() => graphicsCard.GPU)" />
+                                                <MudTextField Label="Core / base clock" @bind-Value="graphicsCard.GPUFrequency" For="@(() => graphicsCard.GPUFrequency)" />
+                                                <MudTextField Label="Boost clock" @bind-Value="graphicsCard.BoostClock" For="@(() => graphicsCard.BoostClock)" />
+                                                <MudTextField Label="Memory Type" @bind-Value="graphicsCard.MemoryType" For="@(() => graphicsCard.MemoryType)" />
+                                                <MudTextField Label="CUDA" @bind-Value="graphicsCard.CUDA" For="@(() => graphicsCard.CUDA)" />
+                                                <MudTextField Label="Recommended PSU" @bind-Value="graphicsCard.PSU" For="@(() => graphicsCard.PSU)" />
+                                                <MudTextField Label="Price" @bind-Value="graphicsCard.Price" For="@(() => graphicsCard.Price)" />
+                                                <MudTextField Label="Link" @bind-Value="graphicsCard.Link" For="@(() => graphicsCard.Link)" />
+                                            </MudCardContent>
+                                            <MudCardActions>
+                                                <BlazorInputFile.InputFile id="fileInput" OnChange="UploadFiles" hidden />
+                                                <MudButton HtmlTag="label"
+                                                           Variant="Variant.Filled"
+                                                           Color="Color.Primary"
+                                                           StartIcon="@Filled.Image"
+                                                           Size="Size.Large"
+                                                           for="fileInput">
+                                                    Upload picture
+                                                </MudButton>
+                                            </MudCardActions>
+                                        </MudCard>
+                                    </MudItem>
+                                </MudGrid>
+                            </MudItem>
+                        </MudGrid>
+                    </EditForm>
+                </MudItem>
+            }
+            else if (Action == "details")
+            {
+                <MudItem xs="12" Style="text-align: end;">
+                    <MudButton StartIcon="@Icons.Material.Cancel" Variant="Variant.Outlined" Size="Size.Large" Color="Color.Dark" Link="/pcbuilder/graphics-cards/all">Cancel</MudButton>
+                    <MudButton StartIcon="@Icons.Material.Edit" Variant="Variant.Outlined" Size="Size.Large" Color="Color.Success" Link="@("/pcbuilder/graphics-cards/edit/" + @selected_item?.GraphicsCardId)">Update</MudButton>
+                    <MudButton StartIcon="@Icons.Material.Delete" Variant="Variant.Outlined" Size="Size.Large" Color="Color.Error" @onclick="DeleteItem">Delete</MudButton>
+                </MudItem>
+                <MudItem xs="12">
+                    <MudGrid>
+                        <MudItem xs="12" sm="12" md="12" lg="6" xl="6">
+                            <MudCard Elevation="0">
+                                <div class="row">
+                                    <img src="@imgUrl" style="height:500px; width:100%; object-fit: cover;">
+                                </div>
+                            </MudCard>
+                        </MudItem>
+                        <MudItem xs="12" sm="12" md="12" lg="6" xl="6">
+                            <MudSimpleTable Elevation="25">
+                                <tbody>
+                                    <tr>
+                                        <td style="font-weight: bold">Name</td>
+                                        <td>@graphicsCard.Name</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="font-weight: bold">Manufacturer</td>
+                                        <td>@graphicsCard.Manufacturer</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="font-weight: bold">Dimensions</td>
+                                        <td>@graphicsCard.Dimensions</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="font-weight: bold">Graphics processing / engine</td>
+                                        <td>@graphicsCard.GPU</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="font-weight: bold">Core / base clock</td>
+                                        <td>@graphicsCard.GPUFrequency</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="font-weight: bold">Boost clock</td>
+                                        <td>@graphicsCard.BoostClock</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="font-weight: bold">Memory Type</td>
+                                        <td>@graphicsCard.MemoryType</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="font-weight: bold">CUDA</td>
+                                        <td>@graphicsCard.CUDA</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="font-weight: bold">Recommended PSU</td>
+                                        <td>@graphicsCard.PSU</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="font-weight: bold">Price</td>
+                                        <td>@graphicsCard.Price</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="font-weight: bold">Link</td>
+                                        <td>@graphicsCard.Link</td>
+                                    </tr>
+                                </tbody>
+                            </MudSimpleTable>
+                        </MudItem>
+                    </MudGrid>
+                </MudItem>
+            }
+            else if (Action == "delete")
+            {
+                <MudItem xs="12" Style="text-align: end;">
+                    <MudButton StartIcon="@Icons.Material.Cancel" Variant="Variant.Outlined" Size="Size.Large" Color="Color.Dark" Link="/pcbuilder/graphics-cards/all">Cancel</MudButton>
+                    <MudButton StartIcon="@Icons.Material.Delete" Variant="Variant.Outlined" Size="Size.Large" Color="Color.Error" @onclick="DeleteItem">Delete</MudButton>
+                </MudItem>
+                <MudItem xs="12">
+                    <MudGrid>
+                        <MudItem xs="12" sm="12" md="12" lg="6" xl="6">
+                            <MudCard Elevation="0">
+                                <div class="row">
+                                    <img src="@imgUrl" style="height:500px; width:100%; object-fit: cover;">
+                                </div>
+                            </MudCard>
+                        </MudItem>
+                        <MudItem xs="12" sm="12" md="12" lg="6" xl="6">
+                            <MudSimpleTable Elevation="25">
+                                <tbody>
+                                    <tr>
+                                        <td style="font-weight: bold">Name</td>
+                                        <td>@graphicsCard.Name</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="font-weight: bold">Manufacturer</td>
+                                        <td>@graphicsCard.Manufacturer</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="font-weight: bold">Dimensions</td>
+                                        <td>@graphicsCard.Dimensions</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="font-weight: bold">Graphics processing / engine</td>
+                                        <td>@graphicsCard.GPU</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="font-weight: bold">Core / base clock</td>
+                                        <td>@graphicsCard.GPUFrequency</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="font-weight: bold">Boost clock</td>
+                                        <td>@graphicsCard.BoostClock</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="font-weight: bold">Memory Type</td>
+                                        <td>@graphicsCard.MemoryType</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="font-weight: bold">CUDA</td>
+                                        <td>@graphicsCard.CUDA</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="font-weight: bold">Recommended PSU</td>
+                                        <td>@graphicsCard.PSU</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="font-weight: bold">Price</td>
+                                        <td>@graphicsCard.Price</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="font-weight: bold">Link</td>
+                                        <td>@graphicsCard.Link</td>
+                                    </tr>
+                                </tbody>
+                            </MudSimpleTable>
+                        </MudItem>
+                    </MudGrid>
+                </MudItem>
+            }
+        </MudGrid>
+    </MudContainer>
+</MudPaper>
+
+
+@code {
+    private async Task DeleteItem()
+    {
+        var parameters = new DialogParameters();
+        parameters.Add("ContentText", $"Do you really want to delete { graphicsCard.Name }? This process cannot be undone.");
+        parameters.Add("ButtonText", "Delete");
+        parameters.Add("Color", Color.Error);
+
+        var options = new DialogOptions() { CloseButton = true, MaxWidth = MaxWidth.ExtraSmall };
+
+        var dialog = Dialog.Show<DeleteDialog>("Delete", parameters, options);
+        var result = await dialog.Result;
+
+        if (!result.Cancelled)
+        {
+            await DeleteGraphicsCard();
+            Snackbar.Add($"Item { graphicsCard.Name } was successfully deleted.", Severity.Success);
+        }
+    }
+}

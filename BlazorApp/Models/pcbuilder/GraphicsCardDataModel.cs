@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace BlazorApp.Models.pcbuilder
 {
-    public class FanDataModel : ComponentBase
+    public class GraphicsCardDataModel : ComponentBase
     {
         #region HTTP 
         [Inject]
@@ -20,7 +20,7 @@ namespace BlazorApp.Models.pcbuilder
 
         #region Parameters
         [Parameter]
-        public Guid ParamFanId { get; set; }
+        public Guid Id { get; set; }
         [Parameter]
         public string Action { get; set; }
 
@@ -35,13 +35,13 @@ namespace BlazorApp.Models.pcbuilder
 
         #endregion
 
-        private const string ServiceEndpoint = "https://localhost:44324/api/v1/fans";
+        private const string ServiceEndpoint = "https://localhost:44324/api/v1/GraphicsCards";
 
-        protected List<Fan> fans = new List<Fan>();
-        public Fan fan = new Fan();
+        protected List<GraphicsCard> graphicsCards  = new List<GraphicsCard>();
+        public GraphicsCard graphicsCard = new GraphicsCard();
 
         protected string search_string = "";
-        protected Fan selected_item = null;
+        protected GraphicsCard selected_item = null;
 
         protected string Title { get; set; }
         protected string ButtonName { get; set; }
@@ -54,52 +54,51 @@ namespace BlazorApp.Models.pcbuilder
         {
             if (Action == "all")
             {
-                await FetchFans();
+                await FetchGraphicsCards();
             }
             else if (Action == "create")
             {
                 ButtonName = "Create";
-                Title = "Add Fan";
-                fan = new Fan();
+                Title = "Add Graphics Card";
+                graphicsCard = new GraphicsCard();
             }
-            else if (ParamFanId != Guid.Empty)
+            else if (Id != Guid.Empty)
             {
                 if (Action == "edit")
                 {
                     ButtonName = "Update";
-                    Title = "Edit Fan";
+                    Title = "Edit Graphics Card";
                 }
                 else if (Action == "delete")
                 {
                     ButtonName = "Delete";
-                    Title = "Delete Fan";
+                    Title = "Delete Graphics Card";
                 }
 
-                await FetchFan();
+                await FetchGraphicsCard();
             }
         }
 
         /// <summary>
         /// Gets list of fans.
         /// </summary>
-        protected async Task FetchFans()
+        protected async Task FetchGraphicsCards()
         {
-            Title = "Fans";
-            fans = await Http.GetFromJsonAsync<List<Fan>>(ServiceEndpoint);
-            //fans = await Http.GetFromJsonAsync<List<Fan>>("v1/fans");
+            Title = "Graphics Cards";
+            graphicsCards = await Http.GetFromJsonAsync<List<GraphicsCard>>(ServiceEndpoint);
         }
 
         /// <summary>
         /// Gets specific single fan details. 
         /// </summary>
-        protected async Task FetchFan()
+        protected async Task FetchGraphicsCard()
         {
-            fan = await Http.GetFromJsonAsync<Fan>($"{ServiceEndpoint}/{ParamFanId}");
+            graphicsCard = await Http.GetFromJsonAsync<GraphicsCard>($"{ServiceEndpoint}/{Id}");
 
             imgUrl = string.Empty;
-            if (fan.ImageData != null)
+            if (graphicsCard.ImageData != null)
             {
-                string imageBase64Data = Convert.ToBase64String(fan.ImageData);
+                string imageBase64Data = Convert.ToBase64String(graphicsCard.ImageData);
                 imgUrl = string.Format("data:image/png;base64,{0}", imageBase64Data);
             }
         }
@@ -107,53 +106,39 @@ namespace BlazorApp.Models.pcbuilder
         /// <summary>
         /// Stores/updates fan in the servers' database.
         /// </summary>
-        protected async Task CreateFan()
+        protected async Task CreateGraphicsCard()
         {
             if (imageInByte != null)
             {
-                fan.ImageTitle = imageName;
-                fan.ImageData = imageInByte;
+                graphicsCard.ImageTitle = imageName;
+                graphicsCard.ImageData = imageInByte;
             }
 
-            if (fan.FanId != Guid.Empty)
+            if (graphicsCard.GraphicsCardId != Guid.Empty)
             {
-                await Http.PutAsJsonAsync(ServiceEndpoint, fan);
+                await Http.PutAsJsonAsync(ServiceEndpoint, graphicsCard);
             }
             else
             {
                 // create
-                await Http.PostAsJsonAsync(ServiceEndpoint, fan);
+                await Http.PostAsJsonAsync(ServiceEndpoint, graphicsCard);
             }
 
             imgUrl = string.Empty;
-            UrlNavigationManager.NavigateTo("/pcbuilder/fans/all");
+            UrlNavigationManager.NavigateTo("/pcbuilder/graphics-cards/all");
         }
 
         /// <summary>
         /// Deletes specific fan from server.
         /// </summary>
         /// <returns></returns>
-        protected async Task DeleteFan()
+        protected async Task DeleteGraphicsCard()
         {
-            await Http.DeleteAsync($"{ServiceEndpoint}/{ParamFanId}");
-            UrlNavigationManager.NavigateTo("/pcbuilder/fans/all");
+            await Http.DeleteAsync($"{ServiceEndpoint}/{Id}");
+            UrlNavigationManager.NavigateTo("/pcbuilder/graphics-cards/all");
         }
 
 
-
-
-        protected bool FilterFunc(Fan element)
-        {
-            if (string.IsNullOrWhiteSpace(search_string))
-                return true;
-            if (element.Manufacturer.Contains(search_string))
-                return true;
-            if (element.Name.Contains(search_string))
-                return true;
-            //if ($"{element.Number} {element.Position} {element.Molar}".Contains(search_string))
-            //    return true;
-            return false;
-        }
 
 
 
@@ -185,9 +170,5 @@ namespace BlazorApp.Models.pcbuilder
                 }
             }
         }
-
-
-
-
     }
 }

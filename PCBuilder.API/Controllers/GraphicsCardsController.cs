@@ -12,7 +12,7 @@ namespace PCBuilder.Service.API.Controllers
     [Produces("application/json")]
     [Route("api/v1/[controller]")]
     [ApiController]
-    [Authorize]
+    //[Authorize]
     public class GraphicsCardsController : ControllerBase
     {
         private readonly GraphicsCardRepository _repository;
